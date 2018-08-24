@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SheetAnchor.iml" filepath="$PROJECT_DIR$/SheetAnchor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anchorcms-bbs/anchorcms-bbs.iml" filepath="$PROJECT_DIR$/anchorcms-bbs/anchorcms-bbs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anchorcms-web/anchorcms-web.iml" filepath="$PROJECT_DIR$/anchorcms-web/anchorcms-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anchorcms-webservice/anchorcms-webservice.iml" filepath="$PROJECT_DIR$/anchorcms-webservice/anchorcms-webservice.iml" />
+    </modules>
+  </component>
+</project>

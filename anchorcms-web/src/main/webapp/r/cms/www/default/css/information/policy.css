@@ -1,0 +1,203 @@
+#content .top{
+	width:1200px;
+	height:366px;
+	margin-left:0px;
+	margin-top:0px;
+}
+#content .top .img{
+	width:812px;
+	height:366px;
+	margin-left:0px;
+	margin-top:0px;
+	background-image:url(../../images/information/talk/u60.png);
+	float:left;
+}
+#content .top .policyInfor{
+	width:380px;
+	height:366px;
+	margin-left:8px;
+	margin-top:0px;
+	background-image:url(../../images/information/center/u62.png);
+	float:left;
+}
+#content .top .policyInfor .head{
+	width:210px;
+	height:60px;
+	margin-left:85px;
+	margin-top:0px;
+	background-image:url(../../images/information/sub/u64.png);
+}
+#content .top .policyInfor .list{
+	width:350px;
+	height:240px;
+	margin-left:15px;
+	margin-top:30px;
+}
+#content .top .policyInfor .head p{
+	line-height:60px;
+	text-align:center;
+	font-size:16px;
+}
+#content .title{
+	margin-top:20px;
+	margin-left:0px;	
+	font-size:14px;
+	width: 300px;
+	height: 35px;
+}
+#content .middle{
+	width:1200px;
+	height:366px;
+	margin-left:0px;
+	margin-top:20px;
+}
+#content .middle .policyInterpretation{
+	width:812px;
+	height:366px;
+	margin-left:0px;
+	margin-top:0px;
+	background-image:url(../../images/information/sub/u74.png);
+	float:left;
+}
+#content .middle .policyDistribution{
+	width:380px;
+	height:366px;
+	margin-left:8px;
+	margin-top:0px;
+	background-image:url(../../images/information/center/u62.png);
+	float:left;
+}
+#content .middle .policyInterpretation .head{
+	width:449px;
+	height:60px;
+	margin-left:181px;
+	margin-top:0px;
+	background-image:url(../../images/information/sub/u76.png);
+}
+#content .middle .policyInterpretation .list{
+	width:350px;
+	height:240px;
+	margin-left:15px;
+	margin-top:30px;
+}
+#content .middle .policyInterpretation .head p{
+	line-height:60px;
+	text-align:center;
+	font-size:17px;
+}
+#content .middle .policyDistribution .head{
+	width:330px;
+	height:60px;
+	margin-left:25px;
+	margin-top:20px;
+	background-image:url(../../images/information/sub/u90.png);
+}
+#content .middle .policyDistribution .img{
+	width:300px;
+	height:225px;
+	margin-left:40px;
+	margin-top:35px;
+}
+#content .middle .policyDistribution .img image{
+	width:300px;
+	height:225px;
+}
+#content .middle .policyDistribution .head p{
+	font-size:15px;
+	padding-top:5px;
+	margin-left:10px;
+}
+#content .bottom{
+	width:1200px;
+	height:296px;
+	margin-left:0px;
+	margin-top:20px;
+}
+#content .bottom .case{
+	width:532px;
+	height:296px;
+	margin-left:0px;
+	margin-top:0px;
+	background-image:url(../../images/information/sub/u98.png);
+	float:left;
+}
+#content .bottom .analysis{
+	width:260px;
+	height:296px;
+	margin-left:38px;
+	margin-top:0px;
+	background-image:url(../../images/information/sub/u92.png);
+	float:left;
+}
+#content .bottom .document{
+	width:340px;
+	height:296px;
+	margin-left:30px;
+	margin-top:0px;
+	background-image:url(../../images/information/sub/u100.png);
+	float:left;
+}
+#content .bottom .case .head{
+	width:430px;
+	height:46px;
+	margin-left:46px;
+	margin-top:20px;
+	background-image:url(../../images/information/sub/u102.png);
+}
+#content .bottom .case .list{
+	width:350px;
+	height:240px;
+	margin-left:51px;
+	margin-top:50px;
+	
+}
+#content .bottom .case .head p{
+	line-height:46px;
+	text-align:center;
+	font-size:17px
+}
+#content .bottom .analysis .head{
+	width:220px;
+	height:56px;
+	margin-left:20px;
+	margin-top:20px;
+	background-image:url(../../images/information/sub/u96.png);
+}
+#content .bottom .analysis .img{
+	width:189px;
+	height:161px;
+	margin-left:35px;
+	margin-top:30px;
+}
+#content .bottom .analysis .img image{
+	width:189px;
+	height:161px;
+}
+#content .bottom .analysis .head p{
+	line-height:56px;
+	text-align:center;
+	font-size:17px
+}
+#content .bottom .document .head{
+	width:286px;
+	height:50px;
+	margin-left:27px;
+	margin-top:20px;
+	background-image:url(../../images/information/sub/u104.png);
+}
+#content .bottom .document .content{
+	width:220px;
+	height:150px;
+	margin-left:60px;
+	margin-top:50px;
+
+}
+#content .bottom .document .head p{
+	line-height:50px;
+	text-align:center;
+	font-size:17px
+}
+#content .bottom .document .content p{
+	
+	font-size:12px
+}

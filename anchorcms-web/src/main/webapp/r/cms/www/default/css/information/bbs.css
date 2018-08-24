@@ -1,0 +1,174 @@
+.bbs-left{
+    float: left;
+    width: 820px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: normal;
+}
+.bbs-window{
+    margin:0px 18px 0px 0px ;
+    width: 812px;
+    height: 366px;
+}
+.bbs-colum{
+    margin:20px 0px 0px 0px ;
+    width: 812px;
+    background-image: url("../../images/information/bbs/u68.png");
+}
+.bbs-colum-1{
+    width: 371px;
+    background-image: url("../../images/information/bbs/u106.png");
+}
+.bbs-title{
+    float: left;
+    margin-left: 10px;
+    width: 95px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 18px;
+    color: #FF0000;
+    text-align: left;
+    line-height: 40px;
+}
+.bbs-more{
+    float: right;
+    margin-right: 20px;
+    width: 50px;
+    text-align: right;
+    line-height: 40px;
+}
+.bbs-content{
+    margin-top: 10px;
+}
+.bbs-content-1{
+    float: left;
+    margin-right: 16px;
+}
+.bbs-content-1-1{
+    margin-right: 10px;
+}
+.bbs-content-pic1{
+    width: 396px;
+    height:240px ;
+    width: 396px;
+    background-image: url("../../images/information/bbs/u82.png");
+}
+.bbs-content-detail-1{
+    padding: 10px 0px;
+    width: 396px;
+    background-image: url("../../images/information/bbs/u82.png");
+}
+.bbs-content-pic2{
+    width: 190px;
+    height: 240px;
+}
+.bbs-content-detail-2{
+    padding: 10px 0px;
+    width: 190px;
+    background-image: url("../../images/information/bbs/u80.png");
+}
+.bbs-right{
+    float: right;
+    width: 380px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    color: #333333;
+    text-align: left;
+    line-height: 30px;
+}
+.bbs-project{
+    width:380px;
+    height: 366px;
+    padding-left: 10px;
+    background-image: url("../../images/information/bbs/u62.png");
+}
+.bbs-project-colum{
+    padding:30px 0px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 18px;
+    color: #333333;
+    text-align: center;
+}
+.bbs-event-colum{
+    margin-top: 20px;
+    width:380px;
+    background-image: url("../../images/information/bbs/u169.png");
+}
+.bbs-event-colum-name{
+    float: left;
+    margin-left: 10px;
+    width: 95px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 18px;
+    color: #FF0000;
+    text-align: left;
+    line-height: 51px;
+}
+.bbs-event-colum-more{
+    float: right;
+    margin-right: 20px;
+    width: 50px;
+    font-size: 13px;
+    text-align: right;
+    line-height: 51px;
+}
+.bbs-event-title{
+    padding-left: 10px ;
+    padding-top: 30px;
+    height: 350px;
+    background-image: url("../../images/information/bbs/u146.png");
+}
+.bbs-ad{
+    margin-top: 15px;
+    height: 260px;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: 260px;
+    background-image: url("../../images/information/bbs/u158.png");
+}
+.button{
+
+    width: 1200px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: normal;
+}
+.infro-button-1{
+    float: left;
+    margin-right:43px ;
+}
+.button-2{
+    margin-right: 0px;
+}
+.button-pic{
+    margin-top: 10px;
+    padding-top: 195px;
+    width: 371px;
+    height: 240px;
+    background-image: url("../../images/information/bbs/u108.png");
+}
+.button-pic-descible{
+    line-height: 45px;
+    background-image: url("../../images/information/bbs/u110.png");
+}
+.button-word{
+    margin-top: 10px;
+    padding: 70px 0px;
+    width: 371px;
+    height: 205px;
+    background-image: url("../../images/information/bbs/u160.png");
+}

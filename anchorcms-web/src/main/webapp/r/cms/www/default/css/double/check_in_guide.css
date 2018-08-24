@@ -1,0 +1,140 @@
+div{
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+}
+.main{
+	width: 1200px;
+	height: auto;
+	position:relative;
+	margin:0 auto;
+	border: solid 1px #a6a6a6;
+}
+.current-position{
+	width: 100%;
+	height: 40px;
+	background-color: #ededed;
+	border-bottom: solid 2px #a6a6a6;
+}
+.current-position p{
+	color: rgb(51, 51, 51);
+	font-family: "Arial Negreta","Arial";
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 40px;
+	text-alignleftwhite-space: nowrap;
+}
+.carousel-pic{
+	width: 100%;
+	height: 350px;
+	text-align:center;
+	vertical-align: middle;
+	background-color: #ededed;
+	border-bottom: solid 2px #a6a6a6;
+}
+.title1{
+	float:left;
+	width: 100%;
+	height: 60px;
+	text-align:center;
+	vertical-align: middle;
+	background-color: #f4ceae;
+	border-bottom: solid 2px #a6a6a6;
+}
+.title1 p{
+	color: rgb(51, 51, 51);
+	font-family: "Arial Negreta","Arial";
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 60px;
+	letter-spacing:15px;
+	overflow-wrap: break-word;
+	text-align: center;
+}
+.guide-content{
+	float:left;
+	width: 100%;
+	height: 240px;
+	text-align:center;
+	background-color: #ededed;
+	border-bottom: solid 2px #a6a6a6;
+}
+.benefit{
+	float:left;
+	position:relative;
+	width: 140px;
+	height: 170px;
+	text-align:center;
+	margin: 35px 0px 35px 125px;
+	background-color: #ccc;
+}
+.summary{
+	position:absolute;
+	width: 100%;
+	height: 50px;
+	bottom:0;
+	text-align:center;
+	line-height:50px;
+	background-color:#ededed;
+	border: solid 1px black;
+}
+.strengths{
+	float: left;
+	width: 100px;
+	height: 100px;
+	margin: 40px 0 0px 250px;
+}
+.rectangle{
+	float:left;
+	width: 100px;
+	height: 40px;
+	text-align:center;
+	border:solid 1px #a6a6a6;
+}
+.arrow{
+	float:left;
+	width: 40px;
+	height: 60px;
+	text-align:center;
+	margin:60px 0 6px 0px;
+	border:solid 1px #a6a6a6;
+	border-left:solid 1px #fff;
+}
+.line{
+	float:left;
+	width: 180px;
+	height: 2px;
+	text-align:center;
+	margin: 80px 0 6px 0px;
+}
+.circle{
+	float:left;
+	width: 110px;
+	height: 110px;
+	border:solid 1px #a6a6a6;
+	border-radius: 50px;
+	line-height:110px;
+	text-align: center;
+	margin: 30px 0 16px 150px;
+}
+.prerequisite{
+	float:left;
+	width: 140px;
+	height: 90px;
+	margin: 40px 50px 0px 100px;
+	text-align:center;
+	line-height:90px;
+	border:solid 1px #a6a6a6;
+}
+.flow{
+	float:left;
+	width: 100px;
+	height: 60px;
+	margin: 40px 0px 0px 0px;
+	text-align:center;
+	line-height:90px;
+	border:solid 1px #a6a6a6;
+
+}

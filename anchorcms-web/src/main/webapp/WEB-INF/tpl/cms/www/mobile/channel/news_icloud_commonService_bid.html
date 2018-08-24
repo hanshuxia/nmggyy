@@ -1,0 +1,379 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>项目招投标-${site.siteName!}</title>
+    <meta http-equiv="keywords" content="项目招投标,内蒙古项目招投标"/>
+    <meta http-equiv="description" content="内蒙古项目招投标,${site.description!}"/>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/searching.css"/>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        function searcher(test,tabId){
+            var searchOne = " ";
+            var searchTwo = " ";
+            var searchThree = test;
+            var searchFour = " ";
+            location.href="index-"+searchOne+"-"+searchTwo+"-"+searchThree+"-"+searchFour+".jhtml#"+tabId;
+        }
+        $(function(){
+            var tabid=location.hash.substr(1);
+
+            $("#tabLinks li").removeClass("current");
+            if(tabid==""||tabid==1){
+                $("#tabLinks li").eq(0).addClass("current");
+            }else if(tabid==2){
+                $("#tabLinks li").eq(1).addClass("current");
+            }else{
+                $("#tabLinks li").eq(2).addClass("current");
+            }
+        })
+    </script>
+</head>
+<body>
+<!--header start-->
+[#include "../include/header_icloud.html"]
+<!--header end-->
+<!--content start-->
+<div class="content wrapper clearfix">
+    <div class="searchIndex">
+        <div class="search-top">
+            <span><a href="/ggfw/index.jhtml" target="_blank">${channel.parent.name}</a>&nbsp;&gt;&nbsp;<a href="/ggfwXmztb/index.jhtml">${channel.name}</a></span>
+        </div>
+        <div class="search-main">
+            <!--<div class="search-nav">
+                <span>您选择的是&gt;</span>
+                <a><span class="sift">收起筛选∧</span></a>
+            </div>-->
+            <div id="kinds" class="kinds wrapper">
+                <div class="type bottom">
+                    <span>地区：</span>
+                    <div class="type-content kind-one"></div>
+                    <a class="more">更多∨</a>
+                </div>
+            </div>
+            <div class="searchBox">
+                <ul class="clearfix" id="tabLinks">
+                    <li class="current"><a onclick="searcher('zhaobiaoyugao',1)">招标预告</a></li>
+                    <li><a onclick="searcher('zhaobiaogonggao',2)">招标公告</a></li>
+                    <li><a onclick="searcher('zhongbiaogonggao',3)">中标公告</a></li>
+                </ul>
+                <!--<div class="searchBar">
+                    <input type="text" id="selec">
+                    <button id="but" onclick="sele()"></button>
+                </div>-->
+            </div>
+        </div>
+    </div>
+    <input id="zhao" hidden="hidden" type="text" value=" ">
+    <div class="showPolicy clearfix">
+        <ul class="clearfix">
+            [@ext_content_page count='10' typeId='2' q=q modelPath="tender"]
+            <input id="zh" hidden="hidden" type="text" value="${tag_pagination.searchThree?default('')} ">
+            [#if tag_list?size gt 0 ]
+            [#list tag_list as a]
+            [#if a_index<10]
+            [#if tag_pagination.searchThree=="1"||tag_pagination.searchThree==""]
+            <li style="height: 60px;position: relative;margin-top: 10px">
+                <div class="item-cname" style="margin-left: -200px;margin-top: 0px">
+                    <dl style="margin-top: 0px;margin-left: 10px">
+                        [#if (a.content)??]
+                          [#if a.content.staticContent]
+                            [#if a.content.needRegenerate]
+                              <dt style="font-size: 14px;margin-top: -10px;margin-left: 20px"><a target="_blank" href="/commservice/sTenderTrailerDetail.jspx?id=${a.tenderTrailerId?default('null')}"><span style="font-size: 16px;margin-top: -5px" title="${a.projectName}">[@text_cut s=a.projectName len='15' append='...[详细]'/]</span></a></dt>
+                            [#else]
+                              <dt style="font-size: 14px;margin-top: -10px;margin-left: 20px"><a target="_blank" href="${a.content.url}"><span style="font-size: 16px;margin-top: -5px" title="${a.projectName}">[@text_cut s=a.projectName len='15' append='...[详细]'/]</span></a></dt>
+                            [/#if]
+                          [#else]
+                            <dt style="font-size: 14px;margin-top: -10px;margin-left: 20px"><a target="_blank" href="/commservice/sTenderTrailerDetail.jspx?id=${a.tenderTrailerId?default('null')}"><span style="font-size: 16px;margin-top: -5px" title="${a.projectName}">[@text_cut s=a.projectName len='15' append='...[详细]'/]</span></a></dt>
+                          [/#if]
+                        [#else]
+                        <dt style="font-size: 14px;margin-top: -10px;margin-left: 20px"><a target="_blank" href="/commservice/sTenderTrailerDetail.jspx?id=${a.tenderTrailerId?default('null')}"><span style="font-size: 16px;margin-top: -5px" title="${a.projectName}">[@text_cut s=a.projectName len='15' append='...[详细]'/]</span></a></dt>
+                        [/#if]
+                        <dd style="font-size: 14px;margin-left: 20px;margin-top: 10px"><spanp>发布时间：${a.releaseDt?default(' ')}</spanp></dd>
+                    </dl>
+                    <div style="margin-top: -50px">
+                        <div><span style="margin-left: 500px;font-size: 16px" title="${a.bidParty}">招标方：[@text_cut s=a.bidParty len='10' append='...[详细]'/]</span></div>
+                    </div>
+                        <div style="margin-top: 10px;font-size: 14px;margin-left: 500px;width:450px;overflow:hidden;color: #4d4a4b" title="${a.bidType}">招标类型：[@text_cut s=a.bidType?default('null') len='15' append='...[详细]'/]</div>
+                    [#if (a.content)??]
+                      [#if a.content.staticContent]
+                        [#if a.content.needRegenerate]
+                          <div style="float: right;margin-right: 50px;margin-top: -55px;height: 20px"><a target="_blank" href="/commservice/sTenderTrailerDetail.jspx?id=${a.tenderTrailerId?default('null')}"><button style="margin-top: 10px;font-size: 14px">查看详情</button></a></div>
+                        [#else]
+                          <div style="float: right;margin-right: 50px;margin-top: -55px;height: 20px"><a target="_blank" href="${a.content.url}"><button style="margin-top: 10px;font-size: 14px">查看详情</button></a></div>
+                        [/#if]
+                      [#else]
+                        <div style="float: right;margin-right: 50px;margin-top: -55px;height: 20px"><a target="_blank" href="/commservice/sTenderTrailerDetail.jspx?id=${a.tenderTrailerId?default('null')}"><button style="margin-top: 10px;font-size: 14px">查看详情</button></a></div>
+                      [/#if]
+                    [#else]
+                      <div style="float: right;margin-right: 50px;margin-top: -55px;height: 20px"><a target="_blank" href="/commservice/sTenderTrailerDetail.jspx?id=${a.tenderTrailerId?default('null')}"><button style="margin-top: 10px;font-size: 14px">查看详情</button></a></div>
+                    [/#if]
+                </div>
+            </li>
+            [/#if]
+            [#if tag_pagination.searchThree=="2"]
+            <li style="height: 70px;position: relative;">
+                <div class="item-cname" style="margin-left: -200px;margin-top: -10px">
+                    <dl style="margin-top: -5px">
+                        [#if (a.content)??]
+                          [#if a.content.staticContent]
+                            [#if a.content.needRegenerate]
+                              <dt style="font-size: 14px;margin-top: 5px;margin-left: 20px"><a target="_blank" href="/commservice/sTenderNoticeDetail.jspx?id=${a.tenderNoticeId?default('null')}"><span style="font-size: 16px;margin-top: 5px" title="${a.projectName}">[@text_cut s=a.projectName len='20' append='...[详细]'/]</span></a></dt>
+                            [#else]
+                              <dt style="font-size: 14px;margin-top: 5px;margin-left: 20px"><a target="_blank" href="${a.content.url}"><span style="font-size: 16px;margin-top: 5px" title="${a.projectName}">[@text_cut s=a.projectName len='20' append='...[详细]'/]</span></a></dt>
+                            [/#if]
+                          [#else]
+                            <dt style="font-size: 14px;margin-top: 5px;margin-left: 20px"><a target="_blank" href="/commservice/sTenderNoticeDetail.jspx?id=${a.tenderNoticeId?default('null')}"><span style="font-size: 16px;margin-top: 5px" title="${a.projectName}">[@text_cut s=a.projectName len='20' append='...[详细]'/]</span></a></dt>
+                          [/#if]
+                        [#else]
+                        <dt style="font-size: 14px;margin-top: 5px;margin-left: 20px"><a target="_blank" href="/commservice/sTenderNoticeDetail.jspx?id=${a.tenderNoticeId?default('null')}"><span style="font-size: 16px;margin-top: 5px" title="${a.projectName}">[@text_cut s=a.projectName len='20' append='...[详细]'/]</span></a></dt>
+                        [/#if]
+                        <dd style="font-size: 14px;margin-left: 20px;margin-top: 10px"><spanp>发布时间：${a.releaseDt?default(' ')}</spanp><div style="margin-left: 200px;margin-top: -20px"><spanp >截止时间：${a.deadlineDt?default('null')}</spanp> </div></dd>
+                    </dl>
+                    <div style="margin-top: -45px">
+                        <div><span style="margin-left: 500px;font-size: 16px" title="${a.bidCompany}">招标公司：[@text_cut s=a.bidCompany len='10' append='...[详细]'/]</span></div>
+                    </div>
+                        <div style="margin-top: 5px"><span style="margin-left: 500px;" title="${a.bidType}" >招标类型：[@text_cut s=a.bidType?default('null') len='15' append='...[详细]'/]</span></div>
+                    [#if (a.content)??]
+                      [#if a.content.staticContent]
+                        [#if a.content.needRegenerate]
+                          <div style="float: right;margin-right: 50px;margin-top: -40px"><a target="_blank" href="/commservice/sTenderNoticeDetail.jspx?id=${a.tenderNoticeId?default('null')}"><button style="margin-top: 5px">查看详情</button></a></div>
+                        [#else]
+                          <div style="float: right;margin-right: 50px;margin-top: -40px"><a target="_blank" href="${a.content.url}"><button style="margin-top: 5px">查看详情</button></a></div>
+                        [/#if]
+                      [#else]
+                        <div style="float: right;margin-right: 50px;margin-top: -40px"><a target="_blank" href="/commservice/sTenderNoticeDetail.jspx?id=${a.tenderNoticeId?default('null')}"><button style="margin-top: 5px">查看详情</button></a></div>
+                      [/#if]
+                    [#else]
+                    <div style="float: right;margin-right: 50px;margin-top: -40px"><a target="_blank" href="/commservice/sTenderNoticeDetail.jspx?id=${a.tenderNoticeId?default('null')}"><button style="margin-top: 5px">查看详情</button></a></div>
+                    [/#if]
+                </div>
+            </li>
+            [/#if]
+            [#if tag_pagination.searchThree=="3"]
+            <li style="height: 70px;position: relative;">
+                <div class="item-cname" style="margin-left: -200px;margin-top: -10px">
+                    <dl style="margin-top: 5px">
+                        [#if (a.content)??]
+                          [#if a.content.staticContent]
+                            [#if a.content.needRegenerate]
+                              <dt style="font-size: 14px;margin-top: 0px;margin-left: 20px"><a target="_blank" href="/commservice/sBidNoticeDetail.jspx?id=${a.bidNoticeId?default('null')}"><span style="font-size: 16px;margin-top: 5px" title="${a.projectName}">[@text_cut s=a.projectName len='20' append='...[详细]'/]</span></a></dt>
+                            [#else]
+                              <dt style="font-size: 14px;margin-top: 0px;margin-left: 20px"><a target="_blank" href="${a.content.url}"><span style="font-size: 16px;margin-top: 5px" title="${a.projectName}">[@text_cut s=a.projectName len='20' append='...[详细]'/]</span></a></dt>
+                            [/#if]
+                          [#else]
+                            <dt style="font-size: 14px;margin-top: 0px;margin-left: 20px"><a target="_blank" href="/commservice/sBidNoticeDetail.jspx?id=${a.bidNoticeId?default('null')}"><span style="font-size: 16px;margin-top: 5px" title="${a.projectName}">[@text_cut s=a.projectName len='20' append='...[详细]'/]</span></a></dt>
+                          [/#if]
+                        [#else]
+                        <dt style="font-size: 14px;margin-top: 0px;margin-left: 20px"><a target="_blank" href="/commservice/sBidNoticeDetail.jspx?id=${a.bidNoticeId?default('null')}"><span style="font-size: 16px;margin-top: 5px" title="${a.projectName}">[@text_cut s=a.projectName len='20' append='...[详细]'/]</span></a></dt>
+                        [/#if]
+                        <dd style="font-size: 14px;margin-left: 20px;margin-top: 10px"><spanp>发布时间：${a.releaseDt?default('')}</spanp> </dd>
+                    </dl>
+                        <div style="margin-top: -50px"><span style="margin-left: 500px;font-size: 16px" title="${a.bidName}">中标方名称：[@text_cut s=a.bidName len='15' append='...[详细]'/]</span></div>
+                    [#if (a.content)??]
+                      [#if a.content.staticContent]
+                        [#if a.content.needRegenerate]
+                          <div style="float: right;margin-right: 50px;margin-top: -25px"><a target="_blank" href="/commservice/sBidNoticeDetail.jspx?id=${a.bidNoticeId?default('null')}"><button>查看详情</button></a></div>
+                        [#else]
+                          <div style="float: right;margin-right: 50px;margin-top: -25px"><a target="_blank" href="${a.content.url}"><button>查看详情</button></a></div>
+                        [/#if]
+                      [#else]
+                        <div style="float: right;margin-right: 50px;margin-top: -25px"><a target="_blank" href="/commservice/sBidNoticeDetail.jspx?id=${a.bidNoticeId?default('null')}"><button>查看详情</button></a></div>
+                      [/#if]
+                    [#else]
+                    <div style="float: right;margin-right: 50px;margin-top: -25px"><a target="_blank" href="/commservice/sBidNoticeDetail.jspx?id=${a.bidNoticeId?default('null')}"><button>查看详情</button></a></div>
+                    [/#if]
+                    <div style="margin-top: 5px"><span style="margin-left: 500px">招标编号：${a.tenderCode?default('null')}</span></div>
+                </div>
+            </li>
+            [/#if]
+            [/#if]
+            [/#list]
+            [#else]
+            <div style="text-align: center">
+                <img src="/${res}/images/default_list.png">
+            </div>
+            [/#if]
+            <div class="page clearfix">[@cms_pagination sysPage='1'/]</div> <!--分页显示-->
+            [/@ext_content_page]
+        </ul>
+    </div>
+</div>
+<div id="historyData"></div>
+<!--content end-->
+<!--footer start-->
+[#include "../include/footer_icloud.html"]
+<!--footer end-->
+
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/searching.js"></script>
+<script type="text/javascript">
+    function openDetail(obj){
+        var test1 = $(obj).attr("name");
+        window.open("/commservice/sTenderTrailerDetail.jspx?id="+test1);
+    }
+    function openDetail1(obj){
+        var test1 = $(obj).attr("name");
+//        location.href="/commservice/sTenderNoticeDetail.jspx?id="+test1;
+        window.open("/commservice/sTenderNoticeDetail.jspx?id="+test1);
+    }
+    function openDetail2(obj){
+        var test1 = $(obj).attr("name");
+//        location.href="/commservice/sBidNoticeDetail.jspx?id="+test1;
+        window.open("/commservice/sBidNoticeDetail.jspx?id="+test1);
+    }
+    function abilitySearch(id,e,tabid) {
+        var $historyData = $("#historyData");
+        var searchOne = $historyData.attr("data-search-1");
+        var searchTwo = $historyData.attr("data-search-2");
+        var searchThree = $("#zh").val().trim();
+        var searchFour = $historyData.attr("data-search-4");
+
+        if (id == '0') {
+            searchOne = e;
+        }
+        if (id == '1') {
+            searchTwo = e;
+        }
+        if (searchThree == '1'||searchThree=="") {
+            searchThree = "zhaobiaoyugao";
+            tabid=1;
+        }
+        if (searchThree == '2') {
+            searchThree = "zhaobiaogonggao";
+            tabid=2;
+        }
+        if (searchThree == '3') {
+            searchThree = "zhongbiaogonggao";
+            tabid=3;
+        }
+        if (id == '3') {
+            searchFour = e;
+        }
+        location.href = "index-" + searchOne + "-" + searchTwo + "-" + searchThree + "-" + searchFour + ".jhtml#"+tabid;
+    }
+    $(document).ready(function(){
+        initData();
+        initHistoryData();
+    });
+
+    /*初始化方法*/
+    function initData() {
+        /*定义查询条件 S*/
+        var kind1 = [
+            {"code": "qb", "name": "全部"},
+            {"code": "bjs", "name": "北京市"},
+            {"code": "tjs", "name": "天津市"},
+            {"code": "hbs", "name": "河北省"},
+            {"code": "nmgzzq", "name": "内蒙古自治区"},
+            {"code": "lns", "name": "辽宁省"},
+            {"code": "jls", "name": "吉林省"},
+            {"code": "hljs", "name": "黑龙江省"},
+            {"code": "shs", "name": "上海市"},
+            {"code": "jss", "name": "江苏省"},
+            {"code": "zjs", "name": "浙江省"},
+            {"code": "ahs", "name": "安徽省"},
+            {"code": "fjs", "name": "福建省"},
+            {"code": "jxs", "name": "江西省"},
+            {"code": "sds", "name": "山东省"},
+            {"code": "hns", "name": "河南省"},
+            {"code": "hubs", "name": "湖北省"},
+            {"code": "huns", "name": "湖南省"},
+            {"code": "gds", "name": "广东省"},
+            {"code": "gxzzzzq", "name": "广西壮族自治区"},
+            {"code": "hains", "name": "海南省"},
+            {"code": "cqs", "name": "重庆市"},
+            {"code": "scs", "name": "四川省"},
+            {"code": "gzs", "name": "贵州省"},
+            {"code": "yns", "name": "云南省"},
+            {"code": "zzzzq", "name": "西藏自治区"},
+            {"code": "sxs", "name": "陕西省"},
+            {"code": "gss", "name": "甘肃省"},
+            {"code": "qhs", "name": "青海省"},
+            {"code": "nxhzzzq", "name": "宁夏回族自治区"},
+            {"code": "xjwwezzzq", "name": "新疆维吾尔自治区"}
+        ];
+        /*定义查询条件 E*/
+
+        /*初始化查询条件 S*/
+        initKind(kind1, "kind-one", "0");
+       /* initKind(kind2, "kind-two", "1");
+        initKind(kind3, "kind-three", "2");*/
+        /*初始化查询条件 E*/
+    }
+    /*初始化历史查询*/
+    function initHistoryData() {
+        var url = window.location.href;
+        var arr = url.split("-");
+        if(arr.length >= 4){
+            /*地区分类*/
+            var searchOne = arr[1];
+            /*制造企业展示*/
+            /*var searchTwo = arr[2];*/
+            /*企业性质*/
+            /*var searchThree = arr[3];*/
+            /*经营方式*/
+            /*var searchFour = arr[4];*/
+            /*综合 发布时间*/
+            /*var searchFive = arr[5];*/
+
+            $("#historyData").attr({
+                "data-search-1":searchOne,
+                /*"data-search-2":searchTwo,*/
+                /*"data-search-3":searchThree,*/
+                /*"data-search-4":searchFour,
+                "data-search-5":searchFive*/
+            });
+
+            addRed("kind-one",searchOne);
+           /* addRed("kind-two",searchTwo);
+            addRed("kind-three",searchThree);
+            addRed("kind-four",searchFour);*/
+
+            /*if("undefined" != searchThree){
+                if("zhaobiaogonggao" == searchThree){
+                    $(".searchBox li").eq(1).addClass("current").siblings().removeClass("current");
+                }if("zhongbiaogonggao" == searchThree){
+                    $(".searchBox li").eq(2).addClass("current").siblings().removeClass("current");
+                }
+            }*/
+        }
+    }
+
+    /*标红方法*/
+    function addRed(kind, condition){
+        if("undefined" != condition && condition!=""){
+            $("."+kind).find("."+condition).css("color","red");
+        }
+    }
+    function initKind(kind, kindClass,index) {
+        var kindOne = "";
+        for(var i = 0; i < kind.length; i++){
+            kindOne += "<a href='javascript: void(0)' class='"+kind[i].code+"' " +
+                    "data-condition='"+kind[i].code+"'>"
+                    + kind[i].name + "</a>";
+        }
+        $("."+kindClass).html(kindOne);
+
+        $("."+kindClass+" a").click(function () {
+            var condition = $(this).attr("data-condition");
+            abilitySearch(index,condition)
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+       default-lazy-init="true">
+    <!--加载配置文件-->
+    <bean id="tplMessageSource" name="tplMessageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="cacheSeconds" value="0"/>
+        <property name="basenames" value="#{propertyUtils.getList('messages.tpl.')}"/>
+    </bean>
+    <!--=====================================================自定义标签=========================================================-->
+    <!--UUID生成器-->
+    <bean id="uuid" class="com.anchorcms.common.web.freemarker.UUIDDirective"/>
+    <!--执行时间:暂时废弃-->
+    <bean id="process_time" class="com.anchorcms.common.web.freemarker.ProcessTimeDirective"/>
+    <!--文本剪切-->
+    <bean id="text_cut" class="com.anchorcms.common.web.freemarker.TextCutDirective"/>
+    <!--html剪切-->
+    <bean id="html_cut" class="com.anchorcms.common.web.freemarker.HtmlCutDirective"/>
+    <!--翻页包含标签-->
+    <bean id="cms_pagination" class="com.anchorcms.cms.directive.PaginationDirective"/>
+    <!--栏目列表标签-->
+    <bean id="cms_channel_list" class="com.anchorcms.cms.directive.ChannelListDirective"/>
+    <!--栏目分页标签-->
+    <bean id="cms_channel_page" class="com.anchorcms.cms.directive.ChannelPageDirective"/>
+    <!--栏目对象标签-->
+    <bean id="cms_channel" class="com.anchorcms.cms.directive.ChannelDirective"/>
+    <!--内容对象标签-->
+    <bean id="cms_content" class="com.anchorcms.cms.directive.ContentDirective"/>
+    <!--内容列表标签-->
+    <bean id="cms_content_list" class="com.anchorcms.cms.directive.ContentListDirective"/>
+    <!--内容分页标签-->
+    <bean id="cms_content_page" class="com.anchorcms.cms.directive.ContentPageDirective"/>
+    <!--TAG列表标签-->
+    <bean id="cms_tag_list" class="com.anchorcms.cms.directive.ContentTagListDirective"/>
+    <!--TAG分页标签-->
+    <bean id="cms_tag_page" class="com.anchorcms.cms.directive.ContentTagPageDirective"/>
+    <!--专题列表标签-->
+    <bean id="cms_topic_list" class="com.anchorcms.cms.directive.CmsTopicListDirective"/>
+    <!--专题分页标签-->
+    <bean id="cms_topic_page" class="com.anchorcms.cms.directive.CmsTopicPageDirective"/>
+    <!--评论列表标签-->
+    <bean id="cms_comment_list" class="com.anchorcms.cms.directive.CmsCommentListDirective"/>
+    <!--评论分页标签-->
+    <bean id="cms_comment_page" class="com.anchorcms.cms.directive.CmsCommentPageDirective"/>
+    <!--专题列表标签-->
+    <bean id="cms_guestbook_ctg_list" class="com.anchorcms.cms.directive.CmsGuestbookCtgListDirective"/>
+    <!--评论列表标签-->
+    <bean id="cms_guestbook_list" class="com.anchorcms.cms.directive.CmsGuestbookListDirective"/>
+    <!--留言分页标签-->
+    <bean id="cms_guestbook_page" class="com.anchorcms.cms.directive.CmsGuestbookPageDirective"/>
+    <!--投票标签-->
+    <bean id="cms_vote" class="com.anchorcms.cms.directive.CmsVoteDirective"/>
+    <!--友情链接类别列表标签-->
+    <bean id="cms_friendlink_ctg_list" class="com.anchorcms.cms.directive.CmsFriendlinkCtgListDirective"/>
+    <!--友情链接类别列表标签-->
+    <bean id="cms_friendlink_list" class="com.anchorcms.cms.directive.CmsFriendlinkListDirective"/>
+    <!--全文检索标签-->
+    <bean id="cms_lucene_list" class="com.anchorcms.cms.lucene.LuceneDirectiveList"/>
+    <!--全文检索分页标签-->
+    <bean id="cms_lucene_page" class="com.anchorcms.cms.lucene.LuceneDirectivePage"/>
+    <!--广告对象标签-->
+    <bean id="cms_advertising" class="com.anchorcms.cms.directive.CmsAdvertisingDirective"/>
+    <!--网上调查列表标签-->
+    <bean id="cms_vote_list" class="com.anchorcms.cms.directive.CmsVoteListDirective"/>
+    <!--模型对象标签-->
+    <bean id="cms_model" class="com.anchorcms.cms.directive.CmsModelDirective"/>
+    <!--评分组对象标签-->
+    <bean id="cms_score_group" class="com.anchorcms.cms.directive.ScoreGroupDirective"/>
+    <!--搜索热词列表标签-->
+    <bean id="cms_searchword_list" class="com.anchorcms.cms.directive.CmsSearchWordListDirective"/>
+    <!--后台权限标签-->
+    <bean id="cms_perm" class="com.anchorcms.cms.web.PermistionDirective"/>
+    <!--=====================================================自定义标签=========================================================-->
+    <bean id="realPathResolver" class="com.anchorcms.common.web.mvc.impl.ServletContextRealPathResolver"/>
+
+    <bean id="s_typevaluepsk" class="com.anchorcms.cms.directive.TypekeyToValueDirectivepsk"/>
+
+    <bean id="staticPageSvc" class="com.anchorcms.cms.staticpage.impl.StaticPageSvcImpl">
+        <property name="tplMessageSource" ref="tplMessageSource"/>
+        <property name="freeMarkerConfigurer">
+            <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+                <!--获取标签配置-->
+                <property name="freemarkerVariables" value="#{propertyUtils.getBeanMap('directive.')}"/>
+                <property name="templateLoaderPath" value=""/>
+                <property name="freemarkerSettings">
+                    <props>
+                        <prop key="tag_syntax">auto_detect</prop>
+                        <prop key="template_update_delay">5</prop>
+                        <prop key="defaultEncoding">UTF-8</prop>
+                        <prop key="url_escaping_charset">UTF-8</prop>
+                        <prop key="locale">zh_CN</prop>
+                        <prop key="boolean_format">true,false</prop>
+                        <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+                        <prop key="date_format">yyyy-MM-dd</prop>
+                        <prop key="time_format">HH:mm:ss</prop>
+                        <prop key="number_format">0.######</prop>
+                        <prop key="whitespace_stripping">true</prop>
+                        <prop key="auto_import">/WEB-INF/ftl/anchorcms/index.ftl as p,/WEB-INF/ftl/spring.ftl as s</prop>
+                    </props>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

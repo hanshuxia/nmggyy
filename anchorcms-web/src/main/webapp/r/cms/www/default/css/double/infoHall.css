@@ -1,0 +1,146 @@
+@CHARSET "UTF-8";
+
+/*信息大厅首页样式*/
+.hall-location{
+	width: 1198px;
+	height: 40px;
+	background-color: #E0E0E0;
+	border: 1px solid #000;
+	text-align: left;
+	line-height: 40px;
+	font-family: 'Arial Negreta', 'Arial';
+	font-size:13px;
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+}
+
+.hall-title{
+	width: 1198px;
+	height: 50px;
+	background-color: #E0E0E0;
+	border-left: 1px solid #000;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	text-align:center;
+	line-height:50px;
+	font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 25px;
+}
+
+.hall-content{
+	width: 1198px;
+	height: 900px;
+	background-color: #E0E0E0;
+	border: 1px solid #000;
+}
+
+.hall-content1{
+	width: 230px;
+	height: 550px;
+	float: left;
+}
+
+.hall-content1 table{
+	width: 100%;
+}
+
+.hall-content1 td{
+	width: 230px;
+	height: 30px;
+	border: 1px solid #000;
+	font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.hall-content2{
+	width: 968px;
+	height: 550px;
+	float: left;
+}
+
+.hall-search{
+	width: 968px;
+	height: 60px;
+	border-bottom: 1px solid #000;
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: 60px;
+    float: left;
+}
+
+.hall-tab{
+	width: 968px;
+	height: 50px;
+	border-bottom: 1px solid #000;
+	float: left;
+}
+
+.hall-tab-child{
+	width: 150px;
+	height: 50px;
+	border-right: 1px solid #000;
+	float: left;
+	text-align: center;
+	line-height: 50px;
+}
+
+.hall-content2-table{
+	width: 968px;
+	height: 360px;
+	border-collapse: collapse;
+	border: 1px solid #000;
+	background-color: #fff;
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: left;
+    line-height: normal;
+}
+
+.hall-content2-table td{
+	height:30px;
+	border: 1px solid #000;
+}
+
+.hall-page{
+	width: 680px;
+	height: 60px;
+	border: 1px solid #000;
+	background-color: #E0E0E0;
+	margin: 10px auto;
+}
+
+
+/*信息大厅子页面样式*/
+.projectDetail-content2{
+	width: 968px;
+	height: 780px;
+	float: left;
+}
+
+.projectDetail-label{
+	width: 200px;
+	height: 40px;
+	background-color: #fff;
+	border: 1px solid #000;
+	text-align: center;
+	line-height: 40px;
+	float: left;
+}
+
+.projectDetail-input{
+	float: left;
+}

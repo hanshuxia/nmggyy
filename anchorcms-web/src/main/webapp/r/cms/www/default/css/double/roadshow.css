@@ -1,0 +1,147 @@
+.txt {
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333333;
+	text-align: center;
+	line-height: normal;
+}
+
+.clear-bg {
+	background-image: none;
+}
+
+.posetion {
+	height: 30px;
+	background-image: url("../../images/double/roadshow/u0.png");
+}
+
+.posetion p {
+	margin-left: 10px;
+	text-align: left;
+	line-height: 30px;
+}
+
+.publicity {
+	margin: 10px auto;
+	height: 147px;
+	background-image: url("../../images/double/roadshow/u170.png");
+}
+
+.publicity img {
+	margin-left: 516px;
+	margin-top: 43px;
+}
+
+.publicity>p {
+	margin-top: 55px;
+}
+
+.live {
+	height: 1063px;
+}
+
+.live-type {
+	width: 260px;
+}
+
+.type {
+	width: 260px;
+	height: 47px;
+	background-image: url("../../images/double/roadshow/u60.png");
+}
+
+.type span {
+	line-height: 47px;;
+	font-weight: 700;
+	font-size: 16px;
+}
+
+.live li{
+	width: 260px;
+	height: 37px;
+	line-height: 37px;
+	background-image: url("../../images/double/roadshow/u62.png");
+}
+
+.type-1 {
+	color: white;
+	background-image: url("../../images/double/roadshow/u168.png");
+}
+
+.type-body {
+	width: 940px;
+	height: 1063px;
+}
+
+.type-body-select {
+	width: 940px;
+	height: 50px;
+	text-align: left;
+	background-image: url("../../images/double/roadshow/u352.png");
+}
+
+.select-boder {
+	margin-left: 50px;
+	margin-top: 12px;
+	width: 200px;
+	height: 25px;
+}
+
+.select-button {
+	margin-left: 10px;
+	margin-top: 12px;
+	width: 100px;
+	height: 25px;
+}
+
+.type-body-show {
+	width: 940px;
+	height: 1013px;
+	background-image: url("../../images/double/roadshow/u70.png");
+}
+
+.video {
+	margin: 40px 110px 0px;
+	width: 250px;
+	height: 246px;
+	background-image: url("../../images/double/roadshow/u72.png");
+}
+
+.p1 {
+	margin-left: 10px;
+	width: 30px;
+	line-height: 30px;
+}
+
+.p2 {
+	margin-right: 10px;
+	width: 30px;
+	line-height: 30px;
+}
+
+.type-body-foot {
+	margin: 95px 130px 0;
+	width: 680px;
+	height: 60px;
+	font-size: 14px;
+	background-image: url("../../images/double/roadshow/u131.png");
+}
+
+.foot-p1 {
+	width: 150px;
+}
+
+.type-body-foot input {
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+.type-body-foot p {
+	margin-top: 20px;
+}
+
+.foot-txt {
+	width: 30px;
+}

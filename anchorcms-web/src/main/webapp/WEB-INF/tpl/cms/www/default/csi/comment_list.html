@@ -1,0 +1,17 @@
+<div class="title-more">
+	<h3><span>热门评论</span></h3>
+	<a href="${base}/comment.jspx?contentId=${contentId!}&channelId=${channelId!}">更多评论</a>
+</div>
+<div class="closeReplay">
+	[@cms_comment_list contentId='${contentId!}' orderBy="1" count='5']
+	[#list tag_list as c]
+	<div class="message">
+		<img src="${(c.commentUser.userImg)!'/${res}/images/userImg.png'}">
+		<div class="reMsg">
+			<span class="user">[#if c.commentUser??]${(c.commentUser.username)!"匿名网友"}[#else]匿名网友[/#if]</span>：<span>${c.text!}</span>
+			<sapn class="replayDt">评论时间：${c.createTime}</sapn>
+		</div>
+	</div>
+	[/#list]
+	[/@cms_comment_list]
+</div>

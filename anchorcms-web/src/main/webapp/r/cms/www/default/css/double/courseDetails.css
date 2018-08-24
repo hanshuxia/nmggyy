@@ -1,0 +1,137 @@
+ul{
+    margin-bottom: 0px!important;
+}
+.c-header{
+    padding: 12px 0px 10px 3px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+    font-size: 13px;
+    color: #333333;
+    background-size: cover;
+    background-image: url("../../images/double/courseDetails/u58-1.png");
+    background-size: 1200px 40px;
+}
+.c-float{
+    float: left;
+    width: 850px;
+    margin-top: 10px;
+}
+
+.column{
+    width: 850px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    text-align: left;
+    line-height: 50px;
+    background-image: url("../../images/double/courseDetails/u58.png");
+}
+.colum-1{
+    line-height:40px;
+    background-image: url("../../images/double/courseDetails/u83.png");
+}
+.course{
+    padding:20px 120px 3px 80px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: left;
+    line-height:300%;
+    background-image: url("../../images/double/courseDetails/u60.png");
+}
+.course-intro{
+    float: left;
+}
+.price{
+    float: right;
+}
+.price li{
+    float: left;
+    margin: 10px 0px 70px 0px;
+    width: 100px;
+    line-height:36px;
+    text-align: center;
+    background-image: url("../../images/double/courseDetails/u76.png");
+    border: 1px solid #aaa;
+}
+.price button{
+    margin: 0px 50px ;
+    width: 100px;
+    line-height: 25px;
+}
+.price{
+    line-height: normal;
+}
+.stu{
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: left;
+    line-height: 50px;
+    background-image: url("../../images/double/courseDetails/u85.png");
+}
+.harvest{
+    line-height: 160px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: left;
+    line-height: 250%;
+    background-image: url("../../images/double/courseDetails/u89.png");
+    background-repeat: no-repeat;
+}
+.scope{
+    line-height: 130px;
+    text-align: center;
+    background-image: url("../../images/double/courseDetails/u93.png");
+}
+.teacher{
+    line-height: 180px;
+    text-align: center;
+    background-image: url("../../images/double/courseDetails/u97.png");
+}
+.c-right{
+    float: right;
+    margin-top: 10px;
+    background-color: #E9E9E9;
+}
+.r-title{
+    width: 310px;
+    height: 60px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+    line-height: 60px;
+    border: 1px solid #aaa;
+}
+.c-right li li{
+    width: 310px;
+    height: 38px;
+    border: 1px solid #aaa;
+}
+.live-content{
+    width: 310px;
+    height: 160px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: normal;
+    line-height: 160px;
+    border: 1px solid #aaa;
+}

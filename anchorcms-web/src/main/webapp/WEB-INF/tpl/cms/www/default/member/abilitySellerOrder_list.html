@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta  http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>能力方订单管理</title>
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/list.css"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            _onload();
+        });
+
+        // 加载页面标签状态
+        function _onload(){
+            if($("#state").val() == ""){
+                $("#all").addClass("current");
+            } else if ($("#state").val() == "0"){
+                $("#state0").addClass("current");
+            } else if ($("#state").val() == "1"){
+                $("#state1").addClass("current");
+            } else if ($("#state").val() == "2"){
+                $("#state2").addClass("current");
+            } else if ($("#state").val() == "3") {
+                $("#state3").addClass("current");
+            } else if ($("#state").val() == "6") {
+                $("#state6").addClass("current");
+            } else if ($("#state").val() == "9") {
+                $("#state9").addClass("current");
+            } else if ($("#state").val() == "10") {
+                $("#state10").addClass("current");
+            }
+
+            $(".switchBtn li").click(function(){
+                if($(this).attr("id") == "all"){
+                    $("#state").val("");
+                    $("#all").addClass("current");
+                } else if ($(this).attr("id") == "state0"){
+                    $("#state").val("0");
+                    $("#state0").addClass("current");
+                } else if ($(this).attr("id") == "state1"){
+                    $("#state").val("1");
+                    $("#state1").addClass("current");
+                } else if ($(this).attr("id") == "state2"){
+                    $("#state").val("2");
+                    $("#state2").addClass("current");
+                } else if ($(this).attr("id") == "state3"){
+                    $("#state").val("3");
+                    $("#state3").addClass("current");
+                }  else if ($(this).attr("id") == "state6"){
+                    $("#state").val("6");
+                    $("#state6").addClass("current");
+                } else if ($(this).attr("id") == "state9"){
+                    $("#state").val("9");
+                    $("#state9").addClass("current");
+                } else if ($(this).attr("id") == "state10"){
+                    $("#state").val("10");
+                    $("#state10").addClass("current");
+                }
+                $("#tableForm").submit();
+            });
+        };
+
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="/${res}/js/html5shiv.min.js"></script>
+    <script src="/${res}/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div class="content wrapper clearfix">
+    <!--遮罩-->
+    <div id="goodcover1"></div>
+    <div class="head wrapper">
+        <a href="${base}/member/abilitySellerOrder_list.jspx" class="current">能力方订单管理列表</a>
+    </div>
+    <div class="main">
+        <form id="tableForm" action="abilitySellerOrder_list.jspx" method="post">
+            <div class="searchBox">
+                <label>购买时间：</label> <input name="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate date" value="${startDate?default('')}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <label>订单号：</label><input id="orderNO" name="orderId" class="" value="${orderId?default('')}">
+                <button class="submit">查询</button>
+            </div>
+            <div class="switchBtn">
+                <ul>
+                    <li id="all"><span>全部</span></li>
+                    <li id="state0"><span>未确认</span></li>
+                    <li id="state1"><span>待付款</span></li>
+                    <li id="state2"><span>已付款</span></li>
+                    <li id="state9"><span>已发货</span></li>
+                    <li id="state3"><span>退款</span></li>
+                    <li id="state6"><span>平台介入中</span></li>
+                    <li id="state10"><span>交易完成</span></li>
+                </ul>
+                <input id="state" type="hidden" name="state" value="${state!}">
+            </div>
+            <div class="tableDiv wrapper">
+                <table cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>订单号</th>
+                        <th>订单名称</th>
+                        <th>购买价格(元)</th>
+                        <!--<th>购买人</th>-->
+                        <th>购买时间</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    [#if pagination.list?size gt 0]
+                    [#list pagination.list as c]
+                    <tr>
+                        <td>${c.orderId!}</td>
+                        <td><a class="show-title" title="${c.supplyName!}">[@text_cut s=c.supplyName! len='10' append='...' /]</a></td>
+                        <td>${c.price!}</td>
+                        <!--<td><a class="show-title" title="${c.supplyContact!}">[@text_cut s=c.supplyContact! len='7' append='...' /]</a></td>-->
+                        <td>${c.orderDt?default("")}</td>
+                        <td>[#if c.state??] [#if c.state=="1"]待付款[#elseif c.state=="2"][#if c.isOnline??]线下付款[#else]已付款
+                            [/#if][#elseif c.state=="0"]未确认[#elseif c.state=="4"]已收货[#elseif c.state=="6"]平台介入中[#elseif c.state=="7"]未收货[#elseif c.state=="8"]已发货[#elseif c.state=="10"]交易完成[#elseif c.state=="40"]已结算[#elseif c.state=="30"]退款中[#elseif c.state=="31"]已退款[#elseif c.state=="32"]已拒绝[/#if][/#if]</td>
+                        [#if state??&&state!=""]
+                        [#if c.state??]
+                        [#switch c.state]
+                        [#case "0"]
+                        <td>
+                            <a class="link" href="/member/xtzz_order_detail.jspx?orderId=${c.orderId!}">明细</a>
+                            <a class="link" href="/member/abilityOrderMdyState.jspx?orderId=${c.orderId!}&state=1&nextUrl=/member/abilitySellerOrder_list.jspx?state=1" onClick="return confirm('是否确认订单?');">确认</a>
+                        </td>
+                        [#break]
+                        [#case "1"]
+                        <td>
+                            <a class="link" href="/member/xtzz_order_detail.jspx?orderId=${c.orderId!}">明细</a>
+                        </td>
+                        [#break]
+                        [#case "2"]
+                        <td>
+                            <a class="link" href="/member/xtzz_order_detail.jspx?orderId=${c.orderId!}">明细</a>
+                            <a class="link" href="/member/abilityOrderMdyState.jspx?orderId=${c.orderId!}&state=7&nextUrl=/member/abilitySellerOrder_list.jspx?state=9" onClick="return confirm('确定发货?');">发货</a>
+                        </td>
+                        [#break]
+                        [#case "4"]
+                        <td>
+                            <a class="link" href="/member/xtzz_order_detail.jspx?orderId=${c.orderId!}">明细</a>
+                            [#if !c.isOnline??]
+                            <a class="link" href="/member/SynergySettlement.jspx?id=${c.orderId!}" onClick="return confirm('确定结算?');">结算</a>
+                            [/#if]
+                        </td>
+                        [#break]
+                        [#case "30"]
+                        <td>
+                            <a class="link" href="/member/xtzz_order_detail.jspx?orderId=${c.orderId!}">明细</a>
+                            <a class="link" href="/member/SynergyRefund.jspx?id=${c.orderId!}" onClick="return confirm('确认退款信息?');">确认</a>
+                            <a class="link" onclick="showXS('${c.orderId!}')">拒绝</a>
+                        </td>
+                        [#break]
+                        [#default]
+                        <td>
+                            <a class="link" href="/member/xtzz_order_detail.jspx?orderId=${c.orderId!}">明细</a>
+                        </td>
+                        [/#switch]
+                        [/#if]
+                        [#else]
+                        <td>
+                            <a class="link" href="/member/xtzz_order_detail.jspx?orderId=${c.orderId!}">明细</a>
+                        </td>
+                        [/#if]
+                    </tr>
+                    [/#list]
+                    [#else]
+                    <tr>
+                        <td colspan="7"><h4>暂无数据</h4></td>
+                    </tr>
+                    [/#if]
+                    </tbody>
+                </table>
+            </div>
+            <input type="hidden" name="pageNo"/>
+            <div  class="page clearfix">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="left" class="pn-sp">
+                            每页 ${pagination.pageSize} 条&nbsp;
+                            <input class="first" type="button" onclick="_gotoPage('1');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input class="prev" type="button" onclick="_gotoPage('${pagination.prePage}');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input type="text" value=${pagination.pageNo} id="_goPs" onfocus="this.select();" onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>/${pagination.totalPage}
+                            <input class="next" type="button" onclick="_gotoPage('${pagination.nextPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>
+                            <input class="last" type="button" onclick="_gotoPage('${pagination.totalPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>&nbsp;
+                            <button id="_goPage" class="ok" type="button" onclick="_gotoPage($('#_goPs').val());"[#if pagination.totalPage==1] disabled="disabled"[/#if]>GO</button>
+                            共 ${pagination.totalCount} 条&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!--拒绝退款输入框-->
+            <div class="window" id="xdWindows" style="width: 400px;height: 200px;left: 60%;top:30%;">
+                <div class="noteTop">
+                    拒绝退款原因
+                    <img id="xdTableCloseWindows" src="/${res}/resources/images/abilityPreview/close.png" onclick="hideXS()">
+                </div>
+                <textarea id="backreason" style="width: 100%;height: 130px"></textarea>
+                <input type="hidden" id="orderId">
+                <div class="release-button" style="text-align: center;margin-top: 5px">
+                    <button id="OK" class="btn" type="button"  style="background-color: #3077B9;color: #ffffff">确认</button>
+                    <button class="btn" type="button" onclick="hideXS()" style="background-color: #3077B9;color: #ffffff">取消</button>
+                </div>
+            </div>
+            <script type="text/javascript">
+                // 操作列操作
+                function operOrder(orderCondition, orderStr) {
+                    var newSearchValue = encodeURI(encodeURI(orderStr));
+                    if (orderCondition == "detail") { // 明细
+                        window.location.href = "../member/repairDemandDetailList.jspx?repairId=" + newSearchValue;
+                    } else if (orderCondition == "noPass") { // 拒绝退款
+                        if(confirm("请确定是否拒绝该退款申请？")){
+                            var orderId = $("#orderId").val(); // 获取该条记录对应退款id的值
+                            var backReason = encodeURI(encodeURI($("#backreason").val())); // 获取拒绝退款原因
+                            window.location.href = "../member/abilityOrderMdyState.jspx?orderId=" + orderId + "&state=32&nextUrl=/member/abilitySellerOrder_list.jspx&backReason=" + backReason;
+                        }
+                    }
+                }
+
+                // 单个驳回使用
+                function showXS(orderId){
+                    $("#xdWindows").show();
+                    $("#goodcover1").show();
+                    $("#orderId").val(orderId);
+                    $("#OK").click(function(){
+                        if( $("#backreason").val().length < 450){
+                            operOrder('noPass', orderId);
+                        }else{
+                            alert("退款拒绝原因超过字数限制，请重新填写");
+                        }
+                    });
+                }
+
+                function hideXS(){
+                    $("#xdWindows").hide();
+                    $("#goodcover1").hide();
+                    $("#orderId").val(""); // 清空对应的资源记录id的值
+                    $("#backreason").val(""); // 清空原因输入框中的值
+                    $('#OK').unbind("click")
+                }
+
+                function _gotoPage(pageNo) {
+                    if(!/^[0-9]*[1-9][0-9]*$/.test(pageNo)){ui.alertFail("页码必须为正整数！");return false;}
+                    try{
+                        var tableForm = document.getElementById("tableForm");
+                        $("input[name=pageNo]").val(pageNo);
+                        tableForm.action="abilitySellerOrder_list.jspx";
+                        tableForm.onsubmit=null;
+                        tableForm.submit();
+                    } catch(e) {
+                        alert('_gotoPage(pageNo)方法出错');
+                    }
+                }
+            </script>
+            <script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+            <script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+</body>
+</html>

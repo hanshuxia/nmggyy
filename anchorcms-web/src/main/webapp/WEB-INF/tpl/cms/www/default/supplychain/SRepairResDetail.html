@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>众修资源页面</title>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/searching.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/SRepairResDetail.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+
+
+    <![endif]-->
+</head>
+<body>
+[#include "../include/header_icloud.html"]
+<!--content start-->
+<div class="main container clearfix" >
+    <hr>
+    <div style="font-size: small">
+        <a href="${base}/gylxt/index.jhtml" class="block" style="color: #00a2ff">供应链协同</a> <a href="${base}/gylxtZxzy/index.jhtml" class="block" style="color: #00a2ff">&gt;众修资源</a>&gt;${resss.repairName}
+    </div>
+
+    <div class="content">
+        <div class="preview">
+            <div class="preview_box">
+                <div class="jqzoom"> <img height="350" src="https://oby0yx23h.qnssl.com//image/carousel/10081356242210006"width="500"> </div>
+            </div>
+            <div id="spec-n5">
+                <div id="spec-list">
+                    <ul class="list-h" style="width: 468px; overflow: hidden;">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="details_right" style="font-size:small">
+            <br>
+            <h1 class="details_tit" title="">${resss.repairName}</h1>
+            <ul class="details_list">
+                <br>
+                <li> <span class="details_page" > 擅长领域：</span> <span >${resss.goodAt} </span> </li>
+                <br>
+                <li> <span class="details_page">从业年限：</span><span>${resss.workYear}</span>
+                </li>
+                <br>
+                <li> <span class="details_page f_left">所在地区：</span> <span class="f_left">${resss.addrProvince}  ${resss.addrCity}${resss.addrStreet}  </span> </li>
+                <br>
+                <button><a href="/woyaoxunjia">我要询价</a></button>
+            </ul>
+
+
+        </div>
+        <div class="details_rightR">
+            <div class="shopowner" style="font-size:small" >
+
+                <ul class="companyinfo">
+
+                    <img src="/${res}/resources/images/searching/company_info_title.png" alt=""><br>
+                    <li> &nbsp;&nbsp;&nbsp;&nbsp;<span class="details_page">发布人：</span><span class="f_left">${resss.releaseId}</span></li>
+                    <br>
+                    <li> &nbsp;&nbsp;&nbsp;&nbsp;<span class="details_page">联系电话：</span><span class="f_left">${resss.mobile}</span></li>
+                    <br>
+                    <li> &nbsp;&nbsp;&nbsp;&nbsp;<span class="details_page">发布日期：</span> <span class="f_left">${resss.releaseDt}</span> </li>
+                    <br>
+                    <li> &nbsp;&nbsp;&nbsp;&nbsp;<span class="details_page">维修机型：</span> <span class="f_left">${resss.repairMachine}  </span> </li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+
+        <hr>
+        <ul id="myTab" class="nav nav-tabs" style="font-size:small" >
+            <li class="active" ><a href="#home" data-toggle="tab"  >
+                维修资源详情</a></li>
+            <li><a href="#ios" data-toggle="tab"  >维修需求推荐</a></li>
+            <li><a href="#iose" data-toggle="tab" >咨询留言</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content" style="font-size:small">
+            <div class="tab-pane fade in active" id="home" style="font-size:small">
+                <p>公司师傅都有着丰富的维修经验，可以处理各种汽车发动机的异常，欢迎有维修需求的大家来咨询合作。</p><br>
+                <div>补充说明：</div>
+                <div>${resss.description}</div>
+                </div>
+            <div class="tab-pane fade" id="ios">
+
+            </div>
+            <div class="tab-pane fade" id="iose">
+                <br>
+                  <input type="text" style="width: 800px;height: 200px;"><br>
+                <button><a href="/saveLiuyan">留言</a></button>
+            </div>
+
+
+        </div>
+        <script>
+            $(function(){
+                $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                    // 获取已激活的标签页的名称
+                    var activeTab = $(e.target).text();
+                    // 获取前一个激活的标签页的名称
+                    var previousTab = $(e.relatedTarget).text();
+                    $(".active-tab span").html(activeTab);
+                    $(".previous-tab span").html(previousTab);
+                });
+            });
+        </script>
+
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+
+
+
+
+        <!--content end-->
+        [#include "../include/footer_icloud.html"]
+        <script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/searching.js"></script>
+        <p>&nbsp;</p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,218 @@
+.text-small{
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-size: 13px;
+    color: #333333;
+    word-wrap: break-word;
+}
+.text-red-title{
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 18px;
+    color: #FF0000;
+    word-wrap: break-word;
+}
+.text-black-title{
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 18px;
+    color: #000000;
+    word-wrap: break-word;
+}
+.stock-info{
+    float: left;
+    margin-top: 10px;
+    width: 850px;
+    height: 1617px;
+}
+.stock-info .stock-info-div{
+    width: 850px;
+    height: 51px;
+    text-align: center;
+    line-height: 51px;
+    background-image: url("../../images/information/stockTrend/u64.png");
+}
+.stock-info .stock-info-title{
+    margin-top: 10px;
+    padding-top: 15px;
+    width: 850px;
+    height: 410px;
+    text-align: center;
+    border-bottom:1px solid;
+    background-image: url("../../images/information/stockTrend/u66.png");
+}
+.stock-info .stock-info-title p{
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 18px;
+    color: #000000;
+    text-align: center;
+}
+.stock-info .stock-info-title .line{
+    float: left;
+    margin-top: 20px;
+    margin-left: 30px;
+    width: 790px;
+    height: 1px;
+    background-image: url("../../images/information/stockTrend/u70_line.png");
+}
+.stock-info .stock-info-title .image{
+    float: left;
+    margin-top: 30px;
+    margin-left: 30px;
+    width: 170px;
+    height: 120px;
+    background-image: url("../../images/information/stockTrend/u71.png");
+}
+.stock-info .stock-info-title .title{
+    float: left;
+    padding-top: -10px;
+    margin-top: 30px;
+    margin-left: 20px;
+    width: 595px;
+    height: 120px;
+}
+.stock-info .stock-info-title .title ul{
+    float: left;
+}
+.stock-info .stock-info-title .title ul li{
+    margin: 17px;
+    margin-top: 5px;
+    width: 572px;
+}
+.stock-info .stock-table-title{
+    margin-top: 10px;
+    width: 851px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background-image: url("../../images/information/stockTrend/u143.png");
+}
+.stock-info #stock-table tr td{
+    width: 142px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    border:1px solid;
+}
+.stock-info .report{
+    margin-top: 30px;
+    width: 851px;
+    height: 700px;
+    text-align: center;
+    background-image: url("../../images/information/stockTrend/u267.png");
+}
+.stock-info .report div{
+    width: 300px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    margin: auto;
+    background-image: url("../../images/information/stockTrend/u269.png");
+}
+.stock-info .report ul{
+    margin-top:35px;
+    width: 851px;
+    height: 700px;
+}
+.stock-info .report ul li{
+    margin: 20px;
+}
+.stock-price{
+    float: left;
+    margin-top: 10px;
+    margin-left: 43px;
+    width: 306px;
+    height: 1617px;
+}
+.stock-price .stock-price-title{
+    width: 303px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background-image: url("../../images/information/stockTrend/u62.png");
+}
+.stock-price .stock-price-pic{
+    width: 303px;
+    height: 415px;
+    background-image: url("../../images/information/stockTrend/u60.png");
+}
+.stock-price .recommend-div{
+    margin-top: 20px;
+    width: 303px;
+    height: 260px;
+    background-image: url("../../images/information/stockTrend/u94.png");
+}
+.stock-price .recommend-div .recommend-title{
+    width: 100px;
+    height: 40px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: 40px;
+    background-image: url("../../images/information/stockTrend/u96.png");
+}
+.stock-price .recommend-div .sub-finance{
+    float: left;
+    margin-top: 55px;
+    margin-left: 35px;
+    width: 100px;
+    height: 120px;
+    text-align: center;
+}
+.stock-price .ad-left{
+    float: left;
+    width: 141px;
+    height: 220px;
+    text-align: center;
+}
+.stock-price .ad-right{
+    margin-left: 21px;
+    float: left;
+    width: 141px;
+    height: 220px;
+}
+.sub-ad{
+    margin-top: 10px;
+    width: 141px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    background-image: url("../../images/information/stockTrend/u303.png");
+}
+.title-div{
+    float: left;
+    margin-top: 16px;
+    width: 152px;
+    height: 50px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 16px;
+    color: #000000;
+    text-align: center;
+    line-height: 50px;
+    border-right: 1px solid;
+    background-image: url("../../images/information/stockTrend/u311.png");
+}
+.stock-price .div-final-1{
+    float: left;
+    width: 306px;
+    height: 236px;
+    text-align: center;
+    background-image: url("../../images/information/stockTrend/u315.png");
+}
+.final-ul{
+    margin-top: 40px;
+}
+.final-ul li{
+    margin: 18px;
+}
+.stock-price .div-final-2{
+    float: left;
+    width: 306px;
+    height: 266px;
+    text-align: center;
+    background-image: url("../../images/information/stockTrend/u321.png");
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>合同信息查看</title>
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <style type="text/css">
+        body {
+            font-family: SimSun;
+        }
+        .content {
+            width: 100%;
+        }
+
+        table {
+            width: 95%;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px solid #ddd;
+            font-family: SimSun;
+            table-layout: fixed;
+            word-break: break-all;
+        }
+
+        table tr td {
+            border-right: 1px dashed #ccc;
+        }
+
+        table tr td.left {
+            padding: 10px 20px;
+            line-height: 25px;
+            text-align: left;
+        }
+
+        table tr td:last-child {
+            border-right: none;
+        }
+
+        table thead tr {
+            height: 30px;
+            line-height: 30px;
+            color: #fff;
+            background: #318CB8;
+        }
+
+        table tbody tr {
+            height: 30px;
+            line-height: 30px;
+        }
+
+        table tbody tr:nth-child(odd) {
+            background: #E7F0F7;
+        }
+
+        .contract {
+            margin: 20px auto;
+            width: 100%;
+            text-align: center;
+            font-size: 18px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="content wrapper">
+    <div class="contract">
+        <span>合同信息</span>
+    </div>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <td width="14%">项目</td>
+            <td width="43%">供方(甲方)</td>
+            <td width="43%">买方(乙方)</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>所属地区</td>
+            <td>内蒙古自治区[@s_typevalue typecode='QY' typekey=orderPayment.manage.addrCity/]</td>
+            <td>${orderPayment.payUser.company.addrProvince!}${orderPayment.payUser.company.addrCity!}</td>
+        </tr>
+        <tr>
+            <td>单位名称</td>
+            <td>${orderPayment.manage.company.companyName!}</td>
+            <td>${quoteUser.company.companyName!}</td>
+        </tr>
+        <tr>
+            <td>法定代表人</td>
+            <td>${demandUser.realname!}</td>
+            <td>${quoteUser.realname!}</td>
+        </tr>
+        <tr>
+            <td>委托代理人</td>
+            <td>${orderPayment.manage.contact!}</td>
+            <td>${orderPayment.contact!}</td>
+        </tr>
+        <tr>
+            <td>单位地址</td>
+            <td class="left">
+                ${orderPayment.manage.company.addrProvince!}${orderPayment.manage.company.addrCity!}${orderPayment.manage.company.addrCounty!}${orderPayment.manage.company.addrStreet!}
+            </td>
+            <td class="left">
+                ${orderPayment.payUser.company.addrProvince!}${orderPayment.payUser.company.addrCity!}${orderPayment.payUser.company.addrCounty!}${orderPayment.payUser.company.addrStreet!}
+            </td>
+        </tr>
+        <tr>
+            <td>电话</td>
+            <td>${orderPayment.manage.mobile!}</td>
+            <td>${orderPayment.mobile!}</td>
+        </tr>
+        <tr>
+            <td>合同条款一</td>
+            <td colspan="2">
+                合同依据 <br/>
+                1.《中国人民共和国合同法》
+            </td>
+        </tr>
+        <tr>
+            <td>合同条款二</td>
+            <td colspan="2" class="left">合同标的</td>
+        </tr>
+        <tr>
+            <td>合同条款三</td>
+            <td colspan="2" class="left">
+                合同价款和支付：<br/>
+                1.合同价款&nbsp;&nbsp;
+                小写：[#if orderPayment.amount??]${(orderPayment.amount)!}元[/#if]&nbsp;&nbsp;
+                大写：[#if orderPayment.amount??]${(amountLarge)!}[/#if]<br/>
+                2.交付地点与方式&nbsp;&nbsp;
+                地点：内蒙古自治区[@s_typevalue typecode='QY' typekey=orderPayment.manage.addrCity/]<br/>
+                交易方式：网上支付
+            </td>
+        </tr>
+        <tr>
+            <td>合同条款四</td>
+            <td colspan="2" class="left">
+                合同期限
+                开始日期：${(orderPayment.rentTimeStart)!} 结束日期：${(orderPayment.rentAllTime)!}
+            </td>
+        </tr>
+        <tr>
+            <td>合同条款五</td>
+            <td colspan="2" class="left">
+                合同工作要求
+            </td>
+        </tr>
+        <tr>
+            <td>合同条款六</td>
+            <td colspan="2" class="left">合同当事人的权利和义务</td>
+
+        </tr>
+        <tr>
+            <td>合同条款七</td>
+            <td colspan="2" class="left">
+                合同纠纷处理方式：1：合同在执行合同过程中发生纠纷时，应通过协商及时解决。如协商不一致，上报机关协调解决，协调后达成的协议双方均应执行。<br/>
+                2：在协商、协调期间，除有争议的部分外，合同双方均应继续履行本合同规定的各自义务，并采取措施尽量减少由于纠纷造成的损失。
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="2" colspan="3" class="left"><p>注：以上合同信息仅限于真正合同信息的参考，并不作为真正的合同。</p></td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+</body>
+</html>

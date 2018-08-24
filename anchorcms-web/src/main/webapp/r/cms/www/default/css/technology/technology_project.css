@@ -1,0 +1,286 @@
+body {
+    margin: 0px;
+    width: 1290px;
+    text-align: left;
+    margin:0px auto;
+   
+}
+div{
+	 
+}
+p{
+	margin: 0px;
+	padding:0px;
+}
+.head
+{    width: 1194px;
+margin:0 auto;
+   height:  50px;
+   background-color: #B9B9B9;
+   margin: 3px auto ;
+   font-size: 14px;
+   line-height: 50px;
+   padding-left: 3px;
+   
+}
+.top{
+	    width: 1200px;
+margin:0 auto;
+   height:  125px;
+}
+.top-left{
+	width: 220px;
+	height:121px;
+		float :left;
+
+	   	   background-color: #B9B9B9;
+	 margin:2px;
+	   
+}
+.top-right{
+	float :left;
+
+	   margin:2px;
+	   	width: 972px;
+	height:121px;
+		   background-color: #B9B9B9;
+}
+.top-left-title{
+	width: 200px;
+	height: 42px;
+	text-align: center;
+	background-color: white;
+	border: 1px solid black;
+	margin:10px auto;
+	color:red;
+	line-height: 42px;
+}
+.top-right-title{
+	float: left;
+	height:101px;
+	width:26px;
+	border:1px solid black;
+	text-align: center;
+	background-color: white;
+	margin:8px;
+	font-size: 14px;
+	color:red;
+	line-height:17px;
+}
+.arrow{
+	float: left;
+	height:121px;
+	margin:40px 6px;
+}
+.top-right-content{
+	float: left;
+	height:100px;
+	border:1px solid black;
+	width:230px;
+	background-color: white;
+	margin:10px 20px;
+}
+.top-right-content-title{
+	width:210px;
+	height:22px;
+	margin:4px auto;
+	border:  1px solid black;
+	font-size: 13px;
+	line-height: 22px;
+		padding-left: 2px;
+}
+.top-right-content-image{
+	float: left;
+	margin:3px 9px;
+}
+.top-right-content-message{
+	float:left;
+}
+.content-company{
+	font-size: 13px;
+	border: 1px solid black;
+		height:23px;
+		width:140px;
+		line-height: 23px;
+		margin:2px auto;
+			padding-left: 3px;
+}
+.content-intro{
+	font-size: 13px;
+		border: 1px solid black;
+		height:33px;
+		width:140px;
+				line-height: 33px;
+				margin:2px 3px;
+				padding-left: 3px;
+}
+
+.content{width:1194px; margin: 1px auto; }
+.content-left{
+	width:218px;
+
+	float: left;
+	background-color: #d3d3d3;
+}
+.d211{height: 35px;
+width: 218px;
+border: 1px solid #B9B9B9;
+text-align: center;
+padding-top:15px;
+font-size: 13px;
+
+}
+.nav{
+	height: 50px;
+width: 218px;
+border: 1px solid #B9B9B9;
+line-height: 50px;text-align: center;
+font-size: 16px;
+}
+.content-right{
+	float: left;
+	width: 968px;
+	height: 855px;
+
+	margin-left:5px;
+
+}
+.content-example{
+	height: 230px;
+	width: 968px
+	;margin-bottom: 2px;
+	background-color: #d3d3d3
+}
+.example-p{
+font-size:16px;
+	padding-top: 20px;
+}
+.example-s{
+	margin-left: 30px;
+	
+}
+label{
+	font-weight: normal;
+}
+.example-lab1{
+	margin-left: 30px;
+	
+}
+.example-lab2{
+	margin-left: 10px;
+}
+.example-lab3{
+	margin-left: 40px;
+}
+.example-lab4{
+	margin-left: 60px;
+}
+.example-btn{
+	width: 94px;
+	height: 33px;
+	font-size: 14px;
+	line-height: 30px;
+	text-align: center;
+border: none;
+margin-left: 220px;
+}
+.example-text2{
+	font-family: "Arial Normal", "Arial";
+	height: 25px;
+	width: 196px;	
+	margin-left: 40px;
+}
+.example-text1{
+		font-family: "Arial Normal", "Arial";
+	height: 25px;
+	width: 56px;
+		margin-left: 30px;
+}
+.content-table-head{
+	width: 968px;
+	height: 35px;
+	border: 1px solid;
+}
+.head-left{
+	line-height: 35px;
+	width: 896px;
+	float: left;
+}
+.head-right{
+	line-height: 35px;
+	width:70px;
+	float: left;
+	border-left: 1px solid
+	;text-align: center;
+}
+.head-p{padding-left: 5px;
+font-size: 16px;}
+.content-head-s{
+	margin-left: 20px;
+}
+.content-head-s2{
+	margin-left: 350px;
+}
+.content-head-s3{
+	margin-left: 10px;
+}
+.content-head-s4{
+	margin-left: 53px;
+}
+
+.content-statement-tab{
+	height: 290px;
+	width: 970px;
+	border-collapse: collapse;
+}
+.content-statement{
+	width: 970px;
+	border-top: 1px solid;
+	border-left: 1px solid;
+	border-right: 1px solid;
+	font-size: 16px;
+
+	
+}
+.content-statement-tab th,td{border-bottom: 1px solid; text-align: center; text-align:center; line-height: 40px; }
+
+.content-statement-tab-td1{
+	width:20px;
+}
+.content-statement-tab-td2{
+	border: 1px solid;
+	width: 35px;
+}
+.content-statement-tab-td3{
+	border-left: 1px solid;
+}
+.content-img{
+	width: 972px;
+	height: 260px;
+background-color: #d3d3d3;
+
+}
+.content-img-outer{
+	width: 180px;
+	height: 140px;
+	background-color: white;
+	border: 1px solid;
+	padding: 5px;
+	float: left;
+	margin:40px 30px 15px 30px;
+}
+.content-img-title{
+	width: 167px;
+	height: 60px;
+	background-color: white;
+		border: 1px solid;
+		font-size: 13px;
+		
+}
+
+.content-img-p1{
+	margin: 4px 4px 5px 3px;
+}
+.content-img-p2{
+	margin: 10px 4px 5px 10px;
+}

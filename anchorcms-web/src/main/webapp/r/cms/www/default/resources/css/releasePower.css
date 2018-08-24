@@ -1,0 +1,490 @@
+@charset "UTF-8";
+.servicePower {
+    padding-top: 10px;
+}
+
+.column {
+    position: relative;
+    margin-top: 10px;
+    height: 40px;
+    line-height: 40px;
+    background: #EEF3F6;
+    border-left: 4px solid #318CB9;
+}
+
+.column .head {
+    padding-left: 10px;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.content i {
+    font-size: 14px;
+    color: #FF172F;
+    vertical-align: middle;
+    padding-right: 3px;
+}
+
+.column .tips {
+    float: right;
+    margin-top: 5px;
+    margin-right: 10px;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.content .service-content .inputs, .content .contact-content .inputs {
+    position: relative;
+    margin-top: 10px;
+    height: 35px;
+    font-size: 14px;
+}
+
+.content .service-content .uploadImgs {
+    min-height: 50px;
+    height: auto;
+}
+
+.content .service-content .uploadImgs .upLoadDiv {
+    margin-top: -25px;
+    margin-left: 170px;
+}
+
+.content .service-content .uploadImgs > span:nth-child(2) {
+    margin-left: 90px;
+}
+
+.content .service-content .picWrapper {
+    margin-top: 10px;
+    padding-left: 170px;
+}
+
+.content .service-content .imgs {
+    margin-left: 170px;
+    margin-top: 10px;
+    height: 120px;
+}
+
+.content .service-content .imgs img {
+    margin-right: 20px;
+    width: 100px;
+    height: 100px;
+}
+
+.content .service-content .myDiv {
+    height: 460px;
+    padding-top: 10px;
+}
+
+.content .service-content .myEditor {
+    margin-top: -20px;
+    margin-left: 175px;
+    height: 380px;
+}
+
+.content label {
+    margin-right: 10px;
+    width: 160px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: right;
+}
+
+.content .service-content span {
+    margin-right: 5px;
+    display: inline-block;
+    font-size: 14px;
+
+    line-height: 30px;
+    color: #AAA;
+}
+
+.content .service-content .special {
+    color: #333;
+}
+
+.content .contact-content span {
+    margin-right: 5px;
+    display: inline-block;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    color: #AAA;
+}
+
+.content .power {
+    position: relative;
+    width: 392px;
+}
+
+.content .category {
+    padding-right: 30px;
+    background: url(../images/releasePower/fl2.png) no-repeat 362px center;
+    cursor: pointer;
+}
+
+.content .codeInput {
+    width: 250px;
+}
+
+input[type="text"], input[type="password"], select {
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #D4D4D4;
+}
+
+input {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.Wdate {
+    height: 30px;
+    border: #D4D4D4 1px solid;
+}
+
+select {
+    border-radius: 2px;
+}
+
+input[type="checkbox"] {
+    margin-top: -2px;
+}
+
+input[type="file"] {
+    display: inline-block;
+}
+
+input[type="button"] {
+    line-height: 30px;
+    text-align: center;
+    border: 0 none;
+}
+
+a.pn-opt:hover {
+    color: #f33;
+}
+
+.uploadImgs table {
+    margin-right: 20px;
+}
+
+a.pn-opt {
+    width: 50px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 12px;
+    text-align: center;
+    border: 1px solid #ccc;
+    display: block;
+    margin-left: 32px;
+    color: #0070b8;
+    font-weight: bold;
+}
+
+.myEditor {
+    width: 760px;
+    height: 500px;
+}
+
+.release-button, .release-button1 {
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+}
+
+.release-button .btn, .release-button1 .btn, .release-button .cancel, .release-button1 .cancel {
+    margin: auto 10px;
+    width: 140px;
+    outline: none;
+    border: none;
+    color: #fff;
+    background: #318CB8;
+}
+
+.release-button .reset, .release-button1 .reset {
+    border: 1px solid #ccc;
+    color: #000;
+    background: #EDEDED;
+}
+
+.message {
+    margin-left: 110px;
+    margin-top: 10px;
+    height: 150px;
+    text-align: left;
+    font-size: 14px;
+    line-height: 30px;
+}
+
+.content label.error {
+    margin-left: 10px;
+    width: auto;
+    color: red;
+}
+
+.SDemandObj_input {
+    line-height: 2em;
+    height: 2em;
+    text-align: center;
+    border: none;
+    background: none;
+    background: none;
+}
+
+.SDemandObj_table {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    margin-top: 20px;
+    line-height: 3em;
+    border: 1px solid #E0DEDF;
+}
+
+.addBtn {
+    float: right;
+    padding-left: 15px;
+    margin-right: 10px;
+    margin-top: 5px;
+    width: 120px;
+    height: 30px;
+    line-height: 30px;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    color: #fff;
+    background: #318CB8 url(../images/releasePower/add.png) no-repeat 10px;
+}
+
+.j_head {
+    display: none;
+}
+
+.fbgj-tab {
+    float: left;
+    margin-right: 20px;
+}
+
+.SDemandObj_table tbody tr:nth-child(even) {
+    background: #EEF3F6;
+}
+
+.SDemandObj_table tr td {
+    height: 30px;
+    line-height: 30px;
+}
+
+.service-content .SDemandObj_table button {
+    width: 60px;
+    height: 20px;
+    line-height: 1em;
+    margin: 7px 10px;
+    outline: none;
+    background: none;
+    border: 1px solid #ccc;
+}
+
+.pay-content {
+    padding: 20px 0;
+    margin-bottom: 20px;
+    margin-left: 10%;
+    width: 80%;
+    border-radius: 10px;
+    background: #EEF3F6;
+}
+
+.servicePower .pay-toolbar {
+    position: relative;
+    margin: 20px auto 60px auto;
+    width: 70%;
+    height: 50px;
+    text-align: center;
+    background: url(../images/releasePower/bar.png) repeat-x center;
+}
+
+.servicePower .pay-toolbar .pay-nk {
+    height: 50px;
+    width: 60px;
+    background: url(../images/releasePower/nk.png) no-repeat center;
+}
+
+.servicePower .pay-toolbar .nk-center {
+    position: absolute;
+    top: 0;
+    right: 50%;
+}
+
+.servicePower .pay-toolbar .pay-nk span {
+    margin: 8px;
+    display: inline-block;
+    z-index: 5;
+    height: 34px;
+    line-height: 34px;
+    width: 34px;
+    border-radius: 50px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.servicePower .pay-toolbar .pay-nk.current span {
+    background: #318BB7;
+}
+
+.servicePower .pay-toolbar .pay-nk p {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.servicePower .pay-toolbar .pay-nk.current p {
+    color: #318BB7;
+}
+
+.service-content .pay-content label:nth-child(1) {
+    width: 35%;
+}
+
+.orderList {
+    padding: 0 20px;
+    width: 80%;
+    margin: 0 auto 20px;
+    background: #eef3f6;
+    color: #444545;
+    font-size: 14px;
+}
+
+.orderList .order-item {
+    padding: 26px 0 23px 0;
+    height: 130px;
+    border-bottom: 1px dashed #828282;
+}
+
+.orderList .order-item img {
+    float: left;
+    width: 65px;
+    height: 65px;
+    margin-right: 20px;
+    margin-top: 8px;
+}
+
+.orderList .order-item .order-detail {
+    margin-left: 85px;
+    height: 65px;
+}
+
+.orderList .form-input {
+    float: left;
+    width: 31%;
+    margin-right: 2%;
+    line-height: 24px;
+}
+
+.orderList .form-input-long {
+    float: left;
+    width: 64%;
+    margin-right: 2%;
+    line-height: 22px;
+}
+
+.orderList .form-input label, .orderList .form-input-long label {
+    margin-left: 0;
+    margin-right: 0;
+    width: auto;
+    color: #828282;
+    font-weight: normal;
+}
+
+.orderList .payBox {
+    padding: 25px 0;
+    text-align: right;
+}
+
+.orderList .payBox button {
+    margin-left: 30px;
+    width: 105px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: #318cb8;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+}
+
+.orderList .payBox span {
+    color: #318cb8;
+    font-size: 20px;
+}
+
+.orderList .payBox label {
+    font-weight: normal;
+}
+
+.orderList .payBox button:hover {
+    background: #179BDB;
+}
+
+.paySuccess {
+    margin: 30px auto;
+    padding: 70px 0 60px 0;
+    width: 75%;
+    height: 286px;
+    background: #318cb8;
+    color: #fff;
+}
+
+.payInner {
+    margin: 0 auto;
+    width: 320px;
+    height: 156px;
+}
+
+.payTip {
+    margin-bottom: 50px;
+    height: 65px;
+}
+
+.payTip .order-icon {
+    float: left;
+    width: 65px;
+    height: 65px;
+    background: #fff url(../images/releasePower/yes.png) no-repeat center;
+    border-radius: 999px;
+}
+
+.payTip dl {
+    margin-left: 85px;
+    height: 65px;
+}
+
+.payTip dl dt {
+    font-size: 30px;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+.payTip dl dd {
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.text-center button {
+    width: 113px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    background: #318cb8;
+    color: #fff;
+    letter-spacing: .8px;
+    border: 1px solid #fff;
+    outline: none;
+    border-radius: 2px;
+}
+
+.text-center button:hover {
+    background: #fff;
+    color: #318cb8;
+}

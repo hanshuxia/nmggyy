@@ -1,0 +1,135 @@
+.txt {
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333333;
+	text-align: center;
+	line-height: normal;
+}
+
+.clear-bg {
+	background-image: none;
+}
+
+.tech-header {
+	height: 366px;
+}
+
+.main-img {
+	width: 812px;
+	height: 366px;
+	background-image: url("../../images/information/technology/u60.png");
+}
+
+.cusp-tech {
+	margin-left: 8px;
+	width: 380px;
+	height: 366px;
+	background-image: url("../../images/information/technology/u62.png");
+}
+
+.cusp-tech span {
+	line-height: 100px;
+	font-weight: 700;
+	font-size: 18px;
+}
+
+.cusp-tech p {
+	line-height: 30px;
+}
+
+.tech-body {
+	margin-top: 20px;
+	height: 1250px;
+}
+
+.tech-content {
+	width: 810px;
+	height: 1250px;
+}
+
+.tech-title {
+	margin-bottom: 10px;
+	width: 810px;
+	height: 40px;
+	background-image: url("../../images/information/technology/u68.png");
+}
+
+.tech-title b {
+	float: left;
+	line-height: 40px;
+	font-weight: 700;
+	font-size: 18px;
+	color: #FF0000;
+}
+
+.tech-title span {
+	float: right;
+	line-height: 40px;
+}
+
+.tech-content-one {
+	padding: 10px;
+	width: 810px;
+	height: 170px;
+	background-image: url("../../images/information/technology/u106.png");
+}
+
+.tech-content-one p {
+	margin-left: 5px;
+	font-weight: 700;
+	font-size: 16px;
+}
+
+.tech-content-one img {
+	margin-left: 150px;
+	margin-top: 20px;
+}
+
+.tech-btn {
+	margin-top: 20px;
+	margin-left: 10px;
+}
+
+.tech-btn-out{
+	margin-top: 20px;
+	margin-left: 30px;
+}
+
+.tech-btn-share{
+	margin-top: 20px;
+	margin-left: 500px;
+}
+
+.tech-right {
+	width: 390px;
+	height: 1250px;
+}
+
+.ad {
+	margin-top: 20px;
+	margin-left: 10px;
+	width: 380px;
+	height: 196px;
+	line-height: 196px;
+	background-image: url("../../images/information/technology/u84.png");
+}
+
+.tech-right-div {
+	margin-left: 10px;
+	margin-top: 20px;
+	width: 380px;
+	height: 254px;
+	background-image: url("../../images/information/technology/u86.png");
+}
+
+.tech-right-div span {
+	line-height: 100px;
+	font-weight: 700;
+	font-size: 18px;
+}
+
+.tech-right-div p {
+	line-height: 30px;
+}

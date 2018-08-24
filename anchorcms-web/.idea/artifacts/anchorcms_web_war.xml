@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="anchorcms-web:war">
+    <output-path>$PROJECT_DIR$/anchorcms-web/target</output-path>
+    <root id="archive" name="anchorcms-web.war">
+      <element id="artifact" artifact-name="anchorcms-web:war exploded" />
+    </root>
+  </artifact>
+</component>

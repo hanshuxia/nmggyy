@@ -1,0 +1,10 @@
+1:自己制作模板：
+	1：创建自己的controller 层：
+	2：controller 在controller.admin 下
+	3：把 @RequiresPermissions("Cloud_demand:v_add")
+	@RequestMapping("/Cloud_demand/v_add.do") 换成 数据库中的modelPath 中的数据
+	4：创建需要插入的页面
+	5：return 是引入自己的页面
+	6： 注意：所建立的模板的id 要在9000-10000之间&7
+	7:ProductTechnologyCtrlListener 类新增
+	8：

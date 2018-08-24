@@ -1,0 +1,192 @@
+.d-investor-table tr{
+    height: 42px;
+}
+.d-investor-table td{
+    width: 484px;
+    border: 1px black solid;
+}
+.d-investor-right{
+    float: left;
+    width: 1000px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: 42px;
+    background-image: url("../../images/double/double_investors/u42.png");
+}
+
+.d-investor-title{
+    width: 1000px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 35px;
+    background-image: url("../../images/double/double_investors/u44.png");
+}
+.d-investor-table{
+    margin: 40px auto 0px auto;
+    width: 685px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    line-height: 42px;
+    text-align: center;
+    border: 1px black solid;
+}
+.d-investor-td{
+    width: 203px;
+}
+.d-investor-tr1{
+    height: 117px;
+}
+.d-investor-tr2{
+    height: 171px;
+}
+.d-investor-input1{
+    margin: auto 90px auto 4px ;
+    width: 390px;
+    height: 30px;
+}
+.d-investor-input2{
+    float: left;
+    margin: 9px 10px 9px 4px ;
+    width: 230px;
+    height: 30px;
+}
+.d-investor-note{
+    float: left;
+    text-align: left;
+}
+.d-investor-radio1{
+    margin: 0px 0px 0px 5px;
+}
+.d-investor-radio-name{
+    margin-right: 10px;
+
+}
+.d-investor-radiondiv1{
+    float: left;
+    margin-left: 4px;
+}
+.d-investor-radiondiv2{
+    float: left;
+    margin-left: 4px;
+    width: 125px;
+    text-align: left;
+    line-height: 25px;
+}
+.d-investor-check1{
+    margin-right: 4px;
+}
+.d-investor-radiondiv3{
+    float: left;
+    margin-left: 4px;
+    width: 220px;
+    text-align: left;
+    line-height: 25px;
+}
+.d-investor-add{
+    margin-left: 30px;
+}
+.d-investor-input3{
+    width: 70px;
+    height: 25px;
+}
+.d-investor-function{
+    width: 482px;
+    line-height: 30px;
+    background-image: url("../../images/double/double_investors/u167.png");
+    background-size: 100%;
+}
+
+.d-investor-note1{
+    padding-left: 20px;
+    width: 482px;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    background-image: url("../../images/double/double_investors/u167.png");
+    background-size: 100%;
+}
+.d-investor-textarea{
+    width: 482px;
+    height: 110px;
+}
+.d-investor-money{
+    width: 90px;
+    height: 25px;
+}
+.d-investor-unit{
+    margin-right: 20px;
+}
+.d-investor-contacter{
+    margin: 5px auto;
+    width: 686px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 18px;
+    text-align: center;
+    line-height: 48px;
+    background-image: url("../../images/double/double_investors/u299.png");
+}
+.d-investor-button-left{
+    float: left;
+    margin: 0px 10px 0px 5px;
+    width: 200px;
+}
+.d-investor-button-right{
+    float: left;
+}
+.d-investor-buttondiv{
+    float: left;
+    margin: 5px ;
+    width: 200px;
+    background-image: url("../../images/double/double_investors/u40.png");
+}
+.d-investor-button{
+    margin:0px auto;
+    width: 770px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    color: #333333;
+    text-align: center;
+    line-height: 40px;
+}
+.d-investor-button-contacter{
+    float: left;
+    width: 530px;
+    height: 40px;
+}
+.d-investor-button-others{
+    float: left;
+    width: 150px;
+    height: 40px;
+}
+.d-investor-save{
+    margin: 20px auto;
+    width:500px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+    line-height: 42px;
+}
+.d-investors-submit{
+    margin: 0px 25px;
+    width: 150px;
+    height: 42px;
+}
+
+

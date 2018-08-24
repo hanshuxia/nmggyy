@@ -1,0 +1,266 @@
+#header{
+    padding: 12px 0px 10px 3px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+    font-size: 13px;
+    color: #333333;
+    background-size: cover;
+    background-image: url("../../images/double/train/u58.png");
+    background-size: 1200px 40px;
+}
+.slide{
+    float:left;
+    width:400px;
+}
+.carousel-inner{
+    float:left;
+}
+
+.carousel-inner img{
+    float: left;
+    width: 400px;
+    height:220px;
+}
+.pic-button{
+    margin: 0px -2px;
+    width: 30px;
+    height: 25px;
+}
+.process-detail{
+    float: right;
+    margin: 0px;
+    width: 800px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: normal;
+}
+.process-detail-1{
+    width: 800px;
+    height:110px;
+    background-image:url("../../images/double/train/u67.png");
+    background-size: 800px 110px;
+}
+
+.process-title{
+    width: 800px;
+    padding: 15px 20px 4px 15px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    text-align: left;
+}
+.process-content-1{
+    float: left;
+    padding: 12px 0px;
+    width:85px ;
+    height: 41px;
+    background-image:url("../../images/double/train/u79.png");
+    background-size: 85px 41px;
+}
+.img_size{
+    width:600px;
+    height: 51px;
+}
+.process-content-3{
+    float: left;
+    margin-top:-19px;
+    padding: 12px 0px;
+    width:85px ;
+    height: 71px;
+    background-image:url("../../images/double/train/u79.png");
+    background-size: 85px 71px;
+}
+.process-content-2{
+    float: left;
+    padding: 10px 0px;
+    width:75px ;
+    height: 41px;
+}
+.process-content{
+   padding: 15px 30px 16px 30px;
+}
+
+.process-content2 {
+    padding: 6px 100px 13.5px 100px;
+}
+.column{
+    padding: 15px 0px ;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    line-height: normal;
+    background-image:url("../../images/double/train/u111.png");
+    background-size: 1200px 50px;
+    text-align: center;
+}
+.classroom{
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: left;
+    line-height: normal;
+    text-align: center;
+    background-image:url("../../images/double/train/u113.png");
+    background-size: 1200px 390px;
+}
+.classroom-button{
+    float: left;
+}
+.classroom-button button{
+    broder: 1px solid #aaa !important;
+}
+.classroom-button1{
+    width: 250px;
+    height: 29px;
+
+}
+.classroom-button1-1{
+    padding:14px 0px ;
+    height: 46px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+}
+.classroom-table{
+    margin-right: -2px;
+    float: right;
+    width: 935px;
+
+    text-align: center;
+}
+td{
+    width: 133px;
+    height: 30px;
+    line-height: 30px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: normal;
+    border: 1px solid;
+    background-image:url("../../images/double/train/u116.png");
+}
+.classroom-table-1{
+    color: red;
+}
+.classroom-page{
+    float: right;
+    padding: 11px 13px 13px 13px;
+    margin: 0px 150px 0px 30px;
+    width: 680px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+    background-image:url("../../images/double/train/u131.png");
+    text-align: center;
+}
+.classroom-page-1{
+    margin: 0px 4px;
+    padding: 0px;
+    width: 44px;
+    height: 34px;
+    line-height:34px;
+}
+.classroom-page-num{
+    line-height:34px;
+}
+.classroom-input1{
+    width:20px;
+    height: 30px;
+}
+.internet-choose{
+    float: left;
+    width: 260px;
+    text-align: center;
+}
+.internet-button1{
+    width: 130px;
+    height: 50px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 13px;
+    line-height: 50px;
+    background-image:url("../../images/double/train/u338.png");
+    background-size: 130px 50px;
+    border:none;
+
+}
+.internet-button2{
+    width: 260px;
+    height: 44px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    line-height: 44px;
+    background-image:url("../../images/double/train/u342.png");
+    background-size: 100%;
+    border:none;
+}
+.internet-content{
+    float: right;
+    width: 940px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: normal;
+}
+.internet-search{
+    width:940px;
+    padding: 13px 600px 14px 30px;
+    background-image:url("../../images/double/train/u352.png");
+    background-size: 100%;
+}
+.internet-course{
+    width:940px;
+    height: 220px;
+    padding: 10px 0px 0px 0px;
+    background-image:url("../../images/double/train/u357.png");
+    background-size: 100%;
+}
+.internet-button3{
+    margin: 10px 59px;
+    width: 181px;
+    height: 30px;
+    line-height: 30px;
+    background-image:url("../../images/double/train/u359.png");
+    background-size: 100%;
+    border: none;
+}
+.internet-video{
+    width:940px;
+    height: 220px;
+    padding: 20px 0px 0px 0px;
+    background-image:url("../../images/double/train/u357.png");
+    background-size: 100%;
+}
+.internet-pic{
+    width: 150px;
+    height: 50px;
+    margin: 10px 80px;
+
+}

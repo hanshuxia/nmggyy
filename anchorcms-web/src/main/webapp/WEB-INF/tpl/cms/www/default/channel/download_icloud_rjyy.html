@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>内蒙古工业云-软件应用</title>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/software.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+[#include "../include/header_icloud.html" /]
+
+<!--content start-->
+<div class="banner">
+    <img src="/${res}/resources/images/synergy/banner.png" alt="banner图" />
+    <div class="sysName">
+        <span>CASI CLOUD</span>
+        <p>内蒙古工业云</p>
+        <p>WELCOME TO INNER MONGOLIA INDUSTRIAL CLOUD</p>
+    </div>
+</div>
+<!--备品备件服务-->
+<!--content end-->
+<div class="clearfix">
+    <!--系统应用-->
+    <div class="column-one">
+        <div class="column-hd">
+            <div class="wrapper">
+                <span class="block-title">系统应用</span>
+                <a href="/rjyyRjjsym/index.jhtml" target="_blank"  class="more">更多></a>
+            </div>
+        </div>
+        <div class="column-bd softShow wrapper">
+            <span class="prev" onclick="if(i>=0)i--;jump()"></span>
+            <div class="center">
+                <ul class="clearfix" id="resList">
+                    [@s_icloud_software_list count='8' orderBy='1' type='0']
+                    [#list tag_list as a]
+                    <li class="slide-item">
+                        [#if (a.content)??]
+                            [#if a.content.staticContent]
+                                [#if a.content.needRegenerate]
+                                    <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank">
+                                        <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}">
+                                    </a>
+                                [#else]
+                                    <a href="${a.content.url}" target="_blank">
+                                        <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}">
+                                    </a>
+                                [/#if]
+                            [#else]
+                                <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank">
+                                    <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}">
+                                </a>
+                            [/#if]
+                        [/#if]
+                        <span><a class="show-title" title="${a.softwareName}">[@text_cut s=a.softwareName len='10' append='...'/]</a></span>
+                    </li>
+                    [/#list]
+                    [/@s_icloud_software_list]
+                </ul>
+            </div>
+            <span class="next" onclick="if(i<max)i++;jump()"></span>
+        </div>
+    </div>
+    <!--软件展示-->
+    <div class="column-one">
+        <div class="column-hd">
+            <div class="wrapper">
+                <span class="block-title">软件展示</span>
+            </div>
+        </div>
+        <div class="column-bd softShow wrapper">
+            <div class="area newest">
+                <a href="/rjyyRjjsym/index-undefined-undefined-1-undefined-undefined-.jhtml">
+                <div class="cover cover3">
+                    <!--<p class="cName">最新软件</p>-->
+                    <!--<p class="eName">Newest</p>-->
+                </div>
+                </a>
+                <div class="softBox">
+                    <ul>
+                        [@s_icloud_software_list count='4' orderBy='1' type='0']
+                        [#list tag_list as a]
+                        <li>
+                            [#if (a.content)??]
+                                [#if a.content.staticContent]
+                                    [#if a.content.needRegenerate]
+                                        <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank">
+                                            <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}">
+                                        </a>
+                                    [#else]
+                                        <a href="${a.content.url}" target="_blank">
+                                            <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}">
+                                        </a>
+                                    [/#if]
+                                [#else]
+                                    <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank">
+                                        <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}">
+                                    </a>
+                                [/#if]
+                            [/#if]
+                            <div class="soft-title">
+                                <dl>
+                                    <dt><a class="show-title" title="${a.softwareName}">[@text_cut s=a.softwareName len='10' append='...'/]</a></dt>
+                                    <dd>${a.softwareSize!}</dd>
+                                </dl>
+                            </div>
+                            <dl>
+                                <dd>标签：${a.companyName}</dd>
+                                <dd>更新时间：${a.updateDt}</dd>
+                                <dd>浏览次数：${a.browse!}</dd>
+                                <dd>下载次数：${a.download!}</dd>
+                            </dl>
+                            [#if (a.content)??]
+                                [#if a.content.staticContent]
+                                    [#if a.content.needRegenerate]
+                                        <button onclick="location.href = '/rjyyRjjsym/software_info.jspx?id=${(a.softwareId)!}'">详情</button>
+                                    [#else]
+                                        <button onclick="location.href = '${a.content.url}'">详情</button>
+                                    [/#if]
+                                [#else]
+                                    <button onclick="location.href = '/rjyyRjjsym/software_info.jspx?id=${(a.softwareId)!}'">详情</button>
+                                [/#if]
+                            [/#if]
+
+                        </li>
+                        [/#list]
+                        [/@s_icloud_software_list]
+                    </ul>
+                </div>
+            </div>
+            <div class="area freeArea">
+                <a href="/rjyyRjjsym/index-mf-undefined-undefined-undefined-undefined-.jhtml">
+                <div class="cover cover1">
+                    <!--<p class="cName">更多免费软件</p>-->
+                    <!--<p class="eName">More free software</p>-->
+                </div>
+                </a>
+                <div class="softBox">
+                    <ul>
+                        [@s_icloud_software_list count='4' orderBy='1' type='1']
+                        [#list tag_list as a]
+                        <li>
+                            [#if (a.content)??]
+                                [#if a.content.staticContent]
+                                    [#if a.content.needRegenerate]
+                                        <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank">
+                                            <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}">
+                                        </a>
+                                    [#else]
+                                        <a href="${a.content.url}" target="_blank">
+                                            <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}">
+                                        </a>
+                                    [/#if]
+                                [#else]
+                                    <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank">
+                                        <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}">
+                                    </a>
+                                [/#if]
+                            [/#if]
+                            <div class="soft-title">
+                                <dl>
+                                    <dt><a class="show-title" title="${a.softwareName}">[@text_cut s=a.softwareName len='10' append='...'/]</a></dt>
+                                    <dd>${a.softwareSize!}</dd>
+                                </dl>
+                            </div>
+                            <dl>
+                                <dd>标签：<a class="show-title" title="${a.softwareName}">[@text_cut s=a.softwareName len='10' append='...'/]</a></dd>
+                                <dd>更新时间：${a.updateDt}</dd>
+                                <dd>浏览次数：${a.browse!}</dd>
+                                <dd>下载次数：${a.download!}</dd>
+                            </dl>
+                            [#if (a.content)??]
+                                [#if a.content.staticContent]
+                                    [#if a.content.needRegenerate]
+                                        <button onclick="location.href = '/rjyyRjjsym/software_info.jspx?id=${(a.softwareId)!}'">详情</button>
+                                    [#else]
+                                        <button onclick="location.href = '${a.content.url}'">详情</button>
+                                    [/#if]
+                                [#else]
+                                    <button onclick="location.href = '/rjyyRjjsym/software_info.jspx?id=${(a.softwareId)!}'">详情</button>
+                                [/#if]
+                            [/#if]
+                        </li>
+                        [/#list]
+                        [/@s_icloud_software_list]
+                    </ul>
+                </div>
+            </div>
+            <div class="area payArea">
+                <a href="/rjyyRjjsym/index-ff-undefined-undefined-undefined-undefined-.jhtml">
+                <div class="cover cover2">
+                    <!--<p class="cName">更多付费软件</p>-->
+                    <!--<p class="eName">Pay more software</p>-->
+                </div>
+                </a>
+                <div class="softBox">
+                    <ul>
+                        [@s_icloud_software_list count='4' orderBy='1' type='2']
+                        [#list tag_list as a]
+                        <li>
+                            [#if (a.content)??]
+                                [#if a.content.staticContent]
+                                    [#if a.content.needRegenerate]
+                                        <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank">
+                                            <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}">
+                                        </a>
+                                    [#else]
+                                        <a href="${a.content.url}" target="_blank">
+                                            <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}">
+                                        </a>
+                                    [/#if]
+                                [#else]
+                                    <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank">
+                                        <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}">
+                                    </a>
+                                [/#if]
+                            [/#if]
+                            <div class="soft-title">
+                                <dl>
+                                    <dt><a class="show-title" title="${a.softwareName}">[@text_cut s=a.softwareName len='10' append='...'/]</a></dt>
+                                    <dd>${a.softwareSize!}</dd>
+                                </dl>
+                            </div>
+                            <dl>
+                                <dd>标签：<a class="show-title" title="${a.softwareName}">[@text_cut s=a.softwareName len='10' append='...'/]</a></dd>
+                                <dd>更新时间：${a.updateDt}</dd>
+                                <dd>浏览次数：${a.browse!}</dd>
+                                <dd>下载次数：${a.download!}</dd>
+                            </dl>
+                            [#if (a.content)??]
+                                [#if a.content.staticContent]
+                                    [#if a.content.needRegenerate]
+                                        <button onclick="location.href = '/rjyyRjjsym/software_info.jspx?id=${(a.softwareId)!}'">详情</button>
+                                    [#else]
+                                        <button onclick="location.href = '${a.content.url}'">详情</button>
+                                    [/#if]
+                                [#else]
+                                    <button onclick="location.href = '/rjyyRjjsym/software_info.jspx?id=${(a.softwareId)!}'">详情</button>
+                                [/#if]
+                            [/#if]
+                        </li>
+                        [/#list]
+                        [/@s_icloud_software_list]
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--热门软件-->
+    <div class="column-one">
+        <div class="column-hd">
+            <div class="wrapper">
+                <span class="block-title">热门软件</span>
+                <a href="/rjyyRjjsym/index.jhtml" target="_blank"  class="more">更多></a>
+            </div>
+        </div>
+        <div class="column-bd">
+            <div class="pop wrapper">
+                <ul>
+                    [@s_icloud_software_list count='6' orderBy='2' type='0']
+                    [#list tag_list as a]
+                    <li>
+                        [#if (a.content)??]
+                            [#if a.content.staticContent]
+                                [#if a.content.needRegenerate]
+                                    <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank">
+                                        <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}">
+                                    </a>
+                                [#else]
+                                    <a href="${a.content.url}" target="_blank">
+                                        <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}">
+                                    </a>
+                                [/#if]
+                            [#else]
+                                <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank">
+                                    <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}">
+                                </a>
+                            [/#if]
+                        [/#if]
+                        <div class="soft-title">
+                            <dl>
+                                <dt><a class="show-title" title="${a.softwareName}">[@text_cut s=a.softwareName len='10' append='...'/]</a></dt>
+                                [#if a.payType=="免费"]
+                                <dd>免费下载</dd>
+                                [#else]
+                                <dd>付费下载</dd>
+                                [/#if]
+                            </dl>
+                        </div>
+                    </li>
+                    [/#list]
+                    [/@s_icloud_software_list]
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--content end-->
+
+[#include "../include/footer_icloud.html" /]
+
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<!--<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/myscroll.js"></script>-->
+<script>
+    var $resList = $("#resList");
+    var i = 0;
+    var length = $(".slide-item").length;
+    var page = length % 4 == 0 ?
+        parseInt(length / 4) :
+        parseInt(length / 4 + 1);
+    max = page;
+    console.log(length);
+    console.log(max);
+
+    $resList.css("width", page * 980 + "px");
+
+    function jump(){
+        if(i != max){
+            if(i != -1){
+                $resList.animate({
+                    marginLeft:-980*i+"px"
+                },400);
+            }else{
+                alert("已经到达首页了!");
+                i++;
+            }
+        }else{
+            alert("已经没有更多了!");
+            i--;
+        }
+    }
+</script>
+</body>
+</html>

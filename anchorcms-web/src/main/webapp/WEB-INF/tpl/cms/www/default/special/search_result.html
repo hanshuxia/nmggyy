@@ -1,0 +1,73 @@
+﻿<!DOCTYPE HTML>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>全文检索列表 - ${site.siteName} - Powered by ANCHORCMS</title>
+<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+<link type="text/css" rel="stylesheet" href="/${res}/css/index.css" />
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<script src="/${res}/js/common.js" type="text/javascript"></script>
+  <link rel="shortcut  icon" type="image/x-icon" href="/${res}/resources/images/favicon.ico" media="screen"  />
+ <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+  <link rel="stylesheet" type="text/css" href="/${res}/resources/css/index.css"/>
+
+<!--[if lt IE 9]> 
+<script src="/${res}/js/html5shiv.min.js"></script>
+<script src="/${res}/js/respond.min.js"></script>
+<![endif]-->
+<style type="text/css">
+  .content_w850 {width: 100%;}
+</style>
+</head>
+
+<body>
+[#include "../include/header_icloud.html"]
+<!--content start-->
+  <div class="main container clearfix" style="width:1100px;border-bottom: none;">
+    <section class="content_w850">
+      [#if q??]
+      [@cms_lucene_page q=q channelId=channelId startDate=startDate endDate=endDate descLen='170' append='...' count='10' ]
+      [#if tag_pagination.totalCount>0]
+      <div class="searchNav">您搜索的“<span>${input!}</span>”， 共有<span>${tag_pagination.totalCount!}</span>个结果</div>
+      <div class="searchList">
+        [#list tag_list as s]
+        <div class="item">
+          <div class="search-title"><a href="${s.url}" title="${s.title}" target="_blank">${s.title?replace('${q!}', "<span>${q!}</span>")}</a></div>
+          [#if s.txt??]
+          <div class="search-txt">
+            [#assign bb=s.txt?replace("<(S*?)[^>]*>.*?|<.*? />","","ri")?replace("&nbsp;","","ri")/]
+            [#assign bb][@text_cut s=bb len=descLen append=append/][/#assign]
+            [#assign bb=bb?replace('${q!}', "<span style='color: red;'>${q!}</span>")]
+            ${bb}
+          </div>
+          [/#if]
+          <div class="search-date"><a href="${s.ctgUrl}" target="_blank">${s.ctgName}</a><em>${s.releaseDate}</em></div>
+        </div>
+        [/#list]
+      </div>
+      [#include "../include/page.html"/]
+      [#else]
+      <div style="width: 100%;text-align: center;margin: 20px auto 40px auto;">
+        <img src="/${res}/resources/images/index/searchNull.png" alt="Sorry">
+      </div>
+      <div style="font-size: 14px;text-align: center;">
+        <p>抱歉，没有找到与“<span style="color: red;">${input!}</span>”相关的信息</p>
+      </div>
+      [/#if]
+      [/@cms_lucene_page]
+      [/#if]
+    </section>
+  </div>
+<!--footer start-->
+[#include "../include/footer_icloud.html"]
+<!--footer end-->
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+</body>
+</html>

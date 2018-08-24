@@ -1,0 +1,63 @@
+.titile{
+    margin: 10px 0px 10px 0px;
+    padding: 12px 0px 10px 3px;
+    width: 1202px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 14px;
+    text-align: left;
+    backgrounimage:url("../../images/joinArmy/download/u60.png");
+}
+.content{
+    margin: 5px 482px 5px 0px;
+
+    width: 720px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 300;
+    font-size: 14px;
+    text-align: left;
+}
+.row{
+    margin: 5px 0px 5px 0px;
+    width: 720px;
+}
+.direct{
+    margin: 5px 0px 5px 0px;
+    padding: 15px 0px;
+    width: 720px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 300;
+    font-size: 12px;
+    text-align: center;
+}
+.date{
+    float: left;
+    margin: 0px 0px 5px 0px;
+    padding: 5px 0px;
+    width: 120px;
+
+    text-align: right;
+}
+.tname {
+    float: left;
+    margin: 0px 0px 5px 0px;
+    padding: 5px 0px 5px 0px;
+    width: 600px;
+    text-align: left;
+}
+
+.line{
+    border-bottom:dashed 1px ;
+    border: 1px solid;
+
+}
+.choose{
+    width:35px;
+}
+.pic{
+   width: 780px;
+    height: 40px;
+}
+.pic-div{
+    margin-bottom: 10px;
+}

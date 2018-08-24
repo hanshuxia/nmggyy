@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>订单明细</title>
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <style type="text/css">
+        body {
+            font-family: SimSun;
+        }
+        .content {
+            width: 100%;
+        }
+
+        table {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px solid #ddd;
+            font-family: SimSun;
+            table-layout: fixed;
+            word-break: break-all;
+        }
+
+        table tr td {
+            border-right: 1px dashed #ccc;
+        }
+
+        table tr td.left {
+            padding: 10px 20px;
+            line-height: 25px;
+            text-align: left;
+        }
+
+        table tr td:last-child {
+            border-right: none;
+        }
+
+        table thead tr {
+            height: 30px;
+            line-height: 30px;
+            color: #fff;
+            background: #318CB8;
+        }
+
+        table tbody tr {
+            height: 30px;
+            line-height: 30px;
+        }
+
+        table tbody tr:nth-child(odd) {
+            background: #E7F0F7;
+        }
+
+        .contract {
+            margin: 20px auto;
+            width: 100%;
+            text-align: center;
+            font-size: 18px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="content wrapper">
+    <div class="contract">
+        <span>明细信息</span>
+    </div>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <td width="14%">项目</td>
+            <td width="43%">供方(甲方)</td>
+            <td width="43%">买方(乙方)</td>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <td>订单名称</td>
+            <td>${(order.supplyName)!}</td>
+            <td>${(order.supplyName)!}</td>
+        </tr>
+        <tr>
+            <td>单位名称</td>
+            <td>${(order.supplycompany.companyName)!}</td>
+            <td>${(order.buycompany.companyName)!}</td>
+        </tr>
+        <tr>
+            <td>联系人</td>
+            <td>${(order.supplyContact)!}</td>
+            <td>${(order.buyContact)!}</td>
+        </tr>
+        <tr>
+            <td>联系方式</td>
+            <td>${(order.supplyMobile)!}</td>
+            <td>${(order.buyMobile)!}</td>
+        </tr>
+        <tr>
+            <td>订单号</td>
+            <td>${(order.orderId)!}</td>
+            <td>${(order.orderId)!}</td>
+
+        </tr>
+        <tr>
+            <td>订单日期</td>
+            <td>${order.orderDt!}</td>
+            <td>${order.orderDt!}</td>
+        </tr>
+
+        </tbody>
+
+    </table>
+    <div class="contract">
+        <span>对象信息</span>
+    </div>
+    <div style="position:relative;">
+        <table id="SDemandObj_table" class="SDemandObj_table" border="1">
+            <tr style="background-color:#318CB8; color:#FFF">
+                <td>对象名称</td>
+                <td>代码/编号</td>
+                <td>需求数量</td>
+                <td>单价(元)</td>
+            </tr>
+            [#if orderList??]
+            [#list orderList as v]
+            <tr id="originTr">
+                <!--<td><input class="SDemandObj_input"  readonly="readonly" value="${v.objName!}"></td>-->
+                <!--<td><input class="SDemandObj_input" readonly="readonly" value="${v.orderObjId!}"></td>-->
+                <!--<td><input class="SDemandObj_input" readonly="readonly" value="${v.objNum!}"></td>-->
+                <!--<td><input class="SDemandObj_input" readonly="readonly" value="${v.objPrice!}"></td>-->
+                <td>${v.objName!}</td>
+                <td>${v.orderObjId!}</td>
+                <td>${v.objNum!}</td>
+                <td>${v.objPrice!}</td>
+            </tr>
+            [/#list]
+            [/#if]
+        </table>
+    </div>
+    <br>
+    <br>
+    <div style="padding-left: 900px">
+        <h1><label>共计(元):</label><span style="color: #9C0000">${(order.price)!}</span></h1>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,1253 @@
+<!DOCTYPE HTML>
+<!--前台_首页-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>${site.siteName}-内蒙古工业云</title>
+    <meta name=”Keywords” Content="${site.keywords!}">
+    <meta name=”Description” Content="${site.description!}">
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/index_supply_commservice.css"/>
+    <style>
+        .tableBody table td:last-child a:hover {
+            color: #2EBEEF;
+        }
+        .zhongtie{
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+        .zhongtie img{
+            width: 100%;
+            margin-top: 1px;
+            transition: all 0.6s;
+        }
+        .zhongtie img:hover{
+            transform: scale(1.11);
+        }
+    </style>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+[#include "../include/header_icloud.html"]
+
+<!--content start-->
+<div class="content">
+    <div id="myCarousel" class="carousel slide" style="margin-bottom: 15px">
+        <!-- 轮播（Carousel）指标 -->
+        [#assign carousel_count=4]
+        <ol class="carousel-indicators">
+            [#list 1..carousel_count as a]
+            <li data-target="#myCarousel" data-slide-to="${a-1}" [#if a<2] class="active"[/#if]></li>
+            [/#list]
+        </ol>
+        <!-- 轮播（Carousel）项目 -->
+
+        <div class="carousel-inner" style="height: 335px">
+            [@s_pictures_list count='8' orderBy='1' type='0']
+            [#list tag_list as a]
+            <div class="item[#if a_index<1] active[/#if]">
+                [#if a.status??]
+                    [#if a.status=="1"]
+                    <a href="${a.nwebpath!}" target="_blank"><img src="/${res}${a.imgPath?default('')}" alt="First slide" style="height: 335px"></a>
+                    [#else]
+                    <a href="${a.nwebpath!}" target="_blank"><img src="${a.imgPath?default('')}" alt="First slide" style="height: 335px"></a>
+                    [/#if]
+                [#else]
+                    <a href="${a.nwebpath!}" target="_blank"><img src="${a.imgPath?default('')}" alt="First slide" style="height: 335px"></a>
+                [/#if]
+            </div>
+            [/#list]
+            [/@s_pictures_list]
+        </div>
+
+    </div>
+    <div class="fixPlate" style="top: 158px;">
+        <ul>
+            <li>
+                <a href="http://imall.casicloud.com/ecweb/casicacptbill/buyers/billpage/billpage.htm" target="_blank">
+                    <i class="icon-serv1"></i>
+                    <span>互联网金融</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://nm.casicloud.com/innoCasicloud/common/home.do" target="_blank">
+                    <i class="icon-serv2"></i>
+                    <span>创新创业</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://3dprint.casicloud.com/index.htm" target="_blank">
+                    <i class="icon-serv3"></i>
+                    <span>3D打印</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://core.casicloud.com/pool/expert/expertType/expert.ht" target="_blank">
+                    <i class="icon-serv4"></i>
+                    <span>专家池</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://patent.casicloud.com/main/index.html" target="_blank">
+                    <i class="icon-serv5"></i>
+                    <span>专利池</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://core.casicloud.com/pool/std/standardType/index.ht" target="_blank">
+                    <i class="icon-serv6"></i>
+                    <span>标准池</span>
+                </a>
+            </li>
+            <li>
+                <a href="/getFrontDeliver.jspx" target="_blank">
+                    <i class="icon-serv7"></i>
+                    <span>在线物流</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--业务入口模块-->
+    <div class="block-two">
+        <div class="block-head">
+            <div class="wrapper">
+                <a href="/member/synergy_ability_add.jspx?frontStatus=2&flag=front" target="_blank" class="fb">发布能力</a>
+                <span class="loader line-scale">
+                    <span class="right"> > </span><span class="right"> > </span><span class="right"> > </span><span class="right"> > </span><span class="right"> > </span><span class="right"> > </span><span class="right"> > </span><span class="right"> > </span>
+                </span>
+                <span class="block-title">核心功能</span>
+                <span class="loader1 line-scale1">
+                   <span class="left"> < </span><span class="left"> < </span><span class="left"> < </span><span class="left"> < </span><span class="left"> < </span><span class="left"> < </span><span class="left"> < </span><span class="left"> < </span>
+                </span>
+                <a href="/member/synergy_demand_add.jspx?frontStatus=2&flag=front" target="_blank" class="fb">发布需求</a><br>
+                <span class="line"></span>
+            </div>
+        </div>
+        <div class="block-body">
+            <div class="pb15">
+                <div class="business-nav">
+                    <ul class="clearfix wrapper">
+                        <li class="current pb pb1 animation">
+                            <a href="/xtzz/index.jhtml" target="_blank">
+                                <div class="p1">
+                                    <div class="pImg"><span class="line1"></span></div>
+                                    <p>协同制造</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pb pb2 animation">
+                            <a href="/gylxt/index.jhtml" target="_blank">
+                                <div class="p2">
+                                    <div class="pImg"><span class="line1"></span></div>
+                                    <p>供应链协同</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pb pb3 animation">
+                            <a href="/yzyjyzx/index.jhtml" target="_blank">
+                                <div class="p3">
+                                    <div class="ph">
+                                        <div class="pImg"><span class="line1"></span></div>
+                                        <p>云资源交易中心</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pb pb4 animation">
+                            <a href="/ggfw/index.jhtml" target="_blank">
+                                <div class="p4">
+                                    <div class="pImg"><span class="line1"></span></div>
+                                    <p>公共服务</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pb pb5 animation">
+                            <a href="/rjyy/index.jhtml" target="_blank">
+                                <div class="p5">
+                                    <div class="pImg"><span class="line1"></span></div>
+                                    <p>软件应用</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="business-box wrapper">
+                    <div class="tabpage active">
+                        <div class="down">
+                            <img style="position: absolute;left: 85px;" src="/${res}/resources/images/index/down.png">
+                        </div>
+                        <div class="sideNav">
+                            <ul class="thul">
+                                <li class="current">
+                                    <div class="line">
+                                        <i class="icon-ability"></i>
+                                        <p>能力池展示</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="line">
+                                        <i class="icon-demand"></i>
+                                        <p>需求池展示</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="line">
+                                        <i class="icon-company"></i>
+                                        <p>企业制造能力展示</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sideCon">
+                            <div class="tabpanel">
+                                <div class="menuLink">
+                                    <a href="/xtzzNlczs/index-100000-undefined-undefined-undefined-undefined-100000-.jhtml" target="_blank" class="icon-light">研发设计</a>
+                                    <a href="/xtzzNlczs/index-110000-undefined-undefined-undefined-undefined-110000-.jhtml" target="_blank" class="icon-setting">生产加工</a>
+                                    <a href="/xtzzNlczs/index-120000-undefined-undefined-undefined-undefined-120000-.jhtml" target="_blank" class="icon-watch">计量检测</a>
+                                    <a href="/xtzzNlczs/index-130000-undefined-undefined-undefined-undefined-130000-.jhtml" target="_blank" class="icon-heart">试验服务</a>
+                                    <a href="/xtzzNlczs/index-140000-undefined-undefined-undefined-undefined-140000-.jhtml" target="_blank" class="icon-internet">信息化服务</a>
+                                    <a href="/xtzzNlczs/index-150000-undefined-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-other">其他</a>
+                                </div>
+                                <ul class="imgList">
+                                    [@s_ability_list count='8' orderBy='1' type='0']
+                                    [#list tag_list as a]
+                                    <li[#if a_index%4 = 3] style="margin-right:0;"[/#if]>
+                                    <div class="imgWrap">
+                                        [#if (a.content)??]
+                                            [#if a.content.staticContent]
+                                                [#if a.content.needRegenerate]
+                                                    <a href="/xtzzNlczs/xtzz_ability_preview.jspx?id=${a.abilityId}" target="_blank"><img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.abilityName!}"></a>
+                                                [#else]
+                                                    <!--<a href="${a.content.url}" target="_blank"><img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.abilityName!}"></a>-->
+                                                    <a href="/xtzzNlczs/xtzz_ability_preview.jspx?id=${a.abilityId}" target="_blank"><img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.abilityName!}"></a>
+                                        [/#if]
+                                            [#else]
+                                                <a href="/xtzzNlczs/xtzz_ability_preview.jspx?id=${a.abilityId}" target="_blank"><img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.abilityName!}"></a>
+                                            [/#if]
+                                        [/#if]
+                                    </div>
+                                    <div class="imgTitle">
+                                    [#if (a.content)??]
+                                        [#if a.content.staticContent]
+                                            [#if a.content.needRegenerate]
+                                                <a href="/xtzzNlczs/xtzz_ability_preview.jspx?id=${a.abilityId}" targfet="_blank" title="${a.abilityName}">[@text_cut s=a.abilityName len='10' append='..' /]</a>
+                                            [#else]
+                                                <a href="/xtzzNlczs/xtzz_ability_preview.jspx?id=${a.abilityId}" targfet="_blank" title="${a.abilityName}">[@text_cut s=a.abilityName len='10' append='..' /]</a>
+                                            [/#if]
+                                        [#else]
+                                            <a href="/xtzzNlczs/xtzz_ability_preview.jspx?id=${a.abilityId}" targfet="_blank" title="${a.abilityName}">[@text_cut s=a.abilityName len='10' append='..' /]</a>
+                                        [/#if]
+                                    [/#if]
+                                    </div>
+                                    </li>
+                                    [/#list]
+                                    [/@s_ability_list]
+                                </ul>
+                            </div>
+                            <div class="tabpanel" style="display:none;">
+                                <div class="menuLink">
+                                    <a href="/xtzzXqczs/index-100000-undefined-undefined-undefined-undefined-100000-.jhtml" class="icon-light" target="_blank">研发设计</a>
+                                    <a href="/xtzzXqczs/index-110000-undefined-undefined-undefined-undefined-110000-.jhtml" class="icon-setting" target="_blank">生产加工</a>
+                                    <a href="/xtzzXqczs/index-120000-undefined-undefined-undefined-undefined-120000-.jhtml" class="icon-watch"  target="_blank">计量检测</a>
+                                    <a href="/xtzzXqczs/index-130000-undefined-undefined-undefined-undefined-130000-.jhtml"  class="icon-heart" target="_blank">试验服务</a>
+                                    <a href="/xtzzXqczs/index-140000-undefined-undefined-undefined-undefined-140000-.jhtml"  class="icon-internet" target="_blank">信息化服务</a>
+                                    <a href="/xtzzXqczs/index-150000-undefined-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-other">其他</a>
+                                </div>
+                                <ul class="imgList">
+                                    [@s_demand_list count='8' orderBy='1' type='0']
+                                    [#list tag_list as a]
+                                    <li[#if a_index%4 = 3] style="margin-right:0;"[/#if]>
+                                    <div class="imgWrap">
+                                        [#if (a.content)??]
+                                            [#if a.content.staticContent]
+                                                [#if a.content.needRegenerate]
+                                                    <a href="/xtzzNlczs/xtzz_synergy_demand_preview.jspx?id=${a.demandId}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.inquiryTheme!}"></a>
+                                                [#else]
+                                                    <!--<a href="${a.content.url}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.inquiryTheme!}"></a>-->
+                                                    <a href="/xtzzNlczs/xtzz_synergy_demand_preview.jspx?id=${a.demandId}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.inquiryTheme!}"></a>
+                                        [/#if]
+                                            [#else]
+                                                <a href="/xtzzNlczs/xtzz_synergy_demand_preview.jspx?id=${a.demandId}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.inquiryTheme!}"></a>
+                                            [/#if]
+                                        [/#if]
+                                    </div>
+                                    <div class="imgTitle">
+                                        [#if (a.content)??]
+                                            [#if a.content.staticContent]
+                                                [#if a.content.needRegenerate]
+                                                    <a href="/xtzzNlczs/xtzz_synergy_demand_preview.jspx?id=${a.demandId}" target="_blank" title="${a.inquiryTheme}">[@text_cut s=a.inquiryTheme len='10' append='..' /]</a>
+                                                [#else]
+                                                    <!--<a href="${a.content.url}" target="_blank" title="${a.inquiryTheme}">[@text_cut s=a.inquiryTheme len='10' append='..' /]</a>-->
+                                                    <a href="/xtzzNlczs/xtzz_synergy_demand_preview.jspx?id=${a.demandId}" target="_blank" title="${a.inquiryTheme}">[@text_cut s=a.inquiryTheme len='10' append='..' /]</a>
+                                                [/#if]
+                                            [#else]
+                                                <a href="/xtzzNlczs/xtzz_synergy_demand_preview.jspx?id=${a.demandId}" target="_blank" title="${a.inquiryTheme}">[@text_cut s=a.inquiryTheme len='10' append='..' /]</a>
+                                            [/#if]
+                                        [/#if]
+                                    </div>
+                                    </li>
+                                    [/#list]
+                                    [/@s_demand_list]
+                                </ul>
+                            </div>
+                            <div class="tabpanel" style="display:none;">
+                                <div class="menuLink">
+                                    <a href="/xtzzQyzznlzs/index-undefined-undefined-jcgj-undefined-undefined-.jhtml" target="_blank" class="icon-bed" >机床工具</a>
+                                    <a href="/xtzzQyzznlzs/index-undefined-undefined-shty-undefined-undefined-.jhtml" target="_blank" class="icon-sh" >石化通用</a>
+                                    <a href="/xtzzQyzznlzs/index-undefined-undefined-jcj-undefined-undefined-.jhtml" target="_blank" class="icon-watch">基础件</a>
+                                    <a href="/xtzzQyzznlzs/index-undefined-undefined-ybyq-undefined-undefined-.jhtml" target="_blank" class="icon-heart">仪器仪表</a>
+                                    <a href="/xtzzQyzznlzs/index-undefined-undefined-zxks-undefined-undefined-.jhtml" target="_blank" class="icon-ks" >重型矿山</a>
+                                    <a href="/xtzzQyzznlzs/index-undefined-undefined-qt-undefined-undefined-.jhtml" target="_blank" class="icon-heart" >其他</a>
+                                </div>
+                                <ul class="imgList">
+                                    [@s_company_list count='8' orderBy='1' type='0']
+                                    [#list tag_list as a]
+                                    <li[#if a_index%4 = 3] style="margin-right:0;"[/#if]>
+                                    <div class="imgWrap">
+                                        [#if (a.content)??]
+                                            [#if a.content.staticContent]
+                                                [#if a.content.needRegenerate]
+                                                    <a href="/xtzzNlczs/xtzz_synergy_company_preview.jspx?id=${a.companyId}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.companyName!}"></a>
+                                                [#else]
+                                                    <a href="${a.content.url}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.companyName!}"></a>
+                                                [/#if]
+                                            [#else]
+                                                <a href="/xtzzNlczs/xtzz_synergy_company_preview.jspx?id=${a.companyId}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.companyName!}"></a>
+                                            [/#if]
+                                        [#else]
+                                            <a href="/xtzzNlczs/xtzz_synergy_company_preview.jspx?id=${a.companyId}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.companyName!}"></a>
+                                        [/#if]
+                                    </div>
+                                    <div class="imgTitle">
+                                        [#if (a.content)??]
+                                            [#if a.content.staticContent]
+                                                [#if a.content.needRegenerate]
+                                                    <a href="/xtzzNlczs/xtzz_synergy_company_preview.jspx?id=${a.companyId}" target="_blank" title="${(a.companyName)!}">[@text_cut s=a.companyName len='10' append='..' /]</a>
+                                                [#else]
+                                                    <a href="${a.content.url}" target="_blank" title="${(a.companyName)!}">[@text_cut s=a.companyName len='10' append='..' /]</a>
+                                                [/#if]
+                                            [#else]
+                                                    <a href="/xtzzNlczs/xtzz_synergy_company_preview.jspx?id=${a.companyId}" target="_blank" title="${(a.companyName)!}">[@text_cut s=a.companyName len='10' append='..' /]</a>
+                                            [/#if]
+                                        [#else]
+                                        <a href="/xtzzNlczs/xtzz_synergy_company_preview.jspx?id=${a.companyId}" target="_blank" title="${(a.companyName)!}">[@text_cut s=a.companyName len='10' append='..' /]</a>
+                                        [/#if]
+                                    </div>
+                                    </li>
+                                    [/#list]
+                                    [/@s_company_list]
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tabpage">
+                        <div class="down">
+                            <img style="position: absolute;left:305px;" src="/${res}/resources/images/index/down.png">
+                        </div>
+                        <div class="sideNav">
+                            <ul>
+                                <li class="current">
+                                    <div class="line">
+                                        <i class="icon-bpbj"></i>
+                                        <p>备品备件</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="line">
+                                        <i class="icon-bpbjqg"></i>
+                                        <p>备品备件求购</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="line">
+                                        <i class="icon-zxzy"></i>
+                                        <p>众修资源</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="line">
+                                        <i class="icon-zxxq"></i>
+                                        <p>众修需求</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sideCon">
+                            <div class="tabpanel">
+                                <div class="menuLink">
+                                    <a href="/gylxtBpbj/index-370000-undefined-undefined-undefined--370000-.jhtml" class="icon-light" target="_blank">机械设备</a>
+                                    <a href="/gylxtBpbj/index-380000-undefined-undefined-undefined--380000-.jhtml" class="icon-setting" target="_blank">设备配件</a>
+                                    <a href="/gylxtBpbj/index-390000-undefined-undefined-undefined--390000-.jhtml" class="icon-heart" target="_blank">阀门/管件</a>
+                                    <a href="/gylxtBpbj/index-400000-undefined-undefined-undefined--400000-.jhtml" class="icon-wj" target="_blank">五金</a>
+                                    <a href="/gylxtBpbj/index-410000-undefined-undefined-undefined--410000-.jhtml" class="icon-dq" target="_blank">电器/仪表</a>
+                                    <a href="/gylxtBpbj/index-420000-undefined-undefined-undefined--420000-.jhtml" class="icon-setting" target="_blank">轻化类</a>
+                                    <a href="/gylxtBpbj/index-430000-undefined-undefined-undefined--430000-.jhtml" class="icon-cl" target="_blank">材料</a>
+                                    <a href="/gylxtBpbj/index-440000-undefined-undefined-undefined--440000-.jhtml" class="icon-other" target="_blank">其他</a>
+                                </div>
+                                <!--备品备件-->
+                                <ul class="imgList">
+                                    [@s_spare_list count='8' orderBy='1' type='0']
+                                    [#list tag_list as a]
+                                    <li[#if a_index%4 = 3] style="margin-right:0;"[/#if]>
+                                    <div class="imgWrap">
+                                        [#if (a.content)??]
+                                            [#if a.content.staticContent]
+                                                [#if a.content.needRegenerate]
+                                                    <a href="/spare/detail.jspx?id=${a.sparepartsId?default('')}" target="_blank">[#if a.content.pictures?size gt 0]<img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${a.content.pictures[0].imgPath?default('/${res}/images/default_img.jpg')}" alt="${a.spareName!}">[#else]<img src="/${res}/images/default_img.jpg" alt="${a.spareName!}">[/#if]</a>
+                                                [#else]
+                                                    <a href="${a.content.url}" target="_blank">[#if a.content.pictures?size gt 0]<img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${a.content.pictures[0].imgPath?default('/${res}/images/default_img.jpg')}" alt="${a.spareName!}">[#else]<img src="/${res}/images/default_img.jpg" alt="${a.spareName!}">[/#if]</a>
+                                                [/#if]
+                                            [#else]
+                                                <a href="/spare/detail.jspx?id=${a.sparepartsId?default('')}" target="_blank">[#if a.content.pictures?size gt 0]<img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${a.content.pictures[0].imgPath?default('/${res}/images/default_img.jpg')}" alt="${a.spareName!}">[#else]<img src="/${res}/images/default_img.jpg" alt="${a.spareName!}">[/#if]</a>
+                                            [/#if]
+                                        [/#if]
+                                    </div>
+                                    <div class="imgTitle">
+                                    [#if (a.content)??]
+                                        [#if a.content.staticContent]
+                                            [#if a.content.needRegenerate]
+                                                <a href="/spare/detail.jspx?id=${a.sparepartsId}" targfet="_blank" title="${a.spareName}">[@text_cut s=a.spareName len='10' append='..' /]</a>
+                                            [#else]
+                                                <a href="${a.content.url}" targfet="_blank" title="${a.spareName}">[@text_cut s=a.spareName len='10' append='..' /]</a>
+                                            [/#if]
+                                        [#else]
+                                            <a href="/spare/detail.jspx?id=${a.sparepartsId}" targfet="_blank" title="${a.spareName}">[@text_cut s=a.spareName len='10' append='..' /]</a>
+                                        [/#if]
+                                    [/#if]
+                                    </div>
+                                    </li>
+                                    [/#list]
+                                    [/@s_spare_list]
+                                </ul>
+                            </div>
+                            <div class="tabpanel" style="display:none;">
+                                <div class="menuLink">
+                                    <a href="/gylxtBpbjqg/index-370000-undefined-undefined-undefined-undefined-370000-.jhtml" target="_blank"  class="icon-light">机械设备</a>
+                                    <a href="/gylxtBpbjqg/index-380000-undefined-undefined-undefined-undefined-380000-.jhtml" target="_blank"  class="icon-setting">设备配件</a>
+                                    <a href="/gylxtBpbjqg/index-390000-undefined-undefined-undefined-undefined-390000-.jhtml" target="_blank" class="icon-heart">阀门/管件</a>
+                                    <a href="/gylxtBpbjqg/index-400000-undefined-undefined-undefined-undefined-400000-.jhtml" target="_blank" class="icon-wj">五金</a>
+                                    <a href="/gylxtBpbjqg/index-410000-undefined-undefined-undefined-undefined-410000-.jhtml" target="_blank" class="icon-dq">电器/仪表</a>
+                                    <a href="/gylxtBpbjqg/index-420000-undefined-undefined-undefined-undefined-420000-.jhtml" target="_blank" class="icon-setting">轻化类</a>
+                                    <a href="/gylxtBpbjqg/index-430000-undefined-undefined-undefined-undefined-430000-.jhtml" target="_blank" class="icon-cl">材料</a>
+                                    <a href="/gylxtBpbjqg/index-440000-undefined-undefined-undefined-undefined-440000-.jhtml" target="_blank" class="icon-other">其他</a>
+                                </div>
+                                <div class="imgList">
+                                    <div class="tabPane">
+                                        <div class="tableHead">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th class="pTime" style="width: 10%">发布时间</th>
+                                                    <th class="aName" style="width: 20%">设备名称</th>
+                                                    <th class="area" style="width: 10%">种类</th>
+                                                    <th class="kind" style="width: 10%">数量</th>
+                                                    <th class="bCompany" style="width: 20%">需求方</th>
+                                                    <th class="price" style="width: 15%">所在地</th>
+                                                    <th class="thstyle" style="width: 15%"></th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                        <!--备品备件求购-->
+                                        <div class="tableBody">
+                                            [@s_spareDemand_list count='5' orderBy='1' type='0']
+                                            [#list tag_list as a]
+                                            <table >
+                                                <tr>
+                                                    <td class="pTime" style="width: 10%">${a.releaseDt!}</td>
+                                                    <td class="aName" style="width: 20%" title="${a.requestTheme!}">[@text_cut s=a.requestTheme! len='10' append='..' /]</td>
+                                                    <td class="area" style="width: 10%">[#if a.requestType??][@s_typevalue typecode='BPBJLX' typekey=a.requestType /][/#if]</td>
+                                                    <td class="kind" style="width: 10%">${a.spareObjNum}</td>
+                                                    <td class="bCompany" style="width: 20%" title="${a.scompany.companyName!}">[@text_cut s=a.scompany.companyName! len='10' append='...' /]</td>
+                                                    <td class="price" style="width: 15%" >${a.addrCity!} </td>
+                                                    [#if (a.content)??]
+                                                        [#if a.content.staticContent]
+                                                            [#if a.content.needRegenerate]
+                                                                <td class="last" style="width: 15%"><a href="/spareDemand.jspx?id=${a.demandId!}&flag=1" target="_blank">点击详情</a></td>
+                                                            [#else]
+                                                                <td class="last" style="width: 15%"><a href="${a.content.url}" target="_blank">点击详情</a></td>
+                                                            [/#if]
+                                                        [#else]
+                                                            <td class="last" style="width: 15%"><a href="/spareDemand.jspx?id=${a.demandId!}&flag=1" target="_blank">点击详情</a></td>
+                                                        [/#if]
+                                                    [/#if]
+                                                </tr>
+                                            </table>
+                                            [/#list]
+                                            [/@s_spareDemand_list]
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tabpanel" style="display:none;">
+                                <div class="menuLink">
+                                    <a href="/gylxtZxzy/index-440000-undefined-undefined-.jhtml" target="_blank" class="icon-light">机械设备</a>
+                                    <a href="/gylxtZxzy/index-450000-undefined-undefined-.jhtml" target="_blank" class="icon-office">办公设备</a>
+                                    <a href="/gylxtZxzy/index-460000-undefined-undefined-.jhtml" target="_blank" class="icon-jt">交通设备</a>
+                                    <a href="/gylxtZxzy/index-470000-undefined-undefined-.jhtml" target="_blank" class="icon-heart">专业设备</a>
+                                    <a href="/gylxtZxzy/index-480000-undefined-undefined-.jhtml" target="_blank" class="icon-other">其他</a>
+                                </div>
+                                <!--众修资源-->
+                                <ul class="imgList">
+                                    [@s_repairRes_list count='8' orderBy='1' type='0']
+                                    [#list tag_list as a]
+                                    <li[#if a_index%4 = 3] style="margin-right:0;"[/#if]>
+                                    <div class="imgWrap">
+                                        [#if (a.content)??]
+                                            [#if a.content.staticContent]
+                                                [#if a.content.needRegenerate]
+                                                    <a href="/Repair_manager_preview.jspx?id=${a.repairId}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.repairName!}"></a>
+                                                [#else]
+                                                    <a href="/Repair_manager_preview.jspx?id=${a.repairId}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.repairName!}"></a>
+                                                    <!--<a href="${a.content.url}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.repairName!}"></a>-->
+                                                [/#if]
+                                            [#else]
+                                                <a href="/Repair_manager_preview.jspx?id=${a.repairId}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.repairName!}"></a>
+                                            [/#if]
+                                        [/#if]
+                                    </div>
+                                    <div class="imgTitle">
+                                        [#if (a.content)??]
+                                            [#if a.content.staticContent]
+                                                [#if a.content.needRegenerate]
+                                                    <a href="/Repair_manager_preview.jspx?id=${a.repairId}" target="_blank" title="${a.repairName}">[@text_cut s=a.repairName len='10' append='..' /]</a>
+                                                [#else]
+                                                    <!--<a href="${a.content.url}" target="_blank" title="${a.repairName}">[@text_cut s=a.repairName len='10' append='..' /]</a>-->
+                                                    <a href="/Repair_manager_preview.jspx?id=${a.repairId}" target="_blank" title="${a.repairName}">[@text_cut s=a.repairName len='10' append='..' /]</a>
+                                                [/#if]
+                                            [#else]
+                                                <a href="/Repair_manager_preview.jspx?id=${a.repairId}" target="_blank" title="${a.repairName}">[@text_cut s=a.repairName len='10' append='..' /]</a>
+                                            [/#if]
+                                        [/#if]
+                                    </div>
+                                    </li>
+                                    [/#list]
+                                    [/@s_repairRes_list]
+                                </ul>
+                            </div>
+                            <div class="tabpanel" style="display:none;">
+                                <div class="menuLink">
+                                    <a href="/gylxtZxxq/index-440000-undefined-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-light">机械设备</a>
+                                    <a href="/gylxtZxxq/index-450000-undefined-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-office">办公设备</a>
+                                    <a href="/gylxtZxxq/index-460000-undefined-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-jt">交通设备</a>
+                                    <a href="/gylxtZxxq/index-470000-undefined-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-heart">专业设备</a>
+                                    <a href="/gylxtZxxq/index-480000-undefined-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-other">其他</a>
+                                </div>
+                                <div class="imgList">
+                                    <div class="tabPane">
+                                        <div class="tableHead">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th class="pTime" style="width: 10%">发布时间</th>
+                                                    <th class="aName" style="width: 20%">设备名称</th>
+                                                    <th class="area" style="width: 10%">种类</th>
+                                                    <th class="bCompany" style="width: 30%">需求方</th>
+                                                    <th class="price" style="width: 10%">所在地</th>
+                                                    <th class="thstyle" style="width: 20%"></th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                        <!--众修需求-->
+                                        <div class="tableBody">
+                                            [@s_repairDemand_list count='5' orderBy='1' type='0']
+                                            [#list tag_list as b]
+                                            <table>
+                                                <tr>
+                                                    <td class="pTime" style="width: 10%">${b.releaseDt!}</td>
+                                                    <td class="aName" style="width: 20%" title="${b.repairName!}">[@text_cut s=b.repairName! len='10' append='..' /]</td>
+                                                    <td class="area" style="width: 10%">[#if b.repairType??][@s_typevalue typecode='ZXFWLX' typekey=b.repairType /][/#if]</td>
+                                                    <td class="bCompany" style="width: 30%" title="${b.company.companyName!}">[@text_cut s=b.company.companyName! len='10' append='...' /]</td>
+                                                    <td class="price" style="width: 10%">${b.addrCity!}</td>
+                                                    [#if (b.content)??]
+                                                        [#if b.content.staticContent]
+                                                            [#if b.content.needRegenerate]
+                                                                <td class="last" style="width: 20%;"><a target="_blank" href="/repairDemand.jspx?id=${b.repairId!}&flag=1" style="margin-left: 45px">点击详情</a></td>
+                                                            [#else]
+                                                                <!--<td class="last" style="width: 20%;"><a target="_blank" href="${b.content.url}" style="margin-left: 45px">点击详情</a></td>-->
+                                                                <td class="last" style="width: 20%;"><a target="_blank" href="/repairDemand.jspx?id=${b.repairId!}&flag=1" style="margin-left: 45px">点击详情</a></td>
+                                                            [/#if]
+                                                        [#else]
+                                                            <td class="last" style="width: 20%;"><a target="_blank" href="/repairDemand.jspx?id=${b.repairId!}&flag=1" style="margin-left: 45px">点击详情</a></td>
+                                                        [/#if]
+                                                    [/#if]
+                                                </tr>
+                                            </table>
+                                            [/#list]
+                                            [/@s_repairDemand_list]
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tabpage">
+                        <div class="down">
+                            <img style="position: absolute;left:525px;" src="/${res}/resources/images/index/down.png">
+                        </div>
+                        <div class="sideNav">
+                            <ul class="thul">
+                                <li>
+                                    <div class="line">
+                                        <i class="icon-policy"></i>
+                                        <p>云计算政策</p>
+                                    </div>
+                                </li>
+                                <li class="current">
+                                    <div class="line">
+                                        <i class="icon-resource"></i>
+                                        <p>云资源查看</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="line">
+                                        <i class="icon-yxq"></i>
+                                        <p>云需求</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sideCon">
+                            <div class="tabpanel" style="display: none;">
+                                <div class="menuLink">
+                                    <a href="/yzyjyzxYjszc/index-gjj-undefined-undefined-undefined-undefined-.jhtml" target="_blank"  class="icon-nation">国家级</a>
+                                    <a href="/yzyjyzxYjszc/index-sqj-undefined-undefined-undefined-undefined-.jhtml" target="_blank"  class="icon-province">省区级</a>
+                                    <a href="/yzyjyzxYjszc/index-msj-undefined-undefined-undefined-undefined-.jhtml" target="_blank"  class="icon-city">盟市级</a>
+                                </div>
+                                <ul class="policy clearfix">
+                                    [@s_icloud_policy_list count='7' orderBy='1']
+                                    [#list tag_list as a]
+                                    <li[#if a_index==3] style="margin-right:0;"[/#if]>
+                                    【<span class="level">${a.policyLevel?default("")}</span>】
+                                    [#if (a.content)??]
+                                        [#if a.content.staticContent]
+                                            [#if a.content.needRegenerate]
+                                                <span class="p-title"><a title="${a.policyName}" href="/yzyjyzxYjszc/cloudcenter_policy_info.jspx?policyId=${a.policyId}" target="_blank" >[@text_cut s=a.policyName len='30' append='...'/]</a></span>
+                                            [#else]
+                                                <span class="p-title"><a title="${a.policyName}" href="${a.content.url}" target="_blank" >[@text_cut s=a.policyName len='30' append='...'/]</a></span>
+                                            [/#if]
+                                        [#else]
+                                            <span class="p-title"><a title="${a.policyName}" href="/yzyjyzxYjszc/cloudcenter_policy_info.jspx?policyId=${a.policyId}" target="_blank" >[@text_cut s=a.policyName len='30' append='...'/]</a></span>
+                                        [/#if]
+                                    [/#if]
+                                    <span class="level">${a.releaseDt?default("")}</span>
+                                    [/#list]
+                                    [/@s_icloud_policy_list]
+                                </ul>
+                            </div>
+                            <div class="tabpanel" style="display:block;">
+                                <div class="menuLink">
+                                    <a href="/yzyjyzxYzyck/index-490000-undefined-undefined-undefined-undefined-.jhtml" class="icon-city1" target="_blank">呼和浩特</a>
+                                    <a href="/yzyjyzxYzyck/index-500000-undefined-undefined-undefined-undefined-.jhtml" class="icon-city2" target="_blank">包头</a>
+                                    <a href="/yzyjyzxYzyck/index-530000-undefined-undefined-undefined-undefined-.jhtml" class="icon-city3"  target="_blank">乌海</a>
+                                </div>
+                                <ul class="imgList">
+                                    [@s_icloud_resource_list count='8' orderBy='1' type=''state='1']
+                                    [#list tag_list as a]
+                                    <li[#if a_index%4 = 3] style="margin-right:0;"[/#if]>
+                                    <div class="imgWrap">
+                                        [#if (a.content)??]
+                                            [#if a.content.staticContent]
+                                                [#if a.content.needRegenerate]
+                                                    <a href="/yzyjyzxYzyck/cloudcenter_resource_manager_info.jspx?managerId=${a.managerId!}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.resourceName!}"></a>
+                                                [#else]
+                                                    <a href="${a.content.url}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.resourceName!}"></a>
+                                                [/#if]
+                                            [#else]
+                                                <a href="/yzyjyzxYzyck/cloudcenter_resource_manager_info.jspx?managerId=${a.managerId!}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.resourceName!}"></a>
+                                            [/#if]
+                                        [/#if]
+                                    </div>
+                                    <div class="imgTitle">
+                                        [#if (a.content)??]
+                                            [#if a.content.staticContent]
+                                                [#if a.content.needRegenerate]
+                                                    <a href="/yzyjyzxYzyck/cloudcenter_resource_manager_info.jspx?managerId=${a.managerId!}" target="_blank" title="${a.resourceName}">[@text_cut s=a.resourceName len='10' append='..' /]</a>
+                                                [#else]
+                                                    <a href="${a.content.url}" target="_blank" title="${a.resourceName}">[@text_cut s=a.resourceName len='10' append='..' /]</a>
+                                                [/#if]
+                                            [#else]
+                                                <a href="/yzyjyzxYzyck/cloudcenter_resource_manager_info.jspx?managerId=${a.managerId!}" target="_blank" title="${a.resourceName}">[@text_cut s=a.resourceName len='10' append='..' /]</a>
+                                            [/#if]
+                                        [/#if]
+                                    </div>
+                                    </li>
+                                    [/#list]
+                                    [/@s_icloud_resource_list]
+                                </ul>
+                            </div>
+                            <div class="tabpanel" style="display:none;">
+                                <div class="menuLink">
+                                    <a href="/yzyjyzxYxq/index-mkhfwq-undefined-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-light">模块化服务器</a>
+                                    <a href="/yzyjyzxYxq/index-bzhfwq-undefined-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-setting">标准化服务器</a>
+                                </div>
+                                <ul class="imgList">
+                                    [@s_icloud_demand_list count='8' orderBy='1' type='1']
+                                    [#list tag_list as a]
+                                    <li[#if a_index%4 = 3] style="margin-right:0;"[/#if]>
+                                    <div class="imgWrap">
+                                        [#if (a.content)??]
+                                            [#if a.content.staticContent]
+                                                [#if a.content.needRegenerate]
+                                                    <a href="/yzyjyzxYxq/cloudcenter_demand_detail.jspx?demandId=${a.demandId!}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.demandName!}"></a>
+                                                [#else]
+                                                    <a href="${a.content.url}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.demandName!}"></a>
+                                                [/#if]
+                                            [#else]
+                                                <a href="/yzyjyzxYxq/cloudcenter_demand_detail.jspx?demandId=${a.demandId!}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.demandName!}"></a>
+                                            [/#if]
+                                        [/#if]
+                                    </div>
+                                    <div class="imgTitle">
+                                        [#if (a.content)??]
+                                            [#if a.content.staticContent]
+                                                [#if a.content.needRegenerate]
+                                                    <a href="/yzyjyzxYxq/cloudcenter_demand_detail.jspx?demandId=${a.demandId!}" target="_blank" title="${a.demandName!}">[@text_cut s=a.demandName! len='10' append='...'/]</a>
+                                                [#else]
+                                                    <a href="${a.content.url}" target="_blank" title="${a.demandName!}">[@text_cut s=a.demandName! len='10' append='...'/]</a>
+                                                [/#if]
+                                            [#else]
+                                                <a href="/yzyjyzxYxq/cloudcenter_demand_detail.jspx?demandId=${a.demandId!}" target="_blank" title="${a.demandName!}">[@text_cut s=a.demandName! len='10' append='...'/]</a>
+                                            [/#if]
+                                        [/#if]
+                                    </div>
+                                    </li>
+                                    [/#list]
+                                    [/@s_icloud_demand_list]
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tabpage">
+                        <div class="down">
+                            <img style="position: absolute;left:745px;" src="/${res}/resources/images/index/down.png">
+                        </div>
+                        <div class="sideNav">
+                            <ul class="thu2">
+                                <li class="current" onclick="startScroll()">
+                                    <div class="line">
+                                        <i class="icon-bid"></i>
+                                        <p>项目招投标</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="line">
+                                        <i class="icon-set"></i>
+                                        <p>经济运行管理</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sideCon">
+                            <div class="tabpanel">
+                                <div class="menuLink">
+                                    <!--<a href="/ggfwXmztb/index.jhtml" class="icon-light">呼和浩特</a>-->
+                                    <!--<a href="/ggfwXmztb/index.jhtml" class="icon-setting"> 包头</a>-->
+                                    <!--<a href="/ggfwXmztb/index.jhtml" class="icon-watch">赤峰</a>-->
+                                    <!--<a href="/ggfwXmztb/index.jhtml" class="icon-heart"> 呼伦贝尔</a>-->
+                                    <!--<a href="/ggfwXmztb/index.jhtml" class="icon-internet">通辽</a>-->
+                                    <!--<a href="/ggfwXmztb/index.jhtml" class="icon-other">其他</a>-->
+                                </div>
+                                <div class="css imgList">
+                                    <div class="column-two">
+                                        <div class="column-bd">
+                                            <div class="bid callBid">
+                                                <h5>招标公告</h5>
+                                                <div class="bidList" id="bid1">
+                                                    <ul>
+                                                        [@s_tenderNotice_list typeId='2' recommend='1' channelId='75,76' orderBy='4' titLen='22' channelOption='1' dateFormat='yyyy-MM-dd']
+                                                        [#list tag_list as a]
+                                                        [#if (a.content)??]
+                                                            [#if a.content.staticContent]
+                                                                [#if a.content.needRegenerate]
+                                                                    <li>【${a.releaseDt?default('')}】<a href="/commservice/sTenderNoticeDetail.jspx?id=${a.tenderNoticeId?default('null')}" target="_blank" title="${a.projectName?default('')}"> [@text_cut s=a.projectName?default('') len='40' append='...'/]</a></li>
+                                                                [#else]
+                                                                    <li>【${a.releaseDt?default('')}】<a href="${a.content.url}" target="_blank" title="${a.projectName?default('')}"> [@text_cut s=a.projectName?default('') len='40' append='...'/]</a></li>
+                                                                [/#if]
+                                                            [#else]
+                                                                <li>【${a.releaseDt?default('')}】<a href="/commservice/sTenderNoticeDetail.jspx?id=${a.tenderNoticeId?default('null')}" target="_blank" title="${a.projectName?default('')}"> [@text_cut s=a.projectName?default('') len='40' append='...'/]</a></li>
+                                                            [/#if]
+                                                        [/#if]
+                                                        [/#list]
+                                                        [/@s_tenderNotice_list]
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="bid winBid">
+                                                <h5>中标公告</h5>
+                                                <div class="bidList" id="bid2">
+                                                    <ul>
+                                                        [@s_bidNotice_list typeId='2' recommend='1' channelId='75,76' orderBy='4' titLen='22' channelOption='1' dateFormat='yyyy-MM-dd']
+                                                        [#list tag_list as a]
+                                                        [#if (a.content)??]
+                                                        [#if a.content.staticContent]
+                                                                [#if a.content.needRegenerate]
+                                                                    <li>【${a.releaseDt?default('')}】<a href="/commservice/sBidNoticeDetail.jspx?id=${a.bidNoticeId?default('null')}" target="_blank" title="${a.projectName?default('')}"> [@text_cut s=a.projectName?default('') len='40' append='...'/]</a></li>
+                                                                [#else]
+                                                                    <li>【${a.releaseDt?default('')}】<a href="${a.content.url}" target="_blank" title="${a.projectName?default('')}"> [@text_cut s=a.projectName?default('') len='40' append='...'/]</a></li>
+                                                                [/#if]
+                                                            [#else]
+                                                                <li>【${a.releaseDt?default('')}】<a href="/commservice/sBidNoticeDetail.jspx?id=${a.bidNoticeId?default('null')}" target="_blank" title="${a.projectName?default('')}"> [@text_cut s=a.projectName?default('') len='40' append='...'/]</a></li>
+                                                            [/#if]
+                                                        [/#if]
+                                                        [/#list]
+                                                        [/@s_bidNotice_list]
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="bid bidForeshow">
+                                                <h5>招标预告</h5>
+                                                <div class="bidList"  id="bid3">
+                                                    <ul>
+                                                        [@s_tenderTrailer_list typeId='2' recommend='1' channelId='75,76' orderBy='4' titLen='22' channelOption='1' dateFormat='yyyy-MM-dd']
+                                                        [#list tag_list as a]
+                                                        [#if (a.content)??]
+                                                            [#if a.content.staticContent]
+                                                                [#if a.content.needRegenerate]
+                                                                    <li>【${a.releaseDt?default('')}】<a href="/commservice/sTenderTrailerDetail.jspx?id=${a.tenderTrailerId?default('null')}" target="_blank" title="${a.projectName?default('')}"> [@text_cut s=a.projectName?default('') len='40' append='...'/]</a></li>
+                                                                [#else]
+                                                                    <li>【${a.releaseDt?default('')}】<a href="${a.content.url}" target="_blank" title="${a.projectName?default('')}"> [@text_cut s=a.projectName?default('') len='40' append='...'/]</a></li>
+                                                                [/#if]
+                                                            [#else]
+                                                                <li>【${a.releaseDt?default('')}】<a href="/commservice/sTenderTrailerDetail.jspx?id=${a.tenderTrailerId?default('null')}" target="_blank" title="${a.projectName?default('')}"> [@text_cut s=a.projectName?default('') len='40' append='...'/]</a></li>
+                                                            [/#if]
+                                                        [/#if]
+                                                        [/#list]
+                                                        [/@s_tenderTrailer_list]
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="bidFooter">
+                                                线上招标系统（视频招标） <a href="http://222.74.31.171:8088/meeting/app/meetinglist/todayDataList.action?site=box&menuname=24000_24001_24002" target="_blank"><button>点击进入</button></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tabpanel" style="display:none;">
+                                <div class="left">
+                                    <ul>
+                                        <li>
+                                            <img src="/${res}/resources/images/coomonService/sys1.jpg" alt="">
+                                            <div class="sysDiv">
+                                                <span class="ch">高耗能销售统计</span><br>
+                                                <span class="en">HIGH ENERGY<br>SALES STATISTICS</span><br>
+                                                <a href="/member/Sold_relese.jspx?flag=front" target="_blank"  class="more">数据录入></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <img src="/${res}/resources/images/coomonService/sys2.jpg" alt="">
+                                            <div class="sysDiv">
+                                                <span class="ch">政策申请</span><br>
+                                                <span class="en">POLICY APPLICATION</span><br>
+                                                <a href="/ggfwHbzc/index.jhtml" target="_blank"  class="more">申请></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <img src="/${res}/resources/images/coomonService/sys3.jpg" alt="">
+                                            <div class="sysDiv">
+                                                <span class="ch">个性化数据分析</span><br>
+                                                <span class="en">DATA ANALYSIS</span><br>
+                                                <a href="/member/index.jspx" target="_top"  class="more">登录></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="right">
+                                    <div class="energyBd">
+                                        <div class="cover">
+                                            <div class="tip"></div>
+                                            <h3>能源管控</h3>
+                                            <span class="e">Energy management <br> and control</span>
+                                        </div>
+                                    </div>
+                                    <div class="loginBtn">
+                                        <button>登&nbsp;录</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tabpage">
+                        <div class="down">
+                            <img style="position: absolute;left:965px;" src="/${res}/resources/images/index/down.png">
+                        </div>
+                        <div class="sideNav">
+                            <ul class="thul">
+                                <li class="current">
+                                    <div class="line">
+                                        <i class="icon-search"></i>
+                                        <p>软件检索</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="line">
+                                        <i class="icon-free"></i>
+                                        <p>免费软件</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="line">
+                                        <i class="icon-pay"></i>
+                                        <p>付费软件</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sideCon">
+                            <div class="tabpanel">
+                                <div class="menuLink">
+                                    <a href="/rjyyRjjsym/index-undefined-zzgcs-undefined-undefined-undefined-.jhtml" target="_blank"  class="icon-gcs">制造工程师</a>
+                                    <a href="/rjyyRjjsym/index-undefined-twd-undefined-undefined-undefined-.jhtml" target="_blank"  class="icon-doc">图文档</a>
+                                    <a href="/rjyyRjjsym/index-undefined-stsj-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-sj">实体设计</a>
+                                    <a href="/rjyyRjjsym/index-undefined-gytb-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-chart">工艺图表</a>
+                                    <a href="/rjyyRjjsym/index-undefined-skc-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-car">数控车</a>
+                                    <a href="/rjyyRjjsym/index-undefined-dztb-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-setting">电子图版</a>
+                                    <a href="/rjyyRjjsym/index-undefined-xqg-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-qgj">线切割</a>
+                                    <a href="/rjyyRjjsym/index-undefined-qt-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-other">其他</a>
+                                </div>
+                                <ul class="imgList">
+                                    [@s_icloud_software_list count='8' orderBy='1' type='0']
+                                    [#list tag_list as a]
+                                    <li[#if a_index%4 = 3] style="margin-right:0;"[/#if]>
+                                    <div class="imgWrap">
+                                        [#if (a.content)??]
+                                            [#if a.content.staticContent]
+                                                [#if a.content.needRegenerate]
+                                                    <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.softwareName?default('/${res}/resources/images/searching/picture.jpg')}"></a>
+                                                [#else]
+                                                    <a href="${a.content.url}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.softwareName?default('/${res}/resources/images/searching/picture.jpg')}"></a>
+                                                [/#if]
+                                            [#else]
+                                                <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.softwareName?default('/${res}/resources/images/searching/picture.jpg')}"></a>
+                                            [/#if]
+                                        [/#if]
+                                    </div>
+                                    <div class="imgTitle">
+                                        [#if (a.content)??]
+                                            [#if a.content.staticContent]
+                                                [#if a.content.needRegenerate]
+                                                    <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank" title="${a.softwareName}">[@text_cut s=a.softwareName len='10' append='..' /]</a>
+                                                [#else]
+                                                    <a href="${a.content.url}" target="_blank" title="${a.softwareName}">[@text_cut s=a.softwareName len='10' append='..' /]</a>
+                                                [/#if]
+                                            [#else]
+                                                <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank" title="${a.softwareName}">[@text_cut s=a.softwareName len='10' append='..' /]</a>
+                                            [/#if]
+                                        [/#if]
+                                    </div>
+                                    </li>
+                                    [/#list]
+                                    [/@s_icloud_software_list]
+                                </ul>
+                            </div>
+                            <div class="tabpanel" style="display:none;">
+                                <div class="menuLink">
+                                    <a href="/rjyyRjjsym/index-mf-zzgcs-undefined-undefined-undefined-.jhtml" target="_blank"  class="icon-gcs">制造工程师</a>
+                                    <a href="/rjyyRjjsym/index-mf-twd-undefined-undefined-undefined-.jhtml" target="_blank"  class="icon-doc">图文档</a>
+                                    <a href="/rjyyRjjsym/index-mf-stsj-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-sj">实体设计</a>
+                                    <a href="/rjyyRjjsym/index-mf-gytb-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-chart">工艺图表</a>
+                                    <a href="/rjyyRjjsym/index-mf-skc-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-car">数控车</a>
+                                    <a href="/rjyyRjjsym/index-mf-dztb-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-setting">电子图版</a>
+                                    <a href="/rjyyRjjsym/index-mf-xqg-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-qgj">线切割</a>
+                                    <a href="/rjyyRjjsym/index-mf-qt-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-other">其他</a>
+                                </div>
+                                <ul class="imgList">
+                                    [@s_icloud_software_list count='8' orderBy='1' type='1']
+                                    [#list tag_list as a]
+                                    <li[#if a_index%4 = 3] style="margin-right:0;"[/#if]>
+                                    <div class="imgWrap">
+                                        [#if (a.content)??]
+                                            [#if a.content.staticContent]
+                                                [#if a.content.needRegenerate]
+                                                    <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.softwareName!}"></a>
+                                                [#else]
+                                                    <a href="${a.content.url}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.softwareName!}"></a>
+                                                [/#if]
+                                            [#else]
+                                                <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.softwareName!}"></a>
+                                            [/#if]
+                                        [/#if]
+                                    </div>
+                                    <div class="imgTitle">
+                                        [#if (a.content)??]
+                                            [#if a.content.staticContent]
+                                                [#if a.content.needRegenerate]
+                                                    <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank" title="${a.softwareName}">[@text_cut s=a.softwareName len='10' append='..' /]</a>
+                                                [#else]
+                                                    <a href="${a.content.url}" target="_blank" title="${a.softwareName}">[@text_cut s=a.softwareName len='10' append='..' /]</a>
+                                                [/#if]
+                                            [#else]
+                                                <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank" title="${a.softwareName}">[@text_cut s=a.softwareName len='10' append='..' /]</a>
+                                            [/#if]
+                                        [/#if]
+                                    </div>
+                                    </li>
+                                    [/#list]
+                                    [/@s_icloud_software_list]
+                                </ul>
+                            </div>
+                            <div class="tabpanel" style="display:none;">
+                                <div class="menuLink">
+                                    <a href="/rjyyRjjsym/index-ff-zzgcs-undefined-undefined-undefined-.jhtml" target="_blank"  class="icon-gcs">制造工程师</a>
+                                    <a href="/rjyyRjjsym/index-ff-twd-undefined-undefined-undefined-.jhtml" target="_blank"  class="icon-doc">图文档</a>
+                                    <a href="/rjyyRjjsym/index-ff-stsj-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-sj">实体设计</a>
+                                    <a href="/rjyyRjjsym/index-ff-gytb-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-chart">工艺图表</a>
+                                    <a href="/rjyyRjjsym/index-ff-skc-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-car">数控车</a>
+                                    <a href="/rjyyRjjsym/index-ff-dztb-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-setting">电子图版</a>
+                                    <a href="/rjyyRjjsym/index-ff-xqg-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-qgj">线切割</a>
+                                    <a href="/rjyyRjjsym/index-ff-qt-undefined-undefined-undefined-.jhtml" target="_blank" class="icon-other">其他</a>
+                                </div>
+                                <ul class="imgList">
+                                    [@s_icloud_software_list count='8' orderBy='1' type='2']
+                                    [#list tag_list as a]
+                                    <li[#if a_index%4 = 3] style="margin-right:0;"[/#if]>
+                                    <div class="imgWrap">
+                                        [#if (a.content)??]
+                                            [#if a.content.staticContent]
+                                                [#if a.content.needRegenerate]
+                                                    <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.softwareName!}"></a>
+                                                [#else]
+                                                    <a href="${a.content.url}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.softwareName!}"></a>
+                                                [/#if]
+                                            [#else]
+                                                <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank"><img src="/${res}/resources/images/picLoading.jpg" class="lazyLoadPics" data-original="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.softwareName!}"></a>
+                                            [/#if]
+                                        [/#if]
+                                    </div>
+                                    <div class="imgTitle">
+                                        [#if (a.content)??]
+                                            [#if a.content.staticContent]
+                                                [#if a.content.needRegenerate]
+                                                    <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank" title="${a.softwareName}">[@text_cut s=a.softwareName len='10' append='..' /]</a>
+                                                [#else]
+                                                    <a href="${a.content.url}" target="_blank" title="${a.softwareName}">[@text_cut s=a.softwareName len='10' append='..' /]</a>
+                                                [/#if]
+                                            [#else]
+                                                <a href="/rjyyRjjsym/software_info.jspx?id=${a.softwareId}" target="_blank" title="${a.softwareName}">[@text_cut s=a.softwareName len='10' append='..' /]</a>
+                                            [/#if]
+                                        [/#if]
+                                    </div>
+                                    </li>
+                                    [/#list]
+                                    [/@s_icloud_software_list]
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--在线物流模块-->
+    <div>
+        <div class="block-head">
+            <div class="wrapper">
+                <span class="block-title">在线物流</span><br>
+                <span class="line"></span>
+            </div>
+        </div>
+        <div class="wrapper zhongtie">
+            <a href="/getFrontDeliver.jspx"><img src="/${res}/resources/images/index/zhongtiewuliu.jpg"></a>
+            <span class="line"></span>
+        </div>
+    </div>
+
+    <!--快速链接模块-->
+    <div class="block-head">
+        <div class="wrapper">
+            <span class="block-title">政务导航</span><br>
+            <span class="line"></span>
+        </div>
+    </div>
+
+
+    <div class="fastLink wrapper">
+        <a href="/commservice/Zwdh.jspx?status=1" target="_blank">内蒙古自治区政府</a>|
+        <a href="/commservice/Zwdh.jspx?status=2" target="_blank">呼和浩特市</a>|
+        <a href="/commservice/Zwdh.jspx?status=3" target="_blank">包头市</a>|
+        <a href="/commservice/Zwdh.jspx?status=4" target="_blank">鄂尔多斯市</a>|
+        <a href="/commservice/Zwdh.jspx?status=5" target="_blank">乌兰察布市</a>|
+        <a href="/commservice/Zwdh.jspx?status=6" target="_blank">乌海市</a>
+        <a href="/commservice/Zwdh.jspx?status=1" target="_blank" class="more">更多></a>
+    </div>
+    <div class="block-four">
+        <div class="block-head">
+            <div class="wrapper">
+                <span class="block-title">互动专区</span><br>
+                <span class="line"></span>
+            </div>
+        </div>
+        <div class="block-body">
+            <div class="wrapper" id="slider">
+                <div pid="1" class="slider slide1">
+                    <div class="bgslide"></div>
+                    <img src="/${res}/resources/images/index/slide11.png">
+                    <div>
+                        [@cms_channel id='122']
+                            <a class="slideTitle" href="${tag_bean.url}" target="_blank">${tag_bean.name}</a>
+                        [/@cms_channel]
+                    </div>
+                    <div class="slideList">
+                        <span>问题求助</span>/Ask for help
+                        <ul>
+                            [@cms_content_list typeId='1,2' count='7' orderBy='4' channelId='122' channelOption='1']
+                            [#list tag_list as a]
+                            <li>•&nbsp;&nbsp;
+                                <a href="/front/askhelp_comment.jspx?contentId=${a.contentId}" target="_blank" title="${a.title}">
+                                    [@text_cut s=a.title len='15' append='..' /]
+                                </a>
+                            </li>
+                            [/#list]
+                            [/@cms_content_list]
+                        </ul>
+                    </div>
+                </div>
+                <div pid="2" class="slider slide2">
+                    <div class="bgslide"></div>
+                    <img src="/${res}/resources/images/index/slide22.png">
+                    <div>
+                        [@cms_channel id='123']
+                        <a class="slideTitle" href="${tag_bean.url}" target="_blank">${tag_bean.name}</a>
+                        [/@cms_channel]
+                    </div>
+                    <div class="slideList">
+                        <span>头脑风暴</span>/Brain storm
+                        <ul>
+                            [@cms_content_list typeId='1,2' count='7' orderBy='4' channelId='123' channelOption='1']
+                            [#list tag_list as a]
+                            <li>•&nbsp;&nbsp;
+                                    [#if a.staticContent]
+                                        [#if a.needRegenerate]
+                                            <a href="/hdzq/brain_storm_preview.jspx?id=${a.contentId!}" target="_blank" title="${a.title}">
+                                                [@text_cut s=a.title len='15' append='..' /]
+                                            </a>
+                                        [#else]
+                                            <a href="${a.url}" target="_blank" title="${a.title}">
+                                                [@text_cut s=a.title len='15' append='..' /]
+                                            </a>
+                                        [/#if]
+                                    [#else]
+                                        <a href="/hdzq/brain_storm_preview.jspx?id=${a.contentId!}" target="_blank" title="${a.title}">
+                                            [@text_cut s=a.title len='15' append='..' /]
+                                        </a>
+                                    [/#if]
+                            </li>
+                            [/#list]
+                            [/@cms_content_list]
+                        </ul>
+                    </div>
+                </div>
+                <div pid="3" class="slider slide3">
+                    <div class="bgslide"></div>
+                    <img src="/${res}/resources/images/index/slide33.png">
+                    <div>
+                        [@cms_channel id='124']
+                        <a class="slideTitle" href="${tag_bean.url}" target="_blank">${tag_bean.name}</a>
+                        [/@cms_channel]
+                    </div>
+                    <div class="slideList">
+                        <span>意见建议</span>/Comments and suggestions
+                        <ul>
+                            [@cms_content_list typeId='1,2' count='7' orderBy='4' channelId='124' channelOption='1']
+                            [#list tag_list as a]
+                            <li>•&nbsp;&nbsp;
+                                [#if a.staticContent]
+                                        [#if a.needRegenerate]
+                                            <a href="/hdzq/suggestion_preview.jspx?id=${a.contentId!}" target="_blank" title="${a.title}">
+                                                [@text_cut s=a.title len='15' append='..' /]
+                                            </a>
+                                        [#else]
+                                            <a href="${a.url}" target="_blank" title="${a.title}">
+                                                [@text_cut s=a.title len='15' append='..' /]
+                                            </a>
+                                        [/#if]
+                                [#else]
+                                        <a href="/hdzq/suggestion_preview.jspx?id=${a.contentId!}" target="_blank" title="${a.title}">
+                                            [@text_cut s=a.title len='15' append='..' /]
+                                        </a>
+                                [/#if]
+                            </li>
+                            [/#list]
+                            [/@cms_content_list]
+                        </ul>
+                    </div>
+                </div>
+                <div pid="4" class="slider slide4">
+                    <div class="bgslide current"></div>
+                    <img src="/${res}/resources/images/index/slide44.png">
+                    <div>
+                        [@cms_channel id='125']
+                            <a class="slideTitle" href="${tag_bean.url}" target="_blank">${tag_bean.name}</a>
+                        [/@cms_channel]
+                    </div>
+                    <div class="slideList">
+                        <span>系统公告</span>/System announcement
+                        <ul>
+                            [@cms_content_list typeId='1,2' count='7' orderBy='4' channelId='125' channelOption='1']
+                            [#list tag_list as a]
+                            <li>•&nbsp;&nbsp;
+                                [#if a.staticContent]
+                                    [#if a.needRegenerate]
+                                            <a href="/hdzq/company_notice_preview.jspx?id=${a.contentId!}" target="_blank" title="${a.title}">
+                                                [@text_cut s=a.title len='15' append='..' /]
+                                            </a>
+                                    [#else]
+                                            <a href="${a.url}" target="_blank" title="${a.title}">
+                                                [@text_cut s=a.title len='15' append='..' /]
+                                            </a>
+                                    [/#if]
+                                [#else]
+                                        <a href="/hdzq/company_notice_preview.jspx?id=${a.contentId!}" target="_blank" title="${a.title}">
+                                            [@text_cut s=a.title len='15' append='..' /]
+                                        </a>
+                                [/#if]
+                            </li>
+                            [/#list]
+                            [/@cms_content_list]
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--content end-->
+
+[#include "../include/footer_icloud.html"]
+
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/index.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/jquery.lazyload.min.js"></script>
+<script>
+    //图片懒加载
+    $(function() {
+        $("img.lazyLoadPics").lazyload({
+            skip_invisible : true,
+            effect : "fadeIn"
+        });
+        $(".business-nav li").hover(function(){
+            $(".lazyLoadPics").trigger('scroll');
+        });
+        $(".sideNav li").click(function(){
+            $(".lazyLoadPics").trigger('scroll');
+        });
+    });
+</script>
+</body>
+</html>

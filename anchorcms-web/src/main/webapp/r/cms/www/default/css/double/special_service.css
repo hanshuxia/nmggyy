@@ -1,0 +1,204 @@
+.position{
+	width:1200px;
+	height: 40px;
+	background: url(../../images/double/doIntroduce/u58.png);
+	background-size: 1201px 41px;
+	font-size:13px;
+	font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+	text-align:left;
+	padding-left:2px;
+	line-height:40px;
+	border: solid 1px #888888;
+	border-top:0px;
+}
+.service_main{
+	width: 1200px;
+    height: 552px;
+    margin-top:15px;
+}
+.navbar{
+	width: 270px;
+    height: 320px;
+    float:left;
+}
+.spmenu{
+	height: 50px;
+	
+}
+.btn_parent{
+	width: 270px;
+    height: 50px;
+    background: url(../../images/double/specialser/u56.png);
+	background-size: 270px 50px;
+	
+}
+.mix_service{
+    width: 270px;
+    height: 50px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    text-decoration: none;
+    color: #333333;
+    text-align: center;
+}
+.submenu_div{
+	width: 270px;
+    height: 120px;
+    
+}
+.submenu_current{
+	width: 270px;
+    height: 30px;
+    background: url(../../images/double/specialser/u66.png);
+	background-size: 270px 30px;
+	text-align:center;
+    line-height:30px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: white;
+}
+.submenu{
+	width: 270px;
+    height: 30px;
+
+	background-color:#f4f5f5;
+	text-align:center;
+    line-height:30px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    border: solid 1px #888888;
+    border-top:0px;
+}
+.main_contents{
+	width: 910px;
+    height: 552px;
+    background: url(../../images/double/specialser/u74.png);
+	background-size: 912px 552px;
+	float:right;
+	border: solid 1px #888888;
+	border-top:0px;
+	border-left:0px;
+}
+.nav_bar{
+	width: 180px;
+    height: 160px;
+    border: solid 1px #888888;
+    float:left;
+}
+.detail{
+	width: 690px;
+    height: 552px;
+    float:right;
+    border-left: solid 1px #888888;
+    display: none;
+    position:relative;
+}
+.detail_content{
+	width: 690px;
+    height: 42px;
+    background: url(../../images/double/specialser/u86.png) no-repeat -2px 0;
+	background-size: 692px 42px;
+	border-bottom: solid 1px #888888;
+	line-height:42px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+}
+/* ----------------------page分页样式---------------------*/
+.pagestyle .btn-page{ height:30px; width:35px; line-height:15px; font-size:14px; margin: 4px; padding: 3px; background:#c1c2c2; color:#FFFFFF; border:none; outline:none;}
+.pagestyle .btn-page:hover,.pagesite button:ACTIVE,.pagesite button .btn-page:FOCUS{ background:#48aaeb;}
+.pagestyle .active{ height:30px; width:35px; line-height:15px; font-size:14px;margin: 4px;padding: 3px;background:#48aaeb;color:#FFFFFF;border:none;outline:none;}
+.date{
+	float:right;
+	margin-right:20px;
+}
+.left_content{
+	float:left;
+	margin-left:3px;
+}
+.smallmenu_current{
+	width: 180px;
+    height: 32px;
+    border-right: solid 1px #888888;
+    border-bottom: solid 1px #888888;
+    line-height: 32px;
+    background: url(../../images/double/specialser/u82.png);
+	background-size: 180px 32px;
+	text-align:center;
+    line-height:32px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: white;
+
+}
+
+.smallmenu{
+	width: 180px;
+    height: 32px;
+    border-right: solid 1px #888888;
+    border-bottom: solid 1px #888888;
+    line-height: 32px;
+    background: url(../../images/double/specialser/u86.png);
+    background-size: 180px 32px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+
+}
+.page{
+	width: 680px;
+    height: 60px;
+    background: url(../../images/double/specialser/u131.png);
+    background-size: 680px 60px;
+    position: absolute;
+	bottom: 15px;
+    left:5px;
+	text-align:center;
+    line-height: 60px;
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    border-bottom: solid 1px #888888;
+}
+.page_num {
+    
+    width: 43px;
+    height: 34px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+}
+.box{
+	width: 26px;
+    height: 34px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: left;
+}

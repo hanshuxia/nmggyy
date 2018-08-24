@@ -1,0 +1,59 @@
+@CHARSET "UTF-8";
+
+/*用户大厅首页样式*/
+.user-location{
+	width: 1200px;
+	height: 40px;
+	background-color: #E0E0E0;
+	border: 1px solid #000;
+	text-align: left;
+	line-height: 40px;
+	font-family: 'Arial Negreta', 'Arial';
+	font-size:13px;
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+}
+
+.user-content{
+	width: 1200px;
+	height: 900px;
+	background-color: #E0E0E0;
+	border: 1px solid #000;
+}
+
+.user-content1{
+	width: 200px;
+	height: 550px;
+	float: left;
+}
+
+.user-content1 td{
+	width: 200px;
+	height: 35px;
+	border: 1px solid #000;
+	font-family: 'Arial Negreta', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-align: center;
+    line-height: 20px;
+    float: left;
+}
+
+.user-content2{
+	width: 990px;
+	height: 94px;
+	border: 1px solid #000;
+	background-color: #E0E0E0;
+	margin-top:10px;
+	margin-left:205px;
+	text-align: center;
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: normal;
+}

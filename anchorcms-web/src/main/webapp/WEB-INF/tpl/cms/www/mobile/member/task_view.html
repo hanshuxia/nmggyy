@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>任务下达</title>
+    <link rel="shortcut  icon" type="image/x-icon" href="/${res}/resources/images/favicon.ico" media="screen"  />
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="${base}/res/common/js/jquery.ext.js" type="text/javascript"></script>
+    <script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/swfupload.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/swfupload.queue.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/fileprogress.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/handlers.js" type="text/javascript"></script>
+    <link href="${base}/thirdparty/swfupload/process.css" rel="stylesheet" type="text/css"/>
+
+    <!--日期插件-->
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/releasePower.css"/>
+    <!--传文件相关-->
+    <script type="text/javascript">
+        //        $.validator.methods.leafChannel = function(value, element, param) {
+        //            var i = element.selectedIndex;
+        //            return $(element.options[i]).attr("class")!="sel-disabled";
+        //        }
+        $(function() {
+            onloadData();
+            var uploadPicsUrl = "o_swfPicsUpload.jspx";
+            var uploadAttachsUrl = "o_swfAttachsUpload.jspx";
+            //在firefox、chrome下，上传不能保留登录信息，所以必须加上jsessionid。
+            var jsessionid ="${sessionId!}";
+            if(jsessionid) {
+                uploadPicsUrl += ";jsessionid="+jsessionid;
+                uploadAttachsUrl += ";jsessionid="+jsessionid;
+            }
+            swfu=new SWFUpload({
+                upload_url : uploadPicsUrl,
+                flash_url : "${base}/thirdparty/swfupload/swfupload.swf",
+                file_size_limit : "2 MB",
+                file_types : "*.jpg;*.gif;*.png;*.bmp",
+                file_types_description : "图片",
+                file_queue_limit : 0,
+                custom_settings : {
+                    progressTarget : "fsUploadProgress",
+                    cancelButtonId : "btnCancel"
+                },
+                debug: false,
+
+                button_image_url : "${base}/thirdparty/swfupload/button_notext.png",
+                button_placeholder_id : "spanButtonPlaceHolder",
+                button_text: "<span class='btnText'>上传</span>",
+                button_width: 84,
+                button_height: 24,
+                button_text_top_padding: 2,
+                button_text_left_padding: 20,
+                button_text_style: '.btnText{color:#666666;}',
+
+                file_queued_handler : fileQueued,
+                file_queue_error_handler : fileQueueError,
+                file_dialog_complete_handler : fileDialogComplete,
+                upload_progress_handler : uploadProgress,
+                upload_error_handler : uploadError,
+                upload_success_handler : uploadPicsSuccess,
+                upload_complete_handler : uploadComplete,
+                queue_complete_handler : queueComplete
+            });
+            swfau=new SWFUpload({
+                upload_url : uploadAttachsUrl,
+                flash_url : "${base}/thirdparty/swfupload/swfupload.swf",
+                file_size_limit : "2000 MB",
+                file_types : "*.*",
+                file_types_description : "All Types",
+                file_queue_limit : 0,
+                custom_settings : {
+                    progressTarget : "afsUploadProgress",
+                    cancelButtonId : "abtnCancel"
+                },
+                debug: false,
+
+                button_image_url : "${base}/thirdparty/swfupload/button_notext.png",
+                button_placeholder_id : "aspanButtonPlaceHolder",
+                button_text: "<span class='btnText'>上传</span>",
+                button_width: 84,
+                button_height: 24,
+                button_text_top_padding: 2,
+                button_text_left_padding: 20,
+                button_text_style: '.btnText{color:#666666;}',
+
+                file_queued_handler : fileQueued,
+                file_queue_error_handler : fileQueueError,
+                file_dialog_complete_handler : fileDialogComplete,
+                upload_progress_handler : uploadProgress,
+                upload_error_handler : uploadError,
+                upload_success_handler : uploadAttachSuccess,
+                upload_complete_handler : uploadComplete,
+                queue_complete_handler : queueComplete
+            });
+        });
+
+        function uploadPicsSuccess(file,data) {
+            var jsonData=eval("("+data+")");//转换为json对象
+            if(jsonData.error!=null){
+                $.alert("[@s.m 'global.prompt'/]",jsonData.error);
+            }else{
+                addPicLine();
+                var index = picIndex - 1;
+                imgUrl=jsonData.imgUrl;
+                $("#preImg"+index).attr("src",""+imgUrl);
+                var imgSrc = parent.document.getElementById("preImg"+index);
+                if(!$(imgSrc).attr("noResize")) {
+                    $(imgSrc).css("width","auto");
+                    $(imgSrc).css("height","auto");
+                }
+                $("#uploadImgPath"+index).val(imgUrl);
+            }
+        }
+        function uploadAttachSuccess(file,data) {
+            var jsonData=eval("("+data+")");//转换为json对象
+            if(jsonData.error!=null){
+                $.alert("[@s.m 'global.prompt'/]",jsonData.error);
+            }else{
+                addAttachLine();
+                var index = attachIndex - 1;
+                var attachUrl=jsonData.attachUrl;
+                var attachName=jsonData.attachName;
+                $("#attachmentPaths"+index).val(attachUrl);
+                $("#attachmentNames"+index).val(attachName);
+            }
+        }
+        /**
+         * 或得对象的长度
+         * @param jsonData
+         * @returns {number}
+         */
+        function getJsonLength(jsonData){
+
+            var jsonLength = 0;
+
+            for(var item in jsonData){
+
+                jsonLength++;
+
+            }
+
+            return jsonLength;
+
+        }
+        function onloadData(){
+            var taskId = $("#taskId").val();
+            $.ajax({
+                type:"post",
+                url:"/member/tastModel_onload.jspx",
+                dataType:"json",
+                data:{taskId:taskId},
+                cache: false,
+                async: false,
+                success:function(result){
+                    var tableFoot = $("#tableFoot");
+                    var objectAttr = null;
+                    //画出表头
+                    $.each(result,function(i,item){
+                        tableFoot.append("<td>"+item.modelName+"</td>");
+                        objectAttr = item.attr;
+                    });
+                    //判断数据长度
+                    var attrLength = result.length;
+                    //往行里塞数据
+                    inputRow(taskId,attrLength);
+                },
+                error:function(){
+                    hideXdTable();
+                }
+            })
+        }
+
+        //往行里塞数据
+        function inputRow(taskId,attrLength){
+            var tableVale = $("#SDemandObj_table");
+            var userId = $("#userId").val();
+            $.ajax({
+                type:"post",
+                url:"/member/tastFillModel_onload.jspx",
+                dataType:"json",
+                data:{taskId:taskId,userId:userId},
+                cache: false,
+                async: false,
+                success:function(result){
+                    //判断有几行
+
+                    for(var j=0;j<(result.length)/attrLength;j++){
+                        tableVale.append("<tr id='"+j+"'></tr>");
+                    }
+                    var count =0;
+                    for(var m = 0; m<  (result.length)/attrLength;m++){
+                        for (var n  = 0; n<attrLength ;n++){
+                            $("#"+m).append("<td><input class='SDemandObj_input' name='modelLength' value='"+result[count].task_value+"'/></td>");
+                            count++;
+                        }
+                    }
+                },
+                error:function(){
+                    hideXdTable();
+                }
+            })
+
+        }
+    </script>
+    [#include "image_upload.html" /]
+    [#include "attachment_upload.html" /]
+    <style>
+        .SDemandObj_input {line-height: 2em; height: 2em; text-align: center;  margin: 5px; border: none}
+        .SDemandObj_table {width: 95%; margin: auto; text-align: center; margin-top: 20px; line-height: 3em;}
+    </style>
+</head>
+<body>
+<div class="content wrapper">
+    <form id="release_form" action="/member/task_view.jspx" method="post">
+        <!--需求信息-->
+        <div class="servicePower">
+            <div class="column wrapper"> <span class="head">填报任务</span> <span class="tips"><i>*</i>&nbsp;为必填项</span> </div>
+            <div class="service-content wrapper">
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;任务名称：</label>
+                    <input class="power" id="taskName" name="taskName" value="${task.taskName?default('')}" disabled="disabled" type="text">
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;任务开始时间：</label>
+                      <span><input type="text" name="startDt" value="${task.startDt!''}" disabled="disabled" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate"></span>
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;上报截止时间：</label>
+                    <span><input type="text" name="deadlineDt" value="${task.deadlineDt!''}" disabled="disabled" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate"></span>
+                </div>
+                <div class="inputs" style="height: auto">
+                    <label><i>*</i>&nbsp;填报说明：</label>
+                    <textarea name="taskExplain" id="taskExplain" cols=50 rows=4 disabled="disabled"></textarea>
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;发布人：</label>
+                    <input class="power" id="username" name="username" value="${task.user.username!}" disabled="disabled" type="text">
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;所在单位：</label>
+                    <input class="power" id="companyName" name="companyName" value=" ${task.company.companyName!}" disabled="disabled" type="text">
+                </div>
+                <!--附件上传div-->
+                <div class="uploadImgs">
+                    <label><i>*</i>&nbsp;已传附件：</label>
+                    <div>
+                        <div class="upLoadDiv">
+                            <table id="attachTable" border="0" class="fbgj-fj" style="margin-left: 0;">
+                                <tr>
+                                    <td style="height: 30px;" align="center">&nbsp;附件名称：<a href="${task.filePath!}" download="${task.fileName!}" target="_blank">
+                                        <input type="text" id="fileName" name="fileName" class="member-change" style="width:200px;height:24px;" value="${task.fileName!}" disabled="disabled"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <script type="text/javascript">
+                            var attachIndex = 1;
+                            var attachTpl = $.format($("#attachTr").val());
+                            function addAttachLine() {
+                                $('#attachTable').append(attachTpl(attachIndex++));
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--需求对象信息-->
+        <div class="column wrapper"> <span class="head">模块设置</span></div>
+        <div class="service-content wrapper">
+            <table id="SDemandObj_table" class="SDemandObj_table" border="1">
+                <tr id="tableFoot" style="background-color:#3077B9; color:#FFF">
+                  <!--  <td>列名</td>
+                    <td>数据类型</td>
+                    <td>长度限制</td>
+                    <td>备注</td>
+                    <td>操作</td>-->
+                </tr>
+               <!-- <tr id="originTr">
+                    <td><input class="SDemandObj_input" name="modelName"></td>
+                    <td><input class="SDemandObj_input" name="modelType"></td>
+                    <td><input class="SDemandObj_input" name="modelLength"></td>
+                    <td><input class="SDemandObj_input" name="remark"></td>
+                    <td><button type="button" onclick="$(this).parent().parent().remove();" style="width: 60px;height: 20px;line-height: 1em;margin: 7px 10px;">删除</button></td>
+                </tr>-->
+            </table>
+        </div>
+        <div class="release-button">
+            <button class="btn submit" type="button" onclick="window.history.back()">返回</button>
+        </div>
+        <!--需求池展示频道id-->
+        <input type="hidden" id="taskId" name="taskId" value="${task.taskId}">
+        <input type="hidden" id="userId" name="userId" value="${userId}">
+
+        <input type="hidden" id="statusType" name="statusType" value="0">
+        <input type="hidden" id="demandObjList" name="demandObjListJsonString" value="">
+    </form>
+</div>
+
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="${base}/thirdparty/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="${base}/thirdparty/ueditor/ueditor.all.js"> </script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8" src="${base}/thirdparty/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#taskExplain").html('${task.taskExplain!}');
+    })
+</script>
+<!--Gao JN添加的js-->
+<script>
+    $(document).ready(function(e){
+        if(self.frameElement!=null && self.frameElement.tagName=="IFRAME"){
+            // 在iframe中时处理
+            $(".wrapper").css("width","95%");
+        }
+        var SObjTr= $('#originTr').prop('outerHTML');
+        $('#tianjiaSObj').click(function(){
+            $('#SDemandObj_table').append(SObjTr);
+        });
+        $('.autoInput').click(function(){
+            if($(this).is(':checked')){
+                $(this).prev('input').val($(this).next('span.special').text()).attr("readonly","readonly");
+            }else{
+                $(this).prev('input').removeAttr("readonly");
+            }
+        })
+    })
+    function grabJsonSObjs(){
+        var JsonObjs = "{\"STaskModels\":[";
+        $('#SDemandObj_table tr:gt(0)').each(function(i){
+            JsonObjs+="{"
+            $(this).children('td:lt(4)').each(function(i){
+                JsonObjs+=("\""+$(this).find('input:first').attr('name')+"\"");
+                JsonObjs+=":\"";
+                JsonObjs+=($(this).find('input:first').val()).replace(/"/g,"\\\"");
+                JsonObjs+="\",";
+            });
+            JsonObjs=(JsonObjs.replace(/,$/,""))+"},";
+        });
+        JsonObjs=(JsonObjs.replace(/,$/,""))+"]}";
+        return JsonObjs;
+    }
+    function grandSubCheck(){
+        $('#demandObjList').val(grabJsonSObjs());
+        $('#statusType').val("0");
+        $('#release_form').submit();
+    }
+    function saveConfirm(){
+        if(confirm("确定保存到草稿？（保存到草稿的需求可以前往 后台-协同制造-需求管理-草稿 中进行编辑与发布。）")){
+            $('#statusType').val("1");
+            grandSubCheck();
+        }
+    }
+</script>
+</body>
+</html>

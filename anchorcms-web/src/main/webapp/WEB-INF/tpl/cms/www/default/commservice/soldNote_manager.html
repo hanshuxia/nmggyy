@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资源管理</title>
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/list.css"/>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/list.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            _onload();
+           // setStatusText();//设置状态的汉字显示
+        });
+
+        //点击状态标签刷新列表
+        $(document).ready(function() {
+          //  $(".tableDiv tbody tr:odd").css("background", "#FAF7F7");
+          //  $(".tableDiv tbody tr:even").css("background", "#fff");
+            $(".switchBtn li").click(function(){
+                if($(this).attr("id") == "statusType0"){
+                    $("#statusType").val("");
+                    $("#status").val("");
+                }else if($(this).attr("id") == "statusType1"){
+                    $("#statusType").val("1");
+                    $("#status").val("");
+                }else if($(this).attr("id") == "statusType2"){
+                    $("#statusType").val("2");
+                    $("#status").val("");
+                }else if($(this).attr("id") == "statusType3"){
+                    $("#statusType").val("3");
+                    $("#status").val("");
+                }else if($(this).attr("id") == "statusType4"){
+                    $("#statusType").val("4");
+                    $("#status").val("");
+                }else if($(this).attr("id") == "statusType5"){
+                    $("#statusType").val("5");
+                    $("#status").val("");
+                }
+                $("#tableForm").submit();
+            });
+        });
+
+        //加载页面标签状态
+        function _onload(){
+            if($("#statusType").val() == "1"||$("#statusType").val() == "") {
+                $("#statusType1").addClass("current");
+                $("[name=preview]").hide(0,prevHide("[name=preview]"));
+                $("[name=reback]").hide(0,prevHide("[name=reback]"));
+            }else{
+                $("#statusType2").addClass("current");
+                $("[name=change]").hide(0,prevHide("[name=change]"));
+                $("[name=relece]").hide(0,prevHide("[name=relece]"));
+                $("[name=preview]").hide(0,prevHide("[name=preview]"));
+                $("[name=delete]").hide(0,prevHide("[name=delete]"));
+            }
+        };
+
+        //隐藏兄弟元素的前一个元素
+        function prevHide(obj){
+            $(obj).prev("font").hide();
+        }
+
+        //删除方法(根据id删除对应的那条记录)
+        function deleteData(obj){
+            layer.confirm('是否删除？', {
+                skin: 'layui-layer-lan',
+                icon: 3,
+                shift: -1,
+                btn: ['确定', '取消']
+            },
+            function (index, layero) {
+                $("#flag").val("delete");
+                $("#id").val($(obj).next().val());
+                $("#tableForm").submit();
+            }, function (index) {
+                layer.close(index);
+                return false;
+            });
+        }
+
+        //撤回方法
+        function rebackData(obj){
+            layer.confirm('是否撤回？', {
+                skin: 'layui-layer-lan',
+                icon: 3,
+                shift: -1,
+                btn: ['确定', '取消']
+            },
+            function (index, layero) {
+                $("#flag").val("reback");
+                $("#id").val($(obj).next().val());
+                $("#tableForm").submit();
+            }, function (index) {
+                layer.close(index);
+                return false;
+            });
+        }
+
+        // 发布方法
+        function releceData(obj){
+            layer.confirm('是否发布？', {
+                        skin: 'layui-layer-lan',
+                        icon: 3,
+                        shift: -1,
+                        btn: ['确定', '取消']
+            },
+            function (index, layero) {
+                $("#flag").val("relece");
+                $("#id").val($(obj).next().val());
+                $("#tableForm").submit();
+            }, function (index) {
+                layer.close(index);
+                return false;
+            });
+        }
+
+        // 给状态设置汉字
+        function setStatusText(){
+            $("td[name=statusValues]").each(function(){
+                var status=$(this).text();
+                if(status=="0"){
+                    $(this).text("驳回");
+                }else if(status=="1"){
+                    $(this).text("草稿");
+                }else if(status=="2"){
+                    $(this).text("待审核");
+                }else if(status=="3"){
+                    $(this).text("已下单");
+                }else if(status=="4"){
+                    $(this).text("已成交");
+                }else if(status=="5"){
+                    $(this).text("已评价");
+                }
+            });
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="/${res}/js/html5shiv.min.js"></script>
+    <script src="/${res}/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+<div class="content wrapper clearfix">
+    <div class="head wrapper">
+        <a href="${base}/member/SoldNote_manager.jspx" class="current">销售记录管理</a>
+    </div>
+    <div class="main">
+        <form id="tableForm" action="/member/SoldNote_manager.jspx" method="post">
+
+            <div class="searchBox">
+                <label>销售产品种类：</label>
+                <input id="inquiryTheme" name="inquiryTheme" value="${inquiryTheme?default('')}">
+                <label>订单成交时间：</label>
+                <input type="text" id="StartTime" name="StartTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate"  value="${StartTime?default('')}">至
+                <input type="text" id="EndTime" name="EndTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate" value="${EndTime?default('')}">
+                <button class="submit">查询</button>
+            </div>
+            <div class="switchBtn">
+                <ul>
+                    <li id="statusType1"><span>草稿</span></li>
+                    <li id="statusType2"><span>已完成</span></li>
+                </ul>
+            </div>
+            <div class="tableDiv wrapper">
+                <table  cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>销售产品种类</th>
+                        <th>订单销售额</th>
+                        <th>订单负责人</th>
+                        <th>销往地区</th>
+                        <th>订单成交日期</th>
+                        <th>管理</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    [#if pagination.list?size gt 0]
+                    [#list pagination.list as c]
+                    <tr>
+                        <td align="left" style="padding-left: 30px" title=${c.wareType?default('')}>[@text_cut s=c.wareType?default('') len='10'append='...'/]</td>
+                        <td title=${c.amount?default('')}>${c.amount?default('')}</td>
+                        <td title=${c.charger?default('')}>[@text_cut s=c.charger?default('') len='10'append='...'/]</td>
+                        <td title=${c.addrProvince?default('')+c.addrCity?default('')+c.addrCounty?default('')+c.addrStreet?default('')}>[@text_cut s=c.addrProvince?default('')+c.addrCity?default('')+c.addrCounty?default('')+c.addrStreet?default('') len='10' append='...'/]</td>
+                        <td >${c.dealDt?default('')}</td>
+                        <td>
+                            <a class="link" name="detail" href="/member/Sold_detail.jspx?id=${c.soldNoteId?default('')}&webfalg=0">明细</a>
+                            <a class="link" name="preview" href="/member/Sold_detail.jspx?id=${c.soldNoteId?default('')}" target="_blank">预览</a>
+                            <a class="link" name="change" href="/member/Sold_detail.jspx?id=${c.soldNoteId?default('')}&webfalg=1">编辑</a>
+                            <a class="link" name="reback" href="#" onclick="javascript:rebackData(this)">撤回</a><input type="hidden" value="${c.soldNoteId?default('')}">
+                            <a class="link" name="relece" href="#" onclick="javascript:releceData(this)">发布</a><input type="hidden" value="${c.soldNoteId?default('')}">
+                            <a class="link" name="delete" href="#" onclick="javascript:deleteData(this)">删除</a><input type="hidden" value="${c.soldNoteId?default('')}">
+                        </td>
+                    </tr>
+                    [/#list]
+                    [#else]
+                    <tr>
+                        <td colspan="9" ><h4>暂无数据</h4></td>
+                    </tr>
+                    [/#if]
+                    </tbody>
+                </table>
+            </div>
+            <input type="hidden" name="pageNo"/>
+            <div  class="page clearfix">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="left" class="pn-sp">
+                            每页 ${pagination.pageSize} 条&nbsp;
+                            <input class="first" type="button" onclick="_gotoPage('1');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input class="prev" type="button" onclick="_gotoPage('${pagination.prePage}');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input type="text" value=${pagination.pageNo} id="_goPs" onfocus="this.select();" onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>/${pagination.totalPage}
+                            <input class="next" type="button" onclick="_gotoPage('${pagination.nextPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>
+                            <input class="last" type="button" onclick="_gotoPage('${pagination.totalPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>&nbsp;
+                            <button id="_goPage" class="ok" type="button" onclick="_gotoPage($('#_goPs').val());"[#if pagination.totalPage==1] disabled="disabled"[/#if]>GO</button>
+                            共 ${pagination.totalCount} 条&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <script type="text/javascript">
+                function _gotoPage(pageNo) {
+                    if(!/^[0-9]*[1-9][0-9]*$/.test(pageNo)){ui.alertFail("页码必须为正整数！");return false;}
+                    try{
+                        var tableForm = document.getElementById("tableForm");
+                        $("input[name=pageNo]").val(pageNo);
+                        if(pageNo==""){$("#statusType").val("");}
+                        tableForm.action="/member/SoldNote_manager.jspx";
+                        tableForm.onsubmit=null;
+                        tableForm.submit();
+                    } catch(e) {
+                        alert('_gotoPage(pageNo)方法出错');
+                    }
+                }
+            </script>
+            <input type="text" id="statusType" name="statusType" hidden="hidden" value="${statusType?default('')}">
+            <input type="text" id="status" name="status" hidden="hidden" value="${status?default('')}">
+            <input type="text" id="flag" name="flag" hidden="hidden">
+            <input type="text" id="id" name="id" hidden="hidden" >
+        </form>
+
+    </div>
+</div>
+</div>
+<div class="m-sj"></div>
+</div>
+</div>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+</body>
+</html>

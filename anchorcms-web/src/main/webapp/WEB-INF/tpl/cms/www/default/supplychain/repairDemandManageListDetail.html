@@ -1,0 +1,721 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="/${res}/resources/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/${res}/resources/js/layer.js"></script>
+
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://core.casicloud.com/styles/cloud/bootstrap.min2.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/WdatePicker.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut  icon" type="image/x-icon" href="/${res}/resources/images/favicon.ico" media="screen"/>
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/releasePower.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <script type="text/javascript" src="/thirdparty/jquery-placeholder/placeholder-ie9.js" ></script>
+    <![endif]-->
+
+    <link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="${base}/res/common/js/jquery.ext.js" type="text/javascript"></script>
+    <script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/swfupload.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/swfupload.queue.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/fileprogress.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/handlers.js" type="text/javascript"></script>
+    <link href="${base}/thirdparty/swfupload/process.css" rel="stylesheet" type="text/css"/>
+
+    <title>维修需求明细</title>
+
+    <style type="text/css">
+        .tggl .fbgj-fj{border:0px none; text-indent:0; padding:0 15px;}
+        .tggl .fbgj-fj td{line-height:24px; border:0px none; padding:0; text-indent:0;}
+        .inquiry_main {
+            width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+            padding: 30px 30px 50px;
+        }
+
+        .form-horizontal {
+            overflow: hidden;
+        }
+
+        .go-field-title {
+            border-bottom: 1px dashed #ddd;
+            margin: 0 10px 15px 10px;
+            padding: 5px 15px;
+        }
+
+        .go-field-title h3 {
+            border-left: 5px solid #ff6600;
+            font-family: "microsoft yahei";
+            font-size: 18px;
+            line-height: 1.2;
+            margin: 14px 0;
+            padding-left: 10px;
+        }
+
+        .form_button {
+            background-color: #e56826;
+            color: #fff;
+            display: inline-block;
+            line-height: 38px;
+            margin: 20px 8px;
+            text-align: center;
+            width: 120px;
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .error {
+            width: 300px;
+            display: inline;
+        }
+
+        .form-control {
+            width: 400px;
+        }
+
+        .contact-div {
+            float: left;
+            width: 490px;
+        }
+
+        .contact-check {
+            float: left;
+            width: 150px;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .labels {
+            width: 150px;
+            text-align: right;
+        }
+
+        .div-h-title {
+            background-color: #2dc3e8;
+            bottom: 0;
+            content: "";
+            display: block;
+            left: -4px;
+            max-width: 4px;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            width: 4px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 1000px;
+
+        }
+
+        table, td, th {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+
+        }
+
+        .form-group {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            margin-left: 40px;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+
+        function saveRepair(pm) {
+            $("#status").val(pm);
+            document.repairForm.submit();
+        }
+
+
+        var _index = 1;
+        function addInquiryP() {
+            var tdNum = $("#table1 tr").size();
+            var str = "<tr name='addpro'>"
+                    + "<td name='indexId' style='display:none;'></td>"
+                    + "<td><input type='text' value='' placeholder='最多30字符' maxlength='30' onblur='minganci($(this).val(), this)' name='repairNameStr' id='capandproname' style='width:160px' class='go-input-common'/></td>"
+                    + "<td><input type='text'  value='' placeholder='最多30字符' maxlength='30' style='width:160px' name='machineTypeStr' id='capandprocode' onBlur='javascript:validateCapandprocode(this.value)' class='go-input-common'/></td>"
+                    + "<td><input type='text'  value='' placeholder='必须为整数' maxlength='10' style='width:80px'  name='repairNumStr' id='repairNumStr' class='go-input-common'  onkeyup='calculation(this)' /></td>"
+                    + "<td><input type='text'  value='' placeholder='' maxlength='10' style='width:90px' name='chargeunit' id='chargeunit' class='go-input-common'  /></td>"
+                    + "<td><input type='text'  value='' placeholder='型号、要求等,最多30字符' name='repairRequestStr' maxlength='30'  class='go-input-common' style='width:160px'  class='go-input-common'></td>"
+                    + "<td><input type='text'  value='' name='expectPriceStr' id='expectPriceStr' validate='{maxDecimalLen:2}' maxlength='10' value='0' style='width:80px' class='go-input-common' onkeyup='calculation(this)' /><input type='hidden' name='subTotal'></td>"
+                    + "<td> <a href='javascript:void(0);'  onclick='delproduct(this);'>删除</a></td>"
+                    + "</tr>";
+            $("#table1").append(str);
+            $("#table1").show();
+            _index++;
+            parent.getIframeHeight();
+        }
+        function validateCapandprocode(obj) {
+            var reg = /^[0-9a-zA-Z\/\-]+$/;
+            if (!reg.test(obj)) {
+                layer.alert("产品编号请输入-、/或英文字符或数字!", {icon: 2});
+            } else {
+                minganci($(obj).val(), obj);
+            }
+        }
+
+        //删除产品
+        function delproduct(opt) {
+            //console.log($(opt).parent())
+            /* $(opt).parent().parent().remove();
+             parent.getIframeHeight();
+             calculation(opt); */
+            if (confirm('确认删除询价对象？')) {
+                $(opt).parent().parent().remove();
+                calculation(opt);
+            }
+
+        }
+        //取消按钮
+        function quxiao() {
+            $("#product").hide();
+            $("#chanpin").find("tr[name='addpro']").remove();
+            _index = 0;
+        }
+        //确认按钮
+        function isOk() {
+            //清空原有的节点
+            $("#copyProduct").empty();
+            //复制数据节点
+            var copyJd = $("#chanpin").find("tr:gt(1)");
+            //console.log(copyJd.html());
+            copyJd.clone(true).appendTo("#copyProduct");
+            $("#product").hide();
+            $("#chanpin").find("tr[name='addpro']").remove();
+
+            if ($("#copyProduct tr").length > 0) {
+                $("#addButton").hide();
+                $("#detailButton").show();
+            } else {
+                $("#addButton").show();
+                $("#detailButton").hide();
+            }
+        }
+
+        function calculation(obj) {
+            var repairNumStr = $(obj).parent().parent().find("input[name='repairNumStr']").val();
+            var price = $(obj).parent().parent().find("input[name='expectPriceStr']").val();
+            if (price == '') {
+// 			$(obj).parent().parent().find("input[name='expectPriceStr']").val('0');
+                price = $(obj).parent().parent().find("input[name='expectPriceStr']").val();
+            }
+            //格式校验
+            var re = /^[0-9]*[1-9][0-9]*$/;
+            if (!re.test(repairNumStr)) {
+                // $(obj).parent().parent().find("input[name='repairNumStr']").val($(obj).val().replace(/\D/g, ''));
+                return;
+            }
+            var t = /^\d+(\.\d+)?$/;
+            if (!t.test(price)) {
+                $(obj).parent().parent().find("input[name='expectPriceStr']").val($(obj).val().replace(/[^\d.]/g, ""));
+                return;
+            }
+            /** 设置计算期望总价的计算*/
+            var counts = 0;
+            $("tr[name='addpro'] #repairNumStr").each(function () {
+                var count = Number($(this).val()) * parseFloat($(this).closest("tr[name='addpro']").find("#expectPriceStr").val());
+                counts = count + counts;
+            })
+            $("#total").text(counts.toFixed(2));
+
+            $("#expectPrice").val(counts.toFixed(2));
+        }
+
+        function resetFilePath(srcPath, srcName) {
+            srcPath = srcPath.replaceAll(";", "/");
+            selectIconForFile_win.close();
+            $("#filePath").val(srcPath);
+            $("#attachment").val(srcPath);
+            $("#fileName").val(srcName);
+            srcPath = 'https://oby0yx23h.qnssl.com//' + srcPath;
+            $("#spanFile").attr("href", srcPath);
+            $("#spanFile").text(srcName);
+            //$("#showAddFile").hide();
+            $("#delFile").show();
+            $("#delFile").attr("style", "display:inline");
+
+            /* $("#addFile").next("span").html("<a target='_blank' href='https://oby0yx23h.qnssl.com//"+srcPath+"'>"+srcName+"</a>"); */
+
+        }
+        //删除附件
+        function relFile() {
+            $("#spanFile").attr("href", "#");
+            $("#spanFile").text("");
+            $("#filePath").val("");
+            //$("#showAddFile").show();
+            $("#delFile").hide();
+
+        }
+        //上传图片
+        function openImageDialog() {
+            $.cloudDialog.imageDialog({contextPath: ""});
+        }
+        function imageDialogCallback(data) {
+            for (index in data) {
+                _callbackImageUploadSuccess(data[index].filePath, data[index].fileName);
+            }
+        }
+
+        function _callbackImageUploadSuccess(path, name, type) {
+            if (type) {
+                UE.getEditor('editor').execCommand('insertimage', {
+                    src: 'https://oby0yx23h.qnssl.com//' + path
+                });
+            } else {
+                if ($(".proPicture").length < 5) {
+                    var item = '<div style="float:left;margin-right: 2px;">';
+                    item += "<img src='https://oby0yx23h.qnssl.com//" + path + "' width='80' height='84' /></br>";
+                    item += "<input type='hidden' value='" + path + "' class='proPicture' name='proPicture' />";
+                    item += "<input type='button' value='删除' onclick='deleteImg(this)' />";
+                    item += "</div>";
+                    $("#picView").append(item);
+                    parent.getIframeHeight();
+                } else {
+                    layer.alert("最多只能上传5张图片", {icon: 2});
+                }
+            }
+        }
+
+        function deleteImg(obj) {
+            $(obj).parent().remove();
+        }
+    </script>
+</head>
+
+
+<body style="width:100%;min-width:1200px;">
+
+<div style="font-size: 16px;color: #707070;padding: 20px 0;width: 1200px;
+            margin: 0 auto;">
+    <!-- <a href="${base}/gylxt/index.jhtml" style="color: #3077b9;">供应链协同</a><a href="${base}/gylxtZxzy/index.jhtml"
+                                                                             style="color: #3077b9;">&gt;众修资源</a>&gt;我要发布维修需求-->
+    <a href="javascript:void(window.history.back())">返回</a>
+</div>
+
+
+<form id="inquiryForm" name="repairForm" class="form-horizontal" role="form" action="/demand_edit_save.jspx"
+      method="post">
+    <input type="hidden" name="expectPrice" id="expectPrice"/>
+    <div class="inquiry_main">
+        <div class="item">
+            <div class="go-field-title">
+                <h3><span id="span_inquiry_message">维修信息</span></h3>
+            </div>
+            <input type="hidden" value="${demand.repairId!}" name="repairId"/>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label class="col-sm-2 control-label" style="float:left;"><span style="color: red">*</span>
+                        维修主题：</label>
+                    <input id="repairName" name="repairName" class="form-control" type="text"
+                           value="${demand.repairName!}">
+                    </input>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label class="col-sm-2 control-label" style="float:left;"><span style="color: red">*</span>
+                        维修类型：</label>
+                    <input id="repairType" name="repairType" class="form-control" type="text"
+                           value="${demand.repairType!}">
+                    </input>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label class="col-sm-2 control-label"><span style="color: red">*</span> <span
+                            id="span_inquiry">维修地点：</span></label>
+                    <div class="inputs commentDiv" id="distpicker1" data-toggle="distpicker">
+                        <select class="resourceAddInput" id="addrProvince" name="addrProvince" style="width: auto;"
+                                data-province="${demand.addrProvince!}">
+                        </select>
+                        <select class="codeInput" id="addrCity" name="addrCity" style="width: auto; "
+                                data-city="${demand.addrCity!}"></select>
+                        <select data-district="${demand.addrCounty!}" class="codeInput" id="addrCounty"
+                                name="addrCounty"
+                                style="width: auto;"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label class="col-sm-2 control-label"><span style="color: red">*</span> <span
+                            id="span_endtime">开始日期：</span></label>
+                    <input value="${demand.startDt?string('yyyy-MM-dd')}" id="startDt" name="startDt" type="date"
+                           class="inputText form-control"
+                           style="width: 250px;"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label class="col-sm-2 control-label"><span style="color: red">*</span> 截止日期：</label>
+                    <input id="deadlineDt" name="deadlineDt" type="date"
+                           value="${demand.deadlineDt?string('yyyy-MM-dd')}"
+                           class="inputText form-control"
+                           style="width: 250px;"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10">
+
+                    <label class="col-sm-2 control-label"><span style="color:red">*</span> 是否加急：</label>
+                    <label>
+                        <input id="pt" name="isUrgency" type="radio" value="0"/>
+                        普通</label>
+                    <label>
+                        <input id="jj" name="isUrgency" type="radio" value="1"/>
+                        加急</label>
+                    [#if demand.isUrgency =="0"]
+                    <script>
+                        $("#pt").attr("checked", 'checked');  </script>
+                    [#elseif demand.isUrgency=="1"]
+                    <script> $("#jj").attr("checked", "checked");</script>
+                    [/#if]
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="go-field-title">
+                <h3><span id="span_inquiry_release">维修需求信息</span></h3>
+            </div>
+            <div class="form-group">
+                <div style="text-align : left;width: 85%;margin: auto; ">
+                    <span style="color: red">*</span>
+                    <span
+                            style="color: red;">
+                    <input type="button" onclick="addInquiryP()" id="butt1" class=" form_button" value="添加维修价对象">
+                    </span>
+
+                </div>
+                <div class="flip-scroll col-sm-10" style=" left: 75px;top:10px">
+                    <div style="overflow-y:auto; overflow-x:auto; width:1000px;">
+                        <table class="table  table-striped table-condensed flip-content" id="table1" name="table1">
+                            <thead class="flip-content bordered-palegreen">
+                            <tr> <!-- <th class="numeric"> 序列 </th> -->
+                                <!-- <th class="numeric"> 产品编号</th> -->
+                                <th class="numeric"><span style="color: red">*</span>对象名称</th>
+                                <th class="numeric"><span style="color: red">*</span>对象型号</th>
+                                <th class="numeric"><span style="color: red">*</span>维修数量</th>
+                                <th class="numeric"><span style="color: red">*</span>维修地点</th>
+                                <th class="numeric">维修要求</th>
+                                <th scope="col"><span style="color: red">*</span>期望价格(元)</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            [#if OBJlist?size gt 0]
+                            [#list OBJlist as c]
+                            <tr name='addpro'>
+                                <td name='indexId' style='display:none;'>
+                                </td>
+                                <td><input type="hidden" value="${c.repairObjid!}" name="repairObjids"/><input
+                                        type='text' value='${c.repairName!}' placeholder='最多30字符' maxlength='30'
+                                        onblur='minganci($(this).val(), this)' name='repairNameStr'
+                                        id='capandproname' style='width:160px' class='go-input-common'/></td>
+                                <td><input type='text' value='${c.machineType!}' placeholder='最多30字符' maxlength='30'
+                                           style='width:160px'
+                                           name='machineTypeStr' id='capandprocode'
+                                           onBlur='javascript:validateCapandprocode(this.value)'
+                                           class='go-input-common'/></td>
+                                <td><input type='text' value='${c.repairNum!}' placeholder='必须为整数' maxlength='10'
+                                           style='width:80px'
+                                           name='repairNumStr' id='repairNumStr' class='go-input-common'
+                                           onkeyup='calculation(this)'/></td>
+                                <td><input type='text' value='${c.addrProvince!}' placeholder='' maxlength='10'
+                                           style='width:90px'
+                                           name='chargeunit' id='chargeunit' class='go-input-common'/></td>
+                                <td><input type='text' value='${c.repairRequest!}' placeholder='型号、要求等,最多30字符'
+                                           name='repairRequestStr'
+                                           maxlength='30' class='go-input-common' style='width:160px'
+                                           class='go-input-common'></td>
+                                <td><input type='text' value='${c.expectPrice!}' name='expectPriceStr'
+                                           id='expectPriceStr'
+                                           validate='{maxDecimalLen:2}' maxlength='10' value='0' style='width:80px'
+                                           class='go-input-common' onkeyup='calculation(this)'/><input type='hidden'
+                                                                                                       name='subTotal'>
+                                </td>
+                            </tr>
+                            [/#list]
+                            [/#if]
+                            </tbody>
+                        </table>
+                        <div style="text-align : right;width: 90%;margin: auto; "><span
+                                style="color:#e56826;font-weight:bold;">期望总价:</span>&nbsp;&nbsp;<span id="total"
+                                                                                                      style="color:#e56826;font-weight:bold;">0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="form-group">
+                    <div class="col-sm-10">
+
+                        <label class="col-sm-2 control-label"><span style="color: red">*</span>是否显示期望报价：</label>
+                        <label>
+                            <input id="fshow" name="isShow" type="radio" value="0"/>
+                            否</label>
+                        <label>
+                            <input id="yshow" name="isShow" type="radio" value="1"/>
+                            是</label>
+                        [#if demand.isShow=="0"]
+                        <script>$("#fshow").attr("checked", true);</script>
+                        [#elseif demand.isShow=="1"]
+                        <script>$("#yshow").attr("checked", true);</script>
+                        [/#if]
+                    </div>
+                </div>
+            </div>
+            <div class="service-content wrapper">
+                <!--上传附件-->
+                <div class="uploadImgs">
+                    <div style="padding:10px 5px;">
+                        <label><i>*?</i>&nbsp;已传附件：</label>
+                        <div class="upLoadDiv">
+                            <table id="attachTable" border="1px" class="fbgj-fj" width="600px">
+                                <tr style="border-bottom-width: 1px">
+                                    <td align="center">附件名称&nbsp;</td>
+                                    <td align="center">路径&nbsp;</td>
+                                </tr>
+                                [#list demand.content.attachments as file]
+                                <tr>
+                                    <td align="center"><a href="${file.attachmentPath}" download="${file.attachmentName}" target="_blank">${file.attachmentName!}</a>&nbsp;
+                                    </td>
+                                    <td align="center"><a href="${file.attachmentPath}" download="${file.attachmentName}" target="_blank">${file.attachmentPath}&nbsp;</a>
+                                    </td>
+                                </tr>
+                                [/#list]
+                            </table>
+                        </div>
+                        <script type="text/javascript">
+                            var attachIndex = 1;
+                            var attachTpl = $.format($("#attachTr").val());
+                            function addAttachLine() {
+                                $('#attachTable').append(attachTpl(attachIndex++));
+                            }
+                        </script>
+                    </div>
+                </div>
+                <!--图片上传div-->
+                <div class="uploadImgs">
+                    <label><i>*?</i>&nbsp;上传图片：</label>
+                    <div class="upLoadDiv">
+                        [#list content.pictures as p]
+                        <table id="pictures" border="1px" class="fbgj-fj" width="200px">
+                            <tr>
+                                <td><img id="preImg${p_index+3}" src="${p.imgPath!}" alt="预览" noResize="true"
+                                         style="width:200px;height:110px;background-color:#ccc;border:1px solid #333"/>
+                                </td>
+                            </tr>
+                        </table>
+                        [/#list]
+                   <!-- </div>
+                    <script type="text/javascript">
+                        var picIndex = 1;
+                        var picTpl = $.format($("#picTable").html());
+                        function addPicLine() {
+                            $('#picBefore').before(picTpl(picIndex++));
+                        }
+                    </script>-->
+                </div>
+            </div>
+            <!--  <div class="form-group">
+                  <div class="col-sm-10">
+                      <label class="col-sm-2 control-label"> 附件：</label>
+                      <a href="javascript:selectIconFile();" class="btn-ctrl" id="addFile" js_tukubtn="true"
+                         class="form-control">添加附件</a>
+                      <a target="_blank" id='spanFile'></a>
+                      <div id='delFile' style='display: none;'><a href='javascript:void(0)' onclick='relFile(this)'>删除</a>
+                      </div>
+                      <span style="color: #aaaaaa">(需求详细信息、要求等以附件形式上传，大小不超过10M，格式限word、excel、pdf等)</span></div>
+                  <input type="hidden" id="attachment" name="attachment">
+                  <input type="hidden" name="fileName" id="fileName"/>
+              </div>-->
+            <!--  <div class="form-group">
+                  <div class="col-sm-10">
+                      <label class="col-sm-2 control-label">上传图片：</label>
+                      <a href="javascript:openImageDialog();" class="btn-ctrl"
+                         id="addProductPic" js_tukubtn="true">添加图片</a><span style="color: #aaaaaa">(建议上传400*400像素的图片，大小不超过2M，图片类型必须是(gif,jpeg,jpg,bmp,png)中的一种)</span>
+                      <div class="addproduct-pic" id="picView" style="margin-left: 120px"></div>
+                  </div>
+              </div>-->
+
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label class="col-sm-2 control-label"><span style="color: red">*</span>补充说明：</label>
+
+                    <input id="description" name="description" class="form-control" class="required"
+                           style="width: 450px;">
+                </div>
+            </div>
+        </div>
+
+      <!--  <div class="item">
+            <div class="go-field-title">
+                <h3>商务条款</h3>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label class="col-sm-2 control-label"><span style="color: red">*</span> 交易方式：</label>
+
+                    <label>
+                        <input id="货到付款" name="dealType" type="checkbox" value="货到付款"/>
+                        货到付款</label>
+                    <label>
+                        <input id="预付款" name="dealType" type="checkbox" value="预付款"/>
+                        预付款</label>
+                    <label>
+                        <input id="其它" name="dealType" type="checkbox" value="其它"/>
+                        其他</label>
+                    <span></span></div>
+                <script>
+                    $("#" + "${demand.dealType!}").attr("checked", true);
+                </script>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label class="col-sm-2 control-label"><span style="color: red">*</span> 付款方式：</label>
+
+        <span>
+        <input id="现金" name="payType" value="现金" type="radio"/>
+        现金</span> <span>
+        <input id="银行转账" name="payType" value="转账" type="radio"/>
+        银行转账</span> <span>
+        <input id="支票" name="payType" value="支票" type="radio"/>
+        支票</span> <span>
+        <input id="汇票" name="payType" value="汇票" type="radio"/>
+        汇票</span> <span>
+        <input id="本票" name="payType" value="本票" type="radio"/>
+        本票</span> <span>
+        <input id="其他" name="payType" value="其他" type="radio"/>
+        其他</span>
+                    <script>
+                        $("#" + "${demand.payType!}").attr("checked", true);
+                    </script>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label class="col-sm-2 control-label"><span style="color: red">*</span> 发票类型：</label>
+
+        <span>
+
+        <input id="无需发票" name="invoiceType" value="无" type="radio"/>
+        无需发票</span>
+        <span>
+        <input id="普通发票" name="invoiceType" value="普通发票" type="radio"/>
+        普通发票</span>
+        <span>
+        <input id="增值税发票" name="invoiceType" value="增值税发票" type="radio"/>
+        增值税发票</span>
+                    <script>
+                        $("#" + "${demand.invoiceType!}").attr("checked", true);
+                    </script>
+                </div>
+            </div>
+
+
+        </div>-->
+        <div class="item">
+            <div class="go-field-title"><h3>联系方式</h3></div>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label class="col-sm-2 control-label" style="float:left;"><span
+                            style="color: red">*</span>联系人:</label>
+                    <input id="contact" name="contact" class="form-control" style="width: 150px;"
+                           validate="{required:true,maxlength:40}" value="${demand.contact!}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label class="col-sm-2 control-label" style="float:left;"><span
+                            style="color: red">*</span>联系电话:</label>
+                    <input id="mobile" name="mobile" class="form-control phone" value="${demand.mobile!}"
+                           onkeyup="value=value.replace(/[^\d]/g,'')"
+                           onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
+                           style="width: 150px;" validate="{maxlength:11,number:true  }"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label class="col-sm-2 control-label" style="float:left;"><span
+                            style="color: red">*</span>邮箱:</label>
+                    <input id="email" name="email" class="form-control" style="width: 150px;"
+                           validate="{email:true,maxlength:59}" value="${demand.email!}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label class="col-sm-2 control-label" style="float:left;"><span
+                            style="color: red">*</span>传真:</label>
+                    <input id="fax" name="fax" class="form-control" style="width: 150px;"
+                           validate="{maxlength:40}"/><span></span>
+                </div>
+            </div>
+
+
+        </div>
+      <!--  <div style="padding:30px 0 0 0; text-align:center; clear:both;">
+            <input type="hidden" id="status" name="state">
+            <button type="button" value="0" id="save" class="btns btn-warning" onclick="saveRepair(0)">保存草稿</button>
+            <button type="button" value="1" id="save_rel" class="btns btn-warning" onclick="saveRepair(1)">发布需求</button>
+        </div>-->
+    </div>
+    <input id="nextUrl" name="nextUrl" value="/" hidden="hidden">
+    <input id="modelId" name="modelId" value="98" hidden="hidden">
+    <input id="channelId" name="channelId" value="103" hidden="hidden">
+</form>
+
+
+<script charset="utf-8" src="/r/cms/www/default/resources/js/mapDistPicker/distpicker.data.js"
+        type="text/javascript"></script>
+<script charset="utf-8" src="/r/cms/www/default/resources/js/mapDistPicker/distpicker.js"
+        type="text/javascript"></script>
+<script charset="utf-8" src="/${res}/resources/js/supply/supplyReleaseResource.js" type="text/javascript"></script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/lib/editor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/userCenter.js"></script>
+<!--富文本编辑，粘贴图片-->
+<script type="text/javascript">
+    var editor = UE.getEditor('editor',{autoHeightEnabled:false,zIndex:0});
+</script>
+<script language="javascript">
+    UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+    UE.Editor.prototype.getActionUrl = function(action) {
+        if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadimage') {
+            return "/ueditor/upload.jspx";
+        } else {
+            return this._bkGetActionUrl.call(this, action);
+        }
+    }
+</script>
+</body>
+</html>

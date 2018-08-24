@@ -1,0 +1,288 @@
+.currLocation{
+    width: 1200px;
+    height: 40px;
+    background-image: url("../../images/technology/index/u5.png");
+}
+.currLocation p{
+    line-height: 40px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+    padding-left: 5px;
+}
+.left{
+    margin-top: 5px;
+    width:220px;
+    height:1025px;
+    float: left;
+}
+.left .iwanna-div{
+    /* padding-top: 1px; */
+    width: 220px;
+    height: 125px;
+    background-image: url("../../images/technology/tripleDocking/u0.png");
+}
+.left .iwanna-div .iwanna{
+    margin-top: 15px;
+    margin-left: 10px;
+    width: 200px;
+    height: 42px;
+    font-size: 16px;
+    color: #FF0000;
+    text-align: center;
+    line-height: 42px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    background-image: url("../../images/technology/tripleDocking/u2.png");
+}
+.left .left-title{
+    margin-top: 10px;
+    width: 220px;
+    height: 45px;
+    font-size: 16px;
+    color: #FF0000;
+    text-align: center;
+    line-height: 45px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    background-image: url("../../images/technology/tripleDocking/u0.png");
+}
+.market-dev{
+    margin-top: 5px;
+    width: 220px;
+    border-bottom: 1px solid;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: left;
+    line-height: normal;
+}
+.market-dev .subItem{
+    width: 220px;
+    height: 28px;
+    background-image: url("../../images/technology/technologyActiveText/u79.png");
+}
+.market-dev p{
+    display: inline;
+    margin-left: 10px;
+    line-height: 28px;
+}
+.left .flexible{
+    margin-top: 5px;
+    padding-top: 40px;
+    width: 220px;
+    height: 156px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #FF0000;
+    text-align: left;
+    background-image: url("../../images/technology/tripleDocking/u0.png");
+}
+.left .flexible p{
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.market-dev .right{
+    display: inline;
+    margin-left: 65px;
+}
+.example-div{
+    margin-top: 6px;
+}
+.example-div .example{
+    margin-top: -1px;
+    width: 220px;
+    height: 158px;
+    font-family: 'Arial Normal', 'Arial';
+    /* padding-top: 1px; */
+    font-weight: 400;
+    font-size: 13px;
+    color: #333333;
+    text-align: left;
+    line-height: normal;
+    background-image: url("../../images/technology/technologyActiveText/u238.png");
+}
+.example-div .example p{
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.righter{
+    margin-top: 5px;
+    margin-left: 5px;
+    width:970px;
+    height:1025px;
+    float: left;
+}
+.hot-tech-div{
+    /* padding-top: 1px; */
+    width: 970px;
+    height: 125px;
+    background-image: url("../../images/technology/userCenter/u107.png");
+}
+.hot-tech-div .hot-tech{
+    margin-top: 6px;
+    margin-left: 8px;
+    float: left;
+    width: 30px;
+    height: 110px;
+    font-size: 14px;
+    color: #FF0000;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    text-align: center;
+    background-image: url("../../images/technology/userCenter/u109.png");
+}
+.hot-tech-div .hot-tech p{
+    margin:2px;
+   	line-height:18px;
+}
+.hot-tech-div .go-left{
+    width: 38px;
+    height: 39px;
+    float: left;
+    margin-top: 40px;
+    margin-left: 10px;
+    background-image: url("../../images/technology/index/u363.png");
+}
+.hot-tech-div .sub-hot-tech{
+    width: 240px;
+    height: 110px;
+    float: left;
+    margin-top: 6px;
+    margin-left: 40px;
+    background-image: url("../../images/technology/index/u255.png");
+}
+.hot-tech-div .sub-hot-tech .pro-title{
+    margin-top: 5px;
+    margin-left: 10px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-size: 13px;
+    width: 220px;
+    height: 23px;
+    line-height: 23px;
+    background-image: url("../../images/technology/index/u257.png");
+}
+.hot-tech-div .sub-hot-tech .img{
+    margin-top: 5px;
+    margin-left: 10px;
+    width: 63px;
+    height: 69px;
+    float: left;
+}
+.hot-tech-div .sub-hot-tech .img img{
+    width: 63px;
+    height: 69px;
+}
+.hot-tech-div .sub-hot-tech .holder{
+    width: 153px;
+    height: 23px;
+    float: left;
+    margin-top: 5px;
+    margin-left: 5px;
+    background-image: url("../../images/technology/index/u259.png");
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: left;
+    line-height: 23px;
+}
+.hot-tech-div .sub-hot-tech .tech-intro{
+    width: 153px;
+    height: 40px;
+    float: left;
+    margin-top: 5px;
+    margin-left: 5px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    line-height: 40px;
+    background-image: url("../../images/technology/index/u261.png");
+}
+.hot-tech-div .go-right{
+    width: 38px;
+    height: 39px;
+    float: left;
+    margin-top: 40px;
+    margin-left: 10px;
+    background-image: url("../../images/technology/index/u385.png");
+}
+.choose{
+    margin-top: 10px;
+    /* padding-top: 1px; */
+    width: 970px;
+    height: 125px;
+    background-image: url("../../images/technology/userCenter/u107.png");
+    font-size: 14px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+}
+.choose p{
+    margin-top: 20px;
+}
+.choose p #choose{
+    width: 100px;
+    height: 31px;
+    background-image: url("../../images/technology/other/transparent.gif");
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+}
+.choose p .long{
+    width: 200px;
+    height: 25px;
+}
+.choose p .short{
+    width: 60px;
+    height: 25px;
+}
+.choose .more{
+    margin-top: 10px;
+    margin-left: 917px;
+    width: 53px;
+    height: 19px;
+    background-image: url("../../images/technology/index/u150.png");
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: 19px;
+}
+.choose table{
+	/* margin-top:5px; */
+    width: 970px;
+    border: 1px solid;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+}
+.choose table tr{
+    height: 28px;
+    border-bottom: 1px solid;
+}
+.choose table tr .left-border{
+    border-left: 1px solid;
+}
+.choose table .head{
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 13px;
+}

@@ -1,0 +1,138 @@
+.header{
+    padding: 12px 0px 10px 3px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+    font-size: 13px;
+    color: #333333;
+    background-size: cover;
+    background-image: url("../../images/double/introduce/u58.png");
+    background-size: 1200px 40px;
+}
+#content .slogan{
+    height: 350px;
+    padding: 150px 0px 0px 0px;
+    background-image: url("../../images/double/introduce/u56.png");
+    background-size: 1200px 350px;
+
+}
+.slogan-word{
+    ont-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    text-align: center;
+}
+.pic-button{
+    margin: 110px 50px 0px 50px;
+    float: right;
+}
+.pic-button input{
+
+    width:30px ;
+    height: 25px;
+    margin: 0px 10px;
+}
+.column{
+    padding: 20px 0px ;
+    width: 1200px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    line-height: normal;
+    background-image:url("../../images/double/introduce/u66.png");
+    background-size: 1200px 60px;
+    text-align: center;
+}
+.plat{
+    padding: 60px 40px  0px 40px;
+    background-image:url("../../images/double/introduce/u68.png");
+    background-size: 1200px 250px;
+    text-align: center;
+}
+.plat img{
+    margin: 50px 35px 30px 35px;
+    width: 99px;
+    height: 90px;
+}
+.plat-source{
+    padding: 15px 0px ;
+    background-image:url("../../images/double/introduce/u84.png");
+    background-size: 1200px 230px;
+}
+.source-com{
+    float: left;
+    padding: 0px 68px;
+    width:600px;
+}
+.source1{
+    float: left;
+    margin: 5px 0px;
+    width: 232px;
+    height: 40px;
+    background-image:url("../../images/double/introduce/u86.png");
+}
+.source2{
+    float: left;
+    margin: 5px 0px;
+    width: 232px;
+    height: 40px;
+    background-image:url("../../images/double/introduce/u86.png");
+}
+.features{
+    padding: 15px 32px 43px 32px ;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: normal;
+    line-height: 33px;
+    background-image:url("../../images/double/introduce/u84.png");
+}
+.features-div{
+    float: left;
+    width: 226px;
+    margin: 0px 29px;
+}
+.features-1{
+    width: 226px;
+    height: 40px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: 40px;
+    background-image:url("../../images/double/introduce/u122.png");
+}
+.features-2{
+    width: 226px;
+    height: 33px;
+    background-image:url("../../images/double/introduce/u130.png");
+}
+.team{
+    padding: 20px 40px ;
+    background-image:url("../../images/double/introduce/u162.png");
+}
+.team img{
+    width: 99px;
+    height: 90px;
+    margin: 0px 42px;
+}
+.more{
+    float: right;
+    margin: 0px 0px 10px 0px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: left;
+    line-height: normal;
+
+}

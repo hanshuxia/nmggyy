@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户中心-企业设备信息</title>
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/list.css"/>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+        });
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="/${res}/js/html5shiv.min.js"></script>
+    <script src="/${res}/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div class="content wrapper clearfix">
+    <div class="head wrapper">
+        <a href="${base}/member/company_device_list_admin.jspx" class="current">企业设备列表</a>
+        [#if companyId??]
+        <a href="${base}/member/company_device_add_admin.jspx?companyId=${companyId?default('')}" class="btn">新增</a>
+        [/#if]
+    </div>
+    <div class="main">
+        <form id="tableForm" action="company_device_list.jspx" method="post">
+            <div class="tableDiv wrapper" style="padding-top:0;border-top: 5px solid #3077B9;">
+                <table cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th class="tggl-top">设备代码</th>
+                        <th class="tggl-top">设备名称</th>
+                        <th class="tggl-top">设备分类(末级)</th>
+                        <th class="tggl-top">期望单价（元）</th>
+                        <th class="tggl-top">发布日期</th>
+                        <th class="tggl-top">操作</th>
+                    </tr>
+                    </thead>
+                    [#if pagination.list?size gt 0]
+                    [#list pagination.list as c]
+                    <tbody>
+                    <tr>
+                        <td style="text-align: left;width: 250px;padding-left: 20px;">[@text_cut s=c.deviceCode?default("") len='15' append='...' /]</td>
+                        <td style="text-align: left;width: 250px;padding-left: 20px;"><a class="show-title" title="${c.deviceName?default('')}">[@text_cut s=c.deviceName?default("") len='15' append='...' /]</a></td>
+                        <td>[#if c.deviceType??][@s_typevalue typecode='NLFL' typekey=c.deviceType /][/#if]</td>
+                        <td>${c.expectPrice?default("")}</td>
+                        <td>${c.createDt?default("")}</td>
+                        <td><a class="link" href="company_device_edit.jspx?id=${c.deviceId}&nextUrl=company_device_list.jspx">编辑</a>
+                            <a class="link" href="company_device_delete.jspx?id=${c.deviceId}&nextUrl=company_device_list.jspx">删除</a>
+                        </td>
+                    </tr>
+                    [/#list]
+                    [#else]
+                    <tr>
+                        <td colspan="9"><h4>暂无企业设备</h4></td>
+                    </tr>
+                    [/#if]
+                    </tbody>
+                </table>
+            </div>
+            <input type="hidden" name="pageNo"/>
+            <div  class="page clearfix">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="left" class="pn-sp">
+                            每页 ${pagination.pageSize} 条&nbsp;
+                            <input class="first" type="button" onclick="_gotoPage('1');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input class="prev" type="button" onclick="_gotoPage('${pagination.prePage}');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input type="text" value=${pagination.pageNo} id="_goPs" onfocus="this.select();" onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>/${pagination.totalPage}
+                            <input class="next" type="button" onclick="_gotoPage('${pagination.nextPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>
+                            <input class="last" type="button" onclick="_gotoPage('${pagination.totalPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>&nbsp;
+                            <button id="_goPage" class="ok" type="button" onclick="_gotoPage($('#_goPs').val());"[#if pagination.totalPage==1] disabled="disabled"[/#if]>GO</button>
+                            共 ${pagination.totalCount} 条&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <script type="text/javascript">
+                function _gotoPage(pageNo) {
+                    if(!/^[0-9]*[1-9][0-9]*$/.test(pageNo)){ui.alertFail("页码必须为正整数！");return false;}
+                    try{
+                        var tableForm = document.getElementById("tableForm");
+                        $("input[name=pageNo]").val(pageNo);
+                        tableForm.action="synergy_device_list.jspx";
+                        tableForm.onsubmit=null;
+                        tableForm.submit();
+                    } catch(e) {
+                        alert('_gotoPage(pageNo)方法出错');
+                    }
+                }
+            </script>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+</body>
+</html>

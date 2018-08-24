@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>${company.companyName!} - 产业融合企业信息</title>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/companyMsg.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/synergy.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/abilityPreview.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!--header start-->
+[#include "../include/header_cyrh.html"]
+<!--header end-->
+<div class="content clearfix">
+    <div class="search-top wrapper">
+        <!--<a href="/xtzz/index.jhtml" target="_blank">协同制造</a><a href="/xtzzQyzznlzs/index.jhtml" target="_blank">企业能力展示</a>-->
+        <a class="current show-title" title="${company.companyName?default('')}">
+            [@text_cut s=company.companyName?default("") len='30' append='...'/]</a>
+    </div>
+</div>
+<div class="c-logo wrapper clearfix">
+
+    <div class="logo_img">
+        [#if (company.content)?? & (company.content.pictures[0])??]
+        <a> <img src="${company.content.pictures[0].imgPath?default('')}" alt=""></a>
+        [#else]
+        <!--可以写死一张图片放到这里-->
+        <a><img src="/${res}/resources/images/searching/company2.png" alt=""></a>
+        [/#if]
+    </div>
+    <div class="com_info">
+        <div class="item_cname">
+            <span><a class="show-name" title="${(company.companyName)!}">[@text_cut s=(company.companyName)! len='30' append='...'/]</a></span>
+        </div>
+        <div class="item_msg clearfix">
+            <ul class="clearfix">
+                <li class="item_ul">
+                    <p class="icon-equip">需求数量：<span>${(company.demandCount)!"0"}</span></p>
+                    <p class="icon-num">能力数量：<span>${(company.abilityCount)!"0"}</span></p>
+                    <p class="icon-register">注册时间：<span>${(company.createDt)!}</span></p>
+                </li>
+                <li class="item_ul">
+                    <p class="icon-phone">联系电话：<span>${(company.mobile)!}</span></p>
+                    <p class="icon-area">所在地：<span title="${(company.addrProvince)!}${(company.addrCity)!}${(company.addrCounty)!}${(company.addrStreet)!}">${(company.addrProvince)!}${(company.addrCity)!}${(company.addrCounty)!}[@text_cut s=(company.addrStreet)! len='15' append='...'/]</span></p>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+<div class="main_msg wrapper">
+    <div class="plate">
+        <div class="colum">
+            <span class="head">企业简介</span>
+        </div>
+        <div class="intro">
+            <span >
+                        ${(company.content.txt)!}
+            </span>
+        </div>
+    </div>
+    [#if company.diplomas?size != 0]
+    <div class="plate reward">
+        <div class="colum">
+            <span class="head">企业荣誉</span>
+        </div>
+        <div class="show-img wrapper">
+            <div class="prev">
+                <img src="/${res}/resources/images/abilityPreview/left.png">
+            </div>
+            <div class="plate_con clearfix">
+                <span class="pageInfo">1/3</span>
+                <ul class="clearfix">
+                    [#if (company.diplomas)??]
+                    [#list company.diplomas as a]
+                    <li>
+                        <div class="imgWrap">
+                            [#if (a.diplomaPic) != ""]
+                            <img src="${(a.diplomaPic)!}">
+                            [#else]
+                            <!--可以写死一张图片放到这里-->
+                            <a><img src="/${res}/resources/images/searching/company2.png" alt=""></a>
+                            [/#if]
+                        </div>
+                        <div class="imgTitle">
+                            <span><a title="${a.diplomaDiscribe!}">[@text_cut s=a.diplomaDiscribe! len='15' append='...'/]</a></span>
+                        </div>
+                    </li>
+                    [/#list]
+                    [/#if]
+                </ul>
+            </div>
+            <div class="next">
+                <img src="/${res}/resources/images/abilityPreview/right.png">
+            </div>
+        </div>
+    </div>
+    [/#if]
+
+    [#if company.demands?size != 0]
+    <div class="plate reward">
+        <div class="colum">
+            <span class="head">企业需求</span>
+        </div>
+        <div class="tabBody wrapper">
+            <div class="tabPane">
+                <div class="tableHead">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th class="pTime">发布时间</th>
+                            <th class="aName">需求名称</th>
+                            <th class="area" style="padding-left: 30px">地区</th>
+                            <th class="kind" style="padding-left: 30px">分类</th>
+                            <th class="bCompany" style="padding-left: 80px">所属企业</th>
+                            <!--<th class="price">价格(单位:元)</th>-->
+                            <th></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="tableBody">
+                    <table>
+                        [#if (company.demands)??]
+                        [#list company.demands as a]
+                        [#if a.statusType='3']
+                        [#if a.classifyType='880100'||a.classifyType='880200'||a.classifyType='880300'||a.classifyType='880400'||a.classifyType='880500'||a.classifyType='880600']
+                        <tr>
+                            <td class="pTime">${a.createDt!}</td>
+                            <td class="aName"><a title="${a.inquiryTheme!}">[@text_cut s=a.inquiryTheme! len='16' append='...' /]</a></td>
+                            <td class="area">${a.addrCity!}</td>
+                            <td class="kind">[#if a.classifyType??][@s_typevalue typecode='NLFL' typekey=a.classifyType /][/#if]</td>
+                            <td class="bCompany"><a title="${a.company.companyName!}">[@text_cut s=a.company.companyName! len='16' append='...' /]</a></td>
+                            <!--<td class="price">[#if a.referPrice??][#if a.referPrice==0]面议[#else]${a.referPrice!}[/#if][/#if]</td>-->
+                            <td class="last">
+                                [#if a.content.staticContent]
+                                [#if a.content.needRegenerate]
+                                <a href="/xtzzNlczs/xtzz_synergy_demand_preview.jspx?id=${a.demandId}" target="_blank">点击详情</a>
+                                [#else]
+                                <a href="${a.content.url}" target="_blank">点击详情</a>
+                                [/#if]
+                                [#else]
+                                <a href="/xtzzNlczs/xtzz_synergy_demand_preview.jspx?id=${a.demandId}" target="_blank">点击详情</a>
+                                [/#if]
+                            </td>
+                        </tr>
+                        [/#if]
+                        [/#if]
+                        [/#list]
+                        [/#if]
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    [/#if]
+
+    [#if company.abilities?size != 0]
+    <div class="plate reward">
+        <div class="colum">
+            <span class="head">企业能力</span>
+        </div>
+        <div class="tabBody wrapper">
+            <div class="tabPane">
+                <div class="tableHead">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th class="pTime">发布时间</th>
+                            <th class="aName">能力名称</th>
+                            <th class="area" style="padding-left: 30px">地区</th>
+                            <th class="kind" style="padding-left: 30px">分类</th>
+                            <th class="bCompany" style="padding-left: 80px">所属企业</th>
+                            <th class="price">价格(单位:元)</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="tableBody">
+                    <table>
+                        [#if (company.abilities)??]
+                        [#list company.abilities as a]
+                        [#if a.statusType='3']
+                        [#if a.abilityType='880100'||a.abilityType='880200'||a.abilityType='880300'||a.abilityType='880400'||a.abilityType='880500'||a.abilityType='880600']
+                        <tr>
+                            <td class="pTime">${a.createDt!}</td>
+                            <td class="aName"><a title="${a.abilityName!}">[@text_cut s=a.abilityName! len='16' append='...' /]</a></td>
+                            <td class="area">${a.addrCity!}</td>
+                            <td class="kind">[#if a.abilityType??][@s_typevalue typecode='NLFL' typekey=a.abilityType /][/#if]</td>
+                            <td class="bCompany"><a title="${a.company.companyName!}">[@text_cut s=a.company.companyName! len='16' append='...' /]</a></td>
+                            <td class="price">[#if a.referPrice??][#if a.referPrice==0]面议[#else]${a.referPrice!}[/#if][/#if]</td>
+                            <td class="last">
+                                [#if a.content.staticContent]
+                                [#if a.content.needRegenerate]
+                                <a href="/xtzzNlczs/xtzz_ability_preview.jspx?id=${a.abilityId}" target="_blank">点击详情</a>
+                                [#else]
+                                <a href="${a.content.url}" target="_blank">点击详情</a>
+                                [/#if]
+                                [#else]
+                                <a href="/xtzzNlczs/xtzz_ability_preview.jspx?id=${a.abilityId}" target="_blank">点击详情</a>
+                                [/#if]
+                            </td>
+                        </tr>
+                        [/#if]
+                        [/#if]
+                        [/#list]
+                        [/#if]
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    [/#if]
+    <br>
+</div>
+
+<!--footer start-->
+[#include "../include/footer_cyrh.html"]
+<!--footer end-->
+<!--前台_企业能力详情展示-->
+</body>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/jajavascriptvascript" charset="utf-8" src="/${res}/resources/lib/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/companyMsg.js"></script>
+</html>

@@ -1,0 +1,742 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>发布能力</title>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/releasePower.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/contact.css"/>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+
+    <!--[if lte IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <script type="text/javascript" src="/thirdparty/jquery-placeholder/placeholder-ie9.js" ></script>
+    <![endif]-->
+    <link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script src="${base}/res/common/js/jquery.ext.js" type="text/javascript"></script>
+    <script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/swfupload.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/swfupload.queue.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/fileprogress.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/handlers.js" type="text/javascript"></script>
+    <link href="${base}/thirdparty/swfupload/process.css" rel="stylesheet" type="text/css"/>
+    <!--添加表单校验-->
+    <script src="${base}/res/common/js/jquery.validate.js" type="text/javascript"></script>
+    <script src="${base}/res/common/js/messages_zh.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+    <script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+
+    <!--自己写校验方法-->
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/validateCheck.js"></script>
+    <!--级联菜单相关js-->
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/commonDict.js"></script>
+    <script type="text/javascript">
+        /* //表单验证
+         $.validator.setDefaults({
+             submitHandler: function() {
+                 alert("提交事件!");
+             }
+         });*/
+        // 联系人信息是否有默认地址
+        window.isDef = 0;
+
+        // 弹出和更新联系人信息界面的ajax
+        function getContactAjax(userId){
+            $.ajax({
+                type:"post",
+                url:"/member/getContactList.jspx?userId=" + userId,
+                dataType:"json",
+                success:function(json){
+                    if (json.data.length == 0) { // 没有用户联系信息
+                        openContactAdd();
+                    } else {
+                        // 填充表格信息
+                        fillContactTable(json);
+                        // 塞入联系人信息
+                        fillContactInfo();
+                    }
+                },
+                error:function(){
+                    ui.alert("数据传输失败，原因：1、用户未登录，2、用户无关联公司，3、请求的联系信息不存在或未找到");
+                }
+            })
+        }
+        //切字符串方法
+        function s_cut(s,lenth,append){
+            var index = 0;
+            var len = 0;
+            var str = "";
+            var a = "";
+            for (var i = 0; len < lenth; i++) {
+                index = i;
+                a = s.charAt(i);
+                str += a;
+                if (a.match(/[^\x00-\xff]/ig) != null) {
+                    len += 2;
+                }
+                else {
+                    len += 1;
+                }
+            }
+            if(s.charAt(index+1) == ""){
+                return str;
+            }else{
+                return (str+append);
+            }
+        }
+        // 根据json填联系人信息的方法
+        function fillContactTable(jsonObj){
+            var tBody = $('#bjTable tbody');
+            tBody.html("");
+
+            $.each(jsonObj.data, function(i, item){
+                tBody.append("<tr id = 'infoSelected' onclick='infoSelected(this)'></tr>");
+                var tr = tBody.find('tr:last');
+                if(item.defAddr == "1") {
+                    tr.append("<td id='shipAddressName' class='ckt-checkbox selected'><a title='"+item.shipAddressName+"'>"+s_cut(item.shipAddressName,4,'..')+"</a></td>");
+                } else {
+                    tr.append("<td id='shipAddressName' class='ckt-checkbox'><a title='"+item.shipAddressName+"'>"+s_cut(item.shipAddressName,4,'..')+"</a></td>");
+                }
+                tr.append("<td id='userName1' class='name-li-ckt-info' style='width: 100px'><a title='"+item.userName+"'>"+item.userName+"</a></td>");
+                tr.append("<td id='addrProvince1' hidden><a title='"+item.province+"'>"+item.province+"</a></td>");
+                tr.append("<td id='addrCity1' hidden><a title='"+item.city+"'>"+item.city+"</a></td>");
+                tr.append("<td id='addrCounty1' hidden><a title='"+item.country+"'>"+item.country+"</a></td>");
+                tr.append("<td id='addrStreet1' hidden><a title='"+item.address+"'>"+item.address+"</a></td>");
+                tr.append("<td id='addr' class='address-li-ckt-info'><a title='"+item.province+item.city+item.country+item.address+"'>"+item.province+item.city+item.country+item.address+"</a></td>");
+                tr.append("<td id='fax1' hidden><a title='"+item.fax+"'>"+item.fax+"</a></td>");
+                tr.append("<td id='email1' hidden><a title='"+item.email+"'>"+item.email+"</a></td>");
+                tr.append("<td id='mobile1'><a title='"+item.mobile+"'>"+item.mobile+"</a></td>");
+                tr.append("<td id='postCode1' hidden><a title='"+item.zip+"'>"+item.zip+"</a></td>");
+                tr.addClass("li-ckt-info");
+                if(item.defAddr == "1") {
+                    window.isDef += 1;
+                    tr.append("<td id='defAddr' class='default-li-ckt-info'>默认地址</td>");
+                    $('#bjTable tbody').find('tr:eq(' + i + ')').addClass("infoSelected");
+                } else {
+                    tr.append("<td id='defAddr'></td>");
+                }
+            });
+            $('#bjWindow').show();
+            if(tBody.children('tr').length == 0){
+                openContactAdd();
+            }
+        }
+
+        $().ready(function() {
+            validform();
+            getContactAjax(${user.userId});
+
+
+        });
+
+        function validform(){
+            /*关键在此增加了一个return，返回的是一个validate对象，这个对象有一个form方法，返回的是是否通过验证*/
+            return $("#release_form").validate();
+        }
+
+        //上传图片
+        function upload(n) {
+            var of = $("#uploadFile"+n);
+            //检查是否选择了图片
+            if(of.val()=="") {
+                alert('没有选择图片!');
+                return;
+            }
+            //将file移动至上传表单
+            $("#fileContent").empty();
+            $("#fileContent").append(of);
+            //复制一个file放至原处
+            $("#ufc"+n).append(of.clone().attr("value",""));
+            //修改属性
+            of.attr("id","");
+            of.attr("name","uploadFile");
+            //其他表单
+            $("#ufFileName").val($("#fileName"+n).val());
+            $("#ufWidth").val($("#zoomWidth"+n).val());
+            $("#ufHeight").val($("#zoomHeight"+n).val());
+            //先清除
+            $("#ufMark").val("");
+            $("#ufMark").val($("#mark"+n).val());
+            $("#uploadNum").val(n);
+            $("#uploadForm").submit();
+        }
+        //剪裁图片
+        function imgCut(n) {
+            if($("#uploadImgPath"+n).val()=="") {
+                alert('没有选择图片!');
+                return;
+            }
+            var url = "v_image_area_select.jspx?uploadNum="+n+"&imgSrcPath="
+                +$("#uploadImgPath"+n).val()+"&zoomWidth="+$("#zoomWidth"+n).val()+"&zoomHeight="+$("#zoomHeight"+n).val();
+            window.open(url,"imgcut","height=550, width=1000, top=0, left=0, toolbar=no, menubar=no, scrollbars=auto, resizable=yes,location=no, status=no");
+        }
+        //预览图片
+        function previewImg(n) {
+            var img = $("#uploadImgPath"+n).val();
+            if(img!="") {
+                if(img.indexOf("?")==-1) {
+                    $("#preImg"+n).attr("src",img+"?d="+new Date()*1);
+                } else {
+                    $("#preImg"+n).attr("src",img+"&d="+new Date()*1);
+                }
+                if(!$("#preImg"+n).attr("noResize")) {
+                    $("#preImg"+n).css("width","auto");
+                    $("#preImg"+n).css("height","auto");
+                }
+            } else {
+                $("#preImg"+n).removeAttr("src");
+            }
+        }
+    </script>
+    <form id="uploadForm"  action="o_upload_image.jspx" method="post"  enctype="multipart/form-data" target="hiddenIframe" style="display:none;width:0px;height:0px;">
+        <span id="fileContent"></span>
+        <input id="ufWidth" type="hidden" name="zoomWidth"/>
+        <input id="ufHeight" type="hidden" name="zoomHeight"/>
+        <input id="ufFileName" type="hidden" name="fileName"/>
+        <input id="ufMark" type="hidden" name="mark"/>
+        <input id="uploadNum" type="hidden" name="uploadNum"/>
+    </form>
+    <iframe name="hiddenIframe" frameborder="0" border="0" style="display:none;width:0px;height:0px;"></iframe><script type="text/javascript">
+    //上传附件
+    function uploadAttachment(n) {
+        var af = $('#attachmentFile'+n);
+        //检查是否选择了文件
+        if(af.val()=='') {
+            $.alert("提示",'未选中文件!');
+            return;
+        }
+        //将file移动至上传表单
+        $('#attachmentContent').empty();
+        $('#attachmentContent').append(af);
+        //复制一个file放至原处
+        $('#afc'+n).append(af.clone().attr('value',''));
+        $('#attachmentText'+n).attr('value','');
+        //修改属性
+        af.attr('id','');
+        //其他表单
+        $('#attachmentNum').val(n);
+        $('#attachmentForm').submit();
+    }
+</script>
+
+    <script type="text/javascript">
+        $.validator.methods.leafChannel = function(value, element, param) {
+            var i = element.selectedIndex;
+            return $(element.options[i]).attr("class")!="sel-disabled";
+        }
+        $(function() {
+
+            var uploadPicsUrl = "member/o_swfPicsUpload.jspx";
+            var uploadAttachsUrl = "member/o_swfAttachsUpload.jspx";
+            //在firefox、chrome下，上传不能保留登录信息，所以必须加上jsessionid。
+            var jsessionid ="${sessionId!}";
+            if(jsessionid) {
+                uploadPicsUrl += ";jsessionid="+jsessionid;
+                uploadAttachsUrl += ";jsessionid="+jsessionid;
+            }
+            swfu=new SWFUpload({
+                upload_url : uploadPicsUrl,
+                flash_url : "${base}/thirdparty/swfupload/swfupload.swf",
+                file_size_limit : "2 MB",
+                file_types : "*.jpg;*.gif;*.png;*.bmp",
+                file_types_description : "图片",
+                file_queue_limit : 0,
+                custom_settings : {
+                    progressTarget : "fsUploadProgress",
+                    cancelButtonId : "btnCancel"
+                },
+                debug: false,
+
+                button_image_url : "${base}/thirdparty/swfupload/button_notext.png",
+                button_placeholder_id : "spanButtonPlaceHolder",
+                button_text: "<span class='btnText'>上传</span>",
+                button_width: 84,
+                button_height: 24,
+                button_text_top_padding: 2,
+                button_text_left_padding: 20,
+                button_text_style: '.btnText{color:#666666;}',
+
+                file_queued_handler : fileQueued,
+                file_queue_error_handler : fileQueueError,
+                file_dialog_complete_handler : fileDialogComplete,
+                upload_progress_handler : uploadProgress,
+                upload_error_handler : uploadError,
+                upload_success_handler : uploadPicsSuccess,
+                upload_complete_handler : uploadComplete,
+                queue_complete_handler : queueComplete,
+                button_window_mode:SWFUpload.WINDOW_MODE.OPAQUE
+            });
+        });
+        function uploadPicsSuccess(file,data) {
+            var jsonData=eval("("+data+")");//转换为json对象
+            if(jsonData.error!=null){
+                $.alert("[@s.m 'global.prompt'/]",jsonData.error);
+            }else{
+                addPicLine();
+                var index = picIndex - 1;
+                imgUrl=jsonData.imgUrl;
+                $("#preImg"+index).attr("src",""+imgUrl);
+                var imgSrc = parent.document.getElementById("preImg"+index);
+                if(!$(imgSrc).attr("noResize")) {
+                    $(imgSrc).css("width","auto");
+                    $(imgSrc).css("height","auto");
+                }
+                $("#uploadImgPath"+index).val(imgUrl);
+            }
+        }
+        function uploadAttachSuccess(file,data) {
+            var jsonData=eval("("+data+")");//转换为json对象
+            if(jsonData.error!=null){
+                $.alert("[@s.m 'global.prompt'/]",jsonData.error);
+            }else{
+                addAttachLine();
+                var index = attachIndex - 1;
+                var attachUrl=jsonData.attachUrl;
+                var attachName=jsonData.attachName;
+                $("#attachmentPaths"+index).val(attachUrl);
+                $("#attachmentNames"+index).val(attachName);
+            }
+        }
+    </script>
+</head>
+<body>
+<!--header start-->
+<div class="j_head">
+    [#if cyrh??]
+    [#include "../include/header_cyrh.html"]
+    [#else]
+    [#include "../include/header_icloud.html"]
+    [/#if]
+</div>
+<!--header end-->
+<div class="content wrapper">
+    <form id="release_form" action="/member/synergy_ability_save.jspx" method="post">
+        <div class="servicePower">
+            <div class="column wrapper">
+                <span class="head">服务能力信息</span>
+                <span class="tips"><i>*</i>&nbsp;为必填项</span>
+            </div>
+            <div class="service-content wrapper">
+                <div class="inputs aTypeFrameOuter">
+                    <label><i>*</i>&nbsp;能力分类：</label>
+                    [#if cyrh??]
+                    <select class="abilityType" name="abilityType" required>
+                        <option value="880100" >工业</option>
+                        <option value="880200" >农牧业</option>
+                        <option value="880300" >服务业</option>
+                        <option value="880400">能源产业</option>
+                        <option value="880500">多方数据融合创新</option>
+                        <option value="880600">大数据公共服务平台</option>
+                    </select>
+                    [#else]
+                    <input type="hidden" id="abilityTypeHidden" name="abilityType" value="" >
+                    <input class="power category" id="abilityTypeInput" type="text" readonly="readonly" required>
+                    [/#if]
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;能力名称：</label>
+                    <input class="power space" id="abilityName" name="abilityName" type="text"  required maxlength="50" placeholder="一句话描述具备的服务能力，如：铝件箱体加工">
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;能力代码：</label>
+                    <input class="codeInput space" id="abilityCode" name="abilityCode"  type="text" required maxlength="20" placeholder="服务能力的内部编号">
+                </div>
+                <div class="inputs" id="uit">
+                    <label><i>*</i>&nbsp;计量单位：</label>
+                    <input class="space" type="text" id="unit" name="unit" required maxlength="4" style="width:250px" placeholder="服务的计费单位或交付物的计量单位">
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;参考价格(元)：</label>
+                    <input class="price" type="text" id="referPrice" placeholder="若价格面议请填写0" name="referPrice" required maxlength="13">
+                    <!--暂时不添加议价功能<input type="checkbox"><span class="special">议价</span>-->
+                </div>
+                <div class="uploadImgs" id="imgUploadDiv">
+                    <label><i>*</i>&nbsp;上传图片：</label>
+                    <span>(最多可添加5张图片，建议上传400*400像素的图片，单张大小不超过2M)</span><span style="color: red" id="pictureSpan"></span>
+                    <div class="upLoadDiv">
+                        <span id="spanButtonPlaceHolder"></span>
+                        <span style="display: none;"><input class="cancel" id="btnCancel" type="button" value="取消" onclick="swfu.cancelQueue();" disabled="disabled" /></span>
+                        <div id="fsUploadProgress" style="display: none;"></div>
+                    </div>
+                    <div id="picWrapper" class="picWrapper clearfix"> </div>
+                    <div id="picBefore" style="clear:both"></div>
+                    <div id="picTable" style="display:none;">
+                        <table id="picTable{0}" border="0" cellpadding="0" cellspacing="0" class="fbgj-tab">
+                            <tr>
+                                <td><img id="preImg{0}" alt="预览" noResize="true" style="width:110px;height:110px;background-color:#ccc;border:1px solid #c7c7c7;"/></td>
+                            </tr>
+                            <tr>
+                                <td style="line-height:1;">
+                                    <div style="margin-top:4px;"><input type="text" id="uploadImgPath{0}" name="picPaths" class="member-change" style="display:none;"/> <a href="javascript:void(0);" onclick="$('#picTable{0}').remove();clearSpan()" class="pn-opt">删除</a></div>
+                                    <div style="margin-top:4px;">
+                                <span id="ufc{0}" style="position:relative;">
+                                <input type='text' id='uploadFileText{0}' size="10" class="member-change" style="width:115px;height:30px;display:none;"/>
+                                <input onchange="$('#uploadFileText{0}').val(this.value)" size="10" type="file" id="uploadFile{0}" style="width:72px;height:30px;display:none;"/>
+                                </span>
+                                        <input type="button" value="上传" onclick="upload({0});" style="width:50px;height:30px;display:none;cursor:pointer;background:#3694d7;color:#fff;font-size:12px;"/>
+                                    </div>
+                                    <div><textarea style="width:300px;height:60px;margin-bottom:0;margin-top:10px;display:none;" name="picDescs" maxlength="255" ></textarea></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <script type="text/javascript">
+                        var picIndex = 1;
+                        var picTpl = $.format($("#picTable").html());
+                        function addPicLine() {
+                            //$('#picBefore').before(picTpl(picIndex++));
+                            $("#picWrapper").append(picTpl(picIndex++));
+                        }
+                    </script>
+                </div>
+                <div class="myDiv">
+                    <label><i>*</i>&nbsp;详细描述：</label>
+                    <script class="myEditor" id="editor" name="detailDesc" type="text/plain"></script>
+                </div>
+                <br>
+                <span style="color: red;margin-left: 200px" id="detailSpan"></span>
+            </div>
+        </div>
+        <div class="servicePower">
+            <div class="column wrapper"> <span class="head">联系信息</span> <span class="tips"></span><button type="button" id="addContact" class="addBtn" style="width:130px;">新增联系人信息</button>  </div>
+            <!--收货人信息 start-->
+            <div class="ckt-item info">
+                <div class="top-ckt">
+                    <span class="span-title-top">注：选中某条联系信息，该条联系信息设置为发布能力的联系信息</span>
+                    <div class="clearfix"></div>
+                </div>
+
+                <!--地址列表-->
+                <div class="center-ckt-info">
+                    <ul id="address_list">
+                        <!--通过load方法加载-->
+                        <script type="text/javascript">
+                            $(function(){
+                                //  初始化收货人地址列表
+                                //Ckt.info.i_InfoInitAddress();
+                            });
+                        </script>
+                    </ul>
+                    <!--报价隐藏div-->
+                    <div class="window" id="bjWindow" hidden>
+                        <div class="yxmain">
+                            <div class="tableDiv tale">
+                                <table border="0" class="wrapper" cellpadding="0" cellspacing="0" id="bjTable">
+                                    <!--<thead>-->
+                                    <!--<tr>-->
+                                    <!--<th>地址标签</th>-->
+                                    <!--<th>姓名</th>-->
+                                    <!--<th>地址</th>-->
+                                    <!--<th>电话</th>-->
+                                    <!--<th>是否为默认地址</th>-->
+                                    <!--</tr>-->
+                                    <!--</thead>-->
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--地址列表 end-->
+                <div class="collapse-ckt-info">
+                    <span class="more-collapse-ckt">更多地址</span>
+                    <i class="icon-collapse-ckt-info"></i>
+                </div>
+                <div class="placeholder-20"></div>
+            </div>
+        </div>
+        <div class="message">
+            <p>优质的信息更能得到买家的青睐，以下方面建议您发布前可以再检查一下：</p>
+            <p>1、选择准确的类目；</p>
+            <p>2、能力标题中包含能力关键词，并突出能力卖点；</p>
+            <p>3、尽可能地完善能力属性及能力详情，必要时能力详情可图文并茂；注意突出能力的优势及特点；</p>
+            <p>4、上传清晰的能力图片。</p>
+        </div>
+        <div class="release-button">
+            <button type="button" class="btn submit" onclick="beforeSubmit(2)">确认发布</button>
+            <button type="button" class="btn cancel" onclick="beforeSubmit(1)">保存到草稿</button>
+        </div>
+        <!--联系信息-->
+        <div hidden>
+            <input id="contact" name="contact" type="text" value="">
+            <input id="mobile" name="mobile" type="text" value="">
+            <input id="fax" name="fax" type="text" value="">
+            <input id="email" name="email" type="text" value="">
+            <input id="addrProvince" name="addrProvince" type="text" value="">
+            <input id="addrCity" name="addrCity" type="text" value="">
+            <input id="addrCounty" name="addrCounty" type="text" value="">
+            <input id="addrStreet" name="addrStreet" type="text" value="">
+            <input id="postCode" name="postCode" type="text" value="">
+        </div>
+        <input type="hidden" id="cyrh" name="cyrh" value="${cyrh!}">
+        <input id="nextUrl" name="nextUrl" value="synergy_ability_list.jspx" hidden="hidden">
+        <input id="modelId" name="modelId" value="98" hidden="hidden">
+        <input id="channelId" name="channelId" value="103" hidden="hidden">
+        <input type="hidden" id="statusType" name="statusType" value="2">
+        <input type="hidden" id="frontStatus" name="frontStatus" value="${frontStatus?default('3')}">
+    </form>
+</div>
+<!--footer start-->
+<div class="j_head">
+    [#if cyrh??]
+    [#include "../include/footer_cyrh.html"]
+    [#else]
+    [#include "../include/footer_icloud.html"]
+    [/#if]
+</div>
+<!--footer end-->
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="${base}/thirdparty/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="${base}/thirdparty/ueditor/ueditor.all.js"> </script>
+<script charset="utf-8" src="/${res}/resources/js/mapDistPicker/distpicker.data.js" type="text/javascript"></script>
+<script charset="utf-8" src="/${res}/resources/js/mapDistPicker/distpicker.js" type="text/javascript"></script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8" src="${base}/thirdparty/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<!--富文本编辑，粘贴图片-->
+<script type="text/javascript">
+    var editor = UE.getEditor('editor',{autoHeightEnabled:false,zIndex:0});
+</script>
+<script language="javascript">
+    UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+    UE.Editor.prototype.getActionUrl = function(action) {
+        if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadimage') {
+            return "/ueditor/upload.jspx";
+        } else {
+            return this._bkGetActionUrl.call(this, action);
+        }
+    }
+</script>
+<script>
+    function beforeSubmit(statusType){
+        var result = checkPicture();
+        var result1 = checkEdit();
+        var result2 = checkContact(); // 联系人非空检验
+        var obj = $("#bjTable tbody").find(".infoSelected");
+        if (obj != undefined) {
+            if (obj.length != 0) {
+                window.isDef += 1;
+            }
+        }
+        fillContactInfo(obj); // 塞入联系信息
+        if(validform().form()){
+            if(result && result1) {
+                $('#statusType').val(statusType);
+                if (result2 == false) {
+                    ui.alertFail("请在本页面底部【新增联系人信息】");
+                    return false;
+                }
+                if (window.isDef < 1) {
+                    ui.alertFail("请在本页面底部选择发布能力的联系人信息");
+                    return false;
+                }
+                var typestr = (statusType=="2")?"是否发布？":"是否保存到草稿？";
+                if(confirm("请确认"+typestr+"")){
+                    $('.btn.submit').attr("disabled",true);
+                    $('.btn.cancel').attr("disabled",true);
+                    $('#release_form').submit();
+                }
+            }
+        }
+    }
+
+    /**
+     * 图片校验
+     *
+     */
+    function checkPicture(){
+        if($("#imgUploadDiv").find('img').size()<2){
+            $("#pictureSpan").html("未上传图片！请检查");
+            return false;
+        }
+        if($("#imgUploadDiv").find('img').size()>6){
+            $("#pictureSpan").html("最多上传5张图片！请检查");
+            return false;
+        }
+        return true;
+    }
+
+    //富文本校验
+    function checkEdit(){
+        var length = editor.getContentLength();
+        var maxWord = editor.getOpt("maximumWords") || 20000;
+        if(length<=0){
+            $("#detailSpan").html("详细描述未填写！请检查");
+            return false;
+        }
+        if(length>maxWord){
+            $("#detailSpan").html("详细描述文字过多");
+            return false;
+        }
+        return true;
+    }
+    //动态改变计量单位
+    function abilityType() {
+        debugger
+        var a = $('#abilityTypeHidden').val();
+        if(a=="880100"||a=="880200"||a=="880300"||a=="880400"||a=="880500"||a=="880600"){
+            $('#uit').hide();
+            $('#unit').attr("value","产业融合");
+        }else{
+            $('#uit').show();
+            $('#unit').attr("value","");
+        }
+    }
+
+    $(document).ready(function(){
+        //动态改变计量单位
+
+
+        //把没有图片上传的提示语删掉
+        $("#imgUploadDiv").mouseleave(function(){
+            if($("#imgUploadDiv").find('img').size()>1 && $("#imgUploadDiv").find('img').size()<7) {
+                $("#pictureSpan").html("");
+            }
+        });
+        if(location.search.indexOf("front")>0){
+            $(".j_head").show();
+        };
+        //把没有文本编辑的提示语删掉
+        editor.addListener("focus", function (type, event) {
+            $("#detailSpan").html("");
+        });
+        if(self.frameElement!=null && self.frameElement.tagName=="IFRAME"){
+            // 在iframe中时处理
+            $(".wrapper").css("width","95%");
+        }
+        //自动填写
+        $('.autoInput').click(function(){
+            if($(this).is(':checked')){
+                $(this).prevAll('input').eq(0).val($(this).next('span.special').text()).attr("readonly","readonly");
+                $(this).prevAll('input').eq(0).focus().blur();
+            }else{
+                $(this).prevAll('input').eq(0).val("").removeAttr("readonly");
+                $(this).prevAll('input').eq(0).focus().blur();
+            }
+        })
+        var aTypeFrame = new typeFrame("NLFL", "aTypeFrameOuter", 173, "abilityTypeInput", "abilityTypeHidden");
+        aTypeFrame.ini();
+
+    });
+
+    function clearSpan(){
+        if($("#imgUploadDiv").find('img').size()>1 && $("#imgUploadDiv").find('img').size()<7) {
+            $("#pictureSpan").html("");
+            return false;
+        }
+        return true;
+    }
+
+    //  新增联系人信息
+    $('#addContact').on('click', function(){
+        openContactAdd();
+    });
+
+    // 打开联系人新增页面
+    function openContactAdd () {
+        layer.open({
+            type: 2,
+            title: ['联系人信息', 'background-color: #318CB8;text-align:center;font-size:18px;'],
+            shadeClose: true,
+            shade: false,
+            maxmin: true,
+            area: ['800px', '490px'],
+            content: '/member/getContactAddrAdd.jspx',
+            end: function(){
+                // 如果是通过单击关闭按钮关闭弹出层，父画面没有此表单
+                if($("#popupForm").length === 1){
+                    $("#popupForm").submit();
+                }
+            }
+        });
+    }
+
+    // 设置联系信息为发布能力联系信息
+    function infoSelected (obj) {
+        layer.confirm('确定该条联系信息设为发布能力的联系信息？', {
+                skin: 'layui-layer-lan',
+                icon: 3,
+                shift: -1,
+                btn: ['确定', '取消'] //可以无限个按钮
+            },
+            function (index, layero) {
+                // 塞入联系信息
+                fillContactInfo(obj);
+                layer.close(index);
+                $(obj).siblings().removeClass("infoSelected");
+                $(obj).addClass("infoSelected");
+                $(obj).siblings().find("#shipAddressName").removeClass("ckt-checkbox selected");
+                $(obj).find("#shipAddressName").addClass("ckt-checkbox selected");
+                window.isDef += 1;
+            }, function (index) {
+                layer.close(index);
+                return false;
+            });
+    }
+
+    // 检验联系人信息非空
+    function checkContact() {
+        var isCheck = ($("#contact").val() != "") && ($("#contact").val() != null) && ($("#contact").val() != undefined);
+        return isCheck;
+    }
+
+    // 塞入联系信息
+    function fillContactInfo (obj) {
+        if ($("#userName1")[0] != undefined) {
+            if ($(obj).length != 0) {
+                if (($(obj).find("#userName1")[0].innerText != "") && ($(obj).find("#userName1")[0].innerText != null) && ($(obj).find("#userName1")[0].innerText != undefined)) {
+                    $("#contact").val($(obj).find("#userName1")[0].innerText);
+                    $("#mobile").val($(obj).find("#mobile1")[0].innerText);
+                    $("#postCode").val($(obj).find("#postCode1")[0].innerText);
+                    if ($("#fax1")[0].innerText == 'undefined') {
+                        $("#fax").val("");
+                    } else {
+                        $("#fax").val($(obj).find("#fax1")[0].innerText);
+                    }
+                    if ($("#email1")[0].innerText == 'undefined') {
+                        $("#email").val("");
+                    } else {
+                        $("#email").val($(obj).find("#email1")[0].innerText);
+                    }
+                    $("#addrProvince").val($(obj).find("#addrProvince1")[0].innerText);
+                    $("#addrCity").val($(obj).find("#addrCity1")[0].innerText);
+                    $("#addrCounty").val($(obj).find("#addrCounty1")[0].innerText);
+                    $("#addrStreet").val($(obj).find("#addrStreet1")[0].innerText);
+                }
+            } else {
+                $("#contact").val($("#userName1")[0].innerText);
+                $("#mobile").val($("#mobile1")[0].innerText);
+                $("#postCode").val($("#postCode1")[0].innerText);
+                if ($("#fax1")[0].innerText == 'undefined') {
+                    $("#fax").val("");
+                } else {
+                    $("#fax").val($("#fax1")[0].innerText);
+                }
+                if ($("#email1")[0].innerText == 'undefined') {
+                    $("#email").val("");
+                } else {
+                    $("#email").val($("#email1")[0].innerText);
+                }
+                $("#addrProvince").val($("#addrProvince1")[0].innerText);
+                $("#addrCity").val($("#addrCity1")[0].innerText);
+                $("#addrCounty").val($("#addrCounty1")[0].innerText);
+                $("#addrStreet").val($("#addrStreet1")[0].innerText);
+            }
+        }
+    }
+</script>
+</body>
+</html>

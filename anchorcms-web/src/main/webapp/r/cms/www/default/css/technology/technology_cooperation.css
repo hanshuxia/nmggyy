@@ -1,0 +1,291 @@
+body {
+    margin: 0px;
+    width: 1290px;
+    text-align: left;
+    margin:0px auto;
+   
+}
+div{
+	 
+}
+p{
+	margin: 0px;
+	padding:0px;
+}
+.top{
+	    width: 1200px;
+margin:0 auto;
+   height:  125px;
+}
+.top-left{
+	width: 220px;
+	height:121px;
+		float :left;
+
+	   	   background-color: #B9B9B9;
+	 margin:2px;
+	   
+}
+.top-right{
+	float :left;
+
+	   margin:2px;
+	   	width: 972px;
+	height:121px;
+		   background-color: #B9B9B9;
+}
+.top-left-title{
+	width: 200px;
+	height: 42px;
+	text-align: center;
+	background-color: white;
+	border: 1px solid;
+	margin:10px auto;
+	color:red;
+	line-height: 42px;
+	font-size: 16px;
+}
+.top-right-title{
+	float: left;
+	height:101px;
+	width:26px;
+	border:1px solid;
+	text-align: center;
+	background-color: white;
+	margin:8px;
+	font-size: 14px;
+	color:red;
+	line-height: 17px;
+}
+.arrow{
+	float: left;
+	height:121px;
+	margin:40px 6px;
+}
+.top-right-example{
+	float: left;
+	height:100px;
+	border:1px solid;
+	width:230px;
+	background-color: white;
+	margin:10px 20px;
+}
+.example-title{
+	width:210px;
+	height:22px;
+	margin:4px auto;
+	border:  1px solid;
+	font-size: 13px;
+	line-height: 22px;
+		padding-left: 2px;
+}
+.example-image{
+	float: left;
+	margin:3px 9px;
+}
+.example-content{
+	float:left;
+}
+.example-company{
+	font-size: 13px;
+	border: 1px solid;
+		height:23px;
+		width:140px;
+		line-height: 23px;
+		margin:2px auto;
+			padding-left: 3px;
+}
+.example-intro{
+	font-size: 13px;
+		border: 1px solid;
+		height:33px;
+		width:140px;
+				line-height: 33px;
+				margin:2px 3px;
+				padding-left: 3px;
+}
+
+
+.content{height:1200px;
+width: 1200px;
+margin: 2px auto;
+
+}
+.content-left{
+	width:220px;
+	height:1200px;
+	margin: 2px;
+	float: left;
+			   	   
+}
+.content-right{
+	width:972px;
+	margin: 2px ;
+		height:1200px;
+
+	float: left;
+		  
+	
+}
+.content-left-new{
+	height:42px;
+	width:220px;
+	color: red;
+	line-height: 42px;
+	background-color: #B9B9B9;
+	margin-bottom: 2px ;
+	padding-left: 5px;
+	margin-right: 2px;
+	font-size: 16px;
+	
+}
+.content-left-tab{
+	font-size: 13px;
+	border: 1px solid;
+	width:218px;
+
+}
+.content-left-tab-td1{
+	width:175px
+	;padding-left: 4px;
+	border-bottom: 1px solid;
+	
+}
+.content-left-tab-td2{
+		border-bottom: 1px solid;
+		;padding-left: 4px;
+}
+table tr{
+	height:25px;
+	line-height: 25px;
+
+	
+}
+table{
+	border-collapse: collapse;
+	margin: 0;padding: 0;
+		width:218px;
+}
+
+.other-area{
+	height:187px;
+	margin: 2px 0px;
+	 background-color: #B9B9B9;
+	 width:220px;
+}
+.other-area{
+	font-size: 13px;
+	color: red;
+	padding:65px 0 ;
+	padding-left: 4px;
+	
+}
+
+.left-example{
+	font-size: 13px;
+	padding: 30px 10px 30px 5px;
+	border: 1px solid;
+	height: 160px;
+}
+
+.right-main{
+	width: 972px;
+	background-color: #B9B9B9;
+	height: 130px;
+	padding-top: 5px;
+	padding-left: 5px;
+}
+.right-main-title{
+	
+	width:120px; height: 28px;color: red;font-size: 14px;
+	border: 1px solid black; 
+	background-color: white;
+	line-height: 28px;
+	text-align: center;
+	font-size: 14px;
+}
+.main-form-more{
+	width:53px;
+	height: 19px;
+	font-size: 13px;
+	margin-top:2px;
+	border: 1px solid;
+	line-height: 19px;
+	text-align: center;
+	margin-left: 912px ;
+	background-color: white;
+	
+	
+}
+.main-form-p1{
+	margin-left:168px;
+}
+.main-form-p2{
+	margin-left:158px;
+}
+.main-form-s1{
+	margin-left: 30px;
+}
+.main-form-s2{
+	margin-left: 30px;
+}
+.main-form-btn1{
+	width: 94px;
+	height: 33px;
+	font-size: 14px;
+	line-height: 30px;
+	text-align: center;
+	border: 2px solid
+}
+.main-form-input1{
+	font-family: "Arial Normal", "Arial";
+	height: 19px;
+	width: 196px;
+}
+.main-form-input2{
+		font-family: "Arial Normal", "Arial";
+	height: 19px;
+	width: 56px;
+}
+.main-form-s3{
+	margin-left: 87px;
+}
+.main-content{
+	background-color: white;
+	width: 972px;
+	;height: 185px;
+
+font-size: 13px;
+}
+.main-tab{
+	border: 1px solid;
+	border-collapse: collapse;
+	width: 972px;
+	height: 150px;
+	
+}
+.main-tab tr{ text-align: center;}
+.main-tab td{
+	border-bottom: 1px solid;
+
+
+}
+.main-tab th{
+	border-bottom: 1px solid;
+	text-align: center;
+
+}
+.main-tab-td1{
+	border-left: 1px solid;
+	margin-left: 30px;
+	width:78px
+
+}
+.main-tab-td2{
+	padding-right: 100px;
+}
+.td1{border-left:1px solid black; }
+.main-form-s4{
+	margin-left: 74px;
+}
+.main-form-s5{margin-left:88px;}

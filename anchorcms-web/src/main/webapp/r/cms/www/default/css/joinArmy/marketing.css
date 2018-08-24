@@ -1,0 +1,121 @@
+.txt{font-family: 'Arial Normal', 'Arial';font-weight: 400;  font-style: normal;  font-size: 13px; color: #333333;  text-align: center;  line-height: normal;}
+.clear-bg{background-image:none;}
+.posetion{
+	line-height:41px;
+	font-weight: 700;
+	font-size: 14px;
+	color: #1E1E1E;
+	background-image: url("../../images/joinArmy/marketing/u60.png");
+}
+.mark-body{
+	margin-top:20px;
+	height: 700px;
+}
+.product-list{
+	width: 220px;
+	height: 531px;
+	background-image: url("../../images/joinArmy/marketing/u60-1.png");
+}
+.list-title{
+	width: 220px;
+	height: 60px;
+	line-height:60px;
+	font-weight: 700;
+	font-size: 16px;
+	color: #1E1E1E;
+	background-image: url("../../images/joinArmy/marketing/u62.png");
+}
+.product-list ul{
+	margin-top: 30px;
+	margin-left: 10px;
+}
+.product-body{
+	width: 952px;
+	height: 700px;
+}
+.product-select{
+	width: 952px;
+	height: 131px;
+	background-image: url("../../images/joinArmy/marketing/u66.png");
+}
+.product-select td{
+	height: 40px;
+	line-height:40px;
+	text-align: right;
+}
+.select-td{
+	width:150px; 
+}
+.select-txt{
+	width: 260px;
+	height: 25px;
+}
+.select-sel{
+	width: 260px;
+	height: 25px;
+}
+.select-button{
+	width: 100px;
+	height: 25px;
+	line-height:25px;
+}
+.show{
+	width: 462px;
+	height: 460px;
+}
+.select-one{
+	margin:10px 0px;
+	padding:4px 7px;
+	width: 462px;
+	height: 140px;
+	background-image: url("../../images/joinArmy/marketing/u84.png");
+}
+.select-one-one{
+	padding:10px;
+	width: 447px;
+	height: 132px;
+	background-image: url("../../images/joinArmy/marketing/u86.png");
+}
+.select-p span{
+	margin-left:20px;
+	line-height: 30px;
+}
+.sp1{	
+	font-weight: 700;
+	font-size: 16px;
+	color: #516F97;
+}
+.sp2{
+	color: #666666;
+}
+.page{
+	margin-left:90px;
+	width: 789px;
+	height: 60px;
+	background-image: url("../../images/joinArmy/marketing/u164.png");
+}
+
+.txt-postion{
+	margin-top:10px;
+	margin-left: 30px; 
+	width: 30px;
+	height: 38px;
+	}
+.page .button{
+	margin-top:10px;
+	margin-left: 20px; 
+	width: 37px;
+	height: 32px;
+}
+.page .button1{
+	margin-top:10px;
+	margin-left: 20px; 
+	width: 50px;
+	height: 32px;
+}
+.page .button2{
+	margin-top:10px;
+	margin-left: 20px; 
+	width: 80px;
+	height: 32px;
+}

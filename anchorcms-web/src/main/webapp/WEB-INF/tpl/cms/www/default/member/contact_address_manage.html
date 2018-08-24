@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta  http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系人地址管理</title>
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/list.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/contact.css"/>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            _onload();
+            getContactAjax(${user.userId});
+        });
+
+        //点击状态标签刷新列表
+        $(document).ready(function () {
+            $(".switchBtn li").click(function () {
+                $("#all").addClass("current");
+                $("#tableForm").submit();
+                getContactAjax(${user.userId});
+            });
+        });
+
+        //加载页面标签状态
+        function _onload() {
+            $("#all").addClass("current");
+        };
+
+        // 弹出和更新联系人信息界面的ajax
+        function getContactAjax(userId){
+            $.ajax({
+                type:"post",
+                url:"/member/getContactList.jspx?userId=" + userId,
+                dataType:"json",
+                success:function(json){
+                    if (json.data.length == 0) { // 没有用户联系信息
+                        openContactAdd();
+                    } else {
+                        // 填充表格信息
+                        fillContactTable(json);
+                    }
+                },
+                error:function(){
+                    ui.alert("数据传输失败，原因：1、用户未登录，2、用户无关联公司，3、请求的联系信息不存在或未找到");
+                }
+            })
+        }
+        //切字符串方法
+        function s_cut(s,lenth,append){
+            var index = 0;
+            var len = 0;
+            var str = "";
+            var a = "";
+            for (var i = 0; len < lenth; i++) {
+                index = i;
+                a = s.charAt(i);
+                str += a;
+                if (a.match(/[^\x00-\xff]/ig) != null) {
+                    len += 2;
+                }
+                else {
+                    len += 1;
+                }
+            }
+            if(s.charAt(index+1) == ""){
+                return str;
+            }else{
+                return (str+append);
+            }
+        }
+        // 根据json填联系人信息的方法
+        function fillContactTable(jsonObj){
+            var tBody = $('#bjTable tbody');
+            tBody.html("");
+
+            $.each(jsonObj.data, function(i, item){
+                tBody.append("<tr id = 'infoSelected' onclick='infoSelected(this)'></tr>");
+                var tr = tBody.find('tr:last');
+                if(item.defAddr == "1") {
+                    tr.append("<td id='shipAddressName' class='ckt-checkbox selected'><a title='"+item.shipAddressName+"'>"+s_cut(item.shipAddressName,4,'..')+"</a></td>");
+                } else {
+                    tr.append("<td id='shipAddressName' class='ckt-checkbox'><a title='"+item.shipAddressName+"'>"+s_cut(item.shipAddressName,4,'..')+"</a></td>");
+                }
+                tr.append("<td id='userName1' class='name-li-ckt-info' style='width: 100px'><a title='"+item.userName+"'>"+item.userName+"</a></td>");
+                tr.append("<td id='addrProvince1' hidden><a title='"+item.province+"'>"+item.province+"</a></td>");
+                tr.append("<td id='addrCity1' hidden><a title='"+item.city+"'>"+item.city+"</a></td>");
+                tr.append("<td id='addrCounty1' hidden><a title='"+item.country+"'>"+item.country+"</a></td>");
+                tr.append("<td id='addrStreet1' hidden><a title='"+item.address+"'>"+item.address+"</a></td>");
+                tr.append("<td id='addr' class='address-li-ckt-info'><a title='"+item.province+item.city+item.country+item.address+"'>"+item.province+item.city+item.country+item.address+"</a></td>");
+                tr.append("<td id='fax1' hidden><a title='"+item.fax+"'>"+item.fax+"</a></td>");
+                tr.append("<td id='email1' hidden><a title='"+item.email+"'>"+item.email+"</a></td>");
+                tr.append("<td id='mobile1' class='mobile-li-ckt-info'><a title='"+item.mobile+"'>"+item.mobile+"</a></td>");
+                tr.addClass("li-ckt-info");
+//                $('#bjTable tbody').find('tr:eq(0)').addClass("infoSelected");
+                if(item.defAddr == "1") {
+                    tr.append("<td id='defAddr' class='default-li-ckt-info'>默认地址</td>");
+                    $('#bjTable tbody').find('tr:eq(' + i + ')').addClass("infoSelected");
+                } else {
+                    tr.append("<td id='defAddr'></td>");
+                }
+            });
+//            $('#bjWindow').show();
+//            if(tBody.children('tr').length == 0){
+//                openContactAdd();
+//            }
+        }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="/${res}/js/html5shiv.min.js"></script>
+    <script src="/${res}/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div class="content wrapper clearfix">
+    <!--遮罩-->
+    <div id="goodcover1"></div>
+    <div class="head wrapper">
+        <a href="${base}/member/contact_address_manage.jspx" class="current">联系人地址管理</a>
+        <a class="btn" onclick="openContactAdd()" style="margin-right: 20px;width: 140px;">新增联系人地址</a>
+    </div>
+    <div class="main">
+        <form id="tableForm" action="/member/contact_address_manage.jspx?userId=${user.userId}" method="post">
+            <div class="switchBtn">
+                <ul>
+                    <li id="all"><span>全部</span></li>
+                </ul>
+                <!--<input id="updateDt" hidden name="updateDt" value="${updateDt!}">-->
+            </div>
+            <div class="tableDiv wrapper">
+                <table cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>地址别名</th>
+                        <th>地点</th>
+                        <th>联系人</th>
+                        <th>联系方式</th>
+                        <th>邮编</th>
+                        <th>邮箱</th>
+                        <th>传真</th>
+                        <th>是否默认</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    [#if sMemberAddressesList?size gt 0]
+                    [#list sMemberAddressesList as c]
+                    <tr>
+                        <td><a class="show-title" title="${c.shipAddressName!}">[@text_cut s=c.shipAddressName! len='7' append='...' /]</a></td>
+                        <td title="${c.province}${c.city}${c.country}${c.address!}">[@text_cut s=c.province?default('')+c.city?default('')+c.country?default('') +c.address?default('')len=15 append='...'/] </td>
+                        <td><a class="show-title" title="${c.userName!}">[@text_cut s=c.userName! len='7' append='...' /]</a></td>
+                        <td>${c.mobile!}</td>
+                        <td><a class="show-title" title="${c.zip!}">[@text_cut s=c.zip! len='15' append='...' /]</a></td>
+                        [#if c.email!=""]
+                        <td><a class="show-title" title="${c.email!}">[@text_cut s=c.email?default('暂无') len='12' append='...' /]</a></td>
+                        [#else]
+                        <td>暂无</td>
+                        [/#if]
+                        [#if c.fax!=""]
+                        <td><a class="show-title" title="${c.fax!}">[@text_cut s=c.fax?default('暂无') len='12' append='无' /]</a></td>
+                        [#else]
+                        <td>暂无</td>
+                        [/#if]
+                        [#if c.defAddr==1]
+                        <td>是</td>
+                        [#else]
+                        <td>否</td>
+                        [/#if]
+                        <td>
+                            <a class="link" onclick="deleteConfirm(${c.addrId})">删除</a>
+                            <a class="link" onclick="openContactAdd2('${c.addrId}')">编辑</a>
+                        </td>
+
+                    </tr>
+                    [/#list]
+                    [#else]
+                    <tr>
+                        <td colspan="7"><h4>暂无数据</h4></td>
+                    </tr>
+                    [/#if]
+                    </tbody>
+                </table>
+            </div>
+            <br><br><br><br><br><br><br><br>
+            <input type="hidden" name="pageNo"/>
+            <!--联系信息-->
+            <div hidden>
+                <input id="contact" name="contact" type="text" value="">
+                <input id="mobile" name="mobile" type="text" value="">
+                <input id="fax" name="fax" type="text" value="">
+                <input id="email" name="email" type="text" value="">
+                <input id="addrProvince" name="addrProvince" type="text" value="">
+                <input id="addrCity" name="addrCity" type="text" value="">
+                <input id="addrCounty" name="addrCounty" type="text" value="">
+                <input id="addrStreet" name="addrStreet" type="text" value="">
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+<script type="text/javascript">
+    function deleteConfirm(addrId){
+        layer.confirm('请确定是否删除？', {
+            skin: 'layui-layer-lan',
+            icon: 3,
+            shift: -1,
+            btn: ['确定', '取消']
+        },
+        function (index, layero) {
+            location.href="/member/contact_address_delete.jspx?addrId="+addrId+""+"&nextUrl=/member/contact_address_manage.jspx?userId=${user.userId}";
+        }, function (index) {
+            layer.close(index);
+            return false;
+        });
+    }
+
+    //  新增联系人信息
+//    $('.btn').on('click', function(){
+//        openContactAdd();
+//    });
+
+    // 打开联系人新增页面
+    function openContactAdd () {
+        layer.open({
+            type: 2,
+            title: ['联系人信息', 'background-color: #318CB8;text-align:center;font-size:18px;'],
+            shadeClose: true,
+            shade: false,
+            maxmin: true,
+            area: ['800px', '490px'],
+            content: '/member/getContactAddrAdd.jspx',
+            end: function(){
+                // 如果是通过单击关闭按钮关闭弹出层，父画面没有此表单
+                if($("#popupForm").length === 1){
+                    $("#popupForm").submit();
+                }
+            }
+        });
+    }
+
+    function openContactAdd2 (addrId) {
+        layer.open({
+            type: 2,
+            title: ['联系人信息', 'background-color: #318CB8;text-align:center;font-size:18px;'],
+            shadeClose: true,
+            shade: false,
+            maxmin: true,
+            area: ['800px', '490px'],
+            content: '/member/getContactAddrManageAdd.jspx?addrId='+addrId,
+            end: function(){
+                // 如果是通过单击关闭按钮关闭弹出层，父画面没有此表单
+                if($("#popupForm").length === 1){
+                    $("#popupForm").submit();
+                }
+            }
+        });
+    }
+
+    // 检验联系人信息非空
+    function checkContact() {
+        var isCheck = ($("#contact").val() != "") && ($("#contact").val() != null) && ($("#contact").val() != undefined);
+        return isCheck;
+    }
+
+    // 塞入联系信息
+    function fillContactInfo () {
+        if (($("#userName1")[0].innerText != "") && ($("#userName1")[0].innerText != null) && ($("#userName1")[0].innerText != undefined)) {
+            $("#contact").val($("#userName1")[0].innerText);
+            $("#mobile").val($("#mobile1")[0].innerText);
+            if ($("#fax1")[0].innerText == 'undefined') {
+                $("#fax").val("");
+            } else {
+                $("#fax").val($("#fax1")[0].innerText);
+            }
+            if ($("#email1")[0].innerText == 'undefined') {
+                $("#email").val("");
+            } else {
+                $("#email").val($("#email1")[0].innerText);
+            }
+            $("#addrProvince").val($("#addrProvince1")[0].innerText);
+            $("#addrCity").val($("#addrCity1")[0].innerText);
+            $("#addrCounty").val($("#addrCounty1")[0].innerText);
+            $("#addrStreet").val($("#addrStreet1")[0].innerText);
+        }
+    }
+</script>
+</body>
+</html>

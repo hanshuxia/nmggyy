@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>检索界面</title>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/searching.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<script language="javascript">
+    // 搜索按钮查询备品备件信息
+    //    function searchBpbj() {
+    //        var searchValue = document.getElementById("search_bpbj_input").value;
+    //        var newSearchValue = encodeURI(encodeURI(searchValue));
+    //        window.location.href = "../member/supplychainList.jspx?spareName=" + newSearchValue;
+    //    }
+    // 按条件查询备品备件信息
+    function clickSearchBpbj(searchCondition, searchStr) {
+        var newSearchValue = encodeURI(encodeURI(searchStr));
+        if (searchCondition == "repairType") {
+            window.location.href = "../member/supplychainResList.jspx?repairType=" + newSearchValue;
+        } else if (searchCondition == "releaseId") {
+            window.location.href = "../member/supplychainResList.jspx?releaseId=" + newSearchValue;
+        } else if (searchCondition == "addrCity") {
+            window.location.href = "../member/supplychainResList.jspx?addrCity=" + newSearchValue;
+        } else if (searchCondition == "spareName") {
+            var searchValue = document.getElementById("search_bpbj_input").value;
+            newSearchValue = encodeURI(encodeURI(searchValue));
+            window.location.href = "../member/supplychainResList.jspx?spareName=" + newSearchValue;
+        }else if (searchCondition == "detail") { // 详情
+            window.location.href = "../member/supplychainResList.jspx?demandId=" + newSearchValue;
+        }else if (searchCondition == "baojia") { // 报价
+            window.location.href = "../member/supplychainResList.jspx?demandId=" + newSearchValue;
+        }
+    }
+
+    //上一页
+    //    function goPrevious(actionType){
+    //        goPage(actionType);
+    //    }
+
+    //下一页
+    //    function goNext(actionType){
+    //        goPage(actionType);
+    //    }
+
+    //进入页号为pageNumber的页面
+    //    function goPage(actionType){
+    //        var pageNumber; // 当前页码
+    //        document.getElementsByName("clickPageNumber").style = "current"; // 当前页码样式
+    //        if (actionType == "click") {
+    //            pageNumber = document.getElementsByName("clickPageNumber").value;
+    //        } else if (actionType == "input") {
+    //            pageNumber = document.getElementById("pageId").value;
+    //        } else if (actionType == "prePage") { // 上一页
+    //            pageNumber = document.getElementById("pageNumber").value - 1;
+    //            if (pageNumber < 1) {
+    //                alert("当前已经为第一页！");
+    //                return;
+    //            }
+    //        } else if (actionType == "nextPage") {
+    //            var totalPages = parseInt(document.all.item("totalPages").value);
+    //            pageNumber = document.getElementById("pageNumber").value + 1;
+    //            if (pageNumber > totalPages) {
+    //                alert("当前为最后一页！");
+    //                return;
+    //            }
+    //        }
+    //        window.location.href = "../member/supplychainResList.jspx?pageNo=" + pageNumber;
+    //    }
+    function seleT() {
+        var inner=document.getElementById("selecT").value;
+
+        if(inner==""){
+            alert("搜索内容不能为空");
+            return false;
+        }else{
+            var newinner =encodeURI(encodeURI(inner));
+            location.href="/member/supplychainResList.jspx?repairType="+newinner;
+        }
+    }
+
+</script>
+<body>
+<!--header start-->
+[#include "../include/header_icloud.html"]
+<!--header end-->
+<!--content start-->
+<div class="content wrapper clearfix">
+    <div class="searchIndex">
+        <div class="search-top">
+            <a class="current">供应链协</a><a>&gt;众修需求</a>
+        </div>
+        <div class="search-main">
+            <div class="search-nav">
+                <span>所有分类&gt;</span>
+                <a><span class="sift">收起筛选∧</span></a>
+                <a><span class="sift2" style="display: none">显示筛选∨</span></a>
+            </div>
+            <div id="kinds" class="kinds wrapper">
+                <div class="type">
+                    <span>分类：</span>
+                    <div class="type-content">
+                        <a onclick="clickSearchBpbj('repairType','')">全部</a>
+                        <a onclick="clickSearchBpbj('repairType','发动机')">发动机</a>
+                        <a onclick="clickSearchBpbj('repairType','发电机')">发电机</a>
+                        <a onclick="clickSearchBpbj('repairType','柴油机')">柴油机</a>
+                        <a onclick="clickSearchBpbj('repairType','汽油机')">汽油机</a>
+                        <a onclick="clickSearchBpbj('repairType','燃气机')">燃气机</a>
+                    </div>
+                    <a class="more">更多∨</a>
+                </div>
+                <div class="type">
+                    <span>地区：</span>
+                    <div class="type-content">
+                        <a onclick="clickSearchBpbj('addrCity','')">全部</a>
+                        <a onclick="clickSearchBpbj('addrCity','呼和浩特')">呼和浩特</a>
+                        <a onclick="clickSearchBpbj('addrCity','包头')">包头</a>
+                        <a onclick="clickSearchBpbj('addrCity','赤峰')">赤峰</a>
+                        <a onclick="clickSearchBpbj('addrCity','呼伦贝尔')">呼伦贝尔</a>
+                        <a onclick="clickSearchBpbj('addrCity','通辽')">通辽</a>
+                        <a onclick="clickSearchBpbj('addrCity','鄂尔多斯')">鄂尔多斯</a>
+                        <a onclick="clickSearchBpbj('addrCity','兴安盟')">兴安盟</a>
+                        <a onclick="clickSearchBpbj('addrCity','乌兰察布')">乌兰察布</a>
+                        <a onclick="clickSearchBpbj('addrCity','巴彦尔')">巴彦尔</a>
+                        <a onclick="clickSearchBpbj('addrCity','乌海')">乌海</a>
+                        <a onclick="clickSearchBpbj('addrCity','锡林郭勒')">锡林郭勒</a>
+                        <a onclick="clickSearchBpbj('addrCity','二连浩特')">二连浩特</a>
+                        <a onclick="clickSearchBpbj('addrCity','满洲里')">满洲里</a>
+                    </div>
+                    <a class="more">更多∨</a>
+                </div>
+            </div>
+            <div class="searchBox">
+                <ul class="clearfix">
+                    <li class="current"><a>综合</a></li>
+                    <li><a onclick="demandSearch('4','2')">发布时间</a></li>
+                    <li><a onclick="demandSearch('4','3')">实名认证</a></li>
+                </ul>
+                <div class="searchBar">
+                    <label>维修类型：</label><input type="text" name="维修类型" id="selecT">
+                    <button onclick="seleT()">查询</button>
+                </div>
+            </div>
+        </div>
+        <div class="showPolicy clearfix">
+            <ul class="clearfix">
+                <ul>
+                    [@cms_content_list count='20' typeId='2' ]
+                    [#list spareList as a]
+                    <li>
+                        <img src="/${res}/resources/images/searching/pic.png" alt="">
+                        <div class="item-cname">
+                            <dl>
+                                <dt><a>${a.repairType!}</a><div style="padding-left:300px;margin-top: 0px;">${a.releaseId!}</div></dt>
+                                <dd class="news-content"><p>${a.repairName!}</p>${a.description!}</dd>
+                            </dl>
+                            <p class="tips">已报价：<span>${a_index+1}</span> 发布时间：<span>1</span>截止时间：<span>2</span><span class="fztype">公司地点：<span>${a.addrCity!}</span></span></p>
+                            <button><a class="link" onclick="clickSearchBpbj('baojia', '1}')">我要报价</a></button>
+                            <button><a class="link" onclick="clickSearchBpbj('detail', '1}')">查看详情</a></button>
+                        </div>
+                    </li>
+                    [/#list]
+                    [/@cms_content_list]
+                </ul>
+            </ul>
+        </div>
+        <input type="hidden" name="pageNo"/>
+        <div class="page clearfix">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center" class="pn-sp">
+                        共 <span id="index">${pagination.totalCount}</span> 条&nbsp;
+                        每页 <span id="eachIndex">${pagination.pageSize}</span> 条&nbsp;
+                        <input type="button" value="首 页" onclick="_gotoPage('1');" [#if pagination.firstPage]
+                               disabled="disabled" [/#if]/>
+                        <input type="button" value="上一页" onclick="_gotoPage('${pagination.prePage}');" [#if pagination.firstPage] disabled="disabled" [/#if]/>
+                        <input type="button" value="下一页" onclick="_gotoPage('${pagination.nextPage}');" [#if pagination.lastPage] disabled="disabled" [/#if]/>
+                        <input type="button" value="尾 页" onclick="_gotoPage('${pagination.totalPage}');" [#if pagination.lastPage] disabled="disabled" [/#if]/>&nbsp;
+                        当前 <span id="curPage">${pagination.pageNo}</span>/<span id="totalPage">${pagination.totalPage}</span>
+                        页 &nbsp;
+                        转到第<input type="text" id="_goPs" onfocus="this.select();"
+                                  onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"
+                                  style="width:50px; border:1px solid #e7e7e7;"/>页
+                        <button id="_goPage" class="ok" type="button" onclick="_gotoPage($('#_goPs').val());" [#if pagination.totalPage==1] disabled="disabled" [/#if]>确定</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<!--content end-->
+<!--footer start-->
+[#include "../include/footer_icloud.html"]
+<!--footer end-->
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/searching.js"></script>
+<script language="javascript">
+    function _gotoPage(pageNo) {
+        try {
+//            var tableForm = document.getElementById("tableForm");
+//            $("input[name=pageNo]").val(pageNo);
+//            tableForm.action = "repairDemandList.jspx";
+//            tableForm.onsubmit = null;
+//            tableForm.submit();
+            window.location.href = "../member/supplychainResList.jspx?pageNo=" + pageNo;
+        } catch (e) {
+            alert('_gotoPage(pageNo)方法出错');
+        }
+    }
+    function demandSearch(id,e){
+        var searchOne = $("#searchOne").val();
+        var searchTwo = $("#searchtwo").val();
+        var searchthree = $("#searchthree").val();
+        var searchFour = $("#searchFour").val();
+        var serchFive = $("#serchFive").val();
+        if(searchOne != "" && searchOne != undefined){
+            searchOne.trim();
+        }if(searchTwo != "" && searchTwo != undefined){
+            searchOne.trim();
+        }if(searchthree != "" && searchthree != undefined){
+            searchthree.trim();
+        }if(searchFour != "" && searchFour != undefined){
+            searchFour.trim();
+        }if(serchFive != "" && serchFive != undefined){
+            serchFive.trim();
+        }
+        if(id == '0'){
+            searchOne = e;
+        }if(id == '1'){
+            searchTwo = e;
+        }if(id == '2'){
+            searchthree = e;
+        }if(id == '3'){
+            searchFour = e;
+        }if(id == '4'){
+            serchFive = e;
+        }
+
+        location.href="index-"+searchOne+"-"+searchTwo+"-"+searchthree+"-"+searchFour+"-"+serchFive+".jhtml";
+    }
+</script>
+</body>
+</html>

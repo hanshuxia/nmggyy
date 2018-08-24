@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+	default-autowire="byName">
+
+	<!-- 引入项目配置文件 -->
+	<!--<channel id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath*:jdbc.properties</value>
+			</list>
+		</property>
+		<property name="ignoreUnresolvablePlaceholders" value="true"/>
+	</channel>-->
+	<bean id="propertyConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<property name="environment">
+			<bean class="org.springframework.web.context.support.StandardServletEnvironment"/>
+		</property>
+	</bean>
+	<!--数据库配置-->
+	<context:property-placeholder location="classpath*:jdbc.properties" ignore-unresolvable="true"/>
+	<!--防火墙配置-->
+	<context:property-placeholder location="classpath*:/manager/firewall.properties" ignore-unresolvable="true"/>
+	<!--配置文件管理-->
+	<bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean" autowire="no">
+		<property name="locations">
+			<list>
+				<value>classpath*:jdbc.properties</value>
+				<value>classpath*:anchorcms.properties</value>
+				<value>classpath*:manager/firewall.properties</value>
+			</list>
+		</property>
+		<qualifier value="main"/>
+	</bean>
+	<bean id="propertyUtils" class="com.anchorcms.common.utils.PropertyUtil">
+		<property name="properties" ref="properties"/>
+	</bean>
+
+	<!--上传文件处理-->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8"/>
+		<property name="maxUploadSize" value="10485760000"/>
+		<property name="maxInMemorySize" value="40960"/>
+	</bean>
+	<!--数据绑定-->
+	<!--<channel id="handlerMapping" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>-->
+	<!-- HandlerAdapter -->
+	<bean id="handlerAdapter" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+	<!-- 注解支持
+	<context:annotation-config />
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+		-->
+	<!-- 启动组件扫描，排除@Controller组件，该组件由SpringMVC配置文件扫描 -->
+	<context:component-scan base-package="com.anchorcms.icloud.*,com.anchorcms.cms.*,com.anchorcms.core.*,com.anchorcms.common.*">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<!--解析用户区域，优先读取cookie-->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="cookieName" value="language"/>
+		<property name="cookieMaxAge" value="-1"/>
+	</bean>
+
+</beans>

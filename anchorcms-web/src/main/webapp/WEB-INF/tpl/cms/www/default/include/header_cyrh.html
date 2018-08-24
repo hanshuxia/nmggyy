@@ -1,0 +1,116 @@
+<!--header start-->
+<div id="header">
+    <div class="topbar">
+        <div class="wrapper  clearfix">
+            <div class="top-left">
+                <label>您好，欢迎参与大数据与产业深度融合行动！</label>
+                [#include "./header_register_bigdata.html"]
+            </div>
+            <div class="top-right">
+                <div class="toplink fl">
+                    <ul>
+                        <li><a href="/cyrhpt/index.jhtml" target="_blank">关于大数据局</a></li>
+                        <li><a href="/downloadfile.jspx?cyrh=1">帮助手册</a></li>
+                        <li>客服中心：400-857-6688</li>
+                        <li>
+                            <span class="wechat">微信公众号
+                            <img src="/${res}/resources/images/index/bigdata.png">
+                            </span>
+                        </li>
+                        <li class="friend">
+                            <div class="link"><span>友情链接</span></div>
+                            <ul class="linkUl">
+                                <li><a href="http://www.casicloud.com" target="_blank">航天云网</a></li>
+                                <li><a href="http://www.jxicloud.com/" target="_blank">江西航天云网</a></li>
+                                <li><a href="http://www.gz-icloud.com.cn/" target="_blank">贵州航天云网</a></li>
+                                <li><a href="http://www.能源设备网.cn/" target="_blank">能源设备网</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="logobar wrapper">
+        <a href="/"><img  class="logo2" src="/${res}/resources/images/index/cyrh.png" alt="logo2">
+        </a>
+
+        <div class="menubar">
+
+            <div class="search" style="height: 25px">
+                <div >
+                    <select id="cyrhsearch"  style="margin-left: 7px;margin-top: 2px;border: none;height: 18px">
+                        <option value="zcgg">政策公告</option>
+                        <option value="xwdt">新闻动态</option>
+                        <option value="qyxq">企业需求</option>
+                        <option value="qynl">企业能力</option>
+                    </select>
+                </div>
+                <form action="/cyrhxqc/index-880000-undefined-undefined-undefined-undefined-880000-.jhtml" target="_blank" id="searchForm">
+                    <input type="text" placeholder="请输入关键字" id="sc"  maxlength="50" autocomplete="off" class="searchCon">
+                    <input type="submit" value="" id="searchMenu" class="searchMenu">
+                </form>
+            </div>
+        </div>
+
+
+
+    </div>
+    [@cms_channel_list]
+    [#if channel??]
+    [#assign currentCh=(channel!)]
+    [#assign path=currentCh.id]
+    [/#if]
+    <div class="menu1">
+        <ul id="menu" class="wrapper clearfix">
+            <li [#if !channel??] class="current"[/#if]><a class="underline" href="/bigdata_page.jspx">首页</a></li>
+            <li [#if channel??&&path==132] class="current"[/#if]><a class="underline" href="/cyrhzc/index.jhtml">政策公告</a></li>
+            <li [#if channel??&&path==131] class="current"[/#if]><a class="underline" href="/cyrhNews/index.jhtml">新闻动态</a>
+            <li [#if channel??&&path==133] class="current"[/#if]><a class="underline" href="/cyrhxqc/index-880000-undefined-undefined-undefined-undefined-880000-.jhtml">企业需求</a>
+            <li [#if channel??&&path==134] class="current"[/#if]><a class="underline" href="/cyrhnlc/index-880000-undefined-undefined-undefined-undefined-880000-.jhtml">企业能力</a>
+            <li [#if channel??&&path==135] class="current"[/#if]><a class="underline" href="/cyrhpt/index.jhtml">关于平台</a>
+            </li>
+        </ul>
+    </div>
+    [/@cms_channel_list]
+</div>
+<style>
+    .menubar .search input {
+        margin-left: 81px;
+        padding-left: 18px;
+        width: 200px;
+        height: 20px;
+        line-height: 20px;
+        border: none;
+        margin-top: -38px;
+    }
+
+    .menubar .search {
+        float: right;
+        margin-top: 30px;
+        width: 308px;
+        height: 25px;
+        border: 1px solid #5A5758;
+        border-radius: 20px;
+        background: #fff;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#searchMenu").click(function(){
+            var search = $("#sc").val();
+            var cyrh = $("#cyrhsearch").val();
+            if (cyrh == "zcgg") {
+                $("#searchForm").attr("action", "/cyrhzc/index-" + search + "-.jhtml");
+            } else if (cyrh == "xwdt") {
+                $("#searchForm").attr("action", "/cyrhNews/index-" + search + "-.jhtml");
+            } else if (cyrh == "qyxq") {
+                $("#searchForm").attr("action", "/cyrhxqc/index-880000-undefined-undefined-undefined-" + search + "-880000-.jhtml");
+            } else if (cyrh == "qynl") {
+                $("#searchForm").attr("action", "/cyrhnlc/index-880000-undefined-undefined-undefined-undefined-880000-" + search + "-.jhtml");
+            }
+        });
+    })
+
+</script>
+<!--header end-->

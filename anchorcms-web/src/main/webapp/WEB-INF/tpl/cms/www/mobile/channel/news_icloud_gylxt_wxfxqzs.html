@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>众修方需求展示页面</title>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/searching.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+[#include "../include/header_icloud.html"]
+<!--content start-->
+<div class="content wrapper clearfix">
+    <div class="searchIndex">
+        <div class="search-top">
+            <a>维修需求列表</a>
+        </div>
+        <div class="search-main">
+            <div class="search-nav">
+                <span>所有分类&gt;</span>
+                <a><span class="sift">收起筛选∧</span></a>
+            </div>
+            <div id="kinds" class="kinds wrapper">
+                <div class="type">
+                    <span>地理位置：</span>
+                    <div class="type-content">
+                        <a>全部</a><a>呼和浩特件</a><a>包头</a><a>赤峰</a><a>呼伦贝尔</a><a>通辽</a><a>鄂尔多斯</a><a>兴安盟</a><a>乌兰察布</a><a>巴彦尔</a><a>乌海</a><a>锡林郭勒</a><a>阿拉善</a><a>二连浩特</a><a>满洲里</a>
+                    </div>
+                    <a class="more">更多∨</a>
+                </div>
+                <div class="type bottom">
+                    <span>维修机型：</span>
+                    <div class="type-content">
+                        <a>全部</a><a>发动机</a><a>发电机</a><a>柴油机</a><a>汽油机</a><a>燃气机</a>
+                    </div>
+                    <a class="more">更多∨</a>
+                </div>
+            </div>
+            <div class="searchBox">
+                <ul class="clearfix">
+                    <li class="current"><a>综合</a></li>
+                    <li><a>发布时间&nbsp;&nbsp;↓</a></li>
+                    <li><a>截止时间&nbsp;&nbsp;↓</a></li>
+                </ul>
+                <div class="searchBar">
+                    <input type="text">
+                    <button>搜索</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="showPolicy clearfix">
+        <ul class="clearfix">
+            [@cms_content_list count='8' typeId='2' ]
+            [#list tag_list as a]
+            [#if a_index<8]
+            <li>
+                <img src="${a.typeImg!}" alt="">
+                <div class="item-cname">
+                    <dl>
+                        <dt><a>[@text_cut s=a.title len='20' append=''/]</a><div style="padding-left:300px;margin-top: -40px">北京市航云建工程有限责任公司</div></dt>
+                        <dd class="news-content"><p>发动机工作异常，无法正常运转</p>
+                        </dd>
+                    </dl>
+                    <p class="tips">已报价企业：<span>${a_index+1}</span> 发布时间：<span>2016-10-19</span><span class="fztype">交付地点：<span>北京 北京</span></span></p>
+                    <button>我要报价</button>
+                    <button>查看详情</button>
+                </div>
+            </li>
+            [/#if]
+            [/#list]
+            [/@cms_content_list]
+        </ul>
+    </div>
+    <div class="page clearfix">
+        <ul>
+            <li class="pageIndex"><a>上一页</a></li>
+            <li class="current"><a>1</a></li>
+            <li><a>2</a></li>
+            <li><a>3</a></li>
+            <li><a>4</a></li>
+            <li><a>5</a></li>
+            <li><a>6</a></li>
+            <li><a>7</a></li>
+            <li><a>8</a></li>
+            <li><a>9</a></li>
+            <li><a>10</a></li>
+            <li class="pageIndex">下一页</li>
+        </ul>
+        <div class="pageright">
+            <span>共53页  到</span><input type="text"><span>页</span><button>确定</button>
+        </div>
+    </div>
+</div>
+<!--content end-->
+[#include "../include/footer_icloud.html"]
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/searching.js"></script>
+</body>
+</html>

@@ -1,0 +1,410 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta  http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云计算政策申请反馈</title>
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/list.css"/>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            _onload();
+        });
+
+        $(document).ready(function() {
+            //全选框中的全选框
+            $("#checkAll").click(function () {
+                $(":checkbox[name='checkone']").prop("checked", this.checked);
+            });
+            $("input[name='checkone']").click(function () {
+                $("#checkAll").prop("checked", $("input[name='checkone']").length == $("input[name='checkone']:checked").length);
+            });
+        });
+
+        //点击状态标签刷新列表
+        $(document).ready(function() {
+            $(".switchBtn li").click(function(){
+                if($(this).attr("id") == "all"){
+                    $("#state").val("");
+                }else if($(this).attr("id") == "state0"){
+                    $("#state").val("0");
+                }else if($(this).attr("id") == "state1"){
+                    $("#state").val("1");
+                }else if($(this).attr("id") == "state2"){
+                    $("#state").val("2");
+                }else if($(this).attr("id") == "state3"){
+                    $("#state").val("3");
+                }
+                $("#tableForm").submit();
+            });
+        });
+
+        //加载页面标签状态
+        function _onload(){
+            if($("#state").val() == ""){
+                $("#all").addClass("current");
+            }else if ($("#state").val() == "0"){
+                $("#state0").addClass("current");
+            }else if  ($("#state").val() == "1"){
+                $("#state1").addClass("current");
+            }else if  ($("#state").val() == "2"){
+                $("#state2").addClass("current");
+            }else if  ($("#state").val() == "3"){
+                $("#state3").addClass("current");
+            }
+        };
+        function passAll(type){
+            if(type ==1){
+                var demandIdsStr="";
+                $("input[name='checkone']:checked").each(function(){
+                    demandIdsStr+=($(this).val()+",");
+                });
+
+                if(demandIdsStr == ""){
+                    ui.alertFail("至少选择一条信息，请选择");
+                    return false;
+                }
+                if (confirm("请确定是否全部报送？")){
+                    $('.submit.pass').attr("disabled",true);
+                    $('.submit.oppose').attr("disabled",true);
+                    location.href="/member/synergy_demand_passManyPolicy.jspx?demandIdsStr="+demandIdsStr+"&nextUrl=/member/policy_feedback_list.jspx?state="+$('#state').val()+"&state="+$('#state').val();
+                }
+            }
+            if(type ==2){
+                var demandIdsStr="";
+                $("input[name='checkone']:checked").each(function(){
+                    demandIdsStr+=($(this).val()+",");
+                });
+
+                if(demandIdsStr == ""){
+                    ui.alertFail("至少选择一条信息，请选择");
+                    return false;
+                }
+                if (confirm("请确定是否全部通过？")){
+                    $('.submit.pass').attr("disabled",true);
+                    $('.submit.oppose').attr("disabled",true);
+                    location.href="/member/synergy_demand_passManyPolicy.jspx?demandIdsStr="+demandIdsStr+"&nextUrl=/member/policy_feedback_list.jspx?state="+$('#state').val()+"&state="+$('#state').val();
+                }
+            }
+        };
+        function rejectAll(type){
+            if(type ==1){
+                var demandIdsStr="";
+                $("input[name='checkone']:checked").each(function(){
+                    demandIdsStr+=($(this).val()+",");
+                });
+
+                if(demandIdsStr == ""){
+                    ui.alertFail("至少选择一条信息，请选择");
+                    return false;
+                }
+                if(confirm("请确定是否全部驳回？")){
+                    $('.submit.pass').attr("disabled",true);
+                    $('.submit.oppose').attr("disabled",true);
+                    var backReason=encodeURI(encodeURI($("#backreason").val()));//获取退回原因
+                    location.href="/member/synergy_demand_rejectManyPolicy.jspx?demandIdsStr="+demandIdsStr+"&nextUrl=/member/policy_feedback_list.jspx?state="+$('#state').val()+"&backReason="+backReason;
+                }
+            }
+        };
+        //批量删除
+        function deleteAll(type){
+            if(type ==1){
+                var demandIdsStr="";
+                $("input[name='checkone']:checked").each(function(){
+                    demandIdsStr+=($(this).val()+",");
+                });
+
+                if(demandIdsStr == ""){
+                    ui.alertFail("至少选择一条信息，请选择");
+                    return false;
+                }
+                if(confirm("请确定是否全部删除？")){
+                    $('.submit.pass').attr("disabled",true);
+                    $('.submit.oppose').attr("disabled",true);
+                    location.href="/member/synergy_apply_deleteMany.jspx?demandIdsStr="+demandIdsStr+"&nextUrl=/member/policy_feedback_list.jspx?state="+$('#state').val();
+                }
+            }
+        };
+    </script>
+
+    <style>
+        .readonly{
+            background: #EBEBE4;
+            color: #91918e;
+            display:none;
+        }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="/${res}/js/html5shiv.min.js"></script>
+    <script src="/${res}/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div class="content wrapper clearfix">
+    <!--遮罩-->
+    <div id="goodcover1"></div>
+    <div class="head wrapper">
+        <a href="${base}/member/policy_feedback_list.jspx" class="current">政策申请反馈列表</a>
+    </div>
+    <div class="main">
+        <form id="tableForm" action="/member/policy_feedback_list.jspx" method="post">
+            <div class="searchBox clearfix">
+                <label>&nbsp;&nbsp;&nbsp;申请人：</label>
+                <input id="applierName" name="applierName" value="${applierName!}">
+                <label>政策层别：</label>
+                <input id="policyLevel" name="policyLevel" value="${policyLevel!}">
+                <label>政策名称：</label>
+                <input id="policyName" name="policyName" value="${policyName!}">
+                <br>
+                <label>政策代码：</label>
+                <input id="policyCode" name="policyCode" value="${policyCode!}">
+                <label>创建时间：</label>
+                <input name="startDate" id="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'endDate\')}'})" class="Wdate" value="${startDate?default('')}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label>至</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" name="endDate" id="endDate" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'startDate\')}'})" class="Wdate" value="${endDate?default('')}">
+                <button class="submit">查询</button>
+                <br>
+                [#if !state??]
+                [#else]
+                [#switch state]
+                [#case "0"]
+                <input class="submit pass" type="button" style="float: left; width: 100px;" id="zwtgbutton" value="批量报送" onclick="passAll(1)"/>
+                <input class="submit  oppose" type="button" style="float:left; width: 100px; margin-left:15px;" id="zwbhbutton" value="置为驳回" onclick="showXss()"/>
+                <input class="submit  oppose" type="button" style="float:left; width: 100px; margin-left:15px;" id="shanchubutton" value="批量删除" onclick="deleteAll(1)"/>
+                [#break]
+                [#case "2"]
+                <input class="submit pass" type="button" style="float: left; width: 100px;" id="zwtgbutton" value="置为通过" onclick="passAll(2)"/>
+                <input class="submit  oppose" type="button" style="float:left; width: 100px; margin-left:15px;" id="zwbhbutton" value="置为驳回" onclick="showXss()"/>
+                [#break]
+                [#default]
+                [/#switch]
+                [/#if]
+            </div>
+            <div class="switchBtn clearfix">
+                <ul>
+                    <li id="state0"><span>待审核</span></li>
+                    <li id="state2"><span>已报送</span></li>
+                    <li id="state1"><span>未通过</span></li>
+                    <li id="state3"><span>已通过</span></li>
+                    <li id="all"><span>全部</span></li>
+                </ul>
+            </div>
+            <div class="tableDiv wrapper">
+                <table cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" id="checkAll"></th>
+                        <th>政策层别</th>
+                        <th>政策名称</th>
+                        <th>政策代码</th>
+                        <th>申请人</th>
+                        <th>所属企业</th>
+                        <th>申请期限</th>
+                        <th>审批进度</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    [#if pagination.list?size gt 0]
+                    [#list pagination.list as c]
+                    <tr>
+                        [#if c.policy??]
+                        <td>
+                            <input type="checkbox" name="checkone" value="${c.applyId!}"/>
+                        </td>
+                        <td style="width: 76px;">${c.policy.policyLevel!}</td>
+                        <td style="text-align: left;width: 130px;padding-left:10px;overflow: hidden;white-space: nowrap;word-break: keep-all;"><a class="show-title" title="${c.policy.policyName!}">[@text_cut s=c.policy.policyName! len='5' append='...' /]</a>
+                        <td style="text-align: left;width: 130px;overflow: hidden;white-space: nowrap;word-break: keep-all;"><a class="show-title" title="${c.policy.policyNumber!}">[@text_cut s=c.policy.policyNumber! len='5' append='...' /]</a></td>
+                        <td style="width: 130px;overflow: hidden;white-space: nowrap;word-break: keep-all;"><a class="show-title" title="${c.user.username!}">[@text_cut s=c.user.username! len='5' append='...' /]</a></td>
+                        <td style="text-align: left;width: 150px;padding-left:20px;overflow: hidden;white-space: nowrap;word-break: keep-all;"><a class="show-title" title="${(c.user.company.companyName)!}">[@text_cut s=(c.user.company.companyName)! len='8' append='...' /]</a></td>
+                        <td>${(c.policy.endApplyDt)!}</td>
+                        [#if !c.state??]
+                        <td></td>
+                        [#else]
+                        [#switch c.state]
+                        [#case "0"]
+                        <td>待审核</td>
+                        [#break]
+                        [#case "1"]
+                        <td>未通过</td>
+                        [#break]
+                        [#case "2"]
+                        <td>已报送</td>
+                        [#break]
+                        [#case "3"]
+                        <td>已通过</td>
+                        [#break]
+                        [#default]
+                        <td></td>
+                        [/#switch]
+                        [/#if]
+                        <td>${c.createDt?default("")}</td>
+                        [#if !state??]
+                        <td>
+                            <a class="link" href="/member/policy_feeBack_view.jspx?id=${c.applyId}">明细<a>
+                        </td>
+                        [#else]
+                        [#switch state]
+                        [#case "0"]
+                        <td>
+                            <a class="link" href="/member/policy_feeBack_view.jspx?id=${c.applyId}">明细<a>
+                                <a class="link" onclick="deleteConfirm(${c.applyId})">删除</a>
+                                <a class="link" onclick="showXS(${c.applyId})">驳回</a>
+                                <a class="link" onclick="if(confirm('请确定是否报送？')){location.href='/member/apply_manage.jspx?id=${c.applyId}&state=2&nextUrl=policy_feedback_list.jspx?state='+$('#state').val()}">报送</a>
+                        </td>
+                        [#break]
+                        [#case "1"]
+                        <td>
+                            <a class="link" href="/member/policy_feeBack_view.jspx?id=${c.applyId}">明细<a>
+                        </td>
+                        [#break]
+                        [#case "2"]
+                        <td>
+                            <a class="link" href="/member/policy_feeBack_view.jspx?id=${c.applyId}">明细<a>
+                                <a class="link" onclick="showXS(${c.applyId})">驳回</a>
+                                <a class="link" onclick="if(confirm('请确定是否通过？')){location.href='apply_manage.jspx?id=${c.applyId}&state=3&nextUrl=policy_feedback_list.jspx?state='+$('#state').val()}">通过</a>
+                        </td>
+                        [#break]
+                        [#default]
+                        <td>
+                            <a class="link" href="/member/policy_feeBack_view.jspx?id=${c.applyId}">明细<a>
+                        </td>
+                        [/#switch]
+                        [/#if]
+                        [#else]
+                        <td colspan="9" style="text-align: left;width: 300px;padding-left:20px;">政策申请编号为“${c.applyId!}”的政策已被删除</td>
+                        <td><a class="link"  onclick="deleteConfirm(${c.applyId})">删除</a></td>
+                        [/#if]
+                    </tr>
+                    [/#list]
+                    [#else]
+                    <tr>
+                        <td colspan="10"><h4>暂无数据</h4></td>
+                    </tr>
+                    [/#if]
+                    </tbody>
+                </table>
+            </div>
+            <input type="hidden" name="pageNo"/>
+            <div  class="page clearfix">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="left" class="pn-sp">
+                            每页 ${pagination.pageSize} 条&nbsp;
+                            <input class="first" type="button" onclick="_gotoPage('1');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input class="prev" type="button" onclick="_gotoPage('${pagination.prePage}');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input type="text" value=${pagination.pageNo} id="_goPs" onfocus="this.select();" onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>/${pagination.totalPage}
+                            <input class="next" type="button" onclick="_gotoPage('${pagination.nextPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>
+                            <input class="last" type="button" onclick="_gotoPage('${pagination.totalPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>&nbsp;
+                            <button id="_goPage" class="ok" type="button" onclick="_gotoPage($('#_goPs').val());"[#if pagination.totalPage==1] disabled="disabled"[/#if]>GO</button>
+                            共 ${pagination.totalCount} 条&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <script type="text/javascript">
+                function _gotoPage(pageNo) {
+                    if(!/^[0-9]*[1-9][0-9]*$/.test(pageNo)){ui.alertFail("页码必须为正整数！");return false;}
+                    try{
+                        var tableForm = document.getElementById("tableForm");
+                        $("input[name=pageNo]").val(pageNo);
+                        tableForm.action="policy_feedback_list.jspx";
+                        tableForm.onsubmit=null;
+                        tableForm.submit();
+                    } catch(e) {
+                        ui.alertFail('_gotoPage(pageNo)方法出错');
+                    }
+                }
+            </script>
+            <input type="text" id="state" name="state" hidden="hidden" value="${state?default('')}">
+
+        </form>
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+<script type="text/javascript">
+    function deleteConfirm(Ids){
+        if(confirm("请确定是否删除？")){
+            location.href="/member/applyAdmin_delete.jspx?id="+Ids+"";
+        }
+    }
+</script>
+
+<div class="window" id="xdWindows" style="width: 400px;height: 200px;left: 60%;top:30%;">
+    <div class="noteTop">
+        退回原因
+        <img id="xdTableCloseWindows" src="/${res}/resources/images/abilityPreview/close.png" onclick="hideXS()">
+    </div>
+    <textarea id="backreason" style="width: 100%;height: 130px"></textarea>
+    <input type="hidden" id="abilityId">
+    <div class="release-button" style="text-align: center;margin-top: 5px">
+        <button id="OK" class="btn" type="button"  style="background-color: #3077B9;color: #ffffff">确认</button>
+        <button class="btn" type="button" onclick="hideXS()" style="background-color: #3077B9;color: #ffffff">取消</button>
+    </div>
+</div>
+<script type="text/javascript">
+    //批量驳回使用
+    function showXss() {
+        var demandIdsStr="";
+        $("input[name='checkone']:checked").each(function(){
+            demandIdsStr+=($(this).val()+",");
+        });
+        if(demandIdsStr == ""){
+            ui.alertFail("至少选择一条信息，请选择");
+            return false;
+        }else{
+            $("#xdWindows").show();
+            $("#goodcover1").show();
+            $("#abilityId").val(abilityId);
+            $("#OK").click(function () {
+                if( $("#backreason").val().length<450){
+                    rejectAll(1);
+                }else{
+                    ui.alertFail("退回原因超过字数限制，请重新填写");
+                }
+            });
+        }
+    }
+
+    //单个驳回使用
+    function showXS(applyId){
+        $("#xdWindows").show();
+        $("#goodcover1").show();
+        $("#abilityId").val(applyId);
+        $("#OK").click(function(){
+            if( $("#backreason").val().length<450){
+                rejectConfirm()
+            }else{
+                ui.alertFail("退回原因超过字数限制，请重新填写");
+            }
+        });
+    }
+
+    function hideXS(){
+        $("#xdWindows").hide();
+        $("#goodcover1").hide();
+        $("#abilityId").val("");//清空对应的政策记录的id的值
+        $("#backreason").val("");//清空原因输入框中的值
+        $('#OK').unbind("click")
+    }
+
+    function rejectConfirm(){
+        if(confirm("请确定是否驳回该申请？")){
+            var Ids= $("#abilityId").val();//获取该条记录对应的能力的值
+            var backReason=encodeURI(encodeURI($("#backreason").val()));//获取退回原因
+            location.href="/member/apply_manage.jspx?id="+Ids+"&state=1&nextUrl=policy_feedback_list.jspx?state="+$('#state').val()+"&backReason="+backReason;
+        }
+    }
+</script>
+</body>
+</html>

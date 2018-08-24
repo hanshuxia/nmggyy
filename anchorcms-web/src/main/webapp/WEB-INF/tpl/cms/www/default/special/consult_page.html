@@ -1,0 +1,221 @@
+﻿<!DOCTYPE HTML>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta http-equiv="keywords" content="${content.tagStr!}"/>
+	<meta http-equiv="description" content="${content.description!}"/>
+	<title>${content.contentExt.title}</title>
+	<link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="/${res}/resources/lib/bootstrap/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+	<link rel="stylesheet" type="text/css" href="/${res}/resources/css/comment.css"/>
+	<script src="${resSys}/jquery.js" type="text/javascript"></script>
+	<script src="${resSys}/front.js" type="text/javascript"></script>
+	<script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+
+	<!--[if lt IE 9]>
+	<script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+	<script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+	<![endif]-->
+	<script>
+		function ajax1() {
+			if ($("#comments-text").val().length < 10) {
+				alert("输入内容不得少于10个字符");
+			}
+			else {
+				$.ajax({
+					cache: true,
+					type: "POST",
+					url: "/consult.jspx",
+					data: $('#consultForm').serialize(),// 你的formid
+					async: false,
+					error: function (request) {
+						alert("Connection error");
+					},
+					success: function (data) {
+						var data = eval(data);
+						if (data.status == 3) {
+							alert("对不起，您没有权限，请先登录");
+							window.location.href = "/login.jspx"
+						} else if (data.status == 1){
+							alert("对不起，您的验证码错误，请重新输入!");
+							window.location.href = window.location.href;
+						} else if (data.success == true) {
+							alert("提交成功");
+							window.location.href = window.location.href;
+						}
+						else {
+							alert("提交失败，请稍候再试！")
+						}
+					}
+				});
+			}
+		}
+		function ajax2(e) {
+			var $a = $(e).parent().parent();
+			if ($a.find("textarea").css("display") == "none") {
+				$(".reply-text").css("display","none");
+				$a.find("textarea").show();
+			}
+			else {
+				if ($a.find("textarea").val().length < 10) {
+					alert("内容不能少于10个字符");
+				}
+				else {
+
+					$.ajax({
+						cache: true,
+						type: "POST",
+						url: "/consult.jspx",
+						data: $(e).parent().serialize(),// 你的formid
+						async: false,
+						error: function (request) {
+							alert("Connection error");
+						},
+						success: function (data) {
+							var data = eval(data);
+							if (data.status == 3) {
+								alert("对不起，您没有权限，请先登录");
+								window.location.href = "/login.jspx"
+							} else if (data.status == 1){
+								alert("对不起，您的验证码错误，请重新输入!");
+								window.location.href = window.location.href;
+							} else if (data.success == true) {
+								alert("提交成功");
+								window.location.href = window.location.href;
+							} else {
+								alert("提交失败，请稍候再试！")
+							}
+						}
+					});
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+[#include "../include/header_icloud.html" /]
+<div class="main wrapper clearfix">
+	<div class="comment">
+		<p>留言主题: <a href="/xtzzNlczs/xtzz_ability_preview.jspx" target="_blank">${content.title}</a></p>
+			<span class="card">
+				<span>发布时间：${content.releaseDate}</span>
+				<span>作者：${content.author!'本站编辑'}</span>
+			</span>
+		<section class="comments-list" style="margin-top:20px;">
+			<div class="tab-word">
+				<span>用户留言</span>
+			</div>
+			[@cms_consult_page contentId=contentId orderBy='1' count="6"]
+			<div class="wrapper guest clearfix">
+				[#if tag_pagination.list?size = 0]
+				<h4 style="text-align: center;">暂无相关留言！</h4>
+				[#else]
+				[#list tag_pagination.list as c]
+				<div class="item clearfix">
+					<div class="item-left">
+						<img src="${(c.consultUser.userImg)!'/${res}/images/userImg.png'}" alt="用户头像">
+					</div>
+					<div class="item-right">
+						<span class="user">${(c.consultUser.username)!"匿名网友"}</span>
+						<span class="comment-time">留言时间：${c.createTime}</span>
+						<p>${c.text}</p>
+						<div class="time">
+							[#if c.replyCount=0]
+							<a class="v1">【回复<span style="color: #003bb3;">${c.replyCount}</span>】</a><a class="sqhf"></a>
+							[#else]
+							<a class="v">【回复<span style="color: #003bb3;">${c.replyCount}</span>】</a><a class="sqhf"></a>
+							[/#if]
+						</div>
+						[#if c.replyCount = 0]
+						<div class="closeReplay" style="border: none;">
+							<div class="speak" style="display: none;">
+								<div class="speakOne big">
+									<form action="" method="post">
+										<input type="hidden" name="contentId" value="${content.contentId}">
+										<input type="hidden" name="parentId" value="${c.consultId}">
+										<h4 style="display: none;">回复&nbsp;&nbsp;<span></span>：</h4>
+										<textarea placeholder="对他的留言有啥看法？" class="reply-text" name="text"></textarea><br>
+										<span>请输入验证码：</span>
+										<input name="captcha" type="text" placeholder="验证码" vld="{required:true}" class="captcha-input"/>
+										<img src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()*1" />
+										<i>（输入图中的验证码，不区分大小写）</i>
+										<input type="button" value="回复ta" class="submit-on" onclick="ajax2(this)">
+									</form>
+								</div>
+							</div>
+						</div>
+						[#else]
+						<div class="closeReplay">
+							[@cms_consult_list topParentId='${c.consultId}' orderBy="1"]
+							[#list tag_list as a]
+							<div class="message">
+								<img src="${(c.consultUser.userImg)!'/${res}/images/userImg.png'}" class="userImg">
+								<div class="reMsg">
+									<span class="user">${(a.consultUser.username)!"匿名网友"}</span>：<span>回复</span>&nbsp;&nbsp;
+									<span class="user">[#if a.parent??]${(a.parent.consultUser.username)!'匿名网友'}[/#if]</span>：
+									<span>${a.text}</span>
+									<sapn class="replayDt">${a.createTime} <button class="replay1">回复</button></sapn>
+								</div>
+								<div class="speak">
+									<div class="speakOne small" style="display: none;">
+										<form action="" method="post">
+											<input type="hidden" name="contentId" value="${content.contentId}">
+											<input type="hidden" name="parentId" value="${a.consultId}">
+											<h4 style="display: none;">回复&nbsp;&nbsp;<span></span>：</h4>
+											<textarea placeholder="对他的留言有啥看法？" class="reply-text" name="text"></textarea><br>
+											<span>请输入验证码：</span>
+											<input name="captcha" type="text" placeholder="验证码" class="captcha-input"/>
+											<img src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()*1" />
+											<i>（输入图中的验证码，不区分大小写）</i>
+											<input type="button" value="回复ta" class="submit-on" onclick="ajax2(this)">
+										</form>
+									</div>
+								</div>
+							</div>
+							[/#list]
+							[/@cms_consult_list]
+							<div class="speak">
+								<button class="me">我也说一句</button>
+								<div class="speakOne big" style="display: none;">
+									<form action="" method="post">
+										<input type="hidden" name="contentId" value="${content.contentId}">
+										<input type="hidden" name="parentId" value="${c.consultId}">
+										<h4 style="display: none;">回复&nbsp;&nbsp;<span></span>：</h4>
+										<textarea placeholder="对他的留言有啥看法？" class="reply-text" name="text"></textarea><br>
+										<span>请输入验证码：</span>
+										<input name="captcha" type="text" placeholder="验证码" vld="{required:true}" class="captcha-input"/>
+										<img src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()*1" />
+										<i>（输入图中的验证码，不区分大小写）</i>
+										<input type="button" value="回复ta" class="submit-on" onclick="ajax2(this)">
+									</form>
+								</div>
+							</div>
+						</div>
+						[/#if]
+					</div>
+				</div>
+				[/#list]
+				[/#if]
+			</div>
+			<div class="page clearfix">[@cms_pagination sysPage='1'/]</div>
+			[/@cms_consult_page]
+
+			<div id="consultDialog" style="display:none;"></div>
+		</section>
+		<div class="tab-word">
+			<span>发表留言</span>
+		</div>
+		[#include "../content/inc_consult_input.html"/]
+	</div>
+</div>
+[#include "../include/footer_icloud.html" /]
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/comment.js"></script>
+</body>
+</html>

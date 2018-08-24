@@ -1,0 +1,187 @@
+.location{
+	width:1200px;
+	height: 41px;
+	margin-top:12px;
+	background: url(../../images/joinArmy/armyconsult/u60.png);
+	background-size: 1200px 42px;
+	font-size:15px;
+	font-weight:bold;
+	color:#393c3a;
+	text-align:left;
+	line-height:41px;
+	border-bottom: solid 1px #888888;
+	
+}
+/* ----------------------page分页样式---------------------*/
+.pagestyle .btn-page{ height:30px; width:35px; line-height:15px; font-size:14px; margin: 4px; padding: 3px; background:#c1c2c2; color:#FFFFFF; border:none; outline:none;}
+.pagestyle .btn-page:hover,.pagesite button:ACTIVE,.pagesite button .btn-page:FOCUS{ background:#48aaeb;}
+.pagestyle .active{ height:30px; width:35px; line-height:15px; font-size:14px;margin: 4px;padding: 3px;background:#48aaeb;color:#FFFFFF;border:none;outline:none;}
+.notice{
+	width: 546px;
+    height: 1110px;
+    margin-top:12px;   
+    float:left;
+
+}
+.title_notice{
+	width: 546px;
+    height: 40px;
+    font-family: 'Arial Negreta', 'Arial';
+    line-height:40px;
+    text-align:center;
+    background: url(../../images/joinArmy/armyconsult/u245.png);
+	background-size: 548px 42px;
+	border-bottom: solid 1px #888888;
+	border-right: solid 1px #888888;
+	
+}
+.news{
+	width: 546px;
+    height: 1070px;
+	background-size: 548px 1070px;
+}
+.page_bar{
+	width: 546px;
+	height: 200px;
+	border: solid 1px #888888;
+	border-top:0px;
+	padding-top:160px;
+	text-align: center;
+}
+.page_right{
+	margin-top:15px;
+	text-align: center;
+
+}
+.news_content{
+	width: 546px;
+	height: 95px;
+	border: solid 1px #888888;
+	border-top: 0px;
+	border-bottom:1px dashed #888888;
+	padding-top:10px;
+}
+.title_date{
+	height: 25px;
+
+}
+.read{
+	color:blue;
+	font-size:12px;
+	margin-left:10px;
+}
+.word{
+	color:#084c91;
+	font-family:"长仿宋体";
+	font-size:17px;
+	font-weight:bold;
+	text-decoration:none;
+	margin-left:15px;
+	margin-right:20px;
+}
+.circle{
+	color:#8c949b;
+	font-size:11px;
+}
+.content_date{
+	color:black;
+	font-size:11px;
+}
+.page_num{
+	padding-top:7px;
+	text-align:center;
+}
+
+.detail{
+	font-size:13px;
+	color:#888888;
+	margin-top:6px;
+	margin-left:15px;
+	margin-right:10px;
+}
+
+.title_word{
+	font-size:14px;
+	font-weight:bold;
+	margin-left:50px;
+}
+.more{
+	font-size:11px;
+	float:right;
+	margin-right:50px;
+}
+
+.right_content{
+	width: 641px;
+    height: 1130px;
+    float:right;
+
+    
+}
+.each_content{
+	width: 641px;
+    height: 140px;
+    margin-top:12px;
+    border: solid 1px #888888;
+}
+.inner{
+	width: 633px;
+    height: 132px;
+    margin-top:2px;
+    margin-left:2px;
+    border: solid 2px #96CDCD;
+
+}
+.inner_left{
+	width: 145px;
+	height: 117px;
+	float:left;
+	padding-top:13px;
+	padding-left:12px;
+	
+}
+.inner_right{
+	text-align:left;
+	padding-top:13px;
+}
+.start{
+	font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 16px;
+    color: #516F97;
+}
+.img_size{
+	width: 116px;
+	height: 101px;
+}
+.date{
+	font-size:13px;
+	margin-left:25px;
+	color:#363636;
+	
+}
+.sentence{
+	font-size:13px;
+	color:#363636;
+	margin-top:7px;
+	margin-right:5px;
+}
+.img249{
+	width: 116px;
+    height: 101px;
+}
+.inner_right a{
+	color:black;
+	font-size:13px;
+	text-decoration:none;
+	float:right;
+	margin-right:4px;
+	
+}
+.inner_right a:hover{
+	color:red;
+	
+}
+.inner_right a:visited{
+	color:blue;
+}

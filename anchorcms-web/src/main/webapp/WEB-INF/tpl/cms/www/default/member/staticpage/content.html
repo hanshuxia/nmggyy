@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>页面静态化</title>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/releasePower.css"/>
+    <script type="text/javascript">
+        function createContents() {
+            var button = $("#createButton");
+            var value = button.val();
+            var createButtonAdd = $("#createButtonAdd");
+            createButtonAdd.attr("disabled", "disabled");
+            button.val("正在生成，请稍候...").attr("disabled", "disabled");
+            $.ajax({
+                type: "POST",
+                url: "/staticpage/o_content.jspx",
+                data: {channelId: $("#channelId option:selected").val(), startDate: $("#startDate").val()},
+                dataType: "json",
+                success: function (data) {
+                    button.val(value).removeAttr("disabled");
+                    createButtonAdd.removeAttr("disabled");
+                    if (data.success) {
+                        alert("已经生成HTML，数据量：" + data.count);
+                    } else {
+                        //alert(data.no);
+                        if (data.no) {
+                            alert("该栏目未开启内容静态化，无法生成");
+                        } else {
+                            alert(data.msg);
+                        }
+                    }
+                },
+                error: function () {
+                    alert("没有权限执行此操作!");
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function createContentsAdd() {
+            var button = $("#createButtonAdd");
+            var value = button.val();
+            var createButton = $("#createButton");
+            createButton.attr("disabled", "disabled");
+            button.val("正在生成，请稍候...").attr("disabled", "disabled");
+            $.ajax({
+                type: "POST",
+                url: "/staticpage/o_contentAdd.jspx",
+                data: {channelId: $("#channelId option:selected").val(), startDate: $("#startDate").val()},
+                dataType: "json",
+                success: function (data) {
+                    button.val(value).removeAttr("disabled");
+                    createButton.removeAttr("disabled");
+                    if (data.success) {
+                        alert("已经生成HTML，数据量：" + data.count);
+                    } else {
+                        //alert(data.no);
+                        if (data.no) {
+                            alert("该栏目未开启内容静态化，无法生成");
+                        } else {
+                            alert(data.msg);
+                        }
+                    }
+                },
+                error: function () {
+                    alert("没有权限执行此操作!");
+                }
+            });
+        }
+    </script>
+</head>
+<style>
+    .hight{height: 30px;}
+    .wrapper{width: 95%;}
+    .rewardUpload{position:relative;padding-top:10px;min-height: 108px;}
+    .rewardUpload p{font-size:12px; color:#b4b4b4; line-height:36px;}
+    .rewardUpload p,.rewardUpload span,.rewardUpload .uploadBtn{margin-left: 173px;}
+    .ghtx{margin-left: 520px;margin-top: -100px;min-height: 108px;}
+    .ufcl{position:relative;margin-left: 173px;margin-top: -30px;}
+    .member-change{width:250px; float:left;}
+    .change-Btn{height:30px; margin-left:4px; border:1px solid #c7c7c7;}
+    #uploadFile1{height:30px;width:376px;opacity:0;filter:alpha(opacity=0);position:absolute;top:0;left:0;cursor:pointer;}
+</style>
+<body>
+<div class="content wrapper">
+    <@p.form id="jvForm" class="formDefStyle">
+    <div class="servicePower">
+        <div class="column wrapper"><span class="head">内容页静态化</span></div>
+    </div>
+    <div class="service-content wrapper">
+        <div class="inputs">
+            <label>&nbsp;栏目：</label>
+            <@p.select name="channelId" id="channelId" list=channelList listKey="channelId" listValue="name"listDeep="deep" headerKey="" headerValue="cmsLucene.allChannel"/>
+        </div>
+        <div class="inputs">
+            <label>&nbsp;开始日期：</label>
+            <input id="startDate" name="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'endDate\')}'})" class="Wdate"/>
+        </div>
+    </div>
+    <input type="hidden" id="siteId" name="siteId" value="${site.siteId}"/>
+    <div class="release-button" style="float: left; margin-left: 90px;margin-top:20px;">
+        <input class="btn submit" id="createButton" type="button" value="页面静态化" onclick="createContents()"  style="padding-top: 0px;"/>
+        <input class="btn submit" id="createButtonAdd" type="button" value="页面静态化增量" onclick="createContentsAdd()"  style="padding-top: 0px;"/>
+    </div>
+    </@p.form>
+</div>
+</body>
+</html>

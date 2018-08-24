@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>报价详细</title>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/searching.css"/>
+    <link rel="stylesheet" type="text/css" href="/r/cms/www/default/resources/lib/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/r/cms/www/default/resources/css/releasePower.css"/>
+    <link rel="stylesheet" type="text/css" href="/r/cms/www/default/resources/css/base.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <script type="text/javascript" src="/thirdparty/jquery-placeholder/placeholder-ie9.js" ></script>
+    <![endif]-->
+    <style type="text/css">
+        .SDemandObj_table {width: 100%; margin: auto; text-align: center; margin-top: 20px;}
+        .SDemandObj_table td {height: 30px; line-height: 20px; vertical-align: middle; text-align: center;}
+        #demanderInfo {border-collapse: collapse; width: 90%; margin: auto}
+        #demanderInfo tr td{height: 40px; line-height: 20px; vertical-align: middle; text-align: center; border: solid thin #cccccc; padding:0 10px}
+    </style>
+</head>
+<body>
+<!--header start-->
+<div id="header">
+    <div class="topbar">
+        <div class="wrapper  clearfix">
+            <div class="top-left">
+                <label>您好，欢迎来到内蒙古工业云！</label>
+                <img src="/user/images/201612/191411224sar.jpg">
+                <div class="vip">
+                    <a class="username">admin</a>
+                    <ul>
+                        <li><a href="/member/index.jspx">会员中心</a></li>
+                        <li><a href="/logout.jspx">退出账号</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="top-right">
+                <div class="toplink fl">
+                    <a href="javascript:void(0)">关于工业云</a>
+                    <a href="javascript:void(0)">帮助手册</a>
+                    <a href="javascript:void(0)">客服中心</a>
+                    <a href="javascript:void(0)">友情链接</a>
+                </div>
+                <span class="fr">微信公众号</span>
+            </div>
+        </div>
+    </div>
+    <div class="logobar wrapper">
+        <a href="javascript:void(0)" ><img  class="logo" src="/r/cms/www/default/resources/images/index/logo.jpg" alt="logo"></a>
+        <div class="menubar">
+            <div class="search">
+                <input type="text" placeholder="请输入搜索内容" />
+            </div>
+        </div>
+    </div>
+    <div class="menu1">
+        <ul id="menu" class="wrapper clearfix">
+            <li class="current"><a href="http://localhost:8080/">首页</a></li>
+            <li>
+                <a class="underline" href="http://localhost:8080/xtzz/index.jhtml">协同制造</a>
+                <ul>
+                    <li><a href="http://localhost:8080/xtzzNlczs/index.jhtml">能力池展示</a></li>
+                    <li><a href="http://localhost:8080/xtzzXqczs/index.jhtml">需求池展示</a></li>
+                    <li><a href="http://localhost:8080/xtzzQyzznlzs/index.jhtml">企业制造能力展示</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="underline" href="http://localhost:8080/gylxt/index.jhtml">供应链协同</a>
+                <ul>
+                    <li><a href="http://localhost:8080/gylxtBpbj/index.jhtml">备品备件</a></li>
+                    <li><a href="http://localhost:8080/gylxtBpbjqg/index.jhtml">备品备件求购</a></li>
+                    <li><a href="http://localhost:8080/gylxtZxzy/index.jhtml">众修资源</a></li>
+                    <li><a href="http://localhost:8080/gylxtZxxq/index.jhtml">众修需求</a></li>
+                    <li><a href="http://localhost:8080/gylxtJplsftj/index.jhtml">金牌老师傅推荐</a></li>
+                    <li><a href="http://localhost:8080/gylxtWxfxqtj/index.jhtml">维修方需求推荐</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="underline" href="http://localhost:8080/yzyjyzx/index.jhtml">云资源交易中心</a>
+                <ul>
+                    <li><a href="http://localhost:8080/yzyjyzxYjszc/index.jhtml">云计算政策</a></li>
+                    <li><a href="http://localhost:8080/yzyjyzxFzzcsq/index.jhtml">扶持政策申请</a></li>
+                    <li><a href="http://localhost:8080/yzyjyzxYzyck/index.jhtml">云资源查看</a></li>
+                    <li><a href="http://localhost:8080/yzyjyzxYxq/index.jhtml">云需求</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="underline" href="http://localhost:8080/ggfw/index.jhtml">公共服务</a>
+                <ul>
+                    <li><a href="http://localhost:8080/ggfwXmztb/index.jhtml">项目招投标</a></li>
+                    <li><a href="http://localhost:8080/ggfwHbzc/index.jhtml">惠补政策</a></li>
+                    <li><a href="http://localhost:8080/ggfwGxhsjfx/index.jhtml">个性化数据分析</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="underline" href="http://localhost:8080/rjyy/index.jhtml">软件应用</a>
+                <ul>
+                    <li><a href="http://localhost:8080/rjyyRjjsym/index.jhtml">软件检索页面</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--header end-->
+<!--content start-->
+<div class="content wrapper" style="font-size: small">
+    <div class="servicePower">
+        <div class="column wrapper"> <span class="head">我要报价</span></div>
+        <div class="service-content wrapper">
+            <span>询价（需求）方基本信息</span><br>
+            <br>
+        [#if sRepairDemandList?size gt 0]
+        [#list sRepairDemandList as a]
+        <table id="demanderInfo">
+            <tr>
+                <td width="8%">询价单位：</td>
+                <td width="26%">${(a.content.companyName)?default("")}</td>
+                <td width="8%">联系人：</td>
+                <td width="25%">${(a.contact)?default("")}</td>
+                <td width="8%">联系电话：</td>
+                <td width="25%">${(a.mobile)?default("")}</td>
+            </tr>
+            <tr>
+                <td width="8%">传真：</td>
+                <td width="25%">${(a.fax)?default("")}</td>
+                <td width="8%">email：</td>
+                <td width="25%">${(a.email)?default("")}</td>
+                <td width="8%">截止日期：</td>
+                <td width="26%">${(a.deadlineDt)?default("")}</td>
+            </tr>
+            <tr>
+                <td width="8%">维修地点：</td>
+                <td width="26%">${(a.addrProvince)?default("")} ${(a.addrCity)?default("")} ${(a.addrCounty)?default("")}${(a.addrStreet)?default("")}</td>
+                <td width="8%"></td>
+                <td width="25%"></td>
+                <td width="8%"></td>
+                <td width="25%"></td>
+            </tr>
+        </table>
+        [/#list]
+        [/#if]
+    </div>
+        <div class="servicePower">
+            <div class="column wrapper"> <span class="head">询价对象信息</span> <!--<span class="tips">未填写报价的对象视为未对其报价，<i>*</i>&nbsp;为必填项</span>--> </div>
+            <div class="service-content wrapper">
+                <!--<span>请选择报价对象，</span>未填写报价的对象视为未对其报价<br>-->
+                <table id="SDemandObj_table" class="SDemandObj_table" border="1">
+                  <tr style="background-color:#318CB9; color:#FFF">
+                    <td width="15%">维修对象名称</td>
+                    <td width="10%">型号</td>
+                    <td width="25%">维修地点</td>
+                    <td width="15%">开始时间</td>
+                    <td width="15%">截止时间</td>
+                    <td width="10%">期望单价(元)</td>
+                    <td width="10%">我的报价(元)</td>
+                  </tr>
+        [#list sRepairDemandList as a]
+        [#list a.sRepairDemandObj as b]
+        [#list sRepairQuote.sRepairAbility as c]
+                  <tr>
+                    <td>${b.repairName?default("")}</td>
+                    <td>${b.machineType?default("")}</td>
+                    <td>${b.addrProvince?default("")},${b.addrCity?default("")},${b.addrCounty?default("")}${b.addrStreet?default("")}</td>
+                    <td>${b.startDt?default("")}</td>
+                    <td>${b.deadlineDt?default("")}</td>
+                    <td>${b.expectPrice?default("")}</td>
+                    <td>${c.offer?default("")}</td>
+                  </tr>
+        [/#list]
+        [/#list]
+                [/#list]
+              </table>
+                <br><br>
+                <div style="margin-left: 100px">
+                    <span>报价说明：<textarea rows="5" cols="100" readonly="true" style="resize: none;">${sRepairQuote.offerExplan?default("null")}</textarea></span>
+                </div>
+                <div style="margin-left: 100px;margin-top: 150px">
+                    <span>截止日期：</span>
+                    <input type="text" value="${sRepairQuote.deadlineDt?default('')}">
+                </div>
+                <div style="margin-left: 100px;margin-top: 20px">
+                    <span>报价单位：</span>
+                    <input type="text" value="${sRepairQuote.companyName?default('')}">
+                </div>
+                <div style="margin-left: 100px;margin-top: 20px">
+                    <span>联系人：</span>&nbsp;&nbsp;&nbsp;
+                    <input type="text" value="${sRepairQuote.contact?default('')}">
+                </div>
+                <div style="margin-left: 100px;margin-top: 20px">
+                    <span>联系电话：</span>
+                    <input type="text" value="${sRepairQuote.mobile?default('')}">
+                </div>
+                <div style="margin-left: 100px;margin-top: 20px">
+                    <span>邮箱：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" value="${sRepairQuote.email?default('')}">
+                </div>
+                <div style="margin-left: 100px;margin-top: 20px">
+                    <span>传真：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" value="${sRepairQuote.fax?default('')}">
+                </div>
+                </div>
+            </div>
+        </div>
+</div>
+<!--content end-->
+<!--footer start-->
+<div id="footer" style="margin-top: 100px">
+    <div class="friendLink wrapper">
+        <div class="linkRight">
+            <div class="ewmWrap">
+                <div class="ewm clearfix">
+                    <span class="link-text">点击官方微信，扫一扫</span>
+                    <span class="link-img"><img src="/r/cms/www/default/resources/images/index/wechat1.jpg"></span>
+                </div>
+            </div>
+            <p class="link-tel">400-857-6688</p>
+            <p class="link-time">周一至周日8:00到18:00（全国免费）</p>
+        </div>
+        <div class="linkLeft">
+            <dl class="linkHead1">
+                <dt>购物指南</dt>
+                <dd><a href="javascript:void(0)">购物流程</a></dd>
+                <dd><a href="javascript:void(0)">支付流程</a></dd>
+                <dd><a href="javascript:void(0)">联系我们</a></dd>
+                <dd><a href="javascript:void(0)">常见问题</a></dd>
+                <dd><a href="javascript:void(0)">快递查询</a></dd>
+            </dl>
+            <dl class="linkHead2">
+                <dt>支付方式</dt>
+                <dd><a href="javascript:void(0)">钱坤宝</a></dd>
+                <dd><a href="javascript:void(0)">银联支付</a></dd>
+                <dd><a href="javascript:void(0)">中行支付</a></dd>
+            </dl>
+            <dl class="linkHead3">
+                <dt>商家帮助</dt>
+                <dd><a href="javascript:void(0)">入网流程</a></dd>
+                <dd><a href="javascript:void(0)">采购商帮助</a></dd>
+                <dd><a href="javascript:void(0)">供应商帮助</a></dd>
+            </dl>
+            <dl class="linkHead4">
+                <dt>售后保障</dt>
+                <dd><a href="javascript:void(0)">售后政策</a></dd>
+                <dd><a href="javascript:void(0)">售后流程</a></dd>
+                <dd><a href="javascript:void(0)">退款说明</a></dd>
+                <dd><a href="javascript:void(0)">退款原则</a></dd>
+                <dd><a href="javascript:void(0)">发票政策</a></dd>
+            </dl>
+            <dl class="linkHead5">
+                <dt>会员服务</dt>
+                <dd><a href="javascript:void(0)">申请注册</a></dd>
+                <dd><a href="javascript:void(0)">用户登录</a></dd>
+                <dd><a href="javascript:void(0)">找回密码</a></dd>
+                <dd><a href="javascript:void(0)">账户管理</a></dd>
+                <dd><a href="javascript:void(0)">安全中心</a></dd>
+            </dl>
+        </div>
+    </div>
+    <div class="bottomBar">
+        <div class="wrapper">
+            版权所有Copyright&copy;工业品商城2015，ALL Right Reserved
+            <div class="rightLinks">
+                <a href="">关于我们</a>
+                <a href="">联系我们</a>
+                <a href="">合作伙伴</a>
+                <a href="">进入航天</a>
+            </div>
+        </div>
+    </div>
+    <!--返回顶部-->
+    <div id="backTop"><a href="#top"></a></div>
+</div>
+<!--footer end-->
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/searching.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#demanderInfo tr').each(function(){
+            $(this).children('td:even').css({"background-color":"#318CB9","color":"#FFFFFF","padding":"0"});
+        })
+        $("input[type=text]").attr("readonly","readonly");
+        $("span").css("color","#000000");
+    })
+</script>
+</body>
+</html>

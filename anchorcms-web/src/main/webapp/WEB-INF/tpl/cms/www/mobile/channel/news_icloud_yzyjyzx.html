@@ -1,0 +1,698 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>云资源交易中心-${site.siteName!}</title>
+    <meta http-equiv="keywords" content="云资源交易中心,内蒙古云资源交易中心"/>
+    <meta http-equiv="description" content="内蒙古云资源交易中心,${site.description!}"/>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/cloudCenter.css"/>
+
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+[#include "../include/header_icloud.html" /]
+
+<!--content start-->
+[#assign monAbbr=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"] /]
+<div class="banner">
+    <img src="/${res}/resources/images/synergy/banner.png" alt="banner图" />
+    <div class="sysName">
+        <span>CASI CLOUD</span>
+        <p>内蒙古工业云</p>
+        <p>WELCOME TO INNER MONGOLIA INDUSTRIAL CLOUD</p>
+    </div>
+</div>
+<!--内蒙古自治区资源分布-->
+<div class="column-three">
+    <div class="column-hd">
+        <div class="wrapper">
+            <span class="block-title">内蒙古自治区云资源分布</span>
+            <a href="/yzyjyzxYzyck/index.jhtml" target="_blank"  class="more">更多></a>
+        </div>
+    </div>
+    <div class="column">
+        <div class="column1"></div>
+        <div class="column-bd wrapper">
+            <div class="mapBox">
+                [#include "../include/echarts.html" /]
+                <!-- <img src="/${res}/resources/images/cloudCenter/map.jpg" alt="">-->
+            </div>
+            <div id="areaOne" class="mapInfo">
+                <h4>呼伦贝尔市计算机中心</h4>
+                <ul>
+                    [@s_icloud_center_list count='10' orderBy='1' area='1']
+                    [#if tag_list?size==0]
+                    <li class="noList" name="null">暂无云计算中心！</li>
+                    [#elseif tag_list?size<7]
+                    [#list tag_list as a]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#list]
+                    [#else]
+                    [#list tag_list as a]
+                    [#if a_index<5]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#if]
+                    [/#list]
+                    <li>...</li>
+                    [/#if]
+                    [/@s_icloud_center_list]
+                </ul>
+            </div>
+            <div id="areaTwo" class="mapInfo" style="display: none;">
+                <h4>兴安盟计算机中心</h4>
+                <ul>
+                    [@s_icloud_center_list count='10' orderBy='1' area='2']
+                    [#if tag_list?size==0]
+                    <li class="noList" name="null">暂无云计算中心！</li>
+                    [#elseif tag_list?size<7]
+                    [#list tag_list as a]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#list]
+                    [#else]
+                    [#list tag_list as a]
+                    [#if a_index<5]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#if]
+                    [/#list]
+                    <li>...</li>
+                    [/#if]
+                    [/@s_icloud_center_list]
+                </ul>
+            </div>
+            <div id="areaThree"  class="mapInfo" style="display: none;">
+                <h4>通辽市计算机中心</h4>
+                <ul>
+                    [@s_icloud_center_list count='10' orderBy='1' area='3']
+                    [#if tag_list?size==0]
+                    <li class="noList" name="null">暂无云计算中心！</li>
+                    [#elseif tag_list?size<7]
+                    [#list tag_list as a]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#list]
+                    [#else]
+                    [#list tag_list as a]
+                    [#if a_index<5]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#if]
+                    [/#list]
+                    <li>...</li>
+                    [/#if]
+                    [/@s_icloud_center_list]
+                </ul>
+            </div>
+            <div id="areaFour" class="mapInfo" style="display: none;">
+                <h4>赤峰市</h4>
+                <ul>
+                    [@s_icloud_center_list count='10' orderBy='1' area='4']
+                    [#if tag_list?size==0]
+                    <li class="noList" name="null">暂无云计算中心！</li>
+                    [#elseif tag_list?size<7]
+                    [#list tag_list as a]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#list]
+                    [#else]
+                    [#list tag_list as a]
+                    [#if a_index<5]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#if]
+                    [/#list]
+                    <li>...</li>
+                    [/#if]
+                    [/@s_icloud_center_list]
+                </ul>
+            </div>
+            <div id="areaFive"  class="mapInfo" style="display: none;">
+                <h4>锡林郭勒盟</h4>
+                <ul>
+                    [@s_icloud_center_list count='10' orderBy='1' area='5']
+                    [#if tag_list?size==0]
+                    <li class="noList" name="null">暂无云计算中心！</li>
+                    [#elseif tag_list?size<7]
+                    [#list tag_list as a]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#list]
+                    [#else]
+                    [#list tag_list as a]
+                    [#if a_index<5]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#if]
+                    [/#list]
+                    <li>...</li>
+                    [/#if]
+                    [/@s_icloud_center_list]
+                </ul>
+            </div>
+            <div  id="six"  class="mapInfo" style="display: none;">
+                <h4>乌兰察布市</h4>
+                <ul>
+                    [@s_icloud_center_list count='10' orderBy='1' area='6']
+                    [#if tag_list?size==0]
+                    <li class="noList" name="null">暂无云计算中心！</li>
+                    [#elseif tag_list?size<7]
+                    [#list tag_list as a]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#list]
+                    [#else]
+                    [#list tag_list as a]
+                    [#if a_index<5]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#if]
+                    [/#list]
+                    <li>...</li>
+                    [/#if]
+                    [/@s_icloud_center_list]
+                </ul>
+            </div>
+            <div id="seven"  class="mapInfo" style="display: none;">
+                <h4>包头市</h4>
+                <ul>
+                    [@s_icloud_center_list count='10' orderBy='1' area='7']
+                    [#if tag_list?size==0]
+                    <li class="noList" name="null">暂无云计算中心！</li>
+                    [#elseif tag_list?size<7]
+                    [#list tag_list as a]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#list]
+                    [#else]
+                    [#list tag_list as a]
+                    [#if a_index<5]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#if]
+                    [/#list]
+                    <li>...</li>
+                    [/#if]
+                    [/@s_icloud_center_list]
+                </ul>
+            </div>
+            <div id="eight"  class="mapInfo" style="display: none;">
+                <h4>呼和浩特市</h4>
+                <ul>
+                    [@s_icloud_center_list count='10' orderBy='1' area='8']
+                    [#if tag_list?size==0]
+                    <li class="noList" name="null">暂无云计算中心！</li>
+                    [#elseif tag_list?size<7]
+                    [#list tag_list as a]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#list]
+                    [#else]
+                    [#list tag_list as a]
+                    [#if a_index<5]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#if]
+                    [/#list]
+                    <li>...</li>
+                    [/#if]
+                    [/@s_icloud_center_list]
+                </ul>
+            </div>
+            <div id="nine"  class="mapInfo" style="display: none;">
+                <h4>巴彦淖尔市</h4>
+                <ul>
+                    [@s_icloud_center_list count='10' orderBy='1' area='9']
+                    [#if tag_list?size==0]
+                    <li class="noList" name="null">暂无云计算中心！</li>
+                    [#elseif tag_list?size<7]
+                    [#list tag_list as a]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#list]
+                    [#else]
+                    [#list tag_list as a]
+                    [#if a_index<5]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#if]
+                    [/#list]
+                    <li>...</li>
+                    [/#if]
+                    [/@s_icloud_center_list]
+                </ul>
+            </div>
+            <div id="ten" class="mapInfo" style="display: none;">
+                <h4>鄂尔多斯市</h4>
+                <ul>
+                    [@s_icloud_center_list count='10' orderBy='1'area='10']
+                    [#if tag_list?size==0]
+                    <li class="noList" name="null">暂无云计算中心！</li>
+                    [#elseif tag_list?size<7]
+                    [#list tag_list as a]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#list]
+                    [#else]
+                    [#list tag_list as a]
+                    [#if a_index<5]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#if]
+                    [/#list]
+                    <li>...</li>
+                    [/#if]
+                    [/@s_icloud_center_list]
+                </ul>
+            </div>
+            <div id="eleven" class="mapInfo" style="display: none;">
+                <h4>乌海市</h4>
+                <ul>
+                    [@s_icloud_center_list count='10' orderBy='1'area='11']
+                    [#if tag_list?size==0]
+                    <li class="noList" name="null">暂无云计算中心！</li>
+                    [#elseif tag_list?size<7]
+                    [#list tag_list as a]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#list]
+                    [#else]
+                    [#list tag_list as a]
+                    [#if a_index<5]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#if]
+                    [/#list]
+                    <li>...</li>
+                    [/#if]
+                    [/@s_icloud_center_list]
+                </ul>
+            </div>
+            <div id="twelve" class="mapInfo" style="display: none;">
+                <h4>阿拉善盟</h4>
+                <ul>
+                    [@s_icloud_center_list count='10' orderBy='1'area='12']
+                    [#if tag_list?size==0]
+                    <li class="noList" name="null">暂无云计算中心！</li>
+                    [#elseif tag_list?size<7]
+                    [#list tag_list as a]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#list]
+                    [#else]
+                    [#list tag_list as a]
+                    [#if a_index<5]
+                    <li><a href="/icloudcenterdetail.jspx?id=${a.centerId?default('')}">[@text_cut s=a.centerName! len='12' append='...' /]</a></li>
+                    [/#if]
+                    [/#list]
+                    <li>...</li>
+                    [/#if]
+                    [/@s_icloud_center_list]
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--云资源交易-->
+<div class="column-four">
+    <div class="column-hd">
+        <div class="wrapper">
+            <span class="block-title">云资源交易</span>
+            <span class="block">
+                <a href="/member/cloundcenter_add_demand.jspx?frontStatus=1" target="_blank">我有需求</a>
+            </span>
+            <a href="/yzyjyzxYzyck/index.jhtml" target="_blank"  class="more">更多></a>
+        </div>
+    </div>
+    <div class="column-bd wrapper">
+        <div class="myResource" id="resource1">
+            <img src="/${res}/resources/images/cloudCenter/title1.png" alt="">
+            <div class="resBox">
+                <div class="center">
+                    <ul class="cItems clearfix">
+                        [@s_icloud_resource_list count='8' orderBy='1' type='1'state='1'state='3']
+                        [#list tag_list as a]
+                        <li>
+                            [#if (a.content)??]
+                                [#if a.content.staticContent]
+                                [#if a.content.needRegenerate]
+                                <a href="/yzyjyzxYzyck/cloudcenter_resource_manager_info.jspx?managerId=${a.managerId!}" target="_blank">
+                                    <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.resourceName!}">
+                                    <div class="bg">
+                                        <img src="/${res}/resources/images/cloudCenter/titleBg.png" alt="">
+                                        <span>${a.resourceName!}</span>
+                                    </div>
+                                </a>
+                                [#else]
+                                <a href="${a.content.url}" target="_blank">
+                                    <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.resourceName!}">
+                                    <div class="bg">
+                                        <img src="/${res}/resources/images/cloudCenter/titleBg.png" alt="">
+                                        <span>${a.resourceName!}</span>
+                                    </div>
+                                </a>
+                                [/#if]
+                                [#else]
+                                <a href="/yzyjyzxYzyck/cloudcenter_resource_manager_info.jspx?managerId=${a.managerId!}" target="_blank">
+                                    <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.resourceName!}">
+                                    <div class="bg">
+                                        <img src="/${res}/resources/images/cloudCenter/titleBg.png" alt="">
+                                        <span>${a.resourceName!}</span>
+                                    </div>
+                                </a>
+                                [/#if]
+                            [/#if]
+                        </li>
+                        [/#list]
+                        [/@s_icloud_resource_list]
+                    </ul>
+                </div>
+                <div class="slide">
+                    <span class="current"></span><span></span>
+                </div>
+            </div>
+            <div class="imgSlide"></div>
+        </div>
+        <div class="myResource" id="resource2">
+            <img src="/${res}/resources/images/cloudCenter/title2.png" alt="">
+            <div class="resBox">
+                <div class="center">
+                    <ul class="cItems clearfix">
+                        [@s_icloud_resource_list count='8' orderBy='1' type='2'state='1'state='3']
+                        [#list tag_list as a]
+                        <li>
+                            [#if (a.content)??]
+                                [#if a.content.staticContent]
+                                    [#if a.content.needRegenerate]
+                                        <a href="/yzyjyzxYzyck/cloudcenter_resource_manager_info.jspx?managerId=${a.managerId!}" target="_blank">
+                                            <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.resourceName!}">
+                                            <div class="bg">
+                                                <img src="/${res}/resources/images/cloudCenter/titleBg.png" alt="">
+                                                <span>${a.resourceName!}</span>
+                                            </div>
+                                        </a>
+                                    [#else]
+                                        <a href="${a.content.url}" target="_blank">
+                                            <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.resourceName!}">
+                                            <div class="bg">
+                                                <img src="/${res}/resources/images/cloudCenter/titleBg.png" alt="">
+                                                <span>${a.resourceName!}</span>
+                                            </div>
+                                        </a>
+                                    [/#if]
+                                [#else]
+                                    <a href="/yzyjyzxYzyck/cloudcenter_resource_manager_info.jspx?managerId=${a.managerId!}" target="_blank">
+                                        <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.resourceName!}">
+                                        <div class="bg">
+                                            <img src="/${res}/resources/images/cloudCenter/titleBg.png" alt="">
+                                            <span>${a.resourceName!}</span>
+                                        </div>
+                                    </a>
+                                [/#if]
+                            [/#if]
+                        </li>
+                        [/#list]
+                        [/@s_icloud_resource_list]
+                    </ul>
+                </div>
+                <div class="slide">
+                    <span class="current"></span><span></span>
+                </div>
+            </div>
+        </div>
+        <div class="myResource" id="resource3">
+            <img src="/${res}/resources/images/cloudCenter/title3.png" alt="">
+            <div class="resBox">
+                <div class="center">
+                    <ul class="cItems clearfix">
+                        [@s_icloud_resource_list count='8' orderBy='1' type='3' state='1'state='3']
+                        [#list tag_list as a]
+                        <li>
+                            [#if (a.content)??]
+                                [#if a.content.staticContent]
+                                    [#if a.content.needRegenerate]
+                                        <a href="/yzyjyzxYzyck/cloudcenter_resource_manager_info.jspx?managerId=${a.managerId!}" target="_blank">
+                                            <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.resourceName!}">
+                                            <div class="bg">
+                                                <img src="/${res}/resources/images/cloudCenter/titleBg.png" alt="">
+                                                <span>${a.resourceName!}</span>
+                                            </div>
+                                        </a>
+                                    [#else]
+                                        <a href="${a.content.url}" target="_blank">
+                                            <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.resourceName!}">
+                                            <div class="bg">
+                                                <img src="/${res}/resources/images/cloudCenter/titleBg.png" alt="">
+                                                <span>${a.resourceName!}</span>
+                                            </div>
+                                        </a>
+                                    [/#if]
+                                [#else]
+                                    <a href="/yzyjyzxYzyck/cloudcenter_resource_manager_info.jspx?managerId=${a.managerId!}" target="_blank">
+                                        <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.resourceName!}">
+                                        <div class="bg">
+                                            <img src="/${res}/resources/images/cloudCenter/titleBg.png" alt="">
+                                            <span>${a.resourceName!}</span>
+                                        </div>
+                                    </a>
+                                [/#if]
+                            [/#if]
+                        </li>
+                        [/#list]
+                        [/@s_icloud_resource_list]
+                    </ul>
+                </div>
+                <div class="slide">
+                    <span class="current"></span><span></span>
+                </div>
+            </div>
+            <div class="imgSlide"></div>
+        </div>
+        <div class="myResource" id="resource4">
+            <img src="/${res}/resources/images/cloudCenter/title4.png" alt="">
+            <div class="resBox">
+                <div class="center">
+                    <ul class="cItems clearfix">
+                        [@s_icloud_resource_list count='8' orderBy='1' type='4' state='1'state='3']
+                        [#list tag_list as a]
+                        <li>
+                            [#if (a.content)??]
+                                [#if a.content.staticContent]
+                                    [#if a.content.needRegenerate]
+                                        <a href="/yzyjyzxYzyck/cloudcenter_resource_manager_info.jspx?managerId=${a.managerId!}" target="_blank">
+                                            <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.resourceName!}">
+                                            <div class="bg">
+                                                <img src="/${res}/resources/images/cloudCenter/titleBg.png" alt="">
+                                                <span>${a.resourceName!}</span>
+                                            </div>
+                                        </a>
+                                    [#else]
+                                        <a href="${a.content.url}" target="_blank">
+                                            <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.resourceName!}">
+                                            <div class="bg">
+                                                <img src="/${res}/resources/images/cloudCenter/titleBg.png" alt="">
+                                                <span>${a.resourceName!}</span>
+                                            </div>
+                                        </a>
+                                    [/#if]
+                                [#else]
+                                    <a href="/yzyjyzxYzyck/cloudcenter_resource_manager_info.jspx?managerId=${a.managerId!}" target="_blank">
+                                        <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="${a.resourceName!}">
+                                        <div class="bg">
+                                            <img src="/${res}/resources/images/cloudCenter/titleBg.png" alt="">
+                                            <span>${a.resourceName!}</span>
+                                        </div>
+                                    </a>
+                                [/#if]
+                            [/#if]
+                        </li>
+                        [/#list]
+                        [/@s_icloud_resource_list]
+                    </ul>
+                </div>
+                <div class="slide">
+                    <span class="current"></span><span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--新闻播报信息-->
+    <div class="newsShow">
+        <div class="wrapper notice easing" id="breakingnews">
+            <i>特殊需求：</i>
+            <ul class="clearfix">
+                [@s_icloud_demand_list count='8' orderBy='1' type='0']
+                [#list tag_list as a]
+                <li>
+                    [#if (a.content)??]
+                        [#if a.content.staticContent]
+                            [#if a.content.needRegenerate]
+                                <a href="/yzyjyzxYxq/cloudcenter_demand_detail.jspx?demandId=${a.demandId!}" title="【${a.releaseDt!}】&nbsp;${a.company.companyName!}&nbsp;需要&nbsp;${a.demandName!}&nbsp;${a.count!} ${a.unit!}">【${a.releaseDt!}】&nbsp;[@text_cut s=a.company.companyName! len='10' append='...' /]&nbsp;需要&nbsp;[@text_cut s=a.demandName! len='10' append='...' /]&nbsp;${a.count!} ${a.unit!}</a>
+                            [#else]
+                                <a href="${a.content.url}" title="【${a.releaseDt!}】&nbsp;${a.company.companyName!}&nbsp;需要&nbsp;${a.demandName!}&nbsp;${a.count!} ${a.unit!}">【${a.releaseDt!}】&nbsp;[@text_cut s=a.company.companyName! len='10' append='...' /]&nbsp;需要&nbsp;[@text_cut s=a.demandName! len='10' append='...' /]&nbsp;${a.count!} ${a.unit!}</a>
+                            [/#if]
+                        [#else]
+                                <a href="/yzyjyzxYxq/cloudcenter_demand_detail.jspx?demandId=${a.demandId!}" title="【${a.releaseDt!}】&nbsp;${a.company.companyName!}&nbsp;需要&nbsp;${a.demandName!}&nbsp;${a.count!} ${a.unit!}">【${a.releaseDt!}】&nbsp;[@text_cut s=a.company.companyName! len='10' append='...' /]&nbsp;需要&nbsp;[@text_cut s=a.demandName! len='10' append='...' /]&nbsp;${a.count!} ${a.unit!}</a>
+                        [/#if]
+                    [/#if]
+                </li>
+                [/#list]
+                [/@s_icloud_demand_list]
+            </ul>
+        </div>
+    </div>
+</div>
+<!--云计算政策信息-->
+<div class="column-five clearfix">
+    <div class="column-hd" style="text-align: center;border-bottom: none;">
+        <div class="wrapper">
+            <span class="block-title">云计算政策信息</span>
+        </div>
+    </div>
+    <div class="wrapper">
+        <!--云计算政策信息-->
+        <div class="column-one">
+            <div class="one-hd">
+                <div class="tabHead">
+                    <div class="tab-menu">
+                        <span class="current">国家政策</span>|
+                        <span>自治区政策</span>|
+                        <span>盟市政策</span>
+                        <a href="/yzyjyzxYjszc/index.jhtml" target="_blank"  class="more">更多></a>
+                    </div>
+                </div>
+            </div>
+            <div class="one current">
+                <ul>
+                    [@s_icloud_policy_list count='6' orderBy='1' type='0']
+                    [#list tag_list as a]
+                    <li>
+                        [#if (a.content)??]
+                            [#if a.content.staticContent]
+                                [#if a.content.needRegenerate]
+                                    <a href="/yzyjyzxYjszc/cloudcenter_policy_info.jspx?policyId=${a.policyId}" target="_blank">【${a.releaseDt?string("yyyy-MM-dd")}】&nbsp;[@text_cut s=a.policyName! len='15' append='...' /]</a>
+                                [#else]
+                                    <a href="${a.content.url}" target="_blank">【${a.releaseDt?string("yyyy-MM-dd")}】&nbsp;[@text_cut s=a.policyName! len='15' append='...' /]</a>
+                                [/#if]
+                            [#else]
+                                <a href="/yzyjyzxYjszc/cloudcenter_policy_info.jspx?policyId=${a.policyId}" target="_blank">【${a.releaseDt?string("yyyy-MM-dd")}】&nbsp;[@text_cut s=a.policyName! len='15' append='...' /]</a>
+                            [/#if]
+                        [/#if]
+                    </li>
+                    [/#list]
+                    [/@s_icloud_policy_list]
+                </ul>
+            </div>
+            <div class="one">
+                <ul>
+                    [@s_icloud_policy_list count='6' orderBy='1' type='1']
+                    [#list tag_list as a]
+                    <li>
+                        [#if (a.content)??]
+                            [#if a.content.staticContent]
+                                [#if a.content.needRegenerate]
+                                    <a href="/yzyjyzxYjszc/cloudcenter_policy_info.jspx?policyId=${a.policyId}" target="_blank">【${a.releaseDt?string("yyyy-MM-dd")}】&nbsp;[@text_cut s=a.policyName! len='15' append='...' /]</a>
+                                [#else]
+                                    <a href="${a.content.url}" target="_blank">【${a.releaseDt?string("yyyy-MM-dd")}】&nbsp;[@text_cut s=a.policyName! len='15' append='...' /]</a>
+                                [/#if]
+                            [#else]
+                                <a href="/yzyjyzxYjszc/cloudcenter_policy_info.jspx?policyId=${a.policyId}" target="_blank">【${a.releaseDt?string("yyyy-MM-dd")}】&nbsp;[@text_cut s=a.policyName! len='15' append='...' /]</a>
+                            [/#if]
+                        [/#if]
+                    </li>
+                    [/#list]
+                    [/@s_icloud_policy_list]
+                </ul>
+            </div>
+            <div class="one">
+                <ul>
+                    [@s_icloud_policy_list count='6' orderBy='1' type='2']
+                    [#list tag_list as a]
+                    <li>
+                        [#if (a.content)??]
+                            [#if a.content.staticContent]
+                                [#if a.content.needRegenerate]
+                                    <a href="/yzyjyzxYjszc/cloudcenter_policy_info.jspx?policyId=${a.policyId}" target="_blank">【${a.releaseDt?string("yyyy-MM-dd")}】&nbsp;[@text_cut s=a.policyName! len='15' append='...' /]</a>
+                                [#else]
+                                    <a href="${a.content.url}" target="_blank">【${a.releaseDt?string("yyyy-MM-dd")}】&nbsp;[@text_cut s=a.policyName! len='15' append='...' /]</a>
+                                [/#if]
+                            [#else]
+                                <a href="/yzyjyzxYjszc/cloudcenter_policy_info.jspx?policyId=${a.policyId}" target="_blank">【${a.releaseDt?string("yyyy-MM-dd")}】&nbsp;[@text_cut s=a.policyName! len='15' append='...' /]</a>
+                            [/#if]
+                        [/#if]
+                    </li>
+                    [/#list]
+                    [/@s_icloud_policy_list]
+                </ul>
+            </div>
+        </div>
+        <!--可申请政策信息-->
+        <div class="column-two">
+            <div class="cover"></div>
+            <div class="two" id="policy">
+                <div class="policy item1" data-id="0">
+                    [@s_icloud_policy_list count='3' orderBy='1' type='3']
+                    [#list tag_list as a]
+                    [#if a_index==0]
+                    <dl>
+                        <dt>[@text_cut s=a.policyName! len='20' append='...' /]</dt>
+                        <!--<dd>${a.policyName!}</dd>-->
+                        <!--<dd>[@text_cut s=a.content.contentTxtSet[0].txt! len='65' append='...' /]</dd>-->
+                        <br><br><br><br><br>
+                    </dl>
+                    <button onclick="location.href='/member/cloudCenter_apply_add.jspx?id=${a.policyId!}'" class="quick">立即申请</button>
+                    [/#if]
+                    [/#list]
+                    [/@s_icloud_policy_list]
+                </div>
+                <div class="policy item2" data-id="1">
+                    [@s_icloud_policy_list count='3' orderBy='1' type='3']
+                    [#list tag_list as a]
+                    [#if a_index==1]
+                    <dl>
+                        <dt>[@text_cut s=a.policyName! len='20' append='...' /]</dt>
+                        <!--<dd>${a.policyName!}</dd>-->
+                        <!--<dd>[@text_cut s=(a.content.contentTxtSet[0].txt)! len='65' append='...' /]</dd>-->
+                        <br><br><br><br><br>
+                    </dl>
+                    <button onclick="location.href='/member/cloudCenter_apply_add.jspx?id=${a.policyId!}'" class="quick">立即申请</button>
+                    [/#if]
+                    [/#list]
+                    [/@s_icloud_policy_list]
+                </div>
+                <div class="policy item3" data-id="2">
+                    [@s_icloud_policy_list count='3' orderBy='1' type='3']
+                    [#list tag_list as a]
+                    [#if a_index==2]
+                    <dl>
+                        <dt>[@text_cut s=a.policyName! len='20' append='...' /]</dt>
+                        <!--<dd>${a.policyName!}</dd>-->
+                        <!--<dd>[@text_cut s=(a.content.contentTxtSet[0].txt)! len='65' append='...' /]</dd>-->
+                        <br><br><br><br><br>
+                    </dl>
+                    <button onclick="location.href='/member/cloudCenter_apply_add.jspx?id=${a.policyId!}'" class="quick">立即申请</button>
+                    [/#if]
+                    [/#list]
+                    [/@s_icloud_policy_list]
+                </div>
+            </div>
+            <div id="policySlide" class="slide">
+                <span class="current"></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--新闻播报信息-->
+<div class="newsShow">
+    <div class="wrapper notice notice1 easing" id="breakingnews1">
+        <i>申请成功：</i>
+        <ul  class="clearfix">
+            [@s_icloud_policy_apply_list count='8' orderBy='1' type='4']
+            [#list tag_list as a]
+            <li>【${a.createDt?string("yyyy-MM-dd")}】&nbsp;[@text_cut s=a.user.company.companyName! len='65' append='...' /]&nbsp;&nbsp;成功申请&nbsp;&nbsp;[@text_cut s=a.policyName! len='65' append='...' /]</li>
+            [/#list]
+            [/@s_icloud_policy_apply_list]
+        </ul>
+    </div>
+</div>
+
+<!--content end-->
+[#include "../include/footer_icloud.html" /]
+
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/scroll.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/cloudCenter.js"></script>
+</body>
+</html>

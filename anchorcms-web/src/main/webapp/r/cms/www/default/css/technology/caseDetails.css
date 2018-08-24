@@ -1,0 +1,202 @@
+.txt {
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333333;
+	text-align: center;
+	line-height: normal;
+}
+
+.clear-bg {
+	background-image: none;
+}
+
+.posetion {
+	height: 40px;
+	line-height: 40px;
+	background-image: url("../../images/technology/caseDetails/u5.png");
+}
+
+.posetion p {
+	margin-left: 20px;
+}
+
+#content .title {
+	margin-top: 10px;
+	height: 51px;
+	line-height: 51px;
+	color: red;
+	font-weight: 700;
+	font-size: 18px;
+	background-image: url("../../images/technology/caseDetails/u70.png");
+}
+
+.info {
+	height: 340px;
+}
+
+.info-img {
+	width: 330px;
+	height: 340px;
+	background-image: url("../../images/technology/caseDetails/u72.png");
+}
+
+.info-img input {
+	float: right;
+	margin-top: 120px;
+	margin-right: 10px;
+	width: 30px;
+	height: 25px;
+}
+
+.img-p1 {
+	margin-top: 70px;
+}
+
+.info-intruduce {
+	width: 470px;
+	height: 340px;
+}
+
+.intruduce-title {
+	width: 470px;
+	height: 60px;
+	line-height: 60px;
+	background-image: url("../../images/technology/caseDetails/u78.png");
+}
+
+.case-logo {
+	width: 470px;
+	height: 280px;
+	background-image: url("../../images/technology/caseDetails/u80.png");
+}
+
+.img-1 {
+	margin-top: 10px;
+}
+
+.info-intruduce {
+	line-height: 280px;
+}
+
+.agent {
+	width: 400px;
+	height: 340px;
+	color: red;
+}
+
+.liability {
+	width: 400px;
+	height: 120px;
+	background-image: url("../../images/technology/caseDetails/u84.png");
+}
+
+.liability p {
+	margin-top: 20px;
+}
+
+.liability input {
+	width: 150px;
+	height: 40px;
+	color: #B50000;
+}
+
+.people {
+	width: 400px;
+	height: 220px;
+	background-image: url("../../images/technology/caseDetails/u89.png");
+}
+
+.l-div {
+	width: 33px;
+	height: 210px;
+	font-weight: 700;
+	font-size: 16px;
+	color: red;
+	background-image: url("../../images/technology/caseDetails/u177.png");
+}
+
+.p-div {
+	margin: 20px;
+	width: 128px;
+	height: 70px;
+	color: #333;
+	line-height: 70px;
+	background-image: url("../../images/technology/caseDetails/u179.png");
+}
+
+.case-title {
+	height: 50px;
+	line-height: 50px;
+	text-align: left;
+	font-weight: 700;
+	font-size: 16px;
+	color: #FF0000;
+	background-image: url("../../images/technology/caseDetails/u641.png");
+}
+
+.case-title p {
+	margin-left: 580px;
+}
+
+.case-title input {
+	margin-left: 450px;
+	line-height: 25px;
+	font-size: 13px;
+}
+
+.case-body {
+	height: 800px;
+	background-image: url("../../images/technology/caseDetails/u187.png");
+}
+
+.case-img {
+	margin: 30px;
+	width: 177px;
+	height: 250px;
+	background-image: url("../../images/technology/caseDetails/u189.png");
+}
+
+.evaluate {
+	margin: 30px 10px;
+	width: 230px;
+	height: 250px;
+	font-weight: 700;
+	font-size: 18px;
+	line-height: 100px;
+	background-image: url("../../images/technology/caseDetails/u195.png");
+}
+
+.introduce-agent {
+	margin: 30px 10px;
+	width: 200px;
+	height: 250px;
+	font-weight: 700;
+	font-size: 18px;
+	line-height: 250px;
+	background-image: url("../../images/technology/caseDetails/u199.png");
+}
+
+.case-body input {
+	margin-left: 30px;
+	width: 170px;
+	height: 35px;
+}
+
+.case-body span {
+	margin-left: 30px;
+}
+
+.m-t {
+	margin-top: 20px;
+}
+
+.case-info {
+	margin-right: 30px;
+	margin-top: 35px;;
+	width: 908px;
+	height: 350px;
+	line-height: 350px;
+	background-image: url("../../images/technology/caseDetails/u205.png");
+}

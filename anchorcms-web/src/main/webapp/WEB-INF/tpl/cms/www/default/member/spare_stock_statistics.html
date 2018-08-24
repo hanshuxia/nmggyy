@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>内蒙古工业云-云资源交易中心</title>
+    <script type="text/javascript" charset="utf-8" src="/${res}/echarts/esl/echarts.js"></script>
+    <script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script charset="utf-8" src="/r/cms/www/default/resources/js/mapDistPicker/distpicker.data.js" type="text/javascript"></script>
+    <script charset="utf-8" src="/r/cms/www/default/resources/js/mapDistPicker/distpicker.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/releasePower.css"/>
+</head>
+<body>
+<div class="inputs commentDiv" id="distpicker1" data-toggle="distpicker" style="margin-top:10px;">
+    <label style="font-family:bold">&nbsp;请选择地区：</label>
+    <select class="resourceAddInput" id="addrProvince" name="addrProvince" style="width: auto;" onchange="getSpareStatistics('addrProvince')" data-province="内蒙古自治区"></select>
+    <select class="codeInput" id="region" name="region" style="width: auto;" onchange="getSpareStatistics('region')"></select>
+</div>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="mainNodata" style="width: 90px;height:15px; margin:20px 0px 0px 500px;font-size: 20px;" hidden="hidden">暂无数据</div>
+<div id="main" style="width: 900px;height:500px; margin:20px 0px 0px 150px;">
+</div>
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('main'));
+//    myChart.clear();
+    // 显示标题,图例和空的坐标轴
+    chartOption = {
+//        noDataLoadingOption: {
+//            text: '暂无数据',
+//            effect: 'bar',
+//            effectOption: {
+//                effect: {
+//                    n: 20
+//                }
+//            }
+//        },
+        title: {
+            text: '备品备件库存量统计',
+            textAlign:'left',
+            textStyle:{
+                //文字颜色
+//                color:'#ccc',
+                //字体风格,'normal','italic','oblique'
+                fontStyle:'normal',
+                //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                fontWeight:'bold',
+                //字体系列
+                fontFamily:'sans-serif',
+                //字体大小
+                fontSize:18,
+            }
+        },
+        tooltip: {},
+        legend: {
+            data:['']
+        },
+        xAxis: {
+            name:'分类',  // 这里是横轴标题
+//            nameLocation : 'middle',
+            nameTextStyle : {
+                color : '#000000'
+            },
+            type : 'category',
+            boundaryGap : true,
+            nameGap: 30,
+            axisTick: {
+                show: false,
+                interval :'auto',
+            },
+            axisLine: {
+                show: true,
+                lineStyle:{
+                    color:'#C5DFD6',
+                    width:1
+                }
+            },
+            axisLabel:{
+                interval :0,
+                textStyle: {
+                    color: '#666',
+                    fontSize:12
+                }
+            },
+            splitLine: {
+                show: true,
+                lineStyle:{
+                    color:'#F3F3F3',
+                    type:'solid'
+                }
+            },
+            data: []
+        },
+        yAxis : [
+            {
+//                name:'库存量',
+                nameTextStyle : {
+                    color : '#000000'
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle:{
+                        type:'dotted'
+                    }
+                },
+                axisLine: {show: false},
+                axisTick:{show: false},
+                axisLabel:{show: true},
+                type : 'value'
+            }
+        ],
+        series : [
+            {
+                name:'',
+                type:'bar',
+                barWidth:25,
+                symbol: 'circle',
+                itemStyle: {
+                    normal: {
+                        lineStyle: {
+                            width:2,
+                            type: 'solid',
+                        },
+                        label : {
+                            show: true,
+                            position: 'top'
+                        }
+                    }
+                },
+                data:[]
+            }
+        ]
+    };
+    myChart.setOption(chartOption);
+    // 加载统计图
+    $(function(){getSpareStatistics()});
+    function getSpareStatistics(flag){
+        var region = $('#region').val();
+        if (region == undefined) {
+            region = "呼和浩特市";
+        }
+        if (flag == "addrProvince") { // 省级变化
+            var addrProvince = $('#addrProvince option:selected').val();
+            if (addrProvince == "北京市"){
+                region = "北京市市辖区";
+            } else if (addrProvince == "天津市") {
+                region = "天津市市辖区";
+            } else if (addrProvince == "河北省") {
+                region = "石家庄市";
+            } else if (addrProvince == "山西省") {
+                region = "太原市";
+            } else if (addrProvince == "内蒙古自治区") {
+                region = "呼和浩特市";
+            } else if (addrProvince == "辽宁省") {
+                region = "沈阳市";
+            } else if (addrProvince == "吉林省") {
+                region = "长春市";
+            } else if (addrProvince == "黑龙江省") {
+                region = "哈尔滨市";
+            } else if (addrProvince == "上海市") {
+                region = "上海市市辖区";
+            } else if (addrProvince == "江苏省") {
+                region = "南京市";
+            } else if (addrProvince == "浙江省") {
+                region = "杭州市";
+            } else if (addrProvince == "安徽省") {
+                region = "合肥市";
+            } else if (addrProvince == "福建省") {
+                region = "福州市";
+            } else if (addrProvince == "江西省") {
+                region = "南昌市";
+            } else if (addrProvince == "山东省") {
+                region = "济南市";
+            } else if (addrProvince == "河南省") {
+                region = "郑州市";
+            } else if (addrProvince == "湖北省") {
+                region = "武汉市";
+            } else if (addrProvince == "湖南省") {
+                region = "长沙市";
+            } else if (addrProvince == "广东省") {
+                region = "广州市";
+            } else if (addrProvince == "广西壮族自治区") {
+                region = "南宁市";
+            } else if (addrProvince == "海南省") {
+                region = "海口市";
+            } else if (addrProvince == "重庆市") {
+                region = "重庆市市辖区";
+            } else if (addrProvince == "四川省") {
+                region = "成都市";
+            } else if (addrProvince == "贵州省") {
+                region = "贵阳市";
+            } else if (addrProvince == "云南省") {
+                region = "昆明市";
+            } else if (addrProvince == "西藏自治区") {
+                region = "拉萨市";
+            } else if (addrProvince == "陕西省") {
+                region = "西安市";
+            } else if (addrProvince == "甘肃省") {
+                region = "兰州市";
+            } else if (addrProvince == "青海省") {
+                region = "西宁市";
+            } else if (addrProvince == "宁夏回族自治区") {
+                region = "银川市";
+            } else if (addrProvince == "新疆维吾尔自治区") {
+                region = "乌鲁木齐市";
+            } else if (addrProvince == "台湾省") {
+                region = "台北市";
+            } else if (addrProvince == "香港特别行政区") {
+                region = "中西区";
+            } else if (addrProvince == "澳门特别行政区") {
+                region = "花地玛堂区";
+            }
+        }
+        myChart.showLoading(); // 数据加载完之前先显示一段简单的loading动画
+        $.ajax({
+            type : "post",
+            url : "/member/spare_stock_statisticsAjax.jspx?region="+encodeURI(encodeURI(region)),
+            dataType : "json", // 返回数据形式为json
+            success : function(result) { // 请求成功时执行该函数内容，result即为服务器返回的json对象
+            if (result) {
+                var aSpareType=[]; // 类别数组（实际用来盛放X轴坐标值）
+                var aSpareNum=[]; // 销量数组（实际用来盛放Y坐标值）
+                for(var i = 0; i < result.spareData.length; i++){
+                    aSpareType.push(result.spareData[i].spareType); // 备品备件类别
+                    aSpareNum.push(result.spareData[i].spareNum); // 备品备件数量
+                }
+                chartOption.series[0].data = aSpareNum;
+                chartOption.xAxis.data = aSpareType;
+                myChart.setOption(chartOption, true);
+                myChart.hideLoading(); // 隐藏加载动画
+                $('#mainNodata').hide();
+            }
+        },
+        error : function(result) { // 请求失败时执行该函数
+//            alert("选择该市图表无数据!");
+            myChart.hideLoading();
+            chartOption.series[0].data = [];
+            chartOption.xAxis.data = [];
+            myChart.setOption(chartOption, true);
+            $('#mainNodata').show();
+        }
+    });
+    };
+</script>
+</body>
+</html>

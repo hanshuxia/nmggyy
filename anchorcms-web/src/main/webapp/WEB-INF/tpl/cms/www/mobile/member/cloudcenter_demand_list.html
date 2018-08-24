@@ -1,0 +1,621 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云需求管理 - ${site.siteName}</title>
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/list.css"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/list.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            _onload();
+        });
+        //弹出和更新优选界面的ajax
+        function yxAjax(demandId){
+            //获取报价的公司列表等信息
+            $.ajax({
+                type:"post",
+                url:"/member/cloudCenter_Cdemand_order.jspx?demandId="+demandId,
+                dataType:"json",
+                success:function(json){
+                    //先把表格填好
+                    fillYxTable(json);
+                    //显示表格div
+                    showYxTable();
+                },
+                error:function(){
+                    alert("数据传输失败，原因：1、用户未登录，2、用户无关联公司，3、请求优选的需求不存在或未找到");
+                }
+            })
+        }
+        //弹出和更新下单界面的ajax
+        function xdAjax(demandId){
+            //获取报价的公司列表等信息
+            $.ajax({
+                type:"post",
+                url:"/member/cloudCenter_Cdemand_order.jspx?demandId="+demandId+"&isSelected=1",
+                dataType:"json",
+                success:function(json){
+                    //先把表格填好
+                    fillXdTable(json);
+                    //显示表格div
+                    showXdTable();
+                },
+                error:function(){
+                    alert("数据传输失败，原因：1、用户未登录，2、用户无关联公司，3、请求优选的需求不存在或未找到");
+                }
+            })
+        }
+        //根据json填 报价 信息的方法
+        function fillYxTable(jsonObj){
+            $('#yxTableSelectAll').attr("checked",false);
+            var tBody = $('#yxTable tbody');
+            var yxDemandId = jsonObj.demandId;
+            tBody.html("");
+            $('#yxTableDemandId').val(yxDemandId);
+            $.each(jsonObj.data,function(i,item){
+                tBody.append("<tr></tr>");
+                var tr = tBody.find('tr:last');
+
+                tr.append("<td width='20px'><input type='checkbox' name='yxTableSelect' value='"+item.demandObjId+"'></td>");
+                tr.append("<td style='display:none'>" +item.demandId+"</td>");
+                tr.append("<td><a class='show-title' title='"+item.companyName+"'>"+s_cut(item.companyName,12,'..')+"</a></td>");
+                tr.append("<td><a class='show-title' title='"+item.demandName+"'>"+s_cut(item.demandName,12,'..')+"</a></td>");
+                tr.append("<td>"+item.count+"</td>");
+                tr.append("<td><a class='show-title' title='"+item.unit+"'>"+s_cut(item.unit,8,'..')+"</a></td>");
+                tr.append("<td>"+item.expertPrice+"</td>");
+                tr.append("<td>"+item.price+"</td>");
+                if(item.selectedStatus == "1") {
+                    tr.append("<td>优选</td>");
+                }else{
+                    tr.append("<td>未优选</td>");
+                }
+            });
+            if( tBody.children('tr').length ==0){
+                tBody.append("<tr><td colspan='9'>还没有公司报价。</td></tr>");
+            }
+            $('#yxTableDemandId').val(yxDemandId);
+            $('#yxPageTableCountNum').text(jsonObj.count);
+        }
+        //根据json填 需求+报价对象 下单 信息的方法
+        //item.demandObjId 对应的是报价的id (quoteId)
+        function fillXdTable(jsonObj){
+            var tBody = $('#xdTable tbody');
+            $('#xdPageTableCountNum').text(jsonObj.count);
+            $('#xdTableDemandId').val(jsonObj.demandId);
+            $('#xdDivDemandId').text(jsonObj.demandId);
+            $('#xdDivDemandAmount').text(jsonObj.amount);
+            tBody.html("");
+            $.each(jsonObj.data,function(i,item){
+                tBody.append("<tr></tr>");
+                var tr = tBody.find('tr:last');
+                tr.append("<td><a class='show-title' title='"+item.companyName+"'>"+s_cut(item.companyName,30,'..')+"</a></td>");
+                tr.append("<td>"+item.expertPrice+"</td>");
+                tr.append("<td>"+item.price+"</td>");
+                tr.append("<td><input type='hidden' value='"+item.demandObjId+"'><input type='text' style='width:50px' value='"+item.count+"' /></td>");
+            });
+            if( tBody.children('tr').length ==0){
+                $('#xdDivDemand').text("");
+                tBody.append("<tr><td colspan='5'>拉取已优选报价信息失败，或报价中不存在报价对象。</td></tr>");
+            }else{
+                var name=s_cut(jsonObj.data[0].demandName,60,'..');
+                $('#xdDivDemand').text(name);
+                $('#xdDivDemand').attr("title",jsonObj.data[0].demandName);
+            }
+        }
+        //对优选的报价提交下单信息至后台的ajax
+        function submitXdAjax(){
+            var hasExc = false;
+            var demandId = $('#xdTableDemandId').val();
+            var json = "{\"distribute\":[";
+            var sumAmount = 0;
+            var maxAmount = $('#xdDivDemandAmount').text();
+            $('#xdTable tbody tr').each(function(i){
+                var inputs = $(this).find('td:last').children('input');
+                var quoteId = inputs.eq(0).val();
+                var mount = inputs.eq(1).val();
+                if(mount=="" || isNaN(mount) ){
+                    hasExc = true;
+                    return false;//这里相当于break
+                }
+                if(mount < 0 || parseFloat(mount) > parseFloat(maxAmount)){
+                    hasExc = true;
+                    return false;//这里相当于break
+                }
+                sumAmount+=parseFloat(mount);
+                json+=("{\""+"quoteId"+"\":\""+quoteId+"\",");
+                json+=("\"mount\":\""+mount+"\"},");
+            });
+            //alert(parseFloat(sumAmount)+"  "+parseFloat(maxAmount));debug用的
+            if(hasExc || sumAmount!=maxAmount){
+                alert("分配数量填写有误，或分配总量不等于需求量("+maxAmount+")，请重新填写！");
+                return false;
+            }
+            json = (json.replace(/,$/,""))+"]}";
+            $.ajax({
+                type:"post",
+                url:"/member/cloudCenter_quotoManger_order.jspx",
+                data:{ orderJson : json, demandId : demandId},
+                dataType:"json",
+                success:function(json){
+                    hideXdTable();
+                    $('#status5').click();
+                    alert(json.msg);
+                },
+                error:function(){
+                    hideXdTable();
+                    alert("操作失败，原因：1、用户未登录，2、用户无关联公司，3、请求优选的需求不属于用户所在公司，4、请求优选的需求不存在或未找到");
+                }
+            })
+        }
+        //显示优选表格div 的方法
+        function showYxTable(){
+            $("#yxWindow").css("display","block");
+            parent.showWindow();
+            $('#goodcover1').show();
+            $(window.parent.document).find("#mainFrame").attr("scrolling","no");
+        }
+        function showXdTable(){
+            $("#xdWindow").css("display","block");
+            parent.showWindow();
+            $('#goodcover1').show();
+            $(window.parent.document).find("#mainFrame").attr("scrolling","no");
+        }
+        //隐藏下单 表格div 的方法
+        function hideXdTable(){
+            $("#xdWindow").css("display","none");
+            parent.hideWindow();
+            $('#goodcover1').hide();
+            $(window.parent.document).find("#mainFrame").attr("scrolling","yes");
+        }
+        //隐藏优选表格div 的方法
+        function hideYxTable(){
+            $("#yxWindow").css("display","none");
+            parent.hideWindow();
+            $('#goodcover1').hide();
+            $(window.parent.document).find("#mainFrame").attr("scrolling","yes");
+        }
+
+        //点击状态标签刷新列表
+        $(document).ready(function() {
+            //关闭优选和下单框
+            $(".noteTop img").click(function(){hideYxTable();hideXdTable()});
+
+            //点击优选进行优选
+            $(".yx").click(function(){
+                var demandId = $(this).next('input').val();
+                yxAjax(demandId);
+            });
+
+            $(".xd").click(function(){
+                var demandId = $(this).next('input').val();
+                xdAjax(demandId);
+            });
+
+            //优选框中的全选框
+            $("#yxTableSelectAll").click(function(){
+                $(":checkbox[name='yxTableSelect']").prop("checked",this.checked);
+            });
+            $("input[name='yxTableSelect']").click(function(){
+                $("#yxTableSelectAll").prop("checked",$("input[name='yxTableSelect']").length==$("input[name='yxTableSelect']:checked").length?true:false);
+            });
+
+            $(".switchBtn li").click(function(){
+                if($(this).attr("id") == "all") {
+                    $("#status").val("");
+                }else if($(this).attr("id") == "status0"){
+                    $("#status").val("0");
+                }else if($(this).attr("id") == "status1"){
+                    $("#status").val("1");
+                }else if($(this).attr("id") == "status2"){
+                    $("#status").val("2");
+                }else if($(this).attr("id") == "status3"){
+                    $("#status").val("3");
+                }else if($(this).attr("id") == "status4"){
+                    $("#status").val("4");
+                }else if($(this).attr("id") == "status5"){
+                    $("#status").val("5");
+                }else if($(this).attr("id") == "status6"){
+                    $("#status").val("6");
+                }else if($(this).attr("id") == "status7"){
+                    $("#status").val("7");
+                }
+                $("#tableForm").submit();
+            });
+        });
+        //加载页面标签状态
+        function _onload(){
+            if($("#status").val() == "1"){
+                $("#status1").addClass("current");
+            }else{
+                if($("#status").val() == ""){
+                    $("#all").addClass("current");
+                }else if ($("#status").val() == "1"){
+                    $("#status1").addClass("current");
+                }else if  ($("#status").val() == "0"){
+                    $("#status0").addClass("current");
+                    $(".backReason").show();
+                }else if  ($("#status").val() == "2"){
+                    $("#status2").addClass("current");
+                }else if  ($("#status").val() == "3"){
+                    $("#status3").addClass("current");
+                }else if  ($("#status").val() == "4"){
+                    $("#status4").addClass("current");
+                }else if  ($("#status").val() == "5"){
+                    $("#status5").addClass("current");
+                }else if  ($("#status").val() == "6"){
+                    $("#status6").addClass("current");
+                }else if  ($("#status").val() == "7"){
+                    $("#status7").addClass("current");
+                }
+            }
+        };
+
+        //优选 or 取消优选ajax
+        function toggleSelAjax(type){
+            var demandId = $('#yxTableDemandId').val();
+            var quoteIdsStr="";
+            $("input[name='yxTableSelect']:checked").each(function(){
+                quoteIdsStr+=($(this).val()+",");
+            });
+            if(quoteIdsStr == ""){
+                alert("未选择任何报价公司，请先选择");
+                return false;
+            }
+            $.ajax({
+                type:"post",
+                url:"/member/cloudCenter_icDemandQuote_toggleSelectAjax.jspx?demandId="+demandId+"&quoteIds="+quoteIdsStr+"&toggleType="+type,
+                dataType:"json",
+                success:function(json){
+                    hideYxTable();
+                    alert("优选成功，成功优选了"+json.rows+"条需求报价，请前往【已优选】内进行下单。");
+                },
+                error:function(){
+                    hideYxTable();
+                    alert("操作失败，原因：1、用户未登录，2、用户无关联公司，3、请求优选的需求不属于用户所在公司，4、请求优选的需求不存在或未找到");
+                }
+            })
+        }
+        //切字符串方法
+        function s_cut(s,lenth,append){
+            var index = 0;
+            var len = 0;
+            var str = "";
+            var a = "";
+            for (var i = 0; len < lenth; i++) {
+                index = i;
+                a = s.charAt(i);
+                str += a;
+                if (a.match(/[^\x00-\xff]/ig) != null) {
+                    len += 2;
+                }
+                else {
+                    len += 1;
+                }
+            }
+            if(s.charAt(index+1) == ""){
+                return str;
+            }else{
+                return (str+append);
+            }
+        }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="/${res}/js/html5shiv.min.js"></script>
+    <script src="/${res}/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="content wrapper clearfix">
+    <!--遮罩--><div id="goodcover1"></div>
+    <div class="head wrapper">
+        <a href="${base}/member/cloudcenter_demand_list.jspx" class="current">需求信息</a>
+    </div>
+    <div class="main">
+        <form id="tableForm" action="cloudcenter_demand_list.jspx" method="post">
+            <div class="searchBox">
+                <label>询价主题：</label>
+                <input id="demandName" name="demandName" value="${demandName?default('')}">
+                <button class="submit">查询</button>
+            </div>
+            <div class="switchBtn">
+                <ul>
+                    <li id="all"><span>全部</span></li>
+                    <li id="status0"><span>被驳回</span></li>
+                    <li id="status1"><span>草稿</span></li>
+                    <li id="status2"><span>待审批</span></li>
+                    <li id="status3"><span>询价中</span></li>
+                    <li id="status4"><span>已优选</span></li>
+                    <li id="status5"><span>已下单</span></li>
+                    <li id="status6"><span>已截止</span></li>
+                    <li id="status7"><span>已关闭</span></li>
+                </ul>
+            </div>
+            <div class="tableDiv wrapper">
+                <table cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>询价编号</th>
+                        <th>询价主题</th>
+                        <th>发布日期</th>
+                        <th>截止日期</th>
+                        <th>状态</th>
+                        <th class="backReason" style="display: none">退回原因</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    [#if pagination.list?size gt 0]
+                    [#list pagination.list as c]
+                    <tr>
+                        <td>${c.demandId}</td>
+                        <td style="text-align: left;width: 160px;padding-left:10px"><a class="show-title" title="${c.demandName!}">[@text_cut s=c.demandName! len='10' append='...' /]</a> <!--<a href="/member/cloudcenter_demand_view.jspx?demandId=${c.demandId}">${c.demandName}</a>--></td>
+                        <td>${c.releaseDt?default("未提交")}</td>
+                        <td>${c.deadlineDt?default("未提交")}</td>
+                        [#if !c.status??]
+                        <td></td>
+                        [#else]
+                        [#switch c.status]
+                        [#case "0"]<td>被驳回</td>[#break]
+                        [#case "1"]<td>草稿</td>[#break]
+                        [#case "2"]<td>待审批</td>[#break]
+                        [#case "3"]<td>询价中</td>[#break]
+                        [#case "4"]<td>已优选</td>[#break]
+                        [#case "5"]<td>已下单</td>[#break]
+                        [#case "6"]<td>已截止</td>[#break]
+                        [#case "7"]<td>已关闭</td>[#break]
+                        [#default]
+                        [/#switch]
+                        [/#if]
+                        <td title="${c.backReason!}" class="backReason" style="display: none">[@text_cut s=c.backReason!'' len='10' append='...' /]</td>
+                        [#if !status??]
+                        <td>
+                            <a class="link" href="cloudcenter_demand_view.jspx?demandId=${c.demandId}">明细</a>
+                            <a class="link"  href="/yzyjyzxYxq/cloudcenter_demand_detail.jspx?demandId=${c.demandId}" target="_blank">预览</a>
+                        </td>
+                        [#else]
+                        [#switch status]
+                        [#case "0"]
+                        <td>
+                            <a class="link" href="cloudcenter_demand_view.jspx?demandId=${c.demandId}">明细</a>
+                            <a class="link" href="cloudcenter_demand_edit.jspx?demandId=${c.demandId}">编辑</a>
+                            <a class="link" href="/yzyjyzxYxq/cloudcenter_demand_detail.jspx?demandId=${c.demandId}" target="_blank">预览</a>
+                            <a class="link" onclick="deleteConfirm(${c.demandId})">删除</a>
+                            <a class="link" onclick="if(confirm('请确定是否发布？')){location.href='/member/demandUser_controller.jspx?id=${c.demandId}&states=2'}">发布</a>
+                        </td>
+                        [#break]
+                        [#case "1"]
+                        <td>
+                            <a class="link" href="cloudcenter_demand_view.jspx?demandId=${c.demandId}">明细</a>
+                            <a class="link" href="cloudcenter_demand_edit.jspx?demandId=${c.demandId}">编辑</a>
+                            <a class="link" href="/yzyjyzxYxq/cloudcenter_demand_detail.jspx?demandId=${c.demandId}" target="_blank">预览</a>
+                            <a class="link" onclick="deleteConfirm(${c.demandId})">删除</a>
+                            <a class="link" onclick="if(confirm('请确定是否发布？')){location.href='/member/demandUser_controller.jspx?id=${c.demandId}&states=2'}">发布</a>
+                        </td>
+                        [#break]
+                        [#case "2"]
+                        <td>
+                            <a class="link" href="cloudcenter_demand_view.jspx?demandId=${c.demandId}">明细</a>
+                            <a class="link" href="/yzyjyzxYxq/cloudcenter_demand_detail.jspx?demandId=${c.demandId}" target="_blank">预览</a>
+                            <a class="link" onclick="updateConfirm(${c.demandId})">撤回</a>
+                        </td>
+                        [#break]
+                        [#case "3"]
+                        <td>
+                            <a class="link" href="cloudcenter_demand_view.jspx?demandId=${c.demandId}">明细</a>
+                            <a class="link" href="/yzyjyzxYxq/cloudcenter_demand_detail.jspx?demandId=${c.demandId}" target="_blank">预览</a>
+                            <a class="link" onclick="updateConfirm1(${c.demandId})">废止</a>
+                            <a class="link yx" >优选</a>
+                            <a class="link" onclick="updateConfirm(${c.demandId})">撤回</a>
+                            <input type="hidden" value="${c.demandId}"/>
+                        </td>
+                        [#break]
+                        [#case "4"]
+                        <td>
+                            <a class="link" href="cloudcenter_demand_view.jspx?demandId=${c.demandId}">明细</a>
+                            <a class="link"  href="/yzyjyzxYxq/cloudcenter_demand_detail.jspx?demandId=${c.demandId}" target="_blank" target="_blank">预览</a>
+                            <a class="link xd">下单</a>
+                            <input type="hidden" value="${c.demandId}"/>
+                        </td>
+                        [#break]
+                        [#case "5"]
+                        <td>
+                            <a class="link" href="cloudcenter_demand_view.jspx?demandId=${c.demandId}">明细</a>
+                            <a class="link" href="/yzyjyzxYxq/cloudcenter_demand_detail.jspx?demandId=${c.demandId}" target="_blank">预览</a>
+                        </td>
+                        [#break]
+                        [#case "6"]
+                        <td>
+                            <a class="link" href="cloudcenter_demand_view.jspx?demandId=${c.demandId}">明细</a>
+                            <a class="link" href="/yzyjyzxYxq/cloudcenter_demand_detail.jspx?demandId=${c.demandId}" target="_blank">预览</a>
+                            <a class="link" onclick="updateConfirm2(${c.demandId})">关闭</a>
+                        </td>
+                        [#break]
+                        [#case "7"]
+                        <td>
+                            <a class="link" href="cloudcenter_demand_view.jspx?demandId=${c.demandId}">明细</a>
+                            <a class="link" href="/yzyjyzxYxq/cloudcenter_demand_detail.jspx?demandId=${c.demandId}" target="_blank">预览</a>
+                            <a class="link" onclick="deleteConfirm(${c.demandId})">删除</a>
+                        </td>
+                        [#break]
+                        [#default]
+                        <td>
+                            <a class="link" href="cloudcenter_demand_view.jspx?demandId=${c.demandId}">明细</a>
+                            <a class="link" href="/yzyjyzxYxq/cloudcenter_demand_detail.jspx?demandId=${c.demandId}" target="_blank">预览</a>
+                        </td>
+                        [/#switch]
+                        [/#if]
+                    </tr>
+                    [/#list]
+                    [#else]
+                    <tr>
+                        <td colspan="7"><h4>暂无数据</h4></td>
+                    </tr>
+                    [/#if]
+                    </tbody>
+                </table>
+            </div>
+            <input type="hidden" name="pageNo"/>
+            <div  class="page clearfix">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="left" class="pn-sp">
+                            每页 ${pagination.pageSize} 条&nbsp;
+                            <input class="first" type="button" onclick="_gotoPage('1');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input class="prev" type="button" onclick="_gotoPage('${pagination.prePage}');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input type="text" value=${pagination.pageNo} id="_goPs" onfocus="this.select();" onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>/${pagination.totalPage}
+                            <input class="next" type="button" onclick="_gotoPage('${pagination.nextPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>
+                            <input class="last" type="button" onclick="_gotoPage('${pagination.totalPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>&nbsp;
+                            <button id="_goPage" class="ok" type="button" onclick="_gotoPage($('#_goPs').val());"[#if pagination.totalPage==1] disabled="disabled"[/#if]>GO</button>
+                            共 ${pagination.totalCount} 条&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <script type="text/javascript">
+                function _gotoPage(pageNo) {
+                    if(!/^[0-9]*[1-9][0-9]*$/.test(pageNo)){ui.alertFail("页码必须为正整数！");return false;}
+                    try{
+                        var tableForm = document.getElementById("tableForm");
+                        $("input[name=pageNo]").val(pageNo);
+                        tableForm.action="cloudcenter_demand_list.jspx";
+                        tableForm.onsubmit=null;
+                        tableForm.submit();
+                    } catch(e) {
+                        alert('_gotoPage(pageNo)方法出错');
+                    }
+                }
+            </script>
+
+            <input type="text" id="statusType" name="statusType" hidden="hidden" value="${statusType?default('')}">
+            <input type="text" id="status" name="status" hidden="hidden" value="${status?default('')}">
+        </form>
+
+        <div class="window" id="yxWindow">
+            <div class="noteTop">
+                优选界面
+                <img id="yxTableCloseWindow"  src="/${res}/resources/images/abilityPreview/close.png">
+            </div>
+            <div class="yxmain">
+                <div class="buttonDiv">
+                    <button type="button" class="ok" onclick="toggleSelAjax(1)">确认优选</button>
+                    <!--优选完暂不能反悔，所以去掉了取消优选-->
+                </div>
+                <div class="tableDiv tale"  style="padding-top:0;border-top: 5px solid #3077B9;height:250px;overflow-y: scroll;">
+                    <input type="hidden" id="yxTableDemandId" value=""/>
+                    <table border="0" class="wrapper" cellpadding="0" cellspacing="0" id="yxTable">
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox" id="yxTableSelectAll"></th>
+                            <th>报价公司</th>
+                            <th>需求名称</th>
+                            <th>需求量</th>
+                            <th>单位</th>
+                            <th>期望单价（元）</th>
+                            <th>报价单价（元）</th>
+                            <th>状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div  class="page page1 clearfix">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" id="yxPageTable">
+                        <tr>
+                            <td align="center" class="pn-sp">
+                                共 <span id="yxPageTableCountNum">-</span> 条&nbsp;
+                                <!--每页 8 条&nbsp;-->
+                                <!--<input id="yxPageTableToFirst" type="button" class="first" onclick=""/>-->
+                                <!--<input id="yxPageTableToPre" type="button" class="prev" onclick=""/>-->
+                                <!--<input id="yxPageTableToNext" type="button" class="next" onclick=""/>-->
+                                <!--<input id="yxPageTableToEnd" type="button" class="last" onclick=""/>&nbsp;-->
+                                <!--当前 <span id="yxPageTablePageNoNum">-</span>/<span id="yxPageTablePageCountNum">-</span> 页-->
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!--下单隐藏div-->
+        <div class="window" id="xdWindow">
+            <div class="noteTop">
+                下单界面
+                <img id="xdTableCloseWindow" src="/${res}/resources/images/abilityPreview/close.png">
+            </div>
+            <div class="yxmain">
+                <div class="tipDiv">
+                    <h5>您当前下单的需求：<span id="xdDivDemand"></span>(id:<span id="xdDivDemandId"></span>,需求总量：<span id="xdDivDemandAmount"></span>)</h5>
+
+                    <h6 style="color:red;">【注意：**分配量总数要等于需求总量，单条分配数量为0则不对其下单**】</h6>
+                </div>
+                <div class="tableDiv tale" style="padding-top:0;border-top: 5px solid #3077B9;height:150px;overflow-y: scroll;">
+                    <input type="hidden" id="xdTableDemandId" value=""/>
+                    <table border="0" class="wrapper" cellpadding="0" cellspacing="0" id="xdTable">
+                        <thead>
+                        <tr>
+                            <th>报价公司</th>
+                            <th>期望单价(元)</th>
+                            <th>报价单价(元)</th>
+                            <th>分配数量</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div  class="page page1 clearfix">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" id="xdPageTable">
+                        <tr>
+                            <td align="center" class="pn-sp">
+                                共 <span id="xdPageTableCountNum">-</span> 条&nbsp;
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <button type="button" class="ok" onclick="submitXdAjax()">确认下单</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="m-sj"></div>
+</div>
+</div>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+<script type="text/javascript">
+    function deleteConfirm(Ids){
+        if(confirm("请确定是否删除？")){
+            location.href="cloudcenter_demand_remove.jspx?id="+Ids+"";
+        }
+    }
+    function updateConfirm(Ids){
+        if(confirm("请确定是否撤回？")){
+            location.href="/member/demandUser_controller.jspx?id="+Ids+"&states=1";
+        }
+    }
+    function updateConfirm1(Ids){
+        if(confirm("请确定是否废止？")){
+            location.href="/member/demandUser_controller.jspx?id="+Ids+"&states=7";
+        }
+    }
+    function updateConfirm2(Ids){
+        if(confirm("请确认是否关闭？")){
+            location.href="/member/demandUser_controller.jspx?id="+Ids+"&states=7";
+        }
+    }
+</script>
+</body>
+</html>

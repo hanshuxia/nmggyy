@@ -1,0 +1,105 @@
+@CHARSET "UTF-8";
+/**
+ * @ClassName: common.css
+ * @Description: 双创汇首页公共样式表
+ * @Author: 王丽娟
+ * @Date: 2016年11月18日 下午15:32:15
+ */
+ p{text-indent: 2em;}
+ #content{margin-top:10px;margin-bottom:10px;}
+.column-multiple{margin-bottom:10px;border:1px solid #888;background:#e3e3e3;}
+.column-multiple .left,.column-multiple .center,.column-multiple .right{float:left;}
+.column-multiple .left{width:270px;height:auto;border-right:1px solid #888;}
+
+.intro{position:relative;overflow:hidden;height:215px;border-bottom:1px solid #888;}
+.intro img{width:100%;height:100%;}
+.intro-box{position:absolute;width:270px;height:215px;left:0;top:215px;background:rgba(0,0,0,0.4);color:#fff;cursor: pointer;}
+.intro-box h6{height:30px;line-height:30px;text-align: center;}
+.intro-box p{line-height:22px;padding:0 20px;}
+.intro-box button{margin:10px auto auto 100px;}
+.enter{height:180px;border-bottom:1px solid #888;padding:30px 0 30px;}
+.enter h5{text-align: center;font-size:18px;height:30px;line-height:30px;}
+.enter h5:FIRST-CHILD{color:red;}
+.team{height:370px;}
+.team button{margin-left:200px;margin-top:10px;}
+.team-head{padding:20px 0;height:120px;border-bottom:1px solid #888;text-align: center;}
+.team-head img{margin-bottom:10px;}
+.team-list li{padding:0 15px;height:40px;line-height:40px;border-bottom:1px solid #888;}
+
+.column-multiple .center{width:630px;border-right:1px solid #888;}
+.headlines{height:160px;border-bottom:1px solid #888;}
+.headlines h5{height:30px;line-height:30px;margin:10px 0;text-align: center;}
+.headlines p{padding:10px 20px;line-height:25px;}
+.dynamics{position:relative;}
+.dynamics-head{height:45px;line-height:45px;text-align:center;border-bottom:1px solid #888;font-size:18px;background:url(../../images/double/bg.jpg) repeat}
+.dynamics-list{height:180px;border-bottom:1px solid #888;}
+.dynamics-list li{float:left;margin-left:9px;margin-top:5px;width:300px;height:30px;line-height:30px;border:1px solid #888;}
+.dynamics button{position:absolute;bottom:5px;right:11px;}
+.veteran{height:370px;}
+.veteran-head{height:120px;line-height:120px;border-bottom:1px solid #888;text-align:center;}
+.veteran-body li{float:left;width:125px;height:250px;line-height:250px;border-right:1px solid #888;text-align: center;}
+.veteran-body li:last-child{border:none;}
+
+
+.column-multiple .right{width:298px;height:auto;}
+.quickentry{width:300px;height:215px;border-bottom:1px solid #888;}
+.quickentry table{width:100%;height:100%;}
+.quickentry table td{text-align: center;}
+.quickentry button{width:130px;height:86px;}
+.education{height:180px;border-bottom:1px solid #888;padding:40px 0;}
+.education h4{height:40px;line-height:40px;text-align: center;font-size:18px;}
+.livebox{padding-top:100px;height:370px;}
+.livebox h4{height:50px;line-height:50px;text-align: center;}
+
+.ads{margin-bottom:10px;height:60px;line-height:60px;text-align: center;border:1px solid #888;background:#e3e3e3;}
+
+/* 四个特色服务  */
+.column-service{margin-bottom:10px;border:1px solid #888;background:#e3e3e3;}
+.tab-menu{float:left;width:270px;border-right:1px solid #888;}
+.tab-menu li{padding-left:30px;height:100px;line-height:100px;font-size:18px;font-weight:bold;border-bottom:1px solid #888;cursor: pointer;transition:all .3s ease}
+.tab-menu li:last-child{border:none;}
+.tab-content{margin-left:270px;}
+.tab-menu li:hover{background:#B50000;color:#fff;}
+.column-service .current{background:#B50000;color:#fff;}
+.frame li{float:left;padding-top:20px;width:464px;height:200px;border-bottom:1px solid #888;border-right:1px solid #888;text-align: center;}
+.frame li:nth-child(2n){border-right:none;}
+.frame li span{display:inline-block;margin-top:10px;width:180px;height:75px;line-height:70px;border:1px solid #888;cursor: pointer;text-align: center;}
+
+/* 军民融合特色系列服务  */
+.column-fuse{margin-bottom:10px;border:1px solid #888;background:#e3e3e3;}
+.fuse-head{position:relative;height:60px;line-height:60px;font-size:18px;border-bottom:1px solid #888;font-weight:bold;text-align:center;}
+.fuse-head button{position:absolute;top:0;right:0;height:60px;line-height:60px;width:70px;text-align:center;}
+.fuse-body .left-nav{float:left;width:160px;height:440px;border-right:1px solid #888;}
+.fuse-body .left-nav dt,.fuse-body .left-nav dd{height:40px;line-height:40px;text-align: center;border-bottom:1px solid #888;}
+.left-nav .more{background:#8DCE47;}
+.fuse-body .left-nav dd,.fuse-body .left-nav .more{cursor: pointer;}
+.room-list,.incubator-list{float:left;width:519px;height:440px;}
+.room-list{border-right:1px solid #888;}
+.room-list h3,.incubator-list h3{height:40px;line-height:40px;text-align: center;background:url(../../images/double/u67.png);font-size:18px;}
+.room-list ul li,.incubator-list ul li{float:left;margin-top:40px;margin-left:60px;padding:20px 20px;width:90px;height:80px;border:1px solid #888;text-align:center;}
+
+/* 全方位资源共享平台 */
+.column-share{margin-bottom:10px;background:#e3e3e3;}
+.share-head{position:relative;height:60px;line-height:60px;text-align: center;font-size:18px;font-weight:bold;border:1px solid #888;border-bottom:none;}
+.share-head button{position:absolute;right:10px;top:15px;height:30px;line-height:30px;font-size:14px;}
+.share-body .left-nav{float:left;width:160px;border-left:1px solid #888;border-bottom:1px solid #888;}
+.share-body .left-nav dt{font-weight:bold;}
+.share-body .left-nav dd,.share-body .left-nav dt{height:40px;line-height:40px;text-align:center;border-top:1px solid #888;}
+.share-table{margin-left:160px;}
+.share-table table{width:100%;height:100%;}
+.share-table table th,.share-table table td{text-align: center;height:39px;line-height:39px;border:1px solid #888;}
+.share-table table td{height:40px;line-height:40px;}
+
+.footer{border:1px solid #888;background:#e3e3e3;}
+.infohall{float:left;width:870px;height:260px;border-right:1px solid #888;}
+.infohall-head{height:45px;line-height:45px;text-align: center;border-bottom:1px solid #888;}
+.info-nav{position:relative;height:35px;}
+
+.info-nav button{width:110px;height:35px;line-height:35px;}
+.info-nav .readmore{width:60px;height:25px;line-height:20px;position:absolute;right:10px;top:5px;}
+.infohall table{width:100%;height:185px;}
+.infohall table td,.infohall table th{padding:0;height:30px;line-height:30px;text-align: center;border:1px solid #888;}
+
+.partner{margin-left:870px;height:260px;}
+.partner-head{height:45px;line-height:45px;text-align: center;border-bottom:1px solid #888;}
+.partner-list li{float:left;background:#fff;border:1px solid #888;margin-top:20px;margin-left:26px;width:76px;height:76px;line-height:76px;text-align: center;}

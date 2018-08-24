@@ -1,0 +1,1 @@
+$(document).ready(function(){$(".switchBtn li").click(function(){$(this).parent().find(".current").removeClass("current");$(this).addClass("current")})});

@@ -1,0 +1,266 @@
+.currLocation{
+    width: 1200px;
+    height: 40px;
+    background-image: url("../../images/double/doubleIntroduction/u58.png");
+}
+.currLocation p{
+    line-height: 40px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+}
+.spr-text-1{
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    text-align: left;
+}
+.spr-text-2{
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: left;
+    line-height: normal;
+}
+.spr-text-3{
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: left;
+}
+.model{
+    width: 194px;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+.model button{
+    width: 100%;
+    height: 100%;
+}
+#spr-div-1{
+    border:1px solid;
+    width: 1200px;
+    height: 70px;
+    background-image: url("../../images/double/serviceProviderReg/u56.png");
+}
+#spr-div-2{
+    border:1px solid;
+    margin-top: 10px;
+    width: 1200px;
+    height: 610px;
+    background-image: url("../../images/double/serviceProviderReg/u62.png");
+}
+#spr-div-2 table{
+    margin-left: 10px;
+}
+#spr-div-2 table tr td{
+    padding: 6px;
+}
+
+#spr-div-3{
+    border:1px solid;
+    margin-top: 10px;
+    width: 1200px;
+    height: 390px;
+    background-image: url("../../images/double/serviceProviderReg/u101.png");}
+#spr-div-3 table{
+    margin-left: 10px;
+}
+#spr-div-3 table tr td{
+    padding: 6px;
+}
+#spr-div-4{
+    border:1px solid;
+    margin-top: 10px;
+    width: 1200px;
+    height: 230px;
+    background-image: url("../../images/double/serviceProviderReg/u138.png");
+}
+#spr-div-4 table{
+    margin-left: 10px;
+}
+#spr-div-4 table tr td{
+    padding: 7px;
+}
+#spr-div-5{
+    border:1px solid;
+    margin-top: 10px;
+    width: 1200px;
+    height: 180px;
+    background-image: url("../../images/double/fieldService/u56.png");
+}
+#spr-div-5 table{
+    margin-left: 10px;
+}
+#spr-div-5 table tr td{
+    padding: 6px;
+}
+#spr-div-6{
+    border:1px solid;
+    margin-top: 10px;
+    width: 1200px;
+    height: 300px;
+    background-image: url("../../images/double/serviceProviderReg/u172.png");
+}
+.table-left{
+    width: 164px;
+    height: 30px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: 30px;
+    background-image: url("../../images/double/serviceProviderReg/u72.png");
+}
+.table-right-input{
+    width: 320px;
+    height: 30px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: left;
+    margin-left: 30px;
+}
+.table-right-input input{
+    width: 320px;
+    height: 30px;
+}
+.table-upload{
+    width: 90px;
+    height: 32px;
+    font-size: 48px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    color: #333333;
+    text-align: center;
+    line-height: 32px;
+    margin-left: 30px;
+    background-image: url("../../images/double/serviceProviderReg/u68.png");
+}
+.table-textarea{
+    width: 380px;
+    height: 60px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #000000;
+    text-align: left;
+    line-height: normal;
+    margin-left: 30px;
+}
+.table-textarea textarea{
+    width: 380px;
+    height: 60px;
+}
+#type-select{
+    width: 386px;
+    height: 30px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #000000;
+    text-align: left;
+    line-height: normal;
+    margin-left: 30px;
+}
+#type-select select{
+    width: 386px;
+    height: 30px;
+}
+.add-select{
+    width: 150px;
+    height: 30px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #000000;
+    text-align: left;
+    line-height: normal;
+    display: inline;
+    margin-right: -10px;
+    margin-left: 30px;
+}
+.add-select select{
+    width: 150px;
+    height: 30px;
+}
+#add-area{
+    width: 140px;
+    height: 32px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: normal;
+    display: inline;
+    margin-left: 30px;
+}
+#add-area button{
+    width: 140px;
+    height: 32px;
+    background-image: url("../../images/double/serviceProviderReg/u153.png");
+}
+#spr-div-5-p{
+    position: relative;
+    top:-25px;
+    left: 210px;
+    width: 400px;
+}
+#spr-div-6 .check-p{
+    margin-left: 15px;
+    margin-top: 15px;
+}
+#guarantee-div{
+    margin-top: 10px;
+    margin-left: 15px;
+    width: 504px;
+    height: 67px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: left;
+    line-height: normal;
+    padding: 10px;
+    background-image: url("../../images/double/serviceProviderReg/u180.png");
+}
+#sub-div{
+    width: 300px;
+    margin: 30px auto;
+}
+.sub-button{
+    float: left;
+    width: 100px;
+    height: 40px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #000000;
+    text-align: center;
+    line-height: normal;
+}
+.sub-button button{
+    width: 100px;
+    height: 40px;
+}

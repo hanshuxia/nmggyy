@@ -1,0 +1,29 @@
+@charset "UTF-8";
+/**
+ * @ClassName: base.css
+ * @Description: 公共样式表
+ * @Author: 王丽娟
+ * @Date: 2016年11月17日 下午15:32:15
+ */
+/*------------------1. Reset ------------------*/
+html,body{height:100%;/* font-family:'微软雅黑','Microsoft YaHei','\5FAE\8F6F\96C5\9ED1'; */font-family: 'Arial Negreta', 'Arial';font-size:13px;}
+html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, pre, a, em, img, small,i, dl, dt, dd, ol, ul, li, fieldset, form, label,legend, table, caption, tbody, tfoot, thead, tr, th, td ,input{margin: 0;padding: 0;}
+a{color:#333; text-decoration:none;outline:none} 
+a:link, a:visited ,a:hover, a:active{text-decoration: none;outline:none;}
+ul,dl,ol, li {list-style:none;margin:0;padding:0;}
+td, th, div,p,span{word-break: break-all;word-wrap: break-word;}
+select, input, img { vertical-align: middle; outline: none; }
+table {border-collapse: collapse;}
+hr {  border: none;  height: 1px;  }
+img{border:none;}
+
+
+/*------------------2. common ------------------*/
+
+.clearfix:after {  content:"";display:block;clear:both;}
+.clearfix {*zoom:1;}/*IE/7/6*/
+.fl{float:left;}
+.fr{float:right;}
+.textOver{white-space:nowrap;word-wrap:normal;overflow:hidden;text-overflow:ellipsis;}
+
+.wrapper{width:1200px;margin:0 auto;}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <base href="<%=basePath%>">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="/${res}/lib/bootstrap/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="/${res}/css/base.css"/>
+        <link rel="stylesheet" type="text/css" href="/${res}/resource/css/double/common.css"/>
+        <link rel="stylesheet" type="text/css" href="/${res}/css/technology/vip.css"/>
+
+        <script type="text/javascript" charset="utf-8" src="/${res}/lib/jquery/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/${res}/lib/bootstrap/js/bootstrap.min.js"></script>
+        <!--[if lt IE 9]>
+        <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <![endif]-->
+        <title>vip</title>
+
+    </head>
+<body>
+<!-- 注意：在此标注页面信息比如：vip -->
+<div class="wrapper">
+
+    <!-- header start -->
+    <div id="header">
+        <%@ include file="include/header.jsp" %>
+    </div>
+    <!-- header end -->
+    <!-- content start -->
+    <div id="content">
+        <div class="wrapper posetion"><p>首页>军民技术平台>VIP会员企业名称</p></div>
+        <div class="wrapper txt v-title">
+            [@cms_channel channelId=channel.id]
+            <p>
+                ${tag_bean.name}
+            </p>
+            [/@cms_channel]
+        </div>
+        <div class="wrapper txt info">
+            <div class="clearfix fl info-img">
+                <p class="img-p1"><b>滚动图片</b></p><br>
+                <b>军地介绍</b><br>
+                <b>主营业务</b><br>
+                <b>前期活动图片</b><br>
+                <b>等</b><br>
+                <input type="button" value="4">
+                <input type="button" value="3">
+                <input type="button" value="2">
+                <input type="button" value="1">
+            </div>
+            <div class="fl info-intruduce">
+                [@cms_content id='']
+                <div class="intruduce-title">${a.title}</div>
+                <div class="v-logo">
+                    <img class="fl img-1" alt="logo" src="${a.typeImg!site.defImg}">
+                    <p>${a.txt}</p>
+                </div>
+                [/@cms_content]
+            </div>
+            <div class="fl txt dynamic">
+                <div class="txt basis-info">
+                    <div class="fl people">联系人</div>
+                    <div class="fl people">电话</div>
+                    <div class="fl people">邮箱</div>
+                </div>
+                <div class="dynamic-title"><p>企业最新动态 <input type="button" value="更多》》" ></p></div>
+                [@cms_content_list count='3' orderBy='1' channelId='']
+                [#list tag_list as a]
+                <div class="dynamic-body">
+                    <p>${a.txt}</p>
+                </div>
+                [/#list]
+                [/@cms_content_list]
+            </div>
+        </div>
+        <div class="wrapper hot-p">
+            <div class="fl txt hot-title">热门产品介绍</div>
+            [@cms_content_list count='3' orderBy='1' channelId='']
+            [#list tag_list as a]
+            <div class="fl hot-product">
+                <img src="${a.typeImg!site.defImg}">
+            </div>
+            [/#list]
+            [/@cms_content_list]
+            <div class="fl hot-img">
+                <img src="/${res}/images/technology/vip/u385.png">
+            </div>
+        </div>
+        <div class="wrapper product"><p>参赛/展技术项目（产品） <input type="button" value="对接经纪人"></p></div>
+        <div class="wrapper list">
+            <span class="list-p"><b>默认排序 </b></span>
+            <span class="list-p"><b>浏览量</b></span>
+            <span class="list-p"><b>价格最新</b></span>
+            <span class="list-p"><b>最新</b></span>
+            <span class="list-p1"><b>列表显示  图文显示  </b></span>
+            <span class="list-p2"><b>页码：1></b></span>
+        </div>
+        <div class="wrapper project-show">
+            <div class="fl txt project-list">
+                <div class="txt list-title"><p>产品类别</p><p>（选项卡）</p>
+                </div>
+                <ul class="list-ul">
+                    [@cms_channel_list parentId='']
+                    [#list tag_list as a]
+                    <li>${a.name}</li>
+                    [/#list]
+                    [/@cms_channel_list]
+                </ul>
+            </div>
+            <div class="fl show-body">
+                ${channel.id}
+                [#if channel.id=='']
+                    [@cms_content_list count='12' orderBy='1' channelId='']
+                    [#list tag_list as a]
+                    <div class="fl body-one">
+                        <div class="body-p">
+                            <p>&nbsp;&nbsp;${a.title} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 价格</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;简介</p>
+                        </div>
+                        <img alt="图" src="${a.typeImg!site.defImg}">
+                    </div>
+                    [/#list]
+                    [/@cms_content_list]
+                [#else]
+                    [@cms_content_list count='12' orderBy='1' channelId=channel.id]
+                    [#list tag_list as a]
+                    <div class="fl body-one">
+                        <div class="body-p">
+                            <p>&nbsp;&nbsp;${a.title} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 价格</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;简介</p>
+                        </div>
+                        <img alt="图" src="${a.typeImg!site.defImg}">
+                    </div>
+                    [/#list]
+                    [/@cms_content_list]
+                [/#if]
+
+
+            </div>
+
+
+        </div>
+    </div>
+    <!-- content end -->
+    <!-- footer start -->
+    <div id="footer">
+        <%@ include file="include/footer.jsp" %>
+    </div>
+    <!-- footer end -->
+</div>
+</body>
+</html>

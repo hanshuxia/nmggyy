@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>众修需求报价</title>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="/r/cms/www/default/resources/lib/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/r/cms/www/default/resources/css/base.css"/>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/contact.css"/>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+
+    <script src="/r/cms/jquery.js" type="text/javascript"></script>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <script type="text/javascript" src="/thirdparty/jquery-placeholder/placeholder-ie9.js" ></script>
+    <![endif]-->
+    <script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+    <script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+
+    <!--日期插件-->
+    <script src="/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/r/cms/www/default/resources/css/releasePower.css"/>
+
+    <style>
+        .SDemandObj_input {line-height: 2em; height: 2em; text-align: center;  margin: 5px;}
+        .SDemandObj_table {width: 100%; margin: auto; text-align: center; margin-top: 20px;}
+        .SDemandObj_table td {height: 30px; line-height: 20px; vertical-align: middle; text-align: center;}
+        #demanderInfo{border-collapse: collapse; width: 90%; margin: auto}
+        #demanderInfo tr td{height: 40px; line-height: 20px; vertical-align: middle; text-align: center; border: solid thin #cccccc; padding:0 10px}
+        .SDemandObj_table td .notQuote{color: #aaaaaa}
+        .SDemandObj_table td .quoteIt{color: #318CB9}
+    </style>
+</head>
+<body>
+[#include "../include/header_icloud.html" /]
+<div class="content wrapper">
+    <form id="release_form" method="post" action="/member/showBaojia.jspx">
+        <div class="servicePower">
+            <div class="column wrapper"> <span class="head">我要报价</span></div>
+            <div class="service-content wrapper">
+                <span>询价（需求）方基本信息</span><br>
+                <br>
+                [#if testtt?size gt 0]
+                [#list  testtt as a]
+                <input type="hidden" name="demandId" value="${a.repairId?default('null')}">
+                <table id="demanderInfo">
+                    <tr>
+                        <td width="8%">询价企业：</td>
+                        <td width="26%" title="${a.company.companyName?default('null')}">[@text_cut s=a.company.companyName?default('') len='20' append='...'/]</td>
+                        <td width="8%">联系人：</td>
+                        <td width="25%">${a.contact?default('null')}</td>
+                        <td width="8%">联系电话：</td>
+                        <td width="25%">
+                            手机：${a.mobile!}
+                            <br>
+                            固话：${a.telephone!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="8%">email：</td>
+                        <td width="26%">${a.email?default('null')}</td>
+                        <td width="8%">传真：</td>
+                        <td width="25%">${a.fax?default('null')}</td>
+                        <td width="8%">截止日期：</td>
+                        <td width="25%">${a.deadlineDt?default('')}</td>
+                    </tr>
+                    <tr>
+                        <td width="8%">收货地区：</td>
+                        <td width="26%">
+                            ${a.addrProvince?default('')}&nbsp; ${a.addrCity?default('')}&nbsp; ${a.addrCounty?default('')} &nbsp;${a.addrStreet?default('')}
+                        </td>
+                        <td width="8%">其他：</td>
+                        <td  colspan="3"></td>
+                        <!--<td width="8%"></td>
+                        <td width="25%"></td>-->
+                    </tr>
+                    <tr>
+                        <td width="8%">补充说明：</td>
+                        <td colspan="5" style="text-align: left;">
+                            ${a.content.txt!}
+                        </td>
+                    </tr>
+                </table>
+                <input type="hidden"name="contentId" value="${a.contentId!}">
+                [/#list]
+                [/#if]
+            </div>
+        </div>
+        <div class="servicePower">
+            <div class="column wrapper"> <span class="head">询价对象信息</span> <span class="tips"><i>*</i>&nbsp;为必填项</span> </div>
+            <div class="service-content wrapper">
+                <!--<span>请选择报价对象，</span>未填写报价的对象视为未对其报价<br>-->
+                <table id="SDemandObj_table" class="SDemandObj_table" border="1">
+                    <tr style="background-color:#318CB9; color: #FFFFFF;">
+                        <td width="15%">维修对象名称</td>
+                        <td width="15%">维修对象型号</td>
+                        <td width="10%">需求数量</td>
+                        <td width="25%">维修要求/备注</td>
+                        <td width="10%">期望单价(元)</td>
+                        <td width="10%"><i>*</i>&nbsp;报价单价(元)</td>
+                    </tr>
+                    [#list  testtt as a]
+                    [#list a.sRepairDemandObj as b]
+                    <tr>
+                        <td><input type="hidden" value="${b.repairObjid?default('')}"><span class="notQuote">(未选择)</span><input type="hidden" value="">${b.repairName?default('null')}</td>
+                        <td>${b.machineType?default('null')}</td>
+                        <td>${b.repairNum?default('null')}</td>
+                        <td>${b.repairRequest?default('null')}</td>
+                        [#switch a.isShow]
+                        [#case "0"]<td>需求方未展示</td>[#break]
+                        [/#switch]
+                        [#switch a.isShow]
+                        [#case "1"]<td>${b.expectPrice?default('价格面议')}</td>[#break]
+                        [/#switch]
+                        <td><input id="offer" class="SDemandObj_input space" name="offer" maxlength="13"></td>
+                    </tr>
+                    [/#list]
+                    [/#list]
+                </table>
+                <br><br>
+                <div>
+                    <label>&nbsp;报价说明：</label>
+                    <textarea id="offerExplan" name="offerExplan" style="width: 700px; height: 100px;resize:none" maxlength="500"></textarea>
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;报价有效期：</label>
+                    <!--<input type="text" id="deadlineDt" name="deadlineDt" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate" required>-->
+                    <input type="text" name="deadlineDt" onclick="WdatePicker({minDate:'%y-%M-%d'})" class="Wdate data" required>
+                </div>
+                <div class="servicePower">
+                    <div class="column wrapper"> <span class="head">联系信息</span> <span class="tips"></span><button type="button" id="addContact" class="addBtn" style="width:130px;">新增联系人信息</button>  </div>
+                    <!--收货人信息 start-->
+                    <div class="ckt-item info">
+                        <div class="top-ckt">
+                            <span class="span-title-top">注：选中某条联系信息，该条联系信息设置为需求报价的联系信息</span>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <!--地址列表-->
+                        <div class="center-ckt-info">
+                            <ul id="address_list">
+                                <!--通过load方法加载-->
+                                <script type="text/javascript">
+                                    $(function(){
+                                        //  初始化收货人地址列表
+                                        //Ckt.info.i_InfoInitAddress();
+                                    });
+                                </script>
+                            </ul>
+                            <!--报价隐藏div-->
+                            <div class="window" id="bjWindow" hidden>
+                                <div class="yxmain">
+                                    <div class="tableDiv tale">
+                                        <table border="0" class="wrapper" cellpadding="0" cellspacing="0" id="bjTable">
+                                            <!--<thead>-->
+                                            <!--<tr>-->
+                                            <!--<th>地址标签</th>-->
+                                            <!--<th>姓名</th>-->
+                                            <!--<th>地址</th>-->
+                                            <!--<th>电话</th>-->
+                                            <!--<th>是否为默认地址</th>-->
+                                            <!--</tr>-->
+                                            <!--</thead>-->
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--地址列表 end-->
+                        <div class="collapse-ckt-info">
+                            <span class="more-collapse-ckt">更多地址</span>
+                            <i class="icon-collapse-ckt-info"></i>
+                        </div>
+                        <div class="placeholder-20"></div>
+                    </div>
+                </div>
+            </div>
+        <div class="message">
+            <p>以下方面建议您报价前可以再检查一下：</p>
+            <p>1、完善报价说明，可以填写交付进度，本企业资质能力等，详细的报价说明可以让对方更好的了解您的报价，</p>
+            <p>帮助您提高中标率。</p>
+            <p>2、仔细检查需求对象，以免报价错误。</p>
+        </div>
+        <div class="release-button">
+            <button class="btn" type="button" onclick="grandSubCheck()" >提交报价</button>
+            <button class="btn cancel" onclick="cancel()">返回</button>
+        </div>
+        <input type="hidden" name="demandQuoteObjsJsonStr" id="demandQuoteObjList" value="">
+        <!--联系信息-->
+        <div hidden>
+            <input id="contact" name="contact" type="text" value="">
+            <input id="mobile" name="mobile" type="text" value="">
+            <input id="fax" name="fax" type="text" value="">
+            <input id="email" name="email" type="text" value="">
+            <input id="addrProvince" name="addrProvince" type="text" value="">
+            <input id="addrCity" name="addrCity" type="text" value="">
+            <input id="addrCounty" name="addrCounty" type="text" value="">
+            <input id="addrStreet" name="addrStreet" type="text" value="">
+            <input id="postCode" name="postCode" type="text" value="">
+        </div>
+    </form>
+</div>
+<!--footer start-->
+[#include "../include/footer_icloud.html"]
+<!--footer end-->
+<!--表单验证插件-->
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+<!--自己写校验方法-->
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/validateCheck.js"></script>
+<script type="text/javascript" charset="utf-8" src="/r/cms/www/default/resources/lib/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/r/cms/www/default/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/r/cms/www/default/resources/js/head.js"></script>
+<script type="text/javascript">
+    // 联系人信息是否有默认地址
+    window.isDef = 0;
+
+    // 弹出和更新联系人信息界面的ajax
+    function getContactAjax(userId){
+        $.ajax({
+            type:"post",
+            url:"/member/getContactList.jspx?userId=" + userId,
+            dataType:"json",
+            success:function(json){
+                if (json.data.length == 0) { // 没有用户联系信息
+                    openContactAdd();
+                } else {
+                    // 填充表格信息
+                    fillContactTable(json);
+                    // 塞入联系人信息
+                    fillContactInfo();
+                }
+            },
+            error:function(){
+                ui.alert("数据传输失败，原因：1、用户未登录，2、用户无关联公司，3、请求的联系信息不存在或未找到");
+            }
+        })
+    }
+    //切字符串方法
+    function s_cut(s,lenth,append){
+        var index = 0;
+        var len = 0;
+        var str = "";
+        var a = "";
+        for (var i = 0; len < lenth; i++) {
+            index = i;
+            a = s.charAt(i);
+            str += a;
+            if (a.match(/[^\x00-\xff]/ig) != null) {
+                len += 2;
+            }
+            else {
+                len += 1;
+            }
+        }
+        if(s.charAt(index+1) == ""){
+            return str;
+        }else{
+            return (str+append);
+        }
+    }
+    // 根据json填联系人信息的方法
+    function fillContactTable(jsonObj){
+        var tBody = $('#bjTable tbody');
+        tBody.html("");
+
+        $.each(jsonObj.data, function(i, item){
+            tBody.append("<tr id = 'infoSelected' onclick='infoSelected(this)'></tr>");
+            var tr = tBody.find('tr:last');
+            if(item.defAddr == "1") {
+                tr.append("<td id='shipAddressName' class='ckt-checkbox selected'><a title='"+item.shipAddressName+"'>"+s_cut(item.shipAddressName,4,'..')+"</a></td>");
+            } else {
+                tr.append("<td id='shipAddressName' class='ckt-checkbox'><a title='"+item.shipAddressName+"'>"+s_cut(item.shipAddressName,4,'..')+"</a></td>");
+            }
+            tr.append("<td id='userName1' class='name-li-ckt-info' style='width: 100px'><a title='"+item.userName+"'>"+item.userName+"</a></td>");
+            tr.append("<td id='addrProvince1' hidden><a title='"+item.province+"'>"+item.province+"</a></td>");
+            tr.append("<td id='addrCity1' hidden><a title='"+item.city+"'>"+item.city+"</a></td>");
+            tr.append("<td id='addrCounty1' hidden><a title='"+item.country+"'>"+item.country+"</a></td>");
+            tr.append("<td id='addrStreet1' hidden><a title='"+item.address+"'>"+item.address+"</a></td>");
+            tr.append("<td id='addr' class='address-li-ckt-info'><a title='"+item.province+item.city+item.country+item.address+"'>"+item.province+item.city+item.country+item.address+"</a></td>");
+            tr.append("<td id='fax1' hidden><a title='"+item.fax+"'>"+item.fax+"</a></td>");
+            tr.append("<td id='email1' hidden><a title='"+item.email+"'>"+item.email+"</a></td>");
+            tr.append("<td id='mobile1'><a title='"+item.mobile+"'>"+item.mobile+"</a></td>");
+            tr.append("<td id='postCode1' hidden><a title='"+item.zip+"'>"+item.zip+"</a></td>");
+            tr.addClass("li-ckt-info");
+            if(item.defAddr == "1") {
+                tr.append("<td id='defAddr' class='default-li-ckt-info'>默认地址</td>");
+                $('#bjTable tbody').find('tr:eq(' + i + ')').addClass("infoSelected");
+                window.isDef += 1;
+            } else {
+                tr.append("<td id='defAddr'></td>");
+            }
+        });
+        $('#bjWindow').show();
+        if(tBody.children('tr').length == 0){
+            openContactAdd();
+        }
+    }
+
+    //表单验证
+    $().ready(function() {
+        $("#release_form").validate();
+        getContactAjax(${user.userId});
+    });
+
+    //返回上一页方法
+    function cancel(){
+        window.close();
+    }
+</script>
+<!--js by Gao JN-->
+<script>
+    $(document).ready(function(){
+        $('#demanderInfo tr').each(function(){
+            $(this).children('td:even').css({"background-color":"#318CB9","color":"#FFFFFF","padding":"0"});
+        })
+        $('.SDemandObj_input').blur(function () {
+            if($(this).val()!=""){
+                $(this).parent().parent().find('td:first span').text("(已选择)").attr("class","quoteIt");
+            }else {
+                $(this).parent().parent().find('td:first span').text("(未选择)").attr("class","notQuote");
+            }
+        })
+    });
+
+    function grabJsonSObjs(){
+        var hasExec = false;
+        var rows = 0;
+        var JsonObjs = "{\"repairQuoteObjs\":[";
+        $('#SDemandObj_table tr:gt(0)').each(function(i){
+            var price = $(this).children('td:last').children('input:first').val();
+            if(price != "") {
+                if(isNaN(price) || price<=0){
+                    hasExec = true;
+                    return false;
+                }
+                JsonObjs += "{\"objId\":\"";
+                JsonObjs += ($(this).children('td:eq(0)').children('input:first').val() + "\",");
+                JsonObjs += "\"offer\":\"";
+                JsonObjs += ($(this).children('td:eq(5)').children('input:first').val() + "\"},");
+                rows++;
+            }
+        });
+        if(hasExec || rows<1){
+            return "hasExec";
+        } else {
+            JsonObjs=(JsonObjs.replace(/,$/,""))+"]}";
+            return JsonObjs;
+        }
+    }
+
+    function grandSubCheck(){
+        fillContactInfo(); // 塞入联系信息
+        var obj = $("#bjTable tbody").find(".infoSelected");
+        if (obj != undefined) {
+            if (obj.length != 0) {
+                window.isDef += 1;
+            }
+        }
+        fillContactInfo(obj); // 塞入联系信息
+        var result = checkContact(); // 联系人非空检验
+        if (result == false) {
+            ui.alertFail("请在本页面底部【新增联系人信息】");
+            return false;
+        }
+        if (window.isDef < 1) {
+            ui.alertFail("请在本页面底部选择发布众修需求报价的联系人信息");
+            return false;
+        }
+        var jsonStr = grabJsonSObjs();
+        if(jsonStr == "hasExec"){
+            alert("报价单价填写存在错误！请检查。");
+            debugger;
+            return false;
+        } else {
+            $('#demandQuoteObjList').val(jsonStr);
+            if(!confirm("请确定是否提交报价？")){
+                return false;
+            }
+            $('#release_form').submit();
+        }
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function (e) {
+        $('.autoInput').click(function(){
+            if($(this).is(':checked')){
+                $(this).prevAll('input').eq(0).val($(this).next('span.special').text()).attr("readonly","readonly");
+                $(this).prevAll('input').eq(0).focus().blur();
+            }else{
+                $(this).prevAll('input').eq(0).val("").removeAttr("readonly");
+                $(this).prevAll('input').eq(0).focus().blur();
+            }
+        })
+    });
+
+    //  新增联系人信息
+    $('#addContact').on('click', function(){
+        openContactAdd();
+    });
+
+    // 打开联系人新增页面
+    function openContactAdd () {
+        layer.open({
+            type: 2,
+            title: ['联系人信息', 'background-color: #318CB8;text-align:center;font-size:18px;'],
+            shadeClose: true,
+            shade: false,
+            maxmin: true,
+            area: ['800px', '490px'],
+            content: '/member/getContactAddrAdd.jspx',
+            end: function(){
+                // 如果是通过单击关闭按钮关闭弹出层，父画面没有此表单
+                if($("#popupForm").length === 1){
+                    $("#popupForm").submit();
+                }
+            }
+        });
+    }
+
+    // 设置联系信息为发布需求报价联系信息
+    function infoSelected (obj) {
+        layer.confirm('确定该条联系信息设为需求报价的联系信息？', {
+                    skin: 'layui-layer-lan',
+                    icon: 3,
+                    shift: -1,
+                    btn: ['确定', '取消'] //可以无限个按钮
+                },
+                function (index, layero) {
+                    // 塞入联系信息
+                    fillContactInfo(obj);
+                    layer.close(index);
+                    $(obj).siblings().removeClass("infoSelected");
+                    $(obj).addClass("infoSelected");
+                    $(obj).siblings().find("#shipAddressName").removeClass("ckt-checkbox selected");
+                    $(obj).find("#shipAddressName").addClass("ckt-checkbox selected");
+                    window.isDef += 1;
+                }, function (index) {
+                    layer.close(index);
+                    return false;
+                });
+    }
+
+    // 检验联系人信息非空
+    function checkContact() {
+        var isCheck = ($("#contact").val() != "") && ($("#contact").val() != null) && ($("#contact").val() != undefined);
+        return isCheck;
+    }
+
+    // 塞入联系信息
+    function fillContactInfo (obj) {
+        if ($("#userName1")[0] != undefined) {
+            if ($(obj).length != 0) {
+                if (($(obj).find("#userName1")[0].innerText != "") && ($(obj).find("#userName1")[0].innerText != null) && ($(obj).find("#userName1")[0].innerText != undefined)) {
+                    $("#contact").val($(obj).find("#userName1")[0].innerText);
+                    $("#mobile").val($(obj).find("#mobile1")[0].innerText);
+                    $("#postCode").val($(obj).find("#postCode1")[0].innerText);
+                    if ($("#fax1")[0].innerText == 'undefined') {
+                        $("#fax").val("");
+                    } else {
+                        $("#fax").val($(obj).find("#fax1")[0].innerText);
+                    }
+                    if ($("#email1")[0].innerText == 'undefined') {
+                        $("#email").val("");
+                    } else {
+                        $("#email").val($(obj).find("#email1")[0].innerText);
+                    }
+                    $("#addrProvince").val($(obj).find("#addrProvince1")[0].innerText);
+                    $("#addrCity").val($(obj).find("#addrCity1")[0].innerText);
+                    $("#addrCounty").val($(obj).find("#addrCounty1")[0].innerText);
+                    $("#addrStreet").val($(obj).find("#addrStreet1")[0].innerText);
+                }
+            } else {
+                $("#contact").val($("#userName1")[0].innerText);
+                $("#mobile").val($("#mobile1")[0].innerText);
+                $("#postCode").val($("#postCode1")[0].innerText);
+                if ($("#fax1")[0].innerText == 'undefined') {
+                    $("#fax").val("");
+                } else {
+                    $("#fax").val($("#fax1")[0].innerText);
+                }
+                if ($("#email1")[0].innerText == 'undefined') {
+                    $("#email").val("");
+                } else {
+                    $("#email").val($("#email1")[0].innerText);
+                }
+                $("#addrProvince").val($("#addrProvince1")[0].innerText);
+                $("#addrCity").val($("#addrCity1")[0].innerText);
+                $("#addrCounty").val($("#addrCounty1")[0].innerText);
+                $("#addrStreet").val($("#addrStreet1")[0].innerText);
+            }
+        }
+    }
+</script>
+</body>
+</html>

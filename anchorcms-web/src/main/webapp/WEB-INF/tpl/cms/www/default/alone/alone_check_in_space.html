@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>入住空间</title>
+	<link rel="stylesheet" type="text/css" href="/${res}/css/double/common.css">
+<link rel="stylesheet" type="text/css" href="/${res}/css/base.css"/>
+<link rel="stylesheet" type="text/css" href="/${res}/css/double/check_in_space.css">
+</head>
+<body>
+<div class="main clearfix">
+<%@ include file="include/header.jsp" %>
+
+	<div class="current-position">
+		<p style="margin: 0px">当前位置：首页>>用户中心>>入驻空间</p>
+	</div>
+	<div class="publish-title">
+		<p>入驻空间</p>
+	</div>
+	<div class="publish-main">
+		<form id="form" action="">
+			<div  class="nature" style="margin:30px 10px 0 200px;">
+				<span>*</span>&nbsp<span>项目名称</span>
+			</div>
+			<div class="answer" style="margin:30px 10px 0 0px;">
+				<input/>
+			</div>
+			<div  class="nature">
+				<span>隐私设置</span>
+			</div>
+			<div class="answer" style="background-color:#ededed;border: 0px;text-align: left;">
+				<input style="width: auto;height: auto" name="Fruit" type="checkbox" value="" />设置为不公开（设置为不公开后，您投递项目计划书时不会被对方接收）
+			</div>
+			
+			<div  class="nature">
+				<span>*</span>&nbsp<span>项目名称</span>
+			</div>
+			<div class="answer" style="width: 145px;height: 92px">
+				<span>+<br>上传图片</span>				
+			</div>
+			
+			<div  class="nature" style="margin-left: 0px">
+				<span>项目封面</span>
+			</div>
+			<div class="answer" style="width: 145px;height: 92px">
+				<span>+<br>上传图片</span>				
+			</div>
+
+			<div  class="nature">
+				<span>*</span>&nbsp<span>所在区域</span>
+			</div>
+			<div class="answer" style="width: 140px;">
+				<select style="width: 135px">
+					<option>--山东省--</option>
+				</select>
+			</div>
+			<div class="answer" style="width: 150px;margin-left: 10px">
+				<select style="width: 145px">
+					<option>--济南市--</option>
+				</select>
+			</div>
+			<div  class="nature" style="clear:both;">
+				<span>*</span>&nbsp<span>所在领域</span>
+			</div>
+			<div class="answer" style="width: 310px;">
+				<select style="width: 305px">
+					<option>--请选择--</option>
+				</select>
+			</div>
+			
+			<div  class="nature"style="clear:both;" >
+				<span>融资阶段</span>
+			</div>
+			<div class="answer" style="width: 145px">
+				<select style="width: 140px">
+					<option>--请选择--</option>
+				</select>
+			</div>
+			
+			<div  class="nature" style="margin-left: 0px">
+				<span>融资目标</span>
+			</div>
+			<div class="answer" style="width: 145px">
+				<input style="width: 140px" />
+			</div>
+			
+			<div  class="nature" >
+				<span>团队人数</span>
+			</div>
+			<div class="answer" style="width: 145px">
+				<input style="width: 140px" />
+			</div>
+			
+			<div  class="nature" style="clear:both;">
+				<span>*</span>&nbsp<span>项目介绍</span>
+			</div>
+			<div class="answer" style="height: 150px">
+				<textarea></textarea>
+			</div>
+			
+			<div  class="nature" style="width: 760px;background-color: #ededed;border: 0px;">
+				<input style="width: 150px;height: 40px;cursor: pointer;" type="submit" value="创建完成"/>
+			</div>
+			
+			<div  class="nature" style="width: 760px;background-color: #ededed">
+				<span class="linkman">项目联系人</span>
+			</div>
+			
+			<div  class="nature" style="clear:both;">
+				<span>*</span>&nbsp<span>联系人</span>
+			</div>
+			<div class="answer">
+				<input/>
+			</div>
+			
+			<div  class="nature">
+				<span>联系电话</span>
+			</div>
+			<div class="answer" style="width: 145px">
+				<input style="width: 140px" />
+			</div>
+			
+			<div  class="nature" style="margin-left: 0px">
+				<span>手机号码</span>
+			</div>
+			<div class="answer" style="width: 145px">
+				<input style="width: 140px" />
+			</div>
+			
+			<div  class="nature" >
+				<span>*</span>&nbsp<span>E-mail</span>
+			</div>
+			<div class="answer" style="width: 145px">
+				<input style="width: 140px" />
+			</div>
+			
+			<div  class="nature" style="margin-left: 0px">
+				<span>部门职务</span>
+			</div>
+			<div class="answer" style="width: 145px">
+				<input style="width: 140px" />
+			</div>
+			
+			<div  class="nature" >
+				<span>单位名称</span>
+			</div>
+			<div class="answer" style="width: 145px">
+				<input style="width: 140px" />
+			</div>
+			
+			<div  class="nature" style="margin-left: 0px">
+				<span>传真</span>
+			</div>
+			<div class="answer" style="width: 145px">
+				<input style="width: 140px" />
+			</div>
+			
+			<div  class="nature" >
+				<span>邮编</span>
+			</div>
+			<div class="answer" style="width: 145px">
+				<input style="width: 140px" />
+			</div>
+			
+			<div  class="nature" style="margin-left: 0px">
+				<span>通讯地址</span>
+			</div>
+			<div class="answer" style="width: 145px">
+				<input style="width: 140px" />
+			</div>
+			
+			<div  class="nature" style="width: 760px;background-color: #ededed;border: 0px;margin-bottom: 50px">
+				<input style="width: 150px;height: 40px;cursor: pointer;" type="submit" value="保存"/>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				<input style="width: 150px;height: 40px;cursor: pointer;" type="button" value="保存并提交"/>
+			</div>
+		</form>
+	</div>
+	
+</div>
+</body>
+</html>

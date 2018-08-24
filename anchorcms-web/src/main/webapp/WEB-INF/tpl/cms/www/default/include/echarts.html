@@ -1,0 +1,325 @@
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/echarts/esl/echarts.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/echarts/esl/neimenggu.js"></script>
+
+<div id="main" style="height:400px;"></div>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 900px;height:600px;margin-left: 150px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    // JS
+    var chart = echarts.init(document.getElementById('main'));
+
+    option = {
+        geo: {
+            selectedMode:"single",
+            map: "内蒙古",
+            layoutCenter: ["45%", "50%"],
+            layoutSize: "125%",
+            label: {
+                emphasis: {
+                    show: true
+                }
+            },
+            roam: false,
+            mapLocation: {
+                width: "110%",
+                height: "97%"
+            },
+            itemStyle: {
+                normal: {
+                    //设置区域颜色
+                    areaColor: "#ddd",
+                    borderColor: "#fff"
+                },
+                emphasis: {
+                    areaColor: "#FAC600"
+                }
+            }
+        },
+
+
+        tooltip: {
+            trigger: 'item',
+            formatter: '{b}'
+        },
+        series: [
+            {
+                name: "",
+                type: "scatter",
+                coordinateSystem: "geo",
+                data: [],
+                label: {
+                    normal: {
+                        formatter: "{b}",
+                        position: "right",
+                        show: false
+                    },
+                    emphasis :{
+                        show: true
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: "#ED1C24"
+                    }
+                }
+            },
+            {
+                name: '中国',
+                type: 'map',
+                map: "内蒙古",
+                selectedMode : 'single',
+                layoutCenter: ["45%", "50%"],
+                layoutSize: "125%",
+                label: {
+                    emphasis: {
+                        show: true
+                    }
+                },
+                roam: false,
+                mapLocation: {
+                    width: "110%",
+                    height: "97%"
+                },
+                itemStyle: {
+                    normal: {
+                        //设置区域颜色
+                        areaColor: "#ddd",
+                        borderColor: "#fff"
+                    },
+                    emphasis: {
+                        areaColor: "#FAC600"
+                    }
+                },
+                data:[
+                    {name:'呼和浩特市', selected:true}
+                ]
+            }
+        ],
+    };
+
+
+
+
+    $(function () {
+        $("#areaOne").hide();
+        $("#areaTwo").hide();
+        $("#areaThree").hide();
+        $("#areaFour").hide();
+        $("#areaFive").hide();
+        $("#six").hide();
+        $("#seven").hide();
+        $("#eight").show();
+        $("#nine").hide();
+        $("#ten").hide();
+        $("#eleven").hide();
+        $("#twelve").hide();
+    });
+
+    chart.on('CLICK', function (params) {
+        var city = params.name;
+        if(city =="呼伦贝尔市"){
+            $("#areaOne").show();
+            $("#areaTwo").hide();
+            $("#areaThree").hide();
+            $("#areaFour").hide();
+            $("#areaFive").hide();
+            $("#six").hide();
+            $("#seven").hide();
+            $("#eight").hide();
+            $("#nine").hide();
+            $("#ten").hide();
+            $("#eleven").hide();
+            $("#twelve").hide();
+        }else if(city =="兴安盟"){
+            $("#areaOne").hide();
+            $("#areaTwo").show();
+            $("#areaThree").hide();
+            $("#areaFour").hide();
+            $("#areaFive").hide();
+            $("#six").hide();
+            $("#seven").hide();
+            $("#eight").hide();
+            $("#nine").hide();
+            $("#ten").hide();
+            $("#eleven").hide();
+            $("#twelve").hide();
+        }else if(city =="通辽市"){
+            $("#areaOne").hide();
+            $("#areaTwo").hide();
+            $("#areaThree").show();
+            $("#areaFour").hide();
+            $("#areaFive").hide();
+            $("#six").hide();
+            $("#seven").hide();
+            $("#eight").hide();
+            $("#nine").hide();
+            $("#ten").hide();
+            $("#eleven").hide();
+            $("#twelve").hide();
+        }
+        else if(city =="赤峰市"){
+            $("#areaOne").hide();
+            $("#areaTwo").hide();
+            $("#areaThree").hide();
+            $("#areaFour").show();
+            $("#areaFive").hide();
+            $("#six").hide();
+            $("#seven").hide();
+            $("#eight").hide();
+            $("#nine").hide();
+            $("#ten").hide();
+            $("#eleven").hide();
+            $("#twelve").hide();
+        }
+        else if(city =="锡林郭勒盟"){
+            $("#areaOne").hide();
+            $("#areaTwo").hide();
+            $("#areaThree").hide();
+            $("#areaFour").hide();
+            $("#areaFive").show();
+            $("#six").hide();
+            $("#seven").hide();
+            $("#eight").hide();
+            $("#nine").hide();
+            $("#ten").hide();
+            $("#eleven").hide();
+            $("#twelve").hide();
+        }
+        else if(city =="乌兰察布市"){
+            $("#areaOne").hide();
+            $("#areaTwo").hide();
+            $("#areaThree").hide();
+            $("#areaFour").hide();
+            $("#areaFive").hide();
+            $("#six").show();
+            $("#seven").hide();
+            $("#eight").hide();
+            $("#nine").hide();
+            $("#ten").hide();
+            $("#eleven").hide();
+            $("#twelve").hide();
+        }
+        else if(city =="包头市"){
+            $("#areaOne").hide();
+            $("#areaTwo").hide();
+            $("#areaThree").hide();
+            $("#areaFour").hide();
+            $("#areaFive").hide();
+            $("#six").hide();
+            $("#seven").show();
+            $("#eight").hide();
+            $("#nine").hide();
+            $("#ten").hide();
+            $("#eleven").hide();
+            $("#twelve").hide();
+        }
+        else if(city =="呼和浩特市"){
+            $("#areaOne").hide();
+            $("#areaTwo").hide();
+            $("#areaThree").hide();
+            $("#areaFour").hide();
+            $("#areaFive").hide();
+            $("#six").hide();
+            $("#seven").hide();
+            $("#eight").show();
+            $("#nine").hide();
+            $("#ten").hide();
+            $("#eleven").hide();
+            $("#twelve").hide();
+        }
+        else if(city =="巴彦淖尔市"){
+            $("#areaOne").hide();
+            $("#areaTwo").hide();
+            $("#areaThree").hide();
+            $("#areaFour").hide();
+            $("#areaFive").hide();
+            $("#six").hide();
+            $("#seven").hide();
+            $("#eight").hide();
+            $("#nine").show();
+            $("#ten").hide();
+            $("#eleven").hide();
+            $("#twelve").hide();
+        }
+        else if(city =="鄂尔多斯市"){
+            $("#areaOne").hide();
+            $("#areaTwo").hide();
+            $("#areaThree").hide();
+            $("#areaFour").hide();
+            $("#areaFive").hide();
+            $("#six").hide();
+            $("#seven").hide();
+            $("#eight").hide();
+            $("#nine").hide();
+            $("#ten").show();
+            $("#eleven").hide();
+            $("#twelve").hide();
+        }
+        else if(city =="乌海市"){
+            $("#areaOne").hide();
+            $("#areaTwo").hide();
+            $("#areaThree").hide();
+            $("#areaFour").hide();
+            $("#areaFive").hide();
+            $("#six").hide();
+            $("#seven").hide();
+            $("#eight").hide();
+            $("#nine").hide();
+            $("#ten").hide();
+            $("#eleven").show();
+            $("#twelve").hide();
+        }
+        else if(city =="阿拉善盟"){
+            $("#areaOne").hide();
+            $("#areaTwo").hide();
+            $("#areaThree").hide();
+            $("#areaFour").hide();
+            $("#areaFive").hide();
+            $("#six").hide();
+            $("#seven").hide();
+            $("#eight").hide();
+            $("#nine").hide();
+            $("#ten").hide();
+            $("#eleven").hide();
+            $("#twelve").show();
+        }
+
+
+    });
+
+//判断该地区是否有计算机中新，有的话价格红点
+    var i=0;
+    var relArr=[];
+    var pointArr=[
+        {name:'呼伦贝尔市计算机中心',value:[120.4124,50.4901]},
+        {name:'兴安盟计算机中心',value:[121.4124,45.4901]},
+        {name:'通辽市计算机中心',value:[121.8,43.4901]},
+        {name:'赤峰市',value:[119.4124,42.8]},
+        {name:'锡林郭勒盟',value:[115.4124,44.4901]},
+        {name:'乌兰察布市',value:[113.0,41.4901]},
+        {name:'包头市',value:[110,42.0]},
+        {name:'呼和浩特市',value:[111.4124,40.4901]},
+        {name:'巴彦淖尔市',value:[107.4124,41.8]},
+        {name:'鄂尔多斯市',value:[108.4124,39.4901]},
+        {name:'乌海市',value:[106.8,39.4901]},
+        {name:'阿拉善盟',value:[103.4124,40.4901]},
+    ];
+
+    $(function(){
+        $(".mapInfo").each(function(){
+            var isNull=$(this).children().eq(1).children().eq(0).attr("name");
+            var name=$(this).children().eq(0).text();
+            var bool=isNull=="null";
+            if(!bool){
+                relArr.push(pointArr[i]);
+            }
+            i++;
+        });
+        option.series[0].data=relArr;
+        chart.setOption(option);
+    });
+
+
+</script>

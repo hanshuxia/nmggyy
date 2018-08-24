@@ -1,0 +1,702 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta name=”renderer” content=”webkit” /> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${channel.title!channel.name}</title>
+<link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/${res}/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/${res}/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="/${res}/css/joinArmy/mincanjun.css" />
+	<link rel="stylesheet" type="text/css" href="/${res}/css/joinArmy/common.css" />
+<link rel="shortcut  icon" type="image/x-icon" href="/${res}/images/favicon.ico" media="screen"  />
+<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+<script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/js/head.js"></script>
+</head>
+
+<body>
+
+<!--头部开始-->
+
+	<!-- 导航菜单 -->
+	[#include "../alone/alone_joinArmy_header.html"/]
+
+
+
+<div class="content">
+	<div class="" style="float: left;width:380px;height: 260px;">
+	</div>
+
+	<div class="news">
+		<div>
+			[@cms_content_list count='1' titLen='30' channelId='75' channelOption='1'] [#list tag_list as c]
+			<div class="dynamics-head">[@text_cut s=c.title len=titLen /]</div>
+
+			<div class="dynamics-brief">[@text_cut s=c.title len=titLen /]</div>
+			[/#list] [/@cms_content_list]
+			<div class="dynamics-jungongzixun">军工资讯</div>
+			<ul class="dynamics-list clearfix"  onclick="window.location.href=''">
+				[@cms_content_list count='8' titLen='16' channelId='75' channelOption='1'] [#list tag_list as c]
+				<li><a href="${c.url}" target="_self">[@text_cut s=c.title len=titLen /]</a></li>
+				[/#list] [/@cms_content_list]
+			</ul>
+			<button class="dynamics-button" style="margin-top: -10px;">更多>></button>
+		</div>
+	</div>
+	<div class="fast-entry">
+		<div class="news-title2">我要民参军</div>
+		<div>
+			<table class="fast-entry-table">
+				<tr>
+					<td><button style="width: 80px;height: 60px;">我要办理资质</button>
+					</td>
+					<td><button style="width: 80px;height: 60px;">我要拓展市场</button>
+					</td>
+					<td><button style="width: 80px;height: 60px;">我要推介产品技术</button>
+					</td>
+				</tr>
+				<tr>
+					<td><button style="width: 80px;height: 60px;">我要参与军工配套</button>
+					</td>
+					<td><button style="width: 80px;height: 60px;">我要参与军方工程</button>
+					</td>
+					<td><button style="width: 80px;height: 60px;">我要参与军方科研</button>
+					</td>
+				</tr>
+				<tr>
+					<td><button style="width: 80px;height: 60px;">民参军培训辅导</button>
+					</td>
+					<td colspan="2">
+						<button
+								style="width: 200px;height: 60px;font-size: 16px;font-weight: 700;color: #ff0000;">军方查询民参军查询入口</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="title2">
+	<font>&nbsp;民参军服务</font>
+</div>
+<div class="content2">
+	<div class="mincanjun-child">
+		<div class="child-title">政策解读</div>
+		<div class="child-image">
+			[@cms_content_list count='1' titLen='25' channelId='75' channelOption='1'] [#list tag_list as c]
+			[@cms_channel id=75]
+			<a href="${tag_bean.url}"><img src="/${res}/images/bannertext.jpg" alt="First slide" style="width: 235px;height: 148px;"/></a>
+			[/@cms_channel]
+			[/#list]
+			[/@cms_content_list]
+		</div>
+		<div class="child-content">
+			内容：有关民参军政策、规定，参与军工的方式、条件、要求的解读。表现形式：问答FAQ形式<br> <br> <input
+				type="button" value="了解详情" />
+		</div>
+	</div>
+	<div class="mincanjun-child">
+		<div class="child-title">路径规划</div>
+		<div class="child-image">
+			[@cms_content_list count='1' titLen='25' channelId='75' channelOption='1'] [#list tag_list as c]
+			[@cms_channel id=75]
+			<a href="${tag_bean.url}"><img src="/${res}/images/bannertext.jpg" alt="First slide" style="width: 235px;height: 148px;"/></a>
+			[/@cms_channel]
+			[/#list]
+			[/@cms_content_list]
+		</div>
+		<div class="child-content">
+			内容：有关民参军政策、规定，参与军工的方式、条件、要求的解读。表现形式：问答FAQ形式<br> <br> <input
+				type="button" value="了解详情" />
+		</div>
+	</div>
+	<div class="mincanjun-child">
+		<div class="child-title">培训辅导</div>
+		<div class="child-image">
+			[@cms_content_list count='1' titLen='25' channelId='75' channelOption='1'] [#list tag_list as c]
+			[@cms_channel id=75]
+			<a href="${tag_bean.url}"><img src="/${res}/images/bannertext.jpg" alt="First slide" style="width: 235px;height: 148px;"/></a>
+			[/@cms_channel]
+			[/#list]
+			[/@cms_content_list]
+		</div>
+		<div class="child-content">
+			内容：有关民参军政策、规定，参与军工的方式、条件、要求的解读。表现形式：问答FAQ形式<br> <br> <input
+				type="button" value="了解详情" />
+		</div>
+	</div>
+	<div class="mincanjun-child">
+		<div class="child-title">市场拓展</div>
+		<div class="child-image">
+			[@cms_content_list count='1' titLen='25' channelId='75' channelOption='1'] [#list tag_list as c]
+			[@cms_channel id=75]
+			<a href="${tag_bean.url}"><img src="/${res}/images/bannertext.jpg" alt="First slide" style="width: 235px;height: 148px;"/></a>
+			[/@cms_channel]
+			[/#list]
+			[/@cms_content_list]
+		</div>
+		<div class="child-content">
+			内容：有关民参军政策、规定，参与军工的方式、条件、要求的解读。表现形式：问答FAQ形式<br> <br> <input
+				type="button" value="了解详情" />
+		</div>
+	</div>
+	<div style="text-align: center;line-height: 260px;">
+		<font style="font-size: 18px;">通知公告</font>
+	</div>
+</div>
+<div
+		style="width: 1202px;height: 60px;margin: 0 auto;border-left: 1px solid #000;border-right: 1px solid #000;">
+	<div class="ads">
+		<table>
+			<tr>
+				<td style="width:300px;height: 27px;text-align: right;">专注军工管理咨询</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td style="width: 300px;height: 27px;">服务军民服务事业</td>
+			</tr>
+		</table>
+	</div>
+	<div class="ads" style="border-right: 1px solid #E0E0E0;">
+		<table>
+			<tr>
+				<td style="width:300px;height: 27px;text-align: center;">山东军地</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td style="width: 300px;height: 27px;">民企通向军工市场的桥梁</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div class="content3">
+	<div
+			style="width: 100px;height:582px;border-right: 1px solid #000;float: left;text-align: center;">
+		<img src="/${res}/images/joinArmy/photo2.png"
+			 style="width: 90px;height: 580px;" />
+	</div>
+	<div class="jungongzizhi-child">
+		<div class="child-title2">▉武器装备科研生产单位保密资格划</div>
+		<div class="child-image2">
+			[@cms_content_list count='1' titLen='25' channelId='75' channelOption='1'] [#list tag_list as c]
+			[@cms_channel id=75]
+			<a href="${tag_bean.url}"><img src="/${res}/images/bannertext.jpg" alt="First slide" style="width: 272px;height: 148px;"/></a>
+			[/@cms_channel]
+			[/#list]
+			[/@cms_content_list]
+		</div>
+		<div class="child-content2">
+			武器装备科研生产单位保密资格审查是国家（地方）保密委员会为确定申请承担装备科研生产任务的单位是否持续满足《保密资格审查认证……<br>
+			<br> <input type="button" value="了解详情" />
+		</div>
+	</div>
+	<div class="jungongzizhi-child">
+		<div class="child-title2">▉GJB9001B质量管理体系认证</div>
+		<div class="child-image2">
+			[@cms_content_list count='1' titLen='25' channelId='75' channelOption='1'] [#list tag_list as c]
+			[@cms_channel id=75]
+			<a href="${tag_bean.url}"><img src="/${res}/images/bannertext.jpg" alt="First slide" style="width: 272px;height: 148px;"/></a>
+			[/@cms_channel]
+			[/#list]
+			[/@cms_content_list]
+		</div>
+		<div class="child-content2">
+			GJB
+			9001B-2009标准是结合了多年来军工质量管理体系认证工作实践的基础上进行的修订，它借鉴了军工质量管理多年形成的有效地管理……<br>
+			<br> <input type="button" value="了解详情" />
+		</div>
+	</div>
+	<div class="jungongzizhi-child">
+		<div class="child-title2">▉武器装备科研生产许可证</div>
+		<div class="child-image2">
+			[@cms_content_list count='1' titLen='25' channelId='75' channelOption='1'] [#list tag_list as c]
+			[@cms_channel id=75]
+			<a href="${tag_bean.url}"><img src="/${res}/images/bannertext.jpg" alt="First slide" style="width: 272px;height: 148px;"/></a>
+			[/@cms_channel]
+			[/#list]
+			[/@cms_content_list]
+		</div>
+		<div class="child-content2">
+			武器装备科研生产许可是国家国防科技工业行政主管部门依据企事业单位的申请，通过颁发武器装备科研生产许可证的形式，依法赋予其……<br>
+			<br> <input type="button" value="了解详情" />
+		</div>
+	</div>
+	<div class="jungongzizhi-child">
+		<div class="child-title2" style="width: 275px;">▉装备承制单位资格</div>
+		<div class="child-image2" style="width: 275px;">
+			[@cms_content_list count='1' titLen='25' channelId='75' channelOption='1'] [#list tag_list as c]
+			[@cms_channel id=75]
+			<a href="${tag_bean.url}"><img src="/${res}/images/bannertext.jpg" alt="First slide" style="width: 272px;height: 148px;"/></a>
+			[/@cms_channel]
+			[/#list]
+			[/@cms_content_list]
+		</div>
+		<div class="child-content2" style="width: 275px;">
+			装备承制单位资格审查军方为确定申请承担装备承制任务的单位是否持续满足要求所进行的系统的、独立的、客观的检查、资格评价并形……<br>
+			<br> <input type="button" value="了解详情" />
+		</div>
+	</div>
+	<div class="jungongzizhi-child">
+		<div class="child-title2">▉ 军工涉密业务咨询服务单位备案</div>
+		<div class="child-image2">
+			[@cms_content_list count='1' titLen='25' channelId='75' channelOption='1'] [#list tag_list as c]
+			[@cms_channel id=75]
+			<a href="${tag_bean.url}"><img src="/${res}/images/bannertext.jpg" alt="First slide" style="width: 272px;height: 148px;"/></a>
+			[/@cms_channel]
+			[/#list]
+			[/@cms_content_list]
+		</div>
+		<div class="child-content2">
+			武器装备科研生产单位保密资格审查是国家（地方）保密委员会为确定申请承担装备科研生产任务的单位是否持续满足《保密资格审查认证……<br>
+			<br> <input type="button" value="了解详情" />
+		</div>
+	</div>
+	<div class="jungongzizhi-child">
+		<div class="child-title2">▉军队物资供应商资质</div>
+		<div class="child-image2">
+			[@cms_content_list count='1' titLen='25' channelId='75' channelOption='1'] [#list tag_list as c]
+			[@cms_channel id=75]
+			<a href="${tag_bean.url}"><img src="/${res}/images/bannertext.jpg" alt="First slide" style="width: 272px;height: 148px;"/></a>
+			[/@cms_channel]
+			[/#list]
+			[/@cms_content_list]
+		</div>
+		<div class="child-content2">
+			武器装备科研生产单位保密资格审查是国家（地方）保密委员会为确定申请承担装备科研生产任务的单位是否持续满足《保密资格审查认证……<br>
+			<br> <input type="button" value="了解详情" />
+		</div>
+	</div>
+	<div class="jungongzizhi-child">
+		<div class="child-title2">▉涉密信息系统集成资质</div>
+		<div class="child-image2">
+			[@cms_content_list count='1' titLen='25' channelId='75' channelOption='1'] [#list tag_list as c]
+			[@cms_channel id=75]
+			<a href="${tag_bean.url}"><img src="/${res}/images/bannertext.jpg" alt="First slide" style="width: 272px;height: 148px;"/></a>
+			[/@cms_channel]
+			[/#list]
+			[/@cms_content_list]
+		</div>
+		<div class="child-content2">
+			武器装备科研生产单位保密资格审查是国家（地方）保密委员会为确定申请承担装备科研生产任务的单位是否持续满足《保密资格审查认证……<br>
+			<br> <input type="button" value="了解详情" />
+		</div>
+	</div>
+	<div class="jungongzizhi-child">
+		<div class="child-title2" style="width: 275px;text-align: left;">
+			&nbsp;资料下载
+			<div style="float: right;font-size: 13px;font-weight: 400;">
+				更多>>&nbsp;&nbsp;</div>
+		</div>
+		<div class="child-image3">
+			<img src="/${res}/images/joinArmy/photo.png"
+				 style="width: 43px;height: 50px;margin-top: 20px;" />
+		</div>
+		<table class="child-content3">
+			[@cms_content_list count='5' titLen='18' channelId='75' channelOption='1'] [#list tag_list as c]
+			<tr><td style="border-right: 1px solid #000;"><a href="${c.url}" target="_self">[@text_cut s=c.title len=titLen /]</a></td></tr>
+			[/#list] [/@cms_content_list]
+		</table>
+	</div>
+</div>
+
+<div
+		style="width: 1202px;height: 60px;margin: 0 auto;border-left: 1px solid #000;border-right: 1px solid #000;">
+	<div class="ads">
+		<table>
+			<tr>
+				<td style="width:300px;height: 27px;text-align: right;">专注军工管理咨询</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td style="width: 300px;height: 27px;">服务军民服务事业</td>
+			</tr>
+		</table>
+	</div>
+	<div class="ads" style="border-right: 1px solid #E0E0E0;">
+		<table>
+			<tr>
+				<td style="width:300px;height: 27px;text-align: center;">山东军地</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td style="width: 300px;height: 27px;">民企通向军工市场的桥梁</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div class="title2">
+	<font>&nbsp;军地需求对接</font>
+	<div style="float: right;height: 50px;">
+		<font style="font-size: 14px;font-weight: 400;color: #333;">关键词：</font><input
+			type="text" style="width: 200px;height: 25px;" />
+		<button  >搜索</button>
+		&nbsp;&nbsp;&nbsp;
+	</div>
+</div>
+
+<div class="xuqiuduijie-content">
+	<div class="xuqiuduijie-child">
+		<div class="xuqiuduijie-title">
+			&nbsp;▉ 军品采购需求
+			<div
+					style="width:80px;height:50px;text-align:center;line-height:50px;float: right;">
+				<button class="xuqiu-more" >更多</button>
+			</div>
+		</div>
+		<table class="xuqiuduijie-list">
+			<tr class="xuqiuduijie-list-title">
+				<td>公告名称</td>
+				<td>发布时间</td>
+				<td>截止时间</td>
+				<td>地域</td>
+			</tr>
+			[@cms_content_list count='7' titLen='10' channelId='75' channelOption='1'] [#list tag_list as c]
+			<tr class="xuqiuduijie-list-content">
+				<td><a href="${c.url}" target="_self">[@text_cut s=c.title len=titLen /]</a></td>
+				<td>${c.title}</td>
+				<td>${c.title}</td>
+				<td>${c.title}</td>
+			</tr>
+			[/#list]
+			[/@cms_content_list]
+		</table>
+	</div>
+
+	<div class="xuqiuduijie-child">
+		<div class="xuqiuduijie-title">
+			&nbsp;▉ 工程建设需求
+			<div
+					style="width:80px;height:50px;text-align:center;line-height:50px;float: right;">
+				<button class="xuqiu-more" >更多</button>
+			</div>
+		</div>
+		<table class="xuqiuduijie-list">
+			<tr class="xuqiuduijie-list-title">
+				<td>公告名称</td>
+				<td>发布时间</td>
+				<td>截止时间</td>
+				<td>地域</td>
+			</tr>
+			[@cms_content_list count='7' titLen='10' channelId='75' channelOption='1'] [#list tag_list as c]
+			<tr class="xuqiuduijie-list-content">
+				<td><a href="${c.url}" target="_self">[@text_cut s=c.title len=titLen /]</a></td>
+				<td>${c.title}</td>
+				<td>${c.title}</td>
+				<td>${c.title}</td>
+			</tr>
+			[/#list]
+			[/@cms_content_list]
+		</table>
+	</div>
+
+	<div class="xuqiuduijie-child">
+		<div class="xuqiuduijie-title">
+			&nbsp;▉ 科研类需求
+			<div
+					style="width:80px;height:50px;text-align:center;line-height:30px;float: right;">
+				<button class="xuqiu-more" >更多</button>
+			</div>
+		</div>
+		<table class="xuqiuduijie-list">
+			<tr class="xuqiuduijie-list-title">
+				<td>公告名称</td>
+				<td>发布时间</td>
+				<td>截止时间</td>
+			</tr>
+			[@cms_content_list count='7' titLen='10' channelId='75' channelOption='1'] [#list tag_list as c]
+			<tr class="xuqiuduijie-list-content">
+				<td><a href="${c.url}" target="_self">[@text_cut s=c.title len=titLen /]</a></td>
+				<td>${c.title}</td>
+				<td>${c.title}</td>
+			</tr>
+			[/#list]
+			[/@cms_content_list]
+		</table>
+	</div>
+
+	<div class="xuqiuduijie-child">
+		<div class="xuqiuduijie-title">&nbsp;▉ 军工配套需求</div>
+		<table class="xuqiuduijie-list">
+			<tr class="xuqiuduijie-list-title">
+				<td>公告名称</td>
+				<td>发布时间</td>
+				<td>截止时间</td>
+			</tr>
+			[@cms_content_list count='7' titLen='10' channelId='75' channelOption='1'] [#list tag_list as c]
+			<tr class="xuqiuduijie-list-content">
+				<td><a href="${c.url}" target="_self">[@text_cut s=c.title len=titLen /]</a></td>
+				<td>${c.title}</td>
+				<td>${c.title}</td>
+			</tr>
+			[/#list]
+			[/@cms_content_list]
+		</table>
+	</div>
+</div>
+
+<div
+		style="width: 1202px;height: 60px;margin: 0 auto;border-left: 1px solid #000;border-right: 1px solid #000;">
+	<div class="ads">
+		<table>
+			<tr>
+				<td style="width:300px;height: 27px;text-align: right;">专注军工管理咨询</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td style="width: 300px;height: 27px;">服务军民服务事业</td>
+			</tr>
+		</table>
+	</div>
+	<div class="ads" style="border-right: 1px solid #E0E0E0;">
+		<table>
+			<tr>
+				<td style="width:300px;height: 27px;text-align: center;">山东军地</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td style="width: 300px;height: 27px;">民企通向军工市场的桥梁</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div class="title2">
+	<font>&nbsp;民参军企业产品技术推介</font>
+	<div style="float: right;height: 49px;">
+		<button style="width:150px;height:30px;font-size:13px;text-align: center;line-height: 30px;">免费发布企业产品技术</button>
+		&nbsp;&nbsp;&nbsp;
+	</div>
+</div>
+
+<div class="tuijie-content">
+	<div class="tuijie-content1">
+		<div class="tuijie-content1-title">产品/技术</div>
+		<div class="tuijie-content1-nav">
+			<table class="tuijie-content1-table">
+				<tr>
+					<td><a href="">航空航天</a></td>
+					<td><a href="">船舶海洋</a></td>
+					<td><a href="">先进制造</a></td>
+					<td><a href="">弹药化工</a></td>
+					<td><a href="">光学声学</a></td>
+					<td><a href="">制导导航</a></td>
+					<td><a href="">仪器仪表</a></td>
+					<td><a href="">能源动力</a></td>
+					<td colspan="2"><a href="">电子技术与电子元器件</a></td>
+					<td colspan="2"><a href="">信息技术与信息系统</a></td>
+				</tr>
+				<tr>
+					<td colspan="2"><a href="">探测跟踪侦察监视</a></td>
+					<td><a href="">自动化</a></td>
+					<td><a href="">新材料</a></td>
+					<td colspan="2"><a href="">实验与测试</a></td>
+					<td colspan="2"><a href="">遥感遥测遥控</a></td>
+					<td colspan="2"><a href="">网络与通信</a></td>
+					<td><a href="">其他</a></td>
+					<td style="border: 1px solid #E0E0E0;"></td>
+				</tr>
+			</table>
+		</div>
+		<div class="tuijie-content1-list">
+			<table class="tuijie-content1-table2">
+				[@cms_content_list count='7' titLen='20' channelId='75' channelOption='1'] [#list tag_list as c]
+				<tr class="xuqiuduijie-list-content" style="border: 1px solid #E0E0E0;">
+					<td><a href="${c.url}" target="_self">[@text_cut s=c.title len=titLen /]</a></td>
+					<td><a href="${c.url}" target="_self">[@text_cut s=c.title len=titLen /]</a></td>
+				</tr>
+				[/#list]
+				[/@cms_content_list]
+			</table>
+		</div>
+	</div>
+	<div class="tuijie-content2">
+		<div class="tuijie-content2-title">
+			优势民参军企业产品技术推介
+			<div style="float: right;font-size: 13px;font-weight: 400;">
+				更多>>&nbsp;&nbsp;</div>
+		</div>
+		<div class="tuijie-content2-list">
+			<table class="tuijie-content2-table2">
+				[@cms_content_list count='3' titLen='15' channelId='75' channelOption='1'] [#list tag_list as c]
+				<tr>
+					<td>
+						[@cms_channel id=75]
+						<a href="${tag_bean.url}"><img src="/${res}/images/bannertext.jpg" alt="First slide" style="width:45px;height: 42px;"/></a>
+						[/@cms_channel]
+
+					</td>
+					<td>${c.title}</td>
+					<td>${c.title}</td>
+				</tr>
+				[/#list]
+				[/@cms_content_list]
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="title2">
+	<font>&nbsp;成功案例</font>
+	<div style="float: right;font-size: 13px;font-weight: 400;">
+		<font style="color: #000;">更多>></font>&nbsp;&nbsp;
+	</div>
+</div>
+
+<div class="success-content">
+	<table class="success-table">
+
+		<tr>
+			[@cms_content_list count='5' titLen='25' channelId='75' channelOption='1'] [#list tag_list as c]
+			[@cms_channel id=75]
+			<td><a href="${tag_bean.url}"><img src="/${res}/images/bannertext.jpg" alt="First slide" style="width: 174px;height: 120px;"/></a></td>
+			[/@cms_channel]
+			[/#list]
+			[/@cms_content_list]
+		</tr>
+
+		<tr>
+			[@cms_content_list count='5' titLen='25' channelId='75' channelOption='1'] [#list tag_list as c]
+			<td>武器装备科研<br>生产许可证认证</td>
+			[/#list]
+			[/@cms_content_list]
+		</tr>
+
+	</table>
+</div>
+
+<!--底部开始-->
+[#include "../alone/alone_joinArmy_footer.html"/]
+
+
+</body>
+
+
+
+
+<script type="text/javascript">
+	$("tr.hasimg>td img").click( function(){
+		var carrousel = $(".carrousel");
+		var height = window.innerHeight;
+		carrousel.append("<div class='honorpre'></div><div class='honornext'></div>");
+		var src = $(this).attr("src");
+	  	$("#imgout").attr( "src", src ).css("height",height-100+"px");
+	  	carrousel.fadeIn( 200 );
+// 	  	这一章中这张图片所属位置
+		var i = parseInt($(this).attr("data-index"));
+// 		这一章图片总数
+	  	var max = $("tr.hasimg>td img").length;	  	
+		var pre = i-1;
+		var next = i+1;
+	  carrousel.find( ".honorclose" ).click( function(){
+		  $(".carrousel div").remove(".honorpre");
+		  $(".carrousel div").remove(".honornext");
+		  carrousel.fadeOut( 500 );
+		} );
+// 	  上一张
+	  carrousel.find( ".honorpre" ).click( function(){
+		  if(-1 == pre){
+		  		pre = -1;
+		  		next = 1;
+		  		alert("亲，已经到第一张了哦！");
+		  }else{
+			  $("#imgout").attr( "src", $("tr.hasimg>td").eq(pre).find("img").attr("src"));
+			  pre = pre-1;
+			  next = next-1;
+		  }
+		} );
+	  carrousel.find( ".honornext" ).click( function(){
+		  if(next == max){
+			  pre = max-2;
+			  next == max;
+			  alert("亲，已经到最后一张了哦！");
+			  $(".honornext").hide();
+		  }else{
+			  $("#imgout").attr( "src", $("tr.hasimg>td").eq(next).find("img").attr("src"));
+			  pre = pre+1;
+			  next = next+1;
+		  }
+		} );
+	});
+</script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gyRWWuxxV8djgirFXm2qGHO0RjwezzXd"></script>
+<script type="text/javascript">
+	// 百度地图API功能
+	var jnmap = new BMap.Map("jnmap");
+	var bjmap = new BMap.Map("bjmap");
+	var qdmap = new BMap.Map("qdmap");
+	var jnpoint = new BMap.Point(117.144,36.682856);
+	var bjpoint = new BMap.Point(116.382051,39.901013);
+	var qdpoint = new BMap.Point(120.419795,36.0826);
+
+	var jndiv = new BMap.Point(117.144,36.682906);
+	var bjdiv = new BMap.Point(116.382051,39.901063);
+	var qddiv = new BMap.Point(120.419795,36.08265);
+
+	// var myIcon = new BMap.Icon("http://developer.baidu.com/map/jsdemo/img/fox.gif", new BMap.Size(300,157));
+	// var jnmarker = new BMap.Marker(jnpoint,{icon:myIcon});  // 创建标注
+	// var bjmarker = new BMap.Marker(bjpoint,{icon:myIcon});
+	// var qdmarker = new BMap.Marker(qdpoint,{icon:myIcon});
+	var jnmarker = new BMap.Marker(jnpoint);  // 创建标注
+	var bjmarker = new BMap.Marker(bjpoint);
+	var qdmarker = new BMap.Marker(qdpoint);
+	jnmap.addOverlay(jnmarker);              // 将标注添加到地图中
+	bjmap.addOverlay(bjmarker);
+	qdmap.addOverlay(qdmarker);
+
+	// jnmarker.setAnimation(BMAP_ANIMATION_BOUNCE);
+	// bjmarker.setAnimation(BMAP_ANIMATION_BOUNCE);
+	// qdmarker.setAnimation(BMAP_ANIMATION_BOUNCE);
+
+	jnmap.centerAndZoom(jnpoint, 19);
+	bjmap.centerAndZoom(bjpoint, 19);
+	qdmap.centerAndZoom(qdpoint, 19);
+
+	jnmap.enableScrollWheelZoom();
+	bjmap.enableScrollWheelZoom();
+	qdmap.enableScrollWheelZoom();
+	var jnopts = {
+	  width : 250,     // 信息窗口宽度
+	  height: 100,     // 信息窗口高度
+	  title : " " , // 信息窗口标题
+	}
+	var bjopts = {
+	  width : 250,     // 信息窗口宽度
+	  height: 100,     // 信息窗口高度
+	  title : " " , // 信息窗口标题
+	}
+	var qdopts = {
+	  width : 250,     // 信息窗口宽度
+	  height: 100,     // 信息窗口高度
+	  title : " " , // 信息窗口标题
+	}
+	var jninfoWindow = new BMap.InfoWindow("<span style='line-height:30px;color:rgb(0, 176, 240)'>地址：济南市高新区新泺大街1166号奥盛大厦2号楼21层<br>电话：0531-88872666</span>",jnopts);  // 创建信息窗口对象 
+	var bjinfoWindow = new BMap.InfoWindow("<span style='line-height:30px;color:rgb(227, 108, 9)'>地址：北京市西城区宣武门外大街20号海格大厦A座1711室<br>电话：010-83168766</span>",bjopts);
+	var qdinfoWindow = new BMap.InfoWindow("<span style='line-height:30px;color:rgb(0, 176, 80);'>地址：青岛市市南区宁夏路288号12A 4层<br>电话：0532-55766327</span>",qdopts);
+	//jnmap.openInfoWindow(jninfoWindow,jndiv);
+	//bjmap.openInfoWindow(bjinfoWindow,bjdiv);
+	//qdmap.openInfoWindow(qdinfoWindow,qddiv);
+	jnmarker.addEventListener("click", function(){          
+		jnmap.openInfoWindow(jninfoWindow,jndiv); //开启信息窗口
+	});
+	bjmarker.addEventListener("click", function(){          
+		bjmap.openInfoWindow(bjinfoWindow,bjdiv); //开启信息窗口
+	});
+	qdmarker.addEventListener("click", function(){          
+		qdmap.openInfoWindow(qdinfoWindow,qddiv); //开启信息窗口
+	});
+</script>
+</html>

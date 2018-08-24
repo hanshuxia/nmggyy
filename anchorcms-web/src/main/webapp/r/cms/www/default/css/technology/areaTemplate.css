@@ -1,0 +1,664 @@
+.lead{
+	width: 1200px;
+	height: 40px;
+	margin-top:10px;
+	background: url(../../images/technology/index/u5.png);
+	background-size: 1200px 41px;
+	text-align:left;
+	padding-left:20px;
+
+	border: solid 1px #888888;
+}
+.lead_word{
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333333;
+	line-height:40px;
+}
+.title_content {
+	width: 1200px;
+	height: 51px;
+	margin-top: -10px;
+	background: url(../../images/technology/successdetail/u70.png);
+	background-size: 1200px 51px;
+	font-family: 'Arial Negreta', 'Arial';
+	font-weight: 700;
+	font-size: 18px;
+	color: #FF0000;
+	text-align: center;
+	line-height: 51px;
+	border: solid 1px #888888;
+	border-top: 0px;
+	border-left: 0px;
+}
+.title_word{
+	font-family: 'Arial Negreta', 'Arial';
+	font-weight: 700;
+	font-size: 18px;
+	color: #FF0000;
+}
+.introduction {
+	width: 1200px;
+	height: 340px;
+	background: url(../../images/technology/successdetail/u80.png);
+	background-size: 1205px 340px;
+	border-right: solid 1px #888888;
+}
+
+.right_content {
+	width: 399px;
+	height: 340px;
+	float: left;
+	border: solid 1px #888888;
+	border-right: 0px;
+}
+
+.img_activity {
+	width: 330px;
+	height: 340px;
+	background: url(../../images/technology/successdetail/u72.png);
+	background-size: 330px 340px;
+	font-family: 'Arial Negreta', 'Arial';
+	font-weight: 700;
+	color: #FF0000;
+	text-align: center;
+	font-style: normal;
+	font-size: 13px;
+	padding-top: 65px;
+	border: solid 1px #888888;
+
+	float: left;
+}
+
+
+.num_div {
+	width: 180px;
+	height: 25px;
+	position: relative;
+	top: 233px;
+	left: 143px;
+}
+
+.num_btn {
+	width: 30px;
+	height: 25px;
+	margin-right: 10px;
+	background-image:
+		url(../../images/technology/successdetail/transparent.gif);
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	text-decoration: none;
+	color: #000000;
+	text-align: center;
+}
+
+.middle_content {
+	width: 470px;
+	height: 340px;
+	float: left;
+}
+.middle_content a{
+	color:black;
+}
+.up_content {
+	width: 470px;
+	height: 60px;
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333333;
+	text-align: center;
+	line-height: 60px;
+	border: solid 1px #888888;
+	border-right: 0px;
+}
+
+.down_content {
+	text-align: center;
+	line-height: 150px;
+	border-top: solid 1px #888888;
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333333;
+
+}
+
+.window {
+	width: 50px;
+	height: 50px;
+	background: url(../../images/technology/index/u665.png);
+	background-size: 50px 50px;
+	margin-top: 9px;
+}
+
+.statement {
+	width: 399px;
+	height: 110px;
+	border: solid 1px #888888;
+	text-align: center;
+	color: #B50000;
+	word-wrap: break-word;
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	text-align: center;
+	line-height: normal;
+	padding-top: 12px;
+}
+
+.btn_agent {
+	width: 150px;
+	height: 40px;
+	background-image:
+		url(../../images/technology/successdetail/transparent.gif);
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	text-decoration: none;
+	color: #B50000;
+	text-align: center;
+	margin-top: 8px;
+	margin-left: 13px;
+}
+
+.financial_btn {
+	width: 150px;
+	height: 40px;
+	background-image:
+		url(../../images/technology/successdetail/transparent.gif);
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	text-decoration: none;
+	color: #B50000;
+	text-align: center;
+	margin-top: 8px;
+	margin-left: 35px;
+}
+.size_img{
+	width: 50px;
+	height: 50px;
+}
+.more {
+	width: 60px;
+	height: 25px;
+	background-image:
+		url(../../images/technology/successdetail/transparent.gif);
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	text-decoration: none;
+	color: #000000;
+	text-align: center;
+	line-height: 25px;
+	float: right;
+	margin-top: 15px;
+	margin-right: 10px;
+}
+
+.line_special {
+	width: 399px;
+	height: 50px;
+	border: solid 1px #888888;
+	border-right: 0px;
+	border-bottom: solid 2px #888888;
+	font-family: 'Arial Negreta', 'Arial';
+	font-weight: 700;
+	font-size: 14px;
+	color: #FF0000;
+	text-align: left;
+	line-height: 45px;
+}
+
+.sign {
+	width: 70px;
+	height: 25px;
+	background-image:
+		url(../../images/technology/successdetail/transparent.gif);
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	text-decoration: none;
+	color: #000000;
+	text-align: center;
+	line-height: 25px;
+	margin-left: 100px;
+}
+
+.business {
+	width: 70px;
+	height: 25px;
+	background-image:
+		url(../../images/technology/successdetail/transparent.gif);
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	text-decoration: none;
+	color: #000000;
+	text-align: center;
+	line-height: 25px;
+	margin-left: 28px;
+}
+
+.information_times{
+	width: 400px;
+	height: 40px;
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333333;
+	text-align: center;
+	line-height: 40px;
+	border-bottom: solid 2px #888888;
+	border-left: solid 1px #888888;
+}
+
+.text_introduction {
+	text-align: center;
+	line-height: 140px;
+
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333333;
+	border-left: solid 1px #888888;
+	position:relative;
+}
+
+.manager{
+	width: 100px;
+	height: 25px;
+	background-image:
+		url(../../images/technology/successdetail/transparent.gif);
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	text-decoration: none;
+	color: #000000;
+	text-align: center;
+	line-height: 20px;
+	float: right;
+	margin-top: 10px;
+	margin-right: 10px;
+}
+
+.list {
+	width: 1200px;
+	height: 390px;
+	background: url(../../images/technology/collegetemplate/u90.png);
+	background-size: 1200px 390px;
+	margin-bottom: 10px;
+}
+
+.l1 {
+	width: 1200px;
+	height: 29px;
+	border: solid 1px #888888;
+	font-family: 'Arial Negreta', 'Arial';
+	font-weight: 700;
+	font-style: normal;
+	font-size: 13px;
+	color: #333333;
+	line-height: 29px;
+}
+
+.list_title {
+	width: 940px;
+	height: 29px;
+	border: solid 1px #888888;
+	font-family: 'Arial Negreta', 'Arial';
+	font-weight: 700;
+	font-style: normal;
+	font-size: 13px;
+	color: #333333;
+	line-height: 29px;
+	background: url(../../images/technology/collegetemplate/u90.png) no-repeat
+		0px -2px;
+	background-size: 940px 31px;
+}
+
+.left_window {
+	width: 200px;
+	height: 150px;
+	margin-right: 112px;
+	margin-top: 40px;
+	margin-left: 30px;
+	border: solid 1px #888888;
+	border-left: 0px;
+	border-top: 0px;
+	float: left;
+	background: url(../../images/technology/index/u695.png);
+	background-size: 200px 150px;
+}
+
+.middle_window {
+	width: 200px;
+	height: 150px;
+	margin-right: 112px;
+	margin-top: 40px;
+	border: solid 1px #888888;
+	border-left: 0px;
+	border-top: 0px;
+	float: left;
+	background: url(../../images/technology/index/u695.png);
+	background-size: 200px 150px;
+}
+
+.right_window {
+	width: 200px;
+	height: 150px;
+	margin-top: 40px;
+	border: solid 1px #888888;
+	border-left: 0px;
+	border-top: 0px;
+	float: left;
+	background: url(../../images/technology/index/u695.png);
+	background-size: 200px 150px;
+}
+
+
+.left_window_special {
+	width: 200px;
+	height: 150px;
+	margin-right: 112px;
+	margin-top: 20px;
+	margin-left: 30px;
+	border: solid 1px #888888;
+	border-left: 0px;
+	border-top: 0px;
+	float: left;
+	background: url(../../images/technology/index/u695.png);
+	background-size: 200px 150px;
+}
+
+.middle_window_special {
+	width: 200px;
+	height: 150px;
+	margin-right: 112px;
+	margin-top: 20px;
+	border: solid 1px #888888;
+	border-left: 0px;
+	border-top: 0px;
+	float: left;
+	background: url(../../images/technology/index/u695.png);
+	background-size: 200px 150px;
+}
+
+
+.right_window_special {
+	width: 200px;
+	height: 150px;
+	margin-top: 20px;
+	border: solid 1px #888888;
+	border-left: 0px;
+	border-top: 0px;
+	float: left;
+	background: url(../../images/technology/index/u695.png);
+	background-size: 200px 150px;
+}
+
+.inner_div {
+	width: 180px;
+	height: 130px;
+	margin: 0px auto;
+	margin-top: 10px;
+}
+
+.upside {
+	width: 180px;
+	height: 60px;
+	line-height: 25px;
+	border: solid 1px #888888;
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333333;
+	text-align: left;
+}
+
+.first_row {
+	padding-left: 7px;
+}
+
+.second_row {
+	padding-left: 18px;
+}
+
+.lower {
+	width: 180px;
+	height: 70px;
+
+}
+.news-img-size{
+	width: 180px;
+	height: 70px;
+}
+.img_intro {
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	left: 68px;
+	bottom: 58px;
+}
+
+.info_title {
+	width: 1200px;
+	height: 51px;
+	background: url(../../images/technology/successdetail/u70.png);
+	background-size: 1200px 51px;
+	font-family: 'Arial Negreta', 'Arial';
+	font-weight: 700;
+	font-size: 16px;
+	color: #FF0000;
+	line-height: 50px;
+}
+
+.demand_info {
+	width: 938px;
+	height: 50px;
+	text-align: center;
+	padding-left: 170px;
+	float: left;
+}
+
+.policy_info {
+	width: 260px;
+	text-align: left;
+	border-left: solid 2px #888888;
+	border-bottom: solid 1px #888888;
+	float: left;
+}
+.and_more {
+	width: 60px;
+	height: 25px;
+	background-image:
+		url(../../images/technology/successdetail/transparent.gif);
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	text-decoration: none;
+	color: #000000;
+	text-align: center;
+	line-height: 20px;
+	float: right;
+	margin-top: 14px;
+}
+
+.table_info {
+	width: 1200px;
+	height: 310px;
+}
+
+.left_list {
+	width: 939px;
+	height: 309px;
+	float:left;
+}
+.right_list {
+	width: 261px;
+	height: 300px;
+	float:left;
+	border-top: solid 1px #888888;
+}
+
+.upside_content{
+	width: 261px;
+    height: 100px;
+    border: solid 1px #888888;
+    border-top:0px;
+    border-bottom:solid 2px #888888;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: left;
+    padding-top:26px;
+}
+.top_side {
+	height: 131px;
+	border: solid 1px #888888;
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333333;
+	padding-left: 37px;
+	padding-top: 23px;
+	background: url(../../images/technology/area/u100.png) no-repeat -2px -2px;
+	background-size: 941px 139px;
+}
+
+.text_box {
+	width: 183px; height : 21px;
+	background-image: none;
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 16px;
+	text-decoration: none;
+	color: #000000;
+	text-align: left;
+	height: 21px;
+}
+
+.select {
+	width: 91px;
+	height: 26px;
+	background-image:
+		url(../../images/technology/successdetail/transparent.gif);
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 16px;
+	text-decoration: none;
+	color: #000000;
+	position: relative;
+	bottom: 3px;
+}
+
+.num_box {
+	width: 55px;
+	height: 21px;
+	background-image: none;
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 16px;
+	text-decoration: none;
+	color: #000000;
+	text-align: left;
+}
+
+.bottom_position {
+	margin-bottom: 11px;
+}
+
+.technology_table {
+	width:940px;
+	border-collapse: collapse; 
+	border: solid 1px #888888;
+	text-align:center;
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    
+}
+
+.technology_table tr {
+	border: solid 1px #888888;
+}
+.technology_table .first_row{
+	border-bottom: solid 2px #888888;
+	font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+}
+.technology_table .price{
+	width:200px;
+}
+.technology_table .customer{
+	width:80px;
+	border-left: solid 1px #888888;
+}
+.technology_table td {
+	border: 0px;
+}
+.technology_table tr td{
+    height : 29px;
+    line-height : 29px;
+    overflow:hidden;
+}
+.attach{
+	width: 1200px;
+    height: 230px;
+    background: url(../../images/technology/area/u146.png);
+	background-size: 1200px 230px;
+}
+.technology_project{
+	width: 1200px;
+    height: 50px;    
+    background: url(../../images/technology/successdetail/u70.png);
+	background-size: 1200px 51px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 16px;
+    color: #FF0000;
+    text-align:center;
+    padding-left:270px;
+    line-height:50px;
+	border: solid 1px #888888;
+	border-top:0px;
+	border-left:0px;
+}
+.num_page{
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    float:right;
+    margin-right:96px;
+}

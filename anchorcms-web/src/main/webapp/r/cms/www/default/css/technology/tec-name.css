@@ -1,0 +1,494 @@
+#content .position{
+	width:1200px;
+	height:40px;
+	background-image:url(../../images/technology/index/u5.png);
+}
+#content .position p{
+	font-size:13px;
+	text-align:left;
+	line-height:40px;
+}
+#content .publish{
+	width:220px;
+	height:125px;
+	background-image:url(../../images/technology/three/u0.png);
+	margin-left:0px;
+	margin-top:5px;
+	float:left;
+}
+#content .publish .project{
+	width:200px;
+	height:42px;
+	background-image:url(../../images/technology/three/u2.png);
+	margin-left:10px;
+	margin-top:13px;
+	}
+#content .publish .requirement{
+	width:200px;
+	height:42px;
+	background-image:url(../../images/technology/three/u2.png);
+	margin-left:10px;
+	margin-top:15px;
+}
+#content .publish p{
+	line-height:42px;
+	text-align:center;
+	font-size:15px;
+	color:#F00;
+}
+#content .hotProject{
+	width:975px;
+	height:125px;
+	background-image:url(../../images/technology/center/u107.png);
+	margin-left:5px;
+	margin-top:5px;
+	float:left;
+}
+#content .hotProject .head{
+	width:30px;
+	height:110px;
+	background-image:url(../../images/technology/center/u109.png);
+	margin-left:8px;
+	margin-top:8px;
+	float:left;
+}
+#content .hotProject .head p{
+	margin-top:18px;
+	
+	margin-left:8px;
+	
+	font-size:13px;
+	color:#F00;
+}
+#content .hotProject .forward{
+	width:38px;
+	height:39px;
+	background-image:url(../../images/technology/index/u363.png);
+	margin-left:8px;
+	margin-top:43px;
+	float:left;
+}
+#content .hotProject .leftProject{
+	width:240px;
+	height:110px;
+	background-image:url(../../images/technology/index/u255.png);
+	margin-left:15px;
+	margin-top:8px;
+	float:left;
+}
+#content .hotProject .centerProject{
+	width:240px;
+	height:110px;
+	background-image:url(../../images/technology/index/u255.png);
+	margin-left:40px;
+	margin-top:8px;
+	float:left;
+}
+#content .hotProject .rightProject{
+	width:240px;
+	height:110px;
+	background-image:url(../../images/technology/index/u255.png);
+	margin-left:40px;
+	margin-top:8px;
+	float:left;
+}
+#content .hotProject .next{
+	width:37px;
+	height:38px;
+	background-image:url(../../images/technology/index/u385.png);
+	margin-left:10px;
+	margin-top:43px;
+	float:left;
+}
+#content .hotProject .title{
+	width:220px;
+	height:23px;
+	background-image:url(../../images/technology/index/u257.png);
+	margin-top:5px;
+	margin-left:10px;
+}
+#content .hotProject .leftProject .img{
+	width:63px;
+	height:69px;
+	background-image:url(../../images/technology/tec-mix/u215.png);
+	margin-top:8px;
+	margin-left:10px;
+	float:left;
+}
+#content .hotProject .person{
+	width:153px;
+	height:23px;
+	background-image:url(../../images/technology/index/u259.png);
+	margin-top:8px;
+	margin-left:4px;
+	float:left;
+}
+#content .hotProject .content{
+	width:153px;
+	height:40px;
+	background-image:url(../../images/technology/index/u261.png);
+	margin-top:5px;
+	margin-left:4px;
+	float:left;
+}
+#content .hotProject .centerProject .img{
+	width:63px;
+	height:69px;
+	background-image:url(../../images/technology/tec-mix/u239.png);
+	margin-top:8px;
+	margin-left:10px;
+	float:left;
+}
+#content .hotProject .rightProject .img{
+	width:63px;
+	height:69px;
+	background-image:url(../../images/technology/tec-mix/u241.png);
+	margin-top:8px;
+	margin-left:10px;
+	float:left;
+}
+#content .hotProject p{
+	font-size:13px;
+	line-height:23px;
+	margin-left:5px;
+	}
+#content .hotProject .content p{
+	font-size:13px;
+	line-height:40px;
+	margin-left:5px;
+}
+
+#content .nav{
+	
+	width:220px;
+	height:800px;
+	margin-left:0px;
+	margin-top:5px;
+	float:left;
+}
+#content .nav .technologyRecommend{
+	width:220px;
+	height:270px;
+	background-image:url(../../images/technology/tec-name/u65.png);
+	
+}
+#content .nav .technologyRecommend .whiteTop{
+	background-image:url(../../images/technology/index/u393.png);
+	width:220px;
+	height:3px;
+	margin-left:0px;
+	margin-top:30px;
+	}
+#content .nav .technologyRecommend .technology{
+	
+	background-image:url(../../images/technology/tec-mix-in/u79.png);
+	width:220px;
+	height:29px;
+	
+	}
+#content .nav .technologyRecommend .whiteBottom{
+	background-image:url(../../images/technology/index/u393.png);
+	width:220px;
+	height:3px;
+	}
+
+#content .nav .technologyRecommend .technology .name{
+	line-height:29px;
+	font-size:12px;
+	float:left;
+	}
+#content .nav .technologyRecommend .technology .price{
+	line-height:29px;
+	font-size:12px;
+	margin-left:90px;
+	float:left;
+	}
+#content .nav .successCase{
+	width:220px;
+	height:400px;
+	margin-left:0px;
+	margin-top:5px;
+	
+}
+#content .nav .successCase .head{
+	width:220px;
+	height:40px;
+	background-image:url(../../images/technology/tec-name/u126.png);
+	margin-left:0px;
+	margin-top:0px;
+	margin-bottom:5px;
+}
+#content .nav .successCase .head p{
+	line-height:40px;
+	font-size:16px;
+	color:#F00;
+	margin-left:10px;
+}
+#content .nav .successCase .content{
+	width:220px;
+	height:158px;
+	background-image:url(../../images/technology/tec-mix-in/u238.png);
+	margin-left:0px;
+
+}
+#content .nav .successCase .content p{
+	font-size:12px;
+	margin-left:5px;
+	padding-top:30px;
+}
+#content .main{
+	width:975px;
+	height:800px;
+	margin-left:5px;
+	margin-top:5px;
+	float:left;
+}
+#content .main .name{
+	width:975px;
+	height:44px;
+	margin-left:0px;
+	margin-top:0px;
+	background-image:url(../../images/technology/tec-name/u202.png);
+}
+#content .main .name p{
+	line-height:44px;
+	text-align:center;
+	font-size:17px;
+}
+#content .main .nav{
+	width:975px;
+	height:40px;
+	margin-left:0px;
+	margin-top:0px;
+	
+}
+#content .main .nav .choose1{
+	width:245px;
+	height:40px;
+	margin-left:0px;
+	margin-top:0px;	
+	background-image:url(../../images/technology/tec-name/u204.png);
+	float:left;
+}
+#content .main .nav .choose2{
+	width:240px;
+	height:40px;
+	margin-left:0px;
+	margin-top:0px;
+	background-image:url(../../images/technology/tec-name/u204.png);
+	float:left;
+}
+#content .main .nav p{
+	line-height:40px;
+	text-align:center;
+	font-size:12px;
+}
+#content .main .parameter{
+	clear:both;
+	width:975px;
+	height:280px;
+}
+#content .main .parameter .img{
+	width:615px;
+	height:280px;
+	background-image:url(../../images/technology/tec-name/u212.png);
+	margin-top:0px;
+	margin-left:0px;
+	float:left;
+}
+#content .main .parameter .connection{
+	width:360px;
+	height:280px;
+	margin-top:0px;
+	margin-left:0px;
+	float:left;
+}
+#content .main .parameter .connection .person{
+	width:360px;
+	height:40px;
+	margin-top:0px;
+	margin-left:0px;
+}
+#content .main .parameter .connection .linkman{
+	width:122px;
+	height:40px;
+	margin-top:0px;
+	margin-left:0px;
+	float:left;
+	background-image:url(../../images/technology/tec-name/u214.png);
+}
+#content .main .parameter .connection .contact{
+	width:238px;
+	height:40px;
+	margin-top:0px;
+	margin-left:0px;
+	background-image:url(../../images/technology/tec-name/u204.png);
+	float:left;
+}
+#content .main .parameter .connection p{
+	line-height:40px;
+	text-align:center;
+	font-size:12px;
+}
+#content .main .parameter .connection .statement p{
+	font-family:'Arial Normal', 'Arial';
+	  font-weight:400;
+	  font-style:normal;
+	  font-size:13px;
+	  color:#B50000;
+	  padding-top:10px;
+	  line-height:15px;
+}
+
+#content .main .parameter .connection .contactOther{
+	width:360px;
+	height:60px;
+	margin-top:0px;
+	margin-left:0px;
+}
+#content .main .parameter .connection .other{
+	width:360px;
+	height:40px;
+	margin-top:0px;
+	margin-left:0px;
+}
+#content .main .parameter .connection .price{
+	width:360px;
+	height:40px;
+	margin-top:0px;
+	margin-left:0px;
+	background-image:url(../../images/technology/tec-name/u224.png);
+}
+#content .main .parameter .connection .statement{
+	width:360px;
+	height:100px;
+	margin-top:0px;
+	margin-left:0px;
+	background-image:url(../../images/technology/tec-name/u226.png);
+}
+#content .main .parameter .connection .contactOther button{
+	font-family:'Arial Normal', 'Arial';
+	  font-weight:400;
+	  font-style:normal;
+	  font-size:13px;
+	  color:#B50000;
+	  width:130px;
+	height:25px;
+}
+#content .main .parameter .connection .contactOther .middleMan{
+	width:130px;
+	height:25px;
+	margin-top:15px;
+	margin-left:20px;
+	background-image:url(../../images/technology/tec-name/u224.png);
+	float:left;
+}
+#content .main .parameter .connection .contactOther .consultant{
+	width:130px;
+	height:25px;
+	margin-top:15px;
+	margin-left:25px;
+	background-image:url(../../images/technology/tec-name/u224.png);
+	float:left;
+}
+
+#content .main .parameter .connection .statement button{
+	width:180px;
+	height:25px;
+	margin-left:90px;
+	margin-top:10px;
+}
+#content .main .property{
+	width:975px;
+	height:40px;
+	margin-top:0px;
+	margin-left:0px;
+	background-image:url(../../images/technology/tec-name/u229.png);
+}
+#content .main .case{
+	line-height:40px;
+	text-align:left;
+	margin-left:5px;
+	font-size:14px;
+	font-weight:400px;
+}
+#content .main .fundAndSample{
+	width:975px;
+	height:40px;
+	margin-top:0px;
+	margin-left:0px;
+}
+#content .main .fundAndSample .fund{
+	width:490px;
+	height:40px;
+	margin-top:0px;
+	margin-left:0px;
+	float:left;
+	background-image:url(../../images/technology/tec-name/u231.png);
+}
+#content .main .fundAndSample .sample{
+	width:485px;
+	height:40px;
+	margin-top:0px;
+	margin-left:0px;
+	float:left;
+	background-image:url(../../images/technology/tec-name/u231.png);
+}
+#content .main .cooperation{
+	width:975px;
+	height:40px;
+	margin-top:0px;
+	margin-left:0px;
+	background-image:url(../../images/technology/tec-name/u229.png);
+}
+#content .main .infor{
+	width:975px;
+	height:180px;
+	margin-top:0px;
+	margin-left:0px;
+}
+#content .main .infor .title{
+	width:85px;
+	height:180px;
+	margin-top:0px;
+	margin-left:0px;
+	background-image:url(../../images/technology/tec-name/u239.png);
+	float:left;
+}
+#content .main .infor .content{
+	width:890px;
+	height:180px;
+	margin-top:0px;
+	margin-left:0px;
+	background-image:url(../../images/technology/tec-name/u237.png);
+	float:left;
+}
+#content .main .infor .title p{
+	margin-left:35px;
+	margin-right:30px;
+	margin-top:50px;
+	font-size:14px;
+	font-weight:400px;
+}
+#content .main .noteAndAccessory{
+	width:975px;
+	height:40px;
+	margin-top:0px;
+	margin-left:0px;
+}
+#content .main .noteAndAccessory .note{
+	width:490px;
+	height:40px;
+	margin-top:0px;
+	margin-left:0px;
+	float:left;
+	background-image:url(../../images/technology/tec-name/u231.png);
+}
+#content .main .noteAndAccessory .accessory{
+	width:485px;
+	height:40px;
+	margin-top:0px;
+	margin-left:0px;
+	float:left;
+	background-image:url(../../images/technology/tec-name/u231.png);
+}

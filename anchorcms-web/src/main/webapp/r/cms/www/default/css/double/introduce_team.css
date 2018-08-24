@@ -1,0 +1,118 @@
+.tea-header{
+    padding: 12px 0px 10px 3px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+    font-size: 13px;
+    color: #333333;
+    background-size: cover;
+    background-image: url("../../img/double/introduce_team/u58.png");
+    background-size: 1200px 40px;
+}
+.slogan{
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 28px;
+    color: #333333;
+    text-align: center;
+    line-height: 250px;
+    background-image: url("../../img/double/introduce_team/u0.png");
+}
+.slogan-pic{
+    margin-right: 30px;
+    width:80px;
+    height: 80px;
+}
+.navigation{
+    padding-top: 5px;
+    padding-bottom: 2px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+    line-height: 40px;
+    background-image: url("../../img/double/introduce_team/u6.png");
+}
+.button{
+    margin-left: 0px;
+    width: 100px;
+    height: 40px;
+
+}
+.button-1{
+    font-size: 16px;
+    margin: 0px 50px 0px 10px;
+}
+.input{
+    margin-left: 360px;
+    margin-top: -12px;
+    width: 460px;
+    height: 38px;
+    line-height: 38px;
+    text-align: left;
+}
+.detail{
+    padding: 5px 10px 45px 5px;
+    ont-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: normal;
+    background-image: url("../../img/double/introduce_team/u8.png");
+}
+.count{
+    width: 270px;
+    height: 30px;
+    line-height: 30px;
+    background-image: url("../../img/double/introduce_team/u10.png");
+}
+.pic{
+    float: left;
+    margin-left: 20px;
+    margin-top: 20px;
+    padding: 30px 90px;
+    width: 460px;
+    background-image: url("../../img/double/introduce_team/u12.png");
+}
+.pic-info{
+    width: 280px;
+    height: 140px;
+}
+.describe{
+    float: left;
+    margin-left: 20px;
+    margin-top: 20px;
+    width: 660px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    color: #333333;
+    text-align: center;
+    line-height:200px;
+    background-image: url("../../img/double/introduce_team/u14.png");
+}
+.page{
+    margin: 30px 30px 0px 20px ;
+    padding-bottom: 15px;
+    width:1140px ;
+    text-align: center;
+    background-image: url("../../img/double/introduce_team/u24.png");
+}
+.page button{
+    margin: 15px 5px;
+    width: 35px;
+    height:30px ;
+    line-height: 30px;
+}
+.page-input{
+    width: 35px;
+    height: 25px;
+}
+

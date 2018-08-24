@@ -1,0 +1,614 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>${company.companyName!} - 企业制造能力展示</title>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/companyMsg.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/synergy.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/abilityPreview.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!--header start-->
+[#include "../include/header_icloud.html"]
+<!--header end-->
+<div class="content clearfix">
+<div class="search-top wrapper">
+    <a href="/xtzz/index.jhtml" target="_blank">协同制造</a><a href="/xtzzQyzznlzs/index.jhtml" target="_blank">企业能力展示</a>
+    <a class="current show-title" title="${company.companyName?default('')}">
+        [@text_cut s=company.companyName?default("") len='30' append='...'/]</a>
+</div>
+</div>
+<div class="c-logo wrapper clearfix">
+
+    <div class="logo_img">
+        [#if (company.content)?? & (company.content.pictures[0])??]
+        <a> <img src="${company.content.pictures[0].imgPath?default('')}" alt=""></a>
+        [#else]
+        <!--可以写死一张图片放到这里-->
+        <a><img src="/${res}/resources/images/searching/company2.png" alt=""></a>
+        [/#if]
+    </div>
+    <div class="com_info">
+        <div class="item_cname">
+            <span><a class="show-name" title="${(company.companyName)!}">[@text_cut s=(company.companyName)! len='30' append='...'/]</a></span>
+        </div>
+        <div class="item_msg clearfix">
+            <ul class="clearfix">
+                <li class="item_ul">
+                    <p class="icon-equip">设备数量：<span>${(company.deviceCount)!"0"}</span></p>
+                    <p class="icon-num">产品数量：<span>${(company.productCount)!"0"}</span></p>
+                    <p class="icon-register">注册时间：<span>${(company.createDt)!}</span></p>
+                </li>
+                <li class="item_ul">
+                    <p class="icon-phone">联系电话：<span>${(company.mobile)!}</span></p>
+                    <p class="icon-area">所在地：<span title="${(company.addrProvince)!}${(company.addrCity)!}${(company.addrCounty)!}${(company.addrStreet)!}">${(company.addrProvince)!}${(company.addrCity)!}${(company.addrCounty)!}[@text_cut s=(company.addrStreet)! len='15' append='...'/]</span></p>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+<div class="main_msg wrapper">
+    <div class="plate">
+        <div class="colum">
+            <span class="head">企业简介</span>
+        </div>
+        <div class="intro">
+            <span >
+                        ${(company.content.txt)!}
+            </span>
+        </div>
+    </div>
+    [#if company.diplomas?size != 0]
+    <div class="plate reward">
+        <div class="colum">
+            <span class="head">企业荣誉</span>
+        </div>
+        <div class="show-img wrapper">
+            <div class="prev">
+                <img src="/${res}/resources/images/abilityPreview/left.png">
+            </div>
+            <div class="plate_con clearfix">
+                <span class="pageInfo">1/3</span>
+                <ul class="clearfix">
+                    [#if (company.diplomas)??]
+                    [#list company.diplomas as a]
+                    <li>
+                        <div class="imgWrap">
+                            [#if (a.diplomaPic) != ""]
+                            <img src="${(a.diplomaPic)!}">
+                            [#else]
+                            <!--可以写死一张图片放到这里-->
+                            <a><img src="/${res}/resources/images/searching/company2.png" alt=""></a>
+                            [/#if]
+                        </div>
+                        <div class="imgTitle">
+                            <span><a title="${a.diplomaDiscribe!}">[@text_cut s=a.diplomaDiscribe! len='15' append='...'/]</a></span>
+                        </div>
+                    </li>
+                    [/#list]
+                    [/#if]
+                </ul>
+            </div>
+            <div class="next">
+                <img src="/${res}/resources/images/abilityPreview/right.png">
+            </div>
+        </div>
+    </div>
+    [/#if]
+    [#if company.devices?size != 0]
+    <div class="plate reward">
+        <div class="colum">
+            <span class="head">企业设备</span>
+        </div>
+        <div class="show-img wrapper">
+            <div class="prev">
+                <img src="/${res}/resources/images/abilityPreview/left.png">
+            </div>
+            <div class="plate_con clearfix">
+                <span class="pageInfo">1/3</span>
+                <ul class="clearfix">
+                    [#if (company.devices)??]
+                    [#list company.devices as a]
+                    <li style="width: 230px">
+                        <div class="imgWrap">
+                            <a class="textOver" href="/member/company_device_view.jspx?id=${a.deviceId}" target="_blank" title="${a.deviceName!}"><img src="${(a.content.pictures[0].imgPath)!}" alt="${a.deviceName!}"></a>
+                        </div>
+                        <div class="imgTitle">
+                            <span><a title="${a.deviceName!}">[@text_cut s=a.deviceName! len='15' append='...'/]</a></span>
+                        </div>
+                    </li>
+                    [/#list]
+                    [/#if]
+                </ul>
+            </div>
+            <div class="next">
+                <img src="/${res}/resources/images/abilityPreview/right.png">
+            </div>
+        </div>
+    </div>
+    [/#if]
+    [#if company.demands?size != 0]
+    <div class="plate reward">
+        <div class="colum">
+            <span class="head">企业需求</span>
+        </div>
+        <div class="show-img wrapper">
+            <div class="prev">
+                <img src="/${res}/resources/images/abilityPreview/left.png">
+            </div>
+            <div class="plate_con clearfix">
+                <span class="pageInfo">1/3</span>
+                <ul class="clearfix">
+                    [#if (company.demands)??]
+                    [#list company.demands as a]
+                    <li style="width: 230px">
+                        <div class="imgWrap">
+                            <a class="textOver" href="/xtzzNlczs/xtzz_synergy_demand_preview.jspx?id=${a.demandId}" target="_blank" title="${a.inquiryTheme!}"><img src="${(a.content.pictures[0].imgPath)!}" alt="${a.inquiryTheme!}"></a>
+                        </div>
+                        <div class="imgTitle">
+                            <span><a title="${a.inquiryTheme!}">[@text_cut s=a.inquiryTheme! len='15' append='...'/]</a></span>
+                        </div>
+                    </li>
+                    [/#list]
+                    [/#if]
+                </ul>
+            </div>
+            <div class="next">
+                <img src="/${res}/resources/images/abilityPreview/right.png">
+            </div>
+        </div>
+    </div>
+    [/#if]
+    [#if company.spareDemands?size != 0]
+    <div class="plate reward">
+        <div class="colum">
+            <span class="head">备品备件求购</span>
+        </div>
+        <div class="show-img wrapper">
+            <div class="prev">
+                <img src="/${res}/resources/images/abilityPreview/left.png">
+            </div>
+            <div class="plate_con clearfix">
+                <span class="pageInfo">1/3</span>
+                <ul class="clearfix">
+                    [#if (company.spareDemands)??]
+                    [#list company.spareDemands as a]
+                    <li style="width: 230px">
+                        <div class="imgWrap">
+                            <a class="textOver" href="/spareDemand.jspx?id=${a.demandId}&flag=1" target="_blank" title="${a.requestTheme!}"><img src="${(a.content.pictures[0].imgPath)!}" alt="${a.requestTheme!}"></a>
+                        </div>
+                        <div class="imgTitle">
+                            <span><a title="${a.requestTheme!}">[@text_cut s=a.requestTheme! len='15' append='...'/]</a></span>
+                        </div>
+                    </li>
+                    [/#list]
+                    [/#if]
+                </ul>
+            </div>
+            <div class="next">
+                <img src="/${res}/resources/images/abilityPreview/right.png">
+            </div>
+        </div>
+    </div>
+    [/#if]
+    [#if company.repairDemands?size != 0]
+    <div class="plate reward">
+        <div class="colum">
+            <span class="head">众修需求</span>
+        </div>
+        <div class="show-img wrapper">
+            <div class="prev">
+                <img src="/${res}/resources/images/abilityPreview/left.png">
+            </div>
+            <div class="plate_con clearfix">
+                <span class="pageInfo">1/3</span>
+                <ul class="clearfix">
+                    [#if (company.repairDemands)??]
+                    [#list company.repairDemands as a]
+                    <li style="width: 230px">
+                        <div class="imgWrap">
+                            <a class="textOver" href="/repairDemand.jspx?id=${a.repairId}&flag=1" target="_blank" title="${a.repairName!}"><img src="${(a.content.pictures[0].imgPath)!}" alt="${a.repairName!}"></a>
+                        </div>
+                        <div class="imgTitle">
+                            <span><a title="${a.repairName!}">[@text_cut s=a.repairName! len='15' append='...'/]</a></span>
+                        </div>
+                    </li>
+                    [/#list]
+                    [/#if]
+                </ul>
+            </div>
+            <div class="next">
+                <img src="/${res}/resources/images/abilityPreview/right.png">
+            </div>
+        </div>
+    </div>
+    [/#if]
+    <!--[#if company.abilities?size != 0]-->
+    <!--<div class="plate reward">-->
+        <!--<div class="colum">-->
+            <!--<span class="head">企业能力</span>-->
+        <!--</div>-->
+        <!--<div class="show-img wrapper">-->
+            <!--<div class="prev">-->
+                <!--<img src="/${res}/resources/images/abilityPreview/left.png">-->
+            <!--</div>-->
+            <!--<div class="plate_con clearfix">-->
+                <!--<span class="pageInfo">1/3</span>-->
+                <!--<ul class="clearfix">-->
+                    <!--[#if (company.abilities)??]-->
+                    <!--[#list company.abilities as a]-->
+                    <!--<li style="width: 230px">-->
+                        <!--<div class="imgWrap">-->
+                            <!--<a class="textOver" href="/xtzzNlczs/xtzz_ability_preview.jspx?id=${a.abilityId}" target="_blank" title="${a.abilityName!}"><img src="${(a.content.pictures[0].imgPath)!}" alt="${a.abilityName!}"></a>-->
+                        <!--</div>-->
+                        <!--<div class="imgTitle">-->
+                            <!--<span><a title="${a.abilityName!}">[@text_cut s=a.abilityName! len='15' append='...'/]</a></span>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--[/#list]-->
+                    <!--[/#if]-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="next">-->
+                <!--<img src="/${res}/resources/images/abilityPreview/right.png">-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--[/#if]-->
+    [#if company.abilities?size != 0]
+    <div class="plate reward">
+        <div class="colum">
+            <span class="head">企业能力</span>
+        </div>
+        <div class="tabBody wrapper">
+            <div class="tabPane">
+                <div class="tableHead">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th class="pTime">发布时间</th>
+                            <th class="aName">能力名称</th>
+                            <th class="area" style="padding-left: 30px">地区</th>
+                            <th class="kind" style="padding-left: 30px">分类</th>
+                            <th class="bCompany" style="padding-left: 80px">所属企业</th>
+                            <th class="price">价格(单位:元)</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="tableBody">
+                    <table>
+                        [#if (company.abilities)??]
+                        [#list company.abilities as a]
+                        <tr>
+                            <td class="pTime">${a.createDt!}</td>
+                            <td class="aName"><a title="${a.abilityName!}">[@text_cut s=a.abilityName! len='16' append='...' /]</a></td>
+                            <td class="area">${a.addrCity!}</td>
+                            <td class="kind">[#if a.abilityType??][@s_typevalue typecode='NLFL' typekey=a.abilityType /][/#if]</td>
+                            <td class="bCompany"><a title="${a.company.companyName!}">[@text_cut s=a.company.companyName! len='16' append='...' /]</a></td>
+                            <td class="price">[#if a.referPrice??][#if a.referPrice==0]面议[#else]${a.referPrice!}[/#if][/#if]</td>
+                            <td class="last">
+                                [#if a.content.staticContent]
+                                [#if a.content.needRegenerate]
+                                <a href="/xtzzNlczs/xtzz_ability_preview.jspx?id=${a.abilityId}" target="_blank">点击详情</a>
+                                [#else]
+                                <a href="${a.content.url}" target="_blank">点击详情</a>
+                                [/#if]
+                                [#else]
+                                <a href="/xtzzNlczs/xtzz_ability_preview.jspx?id=${a.abilityId}" target="_blank">点击详情</a>
+                                [/#if]
+                            </td>
+                        </tr>
+                        [/#list]
+                        [/#if]
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    [/#if]
+    <br>
+
+    <!--[#if company.demands?size != 0]-->
+    <!--<div class="plate reward">-->
+        <!--<div class="colum">-->
+            <!--<span class="head">企业需求</span>-->
+        <!--</div>-->
+        <!--<div class="tabBody wrapper">-->
+            <!--<div class="tabPane">-->
+                <!--<div class="tableHead">-->
+                    <!--<table>-->
+                        <!--<thead>-->
+                        <!--<tr>-->
+                            <!--<th class="pTime">发布时间</th>-->
+                            <!--<th class="aName" style="padding-left: 70px">需求名称</th>-->
+                            <!--<th class="area" style="padding-left: 70px">地区</th>-->
+                            <!--<th class="kind" style="padding-left: 70px">分类</th>-->
+                            <!--<th class="bCompany" style="padding-left: 130px">所属企业</th>-->
+                            <!--&lt;!&ndash;<th class="price">价格(单位:元)</th>&ndash;&gt;-->
+                            <!--<th></th>-->
+                        <!--</tr>-->
+                        <!--</thead>-->
+                    <!--</table>-->
+                <!--</div>-->
+                <!--<div class="tableBody">-->
+                    <!--<table>-->
+                        <!--[#if (company.demands)??]-->
+                        <!--[#list company.demands as a]-->
+                        <!--<tr>-->
+                            <!--<td class="pTime">${a.createDt!}</td>-->
+                            <!--<td class="aName"><a title="${a.inquiryTheme!}">[@text_cut s=a.inquiryTheme! len='16' append='...' /]</a></td>-->
+                            <!--<td class="area">${a.addrCity!}</td>-->
+                            <!--<td class="kind">[#if a.invoiceType??][@s_typevalue typecode='NLFL' typekey=a.classifyType /][/#if]</td>-->
+                            <!--<td class="bCompany"><a title="${a.company.companyName!}">[@text_cut s=a.company.companyName! len='16' append='...' /]</a></td>-->
+                            <!--&lt;!&ndash;<td class="price">[#if a.referPrice??][#if a.referPrice==0]面议[#else]${a.referPrice!}[/#if][/#if]</td>&ndash;&gt;-->
+                            <!--<td class="last">-->
+                                <!--[#if a.content.staticContent]-->
+                                <!--[#if a.content.needRegenerate]-->
+                                <!--<a href="/xtzzNlczs/xtzz_synergy_demand_preview.jspx?id=${a.demandId}" target="_blank">点击详情</a>-->
+                                <!--[#else]-->
+                                <!--<a href="${a.content.url}" target="_blank">点击详情</a>-->
+                                <!--[/#if]-->
+                                <!--[#else]-->
+                                <!--<a href="/xtzzNlczs/xtzz_synergy_demand_preview.jspx?id=${a.demandId}" target="_blank">点击详情</a>-->
+                                <!--[/#if]-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                        <!--[/#list]-->
+                        <!--[/#if]-->
+                    <!--</table>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<br>-->
+    <!--[/#if]-->
+    [#if company.spares?size != 0]
+    <div class="plate reward">
+        <div class="colum">
+            <span class="head">备品备件</span>
+        </div>
+        <div class="tabBody wrapper">
+            <div class="tabPane">
+                <div class="tableHead">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th class="pTime">发布时间</th>
+                            <th class="aName">备品备件名称</th>
+                            <th class="area" style="padding-left: 30px">地区</th>
+                            <th class="kind" style="padding-left: 30px">分类</th>
+                            <th class="bCompany" style="padding-left: 80px">所属企业</th>
+                            <th class="price">价格(单位:元)</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="tableBody">
+                    <table>
+                        [#if (company.spares)??]
+                        [#list company.spares as a]
+                        <tr>
+                            <td class="pTime">${a.createDt!}</td>
+                            <td class="aName"><a title="${a.spareName!}">[@text_cut s=a.spareName! len='16' append='...' /]</a></td>
+                            <td class="area">${a.addrCity!}</td>
+                            <td class="kind">[#if a.spareType??][@s_typevalue typecode='BPBJLX' typekey=a.spareType /][/#if]</td>
+                            <td class="bCompany"><a title="${a.company.companyName!}">[@text_cut s=a.company.companyName! len='16' append='...' /]</a></td>
+                            <td class="price">[#if a.referPrice?? && a.referPrice!=0]${a.referPrice?default('面议')}[#else]面议[/#if]</td>
+                            <td class="last">
+                                [#if a.content.staticContent]
+                                [#if a.content.needRegenerate]
+                                <a href="/spare/detail.jspx?id=${a.sparepartsId}" target="_blank">点击详情</a>
+                                [#else]
+                                <a href="${a.content.url}" target="_blank">点击详情</a>
+                                [/#if]
+                                [#else]
+                                <a href="/spare/detail.jspx?id=${a.sparepartsId}" target="_blank">点击详情</a>
+                                [/#if]
+                            </td>
+                        </tr>
+                        [/#list]
+                        [/#if]
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    [/#if]
+    <br>
+
+    <!--[#if company.spareDemands?size != 0]-->
+    <!--<div class="plate reward">-->
+        <!--<div class="colum">-->
+            <!--<span class="head">备品备件求购</span>-->
+        <!--</div>-->
+        <!--<div class="tabBody wrapper">-->
+            <!--<div class="tabPane">-->
+                <!--<div class="tableHead">-->
+                    <!--<table>-->
+                        <!--<thead>-->
+                        <!--<tr>-->
+                            <!--<th class="pTime">发布时间</th>-->
+                            <!--<th class="aName" style="padding-left: 70px">求购名称</th>-->
+                            <!--<th class="area" style="padding-left: 70px">地区</th>-->
+                            <!--<th class="kind" style="padding-left: 70px">分类</th>-->
+                            <!--<th class="bCompany" style="padding-left: 130px">所属企业</th>-->
+                            <!--&lt;!&ndash;<th class="price">价格(单位:元)</th>&ndash;&gt;-->
+                            <!--<th></th>-->
+                        <!--</tr>-->
+                        <!--</thead>-->
+                    <!--</table>-->
+                <!--</div>-->
+                <!--<div class="tableBody">-->
+                    <!--<table>-->
+                        <!--[#if (company.spareDemands)??]-->
+                        <!--[#list company.spareDemands as a]-->
+                        <!--<tr>-->
+                            <!--<td class="pTime">${a.createDt!}</td>-->
+                            <!--<td class="aName"><a title="${a.requestTheme!}">[@text_cut s=a.requestTheme! len='16' append='...' /]</a></td>-->
+                            <!--<td class="area">${a.addrCity!}</td>-->
+                            <!--<td class="kind">[#if a.requestType??][@s_typevalue typecode='BPBJLX' typekey=a.requestType /][/#if]</td>-->
+                            <!--<td class="bCompany"><a title="${a.scompany.companyName!}">[@text_cut s=a.scompany.companyName! len='16' append='...' /]</a></td>-->
+                            <!--&lt;!&ndash;<td class="price">[#if a.referPrice??][#if a.referPrice==0]面议[#else]${a.referPrice?default('面议')}[/#if][/#if]</td>&ndash;&gt;-->
+                            <!--<td class="last">-->
+                                <!--[#if a.content.staticContent]-->
+                                <!--[#if a.content.needRegenerate]-->
+                                <!--<a href="/spareDemand.jspx?id=${a.demandId}&flag=1" target="_blank">点击详情</a>-->
+                                <!--[#else]-->
+                                <!--<a href="${a.content.url}" target="_blank">点击详情</a>-->
+                                <!--[/#if]-->
+                                <!--[#else]-->
+                                <!--<a href="/spareDemand.jspx?id=${a.demandId}&flag=1" target="_blank">点击详情</a>-->
+                                <!--[/#if]-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                        <!--[/#list]-->
+                        <!--[/#if]-->
+                    <!--</table>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<br>-->
+    <!--[/#if]-->
+    <br>
+
+    <!--[#if company.repairDemands?size != 0]-->
+    <!--<div class="plate reward">-->
+        <!--<div class="colum">-->
+            <!--<span class="head">维修需求</span>-->
+        <!--</div>-->
+        <!--<div class="tabBody wrapper">-->
+            <!--<div class="tabPane">-->
+                <!--<div class="tableHead">-->
+                    <!--<table>-->
+                        <!--<thead>-->
+                        <!--<tr>-->
+                            <!--<th class="pTime">发布时间</th>-->
+                            <!--<th class="aName" style="padding-left: 70px">需求名称</th>-->
+                            <!--<th class="area" style="padding-left: 70px">地区</th>-->
+                            <!--<th class="kind" style="padding-left: 70px">分类</th>-->
+                            <!--<th class="bCompany" style="padding-left: 130px">所属企业</th>-->
+                            <!--&lt;!&ndash;<th class="price">价格(单位:元)</th>&ndash;&gt;-->
+                            <!--<th></th>-->
+                        <!--</tr>-->
+                        <!--</thead>-->
+                    <!--</table>-->
+                <!--</div>-->
+                <!--<div class="tableBody">-->
+                    <!--<table>-->
+                        <!--[#if (company.repairDemands)??]-->
+                        <!--[#list company.repairDemands as a]-->
+                        <!--<tr>-->
+                            <!--<td class="pTime">${a.createDt!}</td>-->
+                            <!--<td class="aName"><a title="${a.repairName!}">[@text_cut s=a.repairName! len='16' append='...' /]</a></td>-->
+                            <!--<td class="area">${a.addrCity!}</td>-->
+                            <!--<td class="kind">[#if a.repairType??][@s_typevalue typecode='ZXFWLX' typekey=a.repairType /][/#if]</td>-->
+                            <!--<td class="bCompany"><a title="${a.company.companyName!}">[@text_cut s=a.company.companyName! len='16' append='...' /]</a></td>-->
+                            <!--&lt;!&ndash;<td class="price">[#if a.referPrice??][#if a.referPrice==0]面议[#else]${a.referPrice?default('面议')}[/#if][/#if]</td>&ndash;&gt;-->
+                            <!--<td class="last">-->
+                                <!--[#if a.content.staticContent]-->
+                                <!--[#if a.content.needRegenerate]-->
+                                <!--<a href="/repairDemand.jspx?id=${a.repairId}&flag=1" target="_blank">点击详情</a>-->
+                                <!--[#else]-->
+                                <!--<a href="${a.content.url}" target="_blank">点击详情</a>-->
+                                <!--[/#if]-->
+                                <!--[#else]-->
+                                <!--<a href="/repairDemand.jspx?id=${a.repairId}&flag=1" target="_blank">点击详情</a>-->
+                                <!--[/#if]-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                        <!--[/#list]-->
+                        <!--[/#if]-->
+                    <!--</table>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<br>-->
+    <!--[/#if]-->
+    <br>
+    [#if company.sRepairRes?size != 0]
+    <div class="plate reward">
+        <div class="colum">
+            <span class="head">维修资源</span>
+        </div>
+        <div class="tabBody wrapper">
+            <div class="tabPane">
+                <div class="tableHead">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th class="pTime">发布时间</th>
+                            <th class="aName" >维修资源名称</th>
+                            <th class="area" style="padding-left: 30px">地区</th>
+                            <th class="kind" style="padding-left: 30px">擅长领域</th>
+                            <th class="bCompany" style="padding-left: 80px">所属企业</th>
+                            <th class="price">价格(单位:元)</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="tableBody">
+                    <table>
+                        [#if (company.sRepairRes)??]
+                        [#list company.sRepairRes as a]
+                        <tr>
+                            <td class="pTime">${a.createDt!}</td>
+                            <td class="aName"><a title="${a.repairName!}">[@text_cut s=a.repairName! len='16' append='...' /]</a></td>
+                            <td class="area">${a.addrCity!}</td>
+                            <td class="aName"><a title="${a.goodAt!}">[@text_cut s=a.goodAt! len='16' append='...' /]</a></td>
+                            <td class="bCompany"><a title="${a.scompany.companyName!}">[@text_cut s=a.scompany.companyName! len='16' append='...' /]</a></td>
+                            <td class="price">[#if a.repairPrice??][#if a.repairPrice!="0"]${a.repairPrice?default("")}元[#else]  面议[/#if][/#if]</td>
+                            <td class="last">
+                                [#if a.content.staticContent]
+                                [#if a.content.needRegenerate]
+                                <a href="/Repair_manager_preview.jspx?id=${a.repairId}" target="_blank">点击详情</a>
+                                [#else]
+                                <a href="${a.content.url}" target="_blank">点击详情</a>
+                                [/#if]
+                                [#else]
+                                <a href="/Repair_manager_preview.jspx?id=${a.repairId}&" target="_blank">点击详情</a>
+                                [/#if]
+                            </td>
+                        </tr>
+                        [/#list]
+                        [/#if]
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    [/#if]
+    <br>
+</div>
+<br>
+
+<!--footer start-->
+[#include "../include/footer_icloud.html"]
+<!--footer end-->
+<!--前台_企业能力详情展示-->
+</body>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/jajavascriptvascript" charset="utf-8" src="/${res}/resources/lib/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/companyMsg.js"></script>
+</html>

@@ -1,0 +1,136 @@
+/* CSS Document */
+
+body, div, p, ul, ol, dl, dt, dd, li, form, input, table, img, h1, h2, h3, h4, h5, h6,form,fieldest,input,textarea,blockquote,th,td{ margin:0; padding:0; border:0px none; list-style: none;}
+body{font: 12px/24px Arial,"\5B8B\4F53",sans-serif;}
+img,a img{border:0;margin:0;padding:0;}
+h1,h2,h3,h4,h5,h6,th{margin:0;padding:0;font-size:12px;font-weight:normal;}
+em,var{font-style:normal;}
+ul,li{list-style:none;}
+table,td,input{font-size:12px;padding:0}
+a{text-decoration:none;color:#393939;}
+a:hover{text-decoration:underline;}
+.center{margin:auto;}
+.STYLE08071{ font-weight:bold; color:#F30;}
+* {margin:0;paddding:0;}
+.wid {width:1000px;margin:0px auto;}
+.ks_login {margin:auto 0px;background:url(../../images/unionCity/bg.jpg) top center no-repeat;font:"宋体";font-size:12px;line-height:28px;width:100%;}
+.ks_login_inner {width:100%;height:800px;margin:0 auto;}
+.ks_login_content .dd1,.ks_login_content .dd2,.ks_login_content .dd3,.ks_login_content .dd4,.ks_login_content .dd5 {background:url(../../images/unionCity/login.png) top center no-repeat;}
+.ks_login_bt {width:1024px;height:120px; margin:0 auto; margin-bottom:10px;padding-top:50px;}
+.ks_login_bt img {display:block;margin:0 auto;}
+.ks_login_content {width:370px;height:350px;margin:0px auto}
+.ks_login_content dd {height:350px;margin:0px;padding:0px;display:block;float:left;}
+.ks_login_content .dd1 {width:33px;background-position:left -96px;}
+.ks_login_content .dd2 {width:200px;background-position:-33px -96px;}
+.ks_login_content .dd3 {width:370px;/*background-position:-224px -96px;*/text-align:center;}
+.ks_login_content .dd3 h3 {font-size:26px;font-weight:bold;color:#707070;font-family:"microsoft yahei";margin-bottom:9px;}
+.ks_login_content .dd3 td {font-size:16px;color:#000;font-family:"microsoft yahei";}
+.ks_login_content .dd4 {width:202px;background-position:-812px -96px;}
+.ks_login_content .dd5 {width:0px;background-position:-654px -96px;}
+.ks_login a {font-family:"宋体";font-size:12px;color:#000000;text-decoration:none;}
+.ks_login a:hover {color:#fea315}
+.ks_login .im_text {border:1px solid #a7b9c7;height:40px;width:244px;color:#000000;line-height:40px;padding-left:5px;font-size:16px;color:#333;}
+.ks_login .lg {width:105px;height:39px;border:0px;cursor:pointer;margin:0px}
+.ks_login em {color:#F00;}
+.ks_login_content .dd3 tr td:nth-child(1) {width:85px;display:inline-block;line-height:57px;}
+.ks_login_content .dd3 tr {height:50px;}
+.ks_login_content .dd3 tr:nth-child(5) {height:12px;}
+.ks_login_content .dd3 tr input:focus {border:1px solid #00a0e9;}
+.img_class_01,.img_class_02 {position:relative}
+.img_class_01 em {width:20px;height:27px;display:inline-block;position:absolute;top:15px;right:14px;background:url(../images/img1.png);}
+.img_class_01 em:hover {background:url(../images/img1_hover.png);}
+.img_class_02 em {width:14px;height:26px;display:inline-block;position:absolute;top:17px;right:17px;background:url(../images/img2.png);}
+.img_class_02 em:hover {background:url(../images/img2_hover.png);}
+.ks_login tr td select.im_text {display:inline-block;width:250px;}
+.zt_top_tu {width:100%;height:350px;margin:auto;background:url(../images/toutu.jpg) center no-repeat;}
+.nr_conner {width:1000px;margin:0 auto;}
+.condition {width:100%;position:relative;margin-top:15px;}
+.condition-hd {width:998px;border:#eaeaea solid 1px;background-color:#f5f5f5;height:45px;clear:both;}
+.condition-hd-lf {float:left;position:relative;margin-top:-9px;margin-left:-1px;}
+.condition-hd-lf .left {float:left;width:13px;height:55px;background:url(../images/zt_dhbj.png) no-repeat;}
+.condition-hd-lf .cet {float:left;padding:0 28px 0 20px;font:25px/53px "Microsoft Yahei";height:53px;background:#17aeeb;border-bottom:#1678a7 solid 2px;color:#FFF;}
+.condition-hd-lf .right {float:left;width:48px;height:55px;background:url(../images/zt_dhbj.png) -220px 0 no-repeat;}
+.condition-hd-rt {float:left;}
+.condition-bd {width:998px;border:#eaeaea solid 1px;background:#fff;border-bottom-width:4px;padding-bottom:20px;position:relative;margin-bottom:40px;font-size:14px;}
+.clearfix:after,#link:after,.content:after,.hot-txt:after,.nav-area:after,.list-b li .info:after,.list-b .other:after,.pagebox:after {content:".";display:block;height:0;clear:both;visibility:hidden;}
+.condition-hd-rt a:hover {text-decoration:none;background:#004a6d;}
+.condition-hd-rt a {padding:0 15px;display:block;float:left;background-color:#1678a7;border:#1678a7 solid 1px;line-height:30px;margin-top:7px;margin-left:15px;color:#FFF!important;border-radius:3px;font-size:14px;font-weight:bold;}
+.tj-dq .action {background-color:#1678a7;border-color:#1678a7;color:#FFF;}
+.tj-dq td {border:#eaeaea solid 1px;line-height:33px;}
+.tj-dq .action a {color:#fff;}
+.tj-dq a:hover {background-color:#1678a7;color:#FFF;text-decoration:none;}
+.tj-dq a {display:block;font-size:14px;text-align:center;}
+.tj-dq table {border-collapse:collapse;}
+.tj-dq {width:100%;background-color:#eef0f5;padding:0;}
+.tj-cont {padding:25px 30px 0px 30px;line-height:30px;font-size:14px;}
+/*切换*/.ttl {height:18px;}
+.ctt_zzjs_net {height:200px;padding:6px;clear:both;border-top:0;text-align:left;line-height:24px;}
+.zzjs_net {margin:2px 0;clear:both;width:720px;/*滑动门的宽度*/}
+/* TAB 切换效果 */.tab_zzjs_ {background-color:#FCFDF8;width:650px;}
+.tab_zzjs_ ul {height:24px;}
+.tab_zzjs_ li {display:block;width:100px;text-align:center;float:left;line-height:20px;height:20px;margin:0px;padding-top:0.2em;padding-right:0px;padding-bottom:0.2em;padding-left:0px;cursor:hand;font-weight:bold;}
+/* 控制显示与隐藏css类 */.nor_zzjs {font-size:14px;text-align:center;color:#393939;}
+#tab_zzjs_ td:hover,#tab_zzjsa_ td:hover {background:#004a6d;color:#FFFFFF;cursor:pointer;}
+.hovertab_zzjs {background:#1678a7;font-size:14px;text-align:center;color:#FFFFFF;}
+.dis_zzjs_net {display:block;padding:25px 30px 0px 30px;line-height:30px;font-size:5px;}
+.undis_zzjs_net {display:none;}
+.mt30 {margin-top:15px!important;}
+.jd-hd {width:998px;margin-left:-1px;font-size:14px;padding:30px 0 0 0;}
+.jd-hd1 {border-bottom:#a6a6a6 dashed 1px;position:relative;clear:both;margin-top:20px;width:970px;}
+.jd-hd span {border-left:3px;position:relative;color:#198274;border-left:#198274 3px solid;padding-left:15px;font:bold 25px/30px "Microsoft Yahei";}
+.jd-hd1 .ask {background-position:-2px -3px;}
+.jd-hd1 .ico {display:block;width:40px;height:40px;background-image:url(../images/zt_dh_2.png);background-color:#fff;background-repeat:no-repeat;position:relative;margin-left:-20px;margin-bottom:-20px;float:left;}
+.jd-hd1 .qa {background-position:-55px -3px;}
+.jd-bd .wenben-hd {line-height:30px;font-size:14px;padding:0 40px;margin-top:20px;}
+.jd-bd .txt {font-size:14px;padding:25px 40px 0 40px;line-height:25px;}
+.jd-hd1 .txt {font:bold 19px/40px "Microsoft Yahei";position:relative;background:#FFF;padding:0 15px;float:left;margin-bottom:-20px;}
+.jd-bd .wenben-hd span {color:#FFF;background:#288e81;padding:3px 10px;margin-right:10px;}
+.jd-bd .wenben-hd {line-height:30px;font-size:14px;padding:0 40px;margin-top:20px;}
+.jd-bd .blk {width:100%;}
+.jd-bd .wenben-bd {font-size:14px;line-height:25px;padding:0 40px;margin-top:10px;text-indent:2em;}
+.jd-bd .red {color:#f32d2d;}
+.hot-info {width:998px;border:#d5d5d5 solid 1px;clear:both;}
+.mt20 {margin-top:20px!important;}
+.hot-info dt td,.hot-info dd td {padding:8px 0px;text-align:center;}
+.hot-info dt td {border-right:#ebebeb solid 1px;font-weight:bold;font-size:14px;}
+.hot-info dd table {float:left;width:958px;border:#ebebeb solid 1px;border-right:none;position:relative;text-align:center;}
+.ks-bm .w1 {width:60px;}
+.ks-bm .w2 {width:160px;}
+.ks-bm .w3 {width:110px;text-align:center;}
+.ks-bm .w4 {width:100px;text-align:center;}
+.hot-info dt td,.hot-info dd td {padding:8px 0px;text-align:center;}
+
+
+/*报名流程*/
+.step { width:1000px; height:auto; margin:0 auto;}
+.step-box { width:1000px; height:auto; margin:0 auto; float:left; display:block;}
+.step-a { background:#fbfbfb; width:485px; height:auto; margin-top:30px; float:left; margin-right:15px; margin-bottom:5px;}
+.step-ico {background:url(../images/buzhou.png); font-family:"Microsoft Yahei"; font-size:24px; color:#FFF; width:50px; height:55px; padding-left:10px; padding-top:5px; line-height:50px; text-align:center; float:left;}
+.step-h1 {font-family:"Microsoft Yahei"; font-size:30px; font-weight:bold;color:#434343; padding-top:15px;}
+.step-p {font-family:"Microsoft Yahei"; font-size:14px;color:#434343; width:400px; margin:0 auto; padding-top:10px; padding-left:30px; padding-bottom:20px; text-align:left;}
+.step-b { background:#fbfbfb; width:315px; height:auto; margin-top:20px; float:left; margin-right:18px; margin-bottom:5px;}
+.step-p2 {font-family:"Microsoft Yahei"; font-size:14px;color:#434343; width:220px; margin:0 auto; padding-top:10px; padding-left:30px; padding-bottom:20px; text-align:left;}
+
+/***********报名条件********/
+.condition {width:1000px; height:auto; margin:20px auto;}
+.condition-a {width:1000px; height:auto; margin:0 auto; float:left; }
+.condition-a .num{color:#18aeeb;font:bold 44px/56px Impact,Arial; border-bottom:3px 18aeeb solid; float:left;margin-top:30px;}
+.condition-box { border-color:#18aeeb; border-style:solid; border-width:thin; width:940px;height:auto;margin-top:30px; float:right;}
+.condition-box .condition-p{font-family:"Microsoft Yahei"; font-size:14px;color:#434343; display:block; padding:10px;}
+
+
+.ks_login .lg {margin-left:-50px;background: url(../../images/unionCity/btn.png)}
+.img_class_01 em {right:34px\9;}
+.img_class_02 em {right:37px\9;}
+
+
+.ks_text{ width:315px; height:auto; font-size:14px; color:#fff; margin:0 auto; margin-bottom:20px; font-family:"Microsoft Yahei";}
+.ks_text h3{ font-size:16px; height:30px;}
+.ks_text p{line-height:180%;}
+
+
+
+
+
+
+

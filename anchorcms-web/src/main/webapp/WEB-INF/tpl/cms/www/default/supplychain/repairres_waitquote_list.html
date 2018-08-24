@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--供应链-维修方-待报价方案管理 hansx-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${site.siteName}</title>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+    <link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/list.js"></script>
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/list.css"/>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript">
+        $(function () {
+            _onload();
+        });
+
+        //点击状态标签刷新列表
+        $(document).ready(function () {
+            $(".tableDiv tbody tr:odd").css("background", "#FAF7F7");
+            $(".tableDiv tbody tr:even").css("background", "#fff");
+            $(".switchBtn li").click(function () {
+                if ($(this).attr("id") == "statusType0") {
+                    $("#statusType").val("");
+                } else if ($(this).attr("id") == "statusType1") {
+                    $("#statusType").val("3");
+                } else if ($(this).attr("id") == "statusType2") {
+                    $("#statusType").val("4");
+                } else if ($(this).attr("id") == "statusType3") {
+                    $("#statusType").val("5");
+                }else if ($(this).attr("id") == "statusType4") {
+                    $("#statusType").val("6");
+                }
+                $("#tableForm").submit();
+            });
+        });
+
+        //加载页面标签状态
+        function _onload() {
+            if ($("#statusType").val() == "") {
+                $("#statusType0").addClass("current");
+                $("#statusType0").next().addClass("active");
+                $("[name=quote]").hide(0, prevHide("[name=quote]"));
+            } else if ($("#statusType").val() == "3") {
+                $("#statusType1").addClass("current");
+                $("#statusType1").next().addClass("active");
+            } else if ($("#statusType").val() == "4") {
+                $("#statusType2").addClass("current");
+                $("#statusType2").next().addClass("active");
+                $("[name=quote]").hide(0, prevHide("[name=quote]"));
+            }else if ($("#statusType").val() == "5") {
+                $("#statusType3").addClass("current");
+                $("#statusType3").next().addClass("active");
+                $("[name=quote]").hide(0, prevHide("[name=quote]"));
+            }else if ($("#statusType").val() == "6") {
+                $("#statusType4").addClass("current");
+                $("#statusType4").next().addClass("active");
+                $("[name=quote]").hide(0, prevHide("[name=quote]"));
+            }
+        }
+        ;
+
+        //隐藏兄弟元素的前一个元素
+        function prevHide(obj) {
+            $(obj).prev("font").hide();
+        }
+
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="/${res}/js/html5shiv.min.js"></script>
+    <script src="/${res}/js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .readonly {
+            background: #EBEBE4;
+            color: #91918e;
+        }
+    </style>
+</head>
+
+<body>
+<div class="content wrapper clearfix">
+    <div id="goodcover1"></div>
+    <div class="head wrapper">
+        <a href="${base}/member/getquotelist.jspx" class="current">待报价管理界面</a>
+    </div>
+    <div class="main">
+        <form id="tableForm" action="/member/getquotelist.jspx" method="post">
+
+            <div class="searchBox">
+                <label>询价主题：</label><input name="inquiryTheme" id="inquiryTheme" value="${inquiryTheme?default('')}">
+                <label>询价企业：</label><input name="companyName" id="companyName" value="${companyName?default('')}">
+                <br>
+                <label>截止日期：</label><input name="startDate" id="startDate"
+                                             onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate date"
+                                             value="${startDate?default('')}"><label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;至</label>
+                <input name="endDate" id="endDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate date"
+                       value="${endDate?default('')}">
+
+                <button class="submit">查询</button>
+            </div>
+            <div class="switchBtn">
+                <ul>
+                    <li id="statusType0"><span>全部</span></li>
+                    <li id="statusType1"><span>未报价</span></li>
+                    <li id="statusType2"><span>已报价</span></li>
+                    <li id="statusType3"><span>已中标</span></li>
+                    <li id="statusType4"><span>未中标</span></li>
+
+                </ul>
+            </div>
+
+            <div class="tableDiv wrapper">
+                <table cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th class="tggl-top">询价企业</th>
+                        <th class="tggl-top">询价主题</th>
+                        <th class="tggl-top">询价日期</th>
+                        <th class="tggl-top">报价截止日期</th>
+                        <th class="tggl-top">询价状态</th>
+                        <th class="tggl-top">管理</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    [#if pagination.list?size gt 0]
+                    [#list pagination.list as c]
+                    <tr>
+
+                        <td align="left" style="padding-left: 30px;" title="${c.company.companyName}">[#if c.company??][@text_cut s=c.company.companyName?default('') len=10 append='...'/][/#if]</td>
+                        <td align="left" title="${c.inquiryTheme}">[@text_cut s=c.inquiryTheme?default('') len=10 append='...'/]</td>
+                        <td>${(c.releaseDt?string("yyyy-MM-dd"))!''}</td>
+                        <td> ${(c.deadlineDt?string("yyyy-MM-dd"))!''}</td>
+                        [#if !c.statusType??]
+                        <td></td>
+                        [#else]
+                        [#switch c.statusType]
+                        [#case "6"]
+                        <td>未中标</td>
+                        [#break]
+                        [#case "5"]
+                        <td>已中标</td>
+                        [#break]
+                        [#case "4"]
+                        <td>已报价</td>
+                        [#break]
+                        [#case "3"]
+                        <td>询价中</td>
+                        [#break]
+                        [#default]
+                        <td></td>
+                        [/#switch]
+                        [/#if]
+                        <td>
+
+                            <a class="link" name="detail"
+                               href="${base}/member/inquirypricedetail.jspx?inquiryId=${c.inquiryId}">询价明细</a>
+
+                            &nbsp;&nbsp;<a class="link" name="resdetail"
+                                             href="${base}/member/Repair_manager_view.jspx?id=${c.sRepairRes.repairId}">能力明细</a>
+
+                            &nbsp;&nbsp;<a class="link" name="quote"
+                                             href="${base}/member/repairesquote.jspx?id=${c.inquiryId}">报价</a>
+                        </td>
+                    </tr>
+                    [/#list]
+                    [#else]
+                    <tr>
+                        <td colspan="7" ><h4>暂无数据</h4></td>
+                    </tr>
+                    [/#if]
+                    </tbody>
+                </table>
+            </div>
+            <input type="hidden" name="pageNo"/>
+            <input type="text" id="statusType" name="statusType" hidden="hidden" value="${statusType?default('')}">
+            <div class="page clearfix">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="left" class="pn-sp">
+                            每页 ${pagination.pageSize} 条&nbsp;
+                            <input class="first" type="button" onclick="_gotoPage('1');" [#if pagination.firstPage]
+                                   disabled="disabled" [/#if]/>
+                            <input class="prev" type="button" onclick="_gotoPage('${pagination.prePage}');" [#if
+                                   pagination.firstPage] disabled="disabled" [/#if]/>
+                            <input type="text" value=${pagination.pageNo} id="_goPs" onfocus="this.select();"
+                                   onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>/${pagination.totalPage}
+                            <input class="next" type="button" onclick="_gotoPage('${pagination.nextPage}');" [#if
+                                   pagination.lastPage] disabled="disabled" [/#if]/>
+                            <input class="last" type="button" onclick="_gotoPage('${pagination.totalPage}');" [#if
+                                   pagination.lastPage] disabled="disabled" [/#if]/>&nbsp;
+                            <button id="_goPage" class="ok" type="button" onclick="_gotoPage($('#_goPs').val());" [#if
+                                    pagination.totalPage==1] disabled="disabled" [/#if]>GO</button>共 ${pagination.totalCount} 条&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <script type="text/javascript">
+                function _gotoPage(pageNo) {
+                    if(!/^[0-9]*[1-9][0-9]*$/.test(pageNo)){ui.alertFail("页码必须为正整数！");return false;}
+                    try {
+                        var tableForm = document.getElementById("tableForm");
+                        $("input[name=pageNo]").val(pageNo);
+                        tableForm.action = "/member/getquotelist.jspx";
+                        tableForm.onsubmit = null;
+                        tableForm.submit();
+                    } catch (e) {
+                        alert('_gotoPage(pageNo)方法出错');
+                    }
+                }
+            </script>
+
+        </form>
+    </div>
+    <div class="m-sj"></div>
+</div>
+<script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+</body>
+</html>

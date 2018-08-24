@@ -1,0 +1,258 @@
+#content{
+	
+	width:1200px;
+	height:900px;
+}
+#content .position{
+	width:1200px;
+	height:40px;
+	background-image:url(../../images/double/double_img/u58.png);
+}
+#content .position p{
+	line-height:40px;
+	font-size:13px;
+	font-weight:400;
+}
+#content .projectRrecommend{
+	margin-top:5px;
+	margin-left:0px;
+	width:210px;
+	height:310px;
+	float:left;
+}
+#content .projectRrecommend .title{
+	width:210px;
+	height:50px;
+	background-image:url(../../images/double/infor_img/u56.png);
+}
+#content .projectRrecommend .contentTop{
+	width:210px;
+	height:110px;
+	background-image:url(../../images/double/infor_img/u58.png);
+}
+#content .projectRrecommend .contentList{
+	width:210px;
+	height:30px;
+	background-image:url(../../images/double/infor_img/u60.png);
+}
+#content .projectRrecommend .title p{
+	line-height:50px;
+	font-size:20px;
+	text-align:center;
+}
+#content .shufflingFigure{
+	margin-top:5px;
+	width:397px;
+	height:318px;
+	background-image:url(../../images/double/infor_img/u68.png);
+	float:left;
+}
+#content .shufflingFigure .img{
+	width:208px;
+	height:125px;
+	margin-top:97px;
+	margin-left:94px;
+}
+#content .shufflingFigure p{
+	font-size:28px;
+	text-align:center;
+	font-weight:200;
+}
+#content .shufflingFigure .btn1{
+	width:16px;
+	height:19px;
+	margin-top:30px;
+	margin-left:295px;
+	
+}
+#content .shufflingFigure .btn2{
+	width:16px;
+	height:19px;
+	margin-top:30px;
+	margin-left:5px;
+	
+}
+#content .shufflingFigure .btn3{
+	width:16px;
+	height:19px;
+	margin-top:30px;
+	margin-left:5px;
+	
+}
+#content .shufflingFigure .btn4{
+	width:16px;
+	height:19px;
+	margin-top:30px;
+	margin-left:5px;
+	
+}
+#content .industryInfor{
+	margin-top:5px;
+	width:593px;
+	height:318px;
+	float:left;
+	
+}
+#content .industryInfor .head{
+	margin-top:0px;
+	width:593px;
+	height:45px;
+	background-image:url(../../images/double/infor_img/u106.png)
+}
+#content .industryInfor .title{
+	width:593px;
+	height:39px;
+	background-image:url(../../images/double/infor_img/u110.png)
+}
+#content .industryInfor .head p{
+	line-height:45px;
+	font-size:14px;
+	font-weight:700;
+}
+#content .industryInfor .title .infor{
+	line-height:39px;
+	font-size:13px;
+	width: 500px;
+	float: left;
+}
+#content .industryInfor .title .btn{
+	width:60px;
+  	height:25px;
+  	font-family:'Arial Normal', 'Arial';
+  	font-weight:400;
+  	font-style:normal;
+  	font-size:13px;
+  	text-decoration:none;
+  	color:#008000;
+  	text-align:center;
+	margin-right: 10px;
+	line-height: 25px;
+	padding: 1px;
+	float: left;
+	margin-top: 7px;
+}
+#content .courseRecommended{
+	width:210px;
+  	height:340px;
+	margin-top:0px;
+	margin-left:0px;
+	float:left;
+}
+#content .courseRecommended .title{
+	width:210px;
+  	height:40px;
+	background-image:url(../../images/double/infor_img/u76.png);
+}
+#content .courseRecommended .courseName{
+	width:210px;
+  	height:150px;
+	background-image:url(../../images/double/infor_img/u80.png);
+}
+#content .courseRecommended .title p{
+	line-height:40px;
+	text-align:center;
+	font-size:20px;
+}
+#content .courseRecommended .courseName p{
+	line-height:150px;
+	text-align:center;
+	font-size:13px;
+}
+#content .newsInfo{
+	margin-left:0px;
+	margin-top:0px;
+	width:990px;
+  	height:490px;
+	float:left;
+}
+#content .newsInfo .head{
+	width:990px;
+  	height:40px;
+	background-image:url(../../images/double/infor_img/u82.png);
+	float:left;
+}
+#content .newsInfo .list{
+	width:990px;
+  	height:90px;
+	background-image:url(../../images/double/infor_img/u86.png);
+	margin:0px;
+	float:left;
+}
+#content .newsInfo .head p{
+	line-height:40px;
+	font-size:20px;
+}
+#content .newsInfo .list .img{
+	width:100px;
+	height:70px;
+	margin-top:10px;
+	margin-left:20px;
+	float:left;
+}
+#content .newsInfo .list .title{
+	float:left;
+	margin-left:20px;
+	margin-top:9px;
+	font-size:12px;
+}
+#content .newsInfo .list .content{
+	float:left;
+	margin-top:38px;
+	margin-left:-24px;
+	font-size:12px;
+}
+#content .newsInfo .list .page{
+	margin-top:15px;
+	margin-left:200px;
+	background-image:url(../../images/double/spa_img/u131.png);
+	width:680px;
+	height:60px;
+}
+#content .newsInfo .list .page button{
+	padding:0px;
+  	height:34px;
+  	font-family:'Arial Normal', 'Arial';
+  	font-weight:400;
+  	font-style:normal;
+	font-size:13px;
+  	text-decoration:none;
+  	color:#000000;
+ 	text-align:center;
+	
+}
+#content .newsInfo .list .page .index{
+	margin-top:13px;
+	margin-left:45px;
+	float:left;
+}
+#content .newsInfo .list .page .forward{
+	margin-top:13px;
+	margin-left:15px;
+	float:left;
+}
+#content .newsInfo .list .page .next{
+	margin-top:13px;
+	margin-left:15px;
+	float:left;
+}
+#content .newsInfo .list .page .last{
+	margin-top:13px;
+	margin-left:15px;
+	float:left;
+}
+#content .newsInfo .list .page .number{
+	margin-top:18px;
+	margin-left:15px;
+	float:left;
+	font-size:12px;
+}
+#content .newsInfo .list .page .count{
+	margin-top:12px;
+	margin-left:15px;
+	float:left;
+	font-size:12px;
+}
+#content .newsInfo .list .page .count input{
+	width:26px;
+  	height:34px;
+}

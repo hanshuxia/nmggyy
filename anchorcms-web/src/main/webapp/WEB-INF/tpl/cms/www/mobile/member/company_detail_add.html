@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>用户中心-企业详细信息</title>
+    <link rel="shortcut  icon" type="image/x-icon" href="/${res}/resources/images/favicon.ico" media="screen"  />
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/releasePower.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="${base}/res/common/js/jquery.ext.js" type="text/javascript"></script>
+    <script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/swfupload.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/swfupload.queue.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/fileprogress.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/handlers.js" type="text/javascript"></script>
+    <link href="${base}/thirdparty/swfupload/process.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript">
+        //上传图片
+        function upload(n) {
+            var of = $("#uploadFile"+n);
+            //检查是否选择了图片
+            if(of.val()=="") {
+                alert('没有选择图片!');
+                return;
+            }
+            //将file移动至上传表单
+            $("#fileContent").empty();
+            $("#fileContent").append(of);
+            //复制一个file放至原处
+            $("#ufc"+n).append(of.clone().attr("value",""));
+            //修改属性
+            of.attr("id","");
+            of.attr("name","uploadFile");
+            //其他表单
+            $("#ufFileName").val($("#fileName"+n).val());
+            $("#ufWidth").val($("#zoomWidth"+n).val());
+            $("#ufHeight").val($("#zoomHeight"+n).val());
+            //先清除
+            $("#ufMark").val("");
+            $("#ufMark").val($("#mark"+n).val());
+            $("#uploadNum").val(n);
+            $("#uploadForm").submit();
+        }
+        //剪裁图片
+        function imgCut(n) {
+            if($("#uploadImgPath"+n).val()=="") {
+                alert('没有选择图片!');
+                return;
+            }
+            var url = "v_image_area_select.jspx?uploadNum="+n+"&imgSrcPath="
+                    +$("#uploadImgPath"+n).val()+"&zoomWidth="+$("#zoomWidth"+n).val()+"&zoomHeight="+$("#zoomHeight"+n).val();
+            window.open(url,"imgcut","height=550, width=1000, top=0, left=0, toolbar=no, menubar=no, scrollbars=auto, resizable=yes,location=no, status=no");
+        }
+        //预览图片
+        function previewImg(n) {
+            var img = $("#uploadImgPath"+n).val();
+            if(img!="") {
+                if(img.indexOf("?")==-1) {
+                    $("#preImg"+n).attr("src",img+"?d="+new Date()*1);
+                } else {
+                    $("#preImg"+n).attr("src",img+"&d="+new Date()*1);
+                }
+                if(!$("#preImg"+n).attr("noResize")) {
+                    $("#preImg"+n).css("width","auto");
+                    $("#preImg"+n).css("height","auto");
+                }
+            } else {
+                $("#preImg"+n).removeAttr("src");
+            }
+        }
+    </script>
+    <form id="uploadForm"  action="o_upload_image.jspx" method="post"  enctype="multipart/form-data" target="hiddenIframe" style="display:none;width:0px;height:0px;">
+        <span id="fileContent"></span>
+        <input id="ufWidth" type="hidden" name="zoomWidth"/>
+        <input id="ufHeight" type="hidden" name="zoomHeight"/>
+        <input id="ufFileName" type="hidden" name="fileName"/>
+        <input id="ufMark" type="hidden" name="mark"/>
+        <input id="uploadNum" type="hidden" name="uploadNum"/>
+    </form>
+    <iframe name="hiddenIframe" frameborder="0" border="0" style="display:none;width:0px;height:0px;"></iframe>
+
+    <script type="text/javascript">
+        $.validator.methods.leafChannel = function(value, element, param) {
+            var i = element.selectedIndex;
+            return $(element.options[i]).attr("class")!="sel-disabled";
+        }
+        $(function() {
+
+            var uploadPicsUrl = "o_swfPicsUpload.jspx";
+            var uploadAttachsUrl = "o_swfAttachsUpload.jspx";
+            //在firefox、chrome下，上传不能保留登录信息，所以必须加上jsessionid。
+            var jsessionid ="${sessionId!}";
+            if(jsessionid) {
+                uploadPicsUrl += ";jsessionid="+jsessionid;
+                uploadAttachsUrl += ";jsessionid="+jsessionid;
+            }
+            swfu=new SWFUpload({
+                upload_url : uploadPicsUrl,
+                flash_url : "${base}/thirdparty/swfupload/swfupload.swf",
+                file_size_limit : "2 MB",
+                file_types : "*.jpg;*.gif;*.png;*.bmp",
+                file_types_description : "图片",
+                file_queue_limit : 0,
+                custom_settings : {
+                    progressTarget : "fsUploadProgress",
+                    cancelButtonId : "btnCancel"
+                },
+                debug: false,
+
+                button_image_url : "${base}/thirdparty/swfupload/button_notext.png",
+                button_placeholder_id : "spanButtonPlaceHolder",
+                button_text: "<span class='btnText'>上传</span>",
+                button_width: 84,
+                button_height: 24,
+                button_text_top_padding: 2,
+                button_text_left_padding: 20,
+                button_text_style: '.btnText{color:#666666;}',
+
+                file_queued_handler : fileQueued,
+                file_queue_error_handler : fileQueueError,
+                file_dialog_complete_handler : fileDialogComplete,
+                upload_progress_handler : uploadProgress,
+                upload_error_handler : uploadError,
+                upload_success_handler : uploadPicsSuccess,
+                upload_complete_handler : uploadComplete,
+                queue_complete_handler : queueComplete
+            });
+        });
+        function uploadPicsSuccess(file,data) {
+            var jsonData=eval("("+data+")");//转换为json对象
+            if(jsonData.error!=null){
+                $.alert("[@s.m 'global.prompt'/]",jsonData.error);
+            }else{
+                addPicLine();
+                var index = picIndex - 1;
+                imgUrl=jsonData.imgUrl;
+                $("#preImg"+index).attr("src",""+imgUrl);
+                var imgSrc = parent.document.getElementById("preImg"+index);
+                if(!$(imgSrc).attr("noResize")) {
+                    $(imgSrc).css("width","auto");
+                    $(imgSrc).css("height","auto");
+                }
+                $("#uploadImgPath"+index).val(imgUrl);
+            }
+        }
+        function uploadAttachSuccess(file,data) {
+            var jsonData=eval("("+data+")");//转换为json对象
+            if(jsonData.error!=null){
+                $.alert("[@s.m 'global.prompt'/]",jsonData.error);
+            }else{
+                addAttachLine();
+                var index = attachIndex - 1;
+                var attachUrl=jsonData.attachUrl;
+                var attachName=jsonData.attachName;
+                $("#attachmentPaths"+index).val(attachUrl);
+                $("#attachmentNames"+index).val(attachName);
+            }
+        }
+
+    </script>
+    <style type="text/css">
+        .wrapper{width: 95%;}
+    </style>
+</head>
+<body>
+<div class="content wrapper">
+    <form id="release_form" action="company_detail_save.jspx" method="post">
+        <div class="servicePower wrapper">
+            <div class="service-content">
+                <div class="uploadImgs" id="imgUploadDiv">
+                    <label><i>*</i>&nbsp;企业Logo：</label>
+                    <span>(最多可添加1张图片，建议上传长宽比例为2:1的图片，单张大小不超过2M)</span><span style="color: red" id="pictureSpan"></span>
+                    <div class="upLoadDiv">
+                        <span id="spanButtonPlaceHolder"></span>
+                        <span style="display: none;"><input class="cancel" id="btnCancel" type="button" value="取消" onclick="swfu.cancelQueue();" disabled="disabled" /></span>
+                        <div id="fsUploadProgress" style="display: none;"></div>
+                    </div>
+                    <div id="picWrapper" class="picWrapper clearfix"> </div>
+                    <div id="picBefore" style="clear:both"></div>
+                    <div id="picTable" style="display:none;">
+                        <table id="picTable{0}" border="0" cellpadding="0" cellspacing="0" class="fbgj-tab">
+                            <tr>
+                                <td><img id="preImg{0}" alt="预览" noResize="true" style="width:110px;height:110px;background-color:#ccc;border:1px solid #c7c7c7;"/></td>
+                            </tr>
+                            <tr>
+                                <td style="line-height:1;">
+                                    <div style="margin-top:4px;"><input type="text" id="uploadImgPath{0}" name="picPaths" class="member-change" style="display:none;"/> <a href="javascript:void(0);" onclick="$('#picTable{0}').remove();clearSpan()" class="pn-opt">删除</a></div>
+                                    <div style="margin-top:4px;">
+                                    <span id="ufc{0}" style="position:relative;">
+                                    <input type='text' id='uploadFileText{0}' size="10" class="member-change" style="width:115px;height:30px;display:none;"/>
+                                    <input onchange="$('#uploadFileText{0}').val(this.value)" size="10" type="file" id="uploadFile{0}" style="width:72px;height:30px;display:none;"/>
+                                    </span>
+                                        <input type="button" value="上传" onclick="upload({0});" style="width:50px;height:30px;display:none;cursor:pointer;background:#3694d7;color:#fff;font-size:12px;"/>
+                                    </div>
+                                    <div><textarea style="width:300px;height:60px;margin-bottom:0;margin-top:10px;display:none;" name="picDescs" maxlength="255" ></textarea></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <script type="text/javascript">
+                        var picIndex = 1;
+                        var picTpl = $.format($("#picTable").html());
+                        function addPicLine() {
+                            //$('#picBefore').before(picTpl(picIndex++));
+                            $("#picWrapper").append(picTpl(picIndex++));
+                        }
+                    </script>
+                </div>
+                <div class="myDiv">
+                    <label><i>*</i>&nbsp;企业简介：</label>
+                    <script class="myEditor" id="editor" name="detailDesc" type="text/plain"></script>
+                </div>
+            </div>
+            <br>
+            <span style="color: red;margin-left: 200px" id="detailSpan"></span>
+        </div>
+        <div class="release-button">
+            <button type="button" class="btn submit" onclick="beforeSubmit()">保存</button>
+        </div>
+        <input id="nextUrl" name="nextUrl" value="synergy_detail_info.jspx" hidden="hidden">
+        <input id="channelId" name="channelId" value="105" hidden="hidden">
+    </form>
+</div>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="${base}/thirdparty/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="${base}/thirdparty/ueditor/ueditor.all.js"> </script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8" src="${base}/thirdparty/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript">
+    var editor = UE.getEditor('editor',{scaleEnabled:true,enableAutoSave: false});
+</script>
+<script>
+    function beforeSubmit(){
+        if(confirm("请确认是否保存?")){
+            //校验图片和富文本是否上传
+            var result = checkPicture();
+            var result1 = checkEdit();
+            if(result && result1){
+                $('#release_form').submit();
+            }
+        }
+    }
+    //图片校验
+    function checkPicture(){
+        if($("#imgUploadDiv").find('img').size()<2){
+            $("#pictureSpan").html("未上传图片！请检查");
+            return false;
+        }
+        if($("#imgUploadDiv").find('img').size()>2){
+            $("#pictureSpan").html("最多上传1张图片！请检查");
+            return false;
+        }
+        return true;
+    }
+    //富文本校验
+    function checkEdit(){
+        var length = editor.getContentLength();
+        var maxWord = editor.getOpt("maximumWords") || 20000;
+        if(length<=0){
+            $("#detailSpan").html("企业简介未填写！请检查");
+            return false;
+        }
+        if(length>maxWord){
+            $("#detailSpan").html("企业简介文字过多");
+            return false;
+        }
+        return true;
+    }
+    $(document).ready(function() {
+        //把没有图片上传的提示语删掉
+        $("#imgUploadDiv").mouseleave(function() {
+            if ($("#imgUploadDiv").find('img').size() > 1) {
+                $("#pictureSpan").html("");
+            }
+        });
+        //把没有文本编辑的提示语删掉
+        editor.addListener("focus", function (type, event) {
+            $("#detailSpan").html("");
+        });
+    })
+
+    //删除时判断图片数量，若只有1张图片，则清掉提示
+    function clearSpan(){
+        if($("#imgUploadDiv").find('img').size()==2) {
+            $("#pictureSpan").html("");
+            return false;
+        }
+        return true;
+    }
+</script>
+</body>
+</html>

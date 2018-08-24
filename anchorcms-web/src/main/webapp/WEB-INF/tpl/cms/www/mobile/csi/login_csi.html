@@ -1,0 +1,41 @@
+<script type="text/javascript">
+    $(function() {
+        //优先执行第三方退出 在执行本地退出
+        $('#logout').click(function () {
+            location="${base}/logout.jspx?returnUrl=/";
+        });
+    });
+    $(".username").hover(function(){
+        $(this).next().show();
+        $(this).addClass("active");
+    });
+    $(".vip").mouseleave(function(){
+        $(this).find("ul").hide();
+        $(this).find(".active").removeClass("active");
+    });
+</script>
+
+[#if user??]
+[#if user.userImg??]
+<img src="${user.userImg}">
+[#else]<img src="/${res}/images/userImg.png">
+[/#if]
+<span class="vip">
+<a class="username textOver" title="${user.username}">[@text_cut s=user.username! len='5' append='...'/]</a>
+    <ul>
+        <li><a href="${base}/member/index.jspx">会员中心</a></li>
+        <li><a href="${base}/logout.jspx">退出账号</a></li>
+    </ul>
+</span>
+[#else]
+<a class="btnLogin" href="${base}/login.jspx">登录</a><a  class="btnRegister" href="${base}/register.jspx">注册</a>
+[/#if]
+[#if user??][#if user.company??]
+<script type="text/javascript">
+    window.HT_UID = '${user.userId}';
+    window.HT_OID = '${user.company.companyId}';
+</script>
+[/#if][/#if]
+<div style="display:none;"><script src="https://s95.cnzz.com/z_stat.php?id=1260923910&web_id=1260923910" language="JavaScript"></script></div>
+<script type="text/javascript" src="https://stat.htres.cn/log.js?sid=nmgsite"></script>
+

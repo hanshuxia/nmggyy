@@ -1,0 +1,252 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>扶持政策-${site.siteName!}</title>
+    <meta http-equiv="keywords" content="扶持政策,内蒙古扶持政策"/>
+    <meta http-equiv="description" content="内蒙古扶持政策,${site.description!}"/>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/searching.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!--header start-->
+[#include "../include/header_icloud.html"]
+<!--header end-->
+<!--content start-->
+<div class="content wrapper clearfix">
+    <div class="searchIndex">
+        <div class="search-top">
+            <span><a href="/yzyjyzx/index.jhtml" target="_blank">${channel.parent.name}</a>&nbsp;&gt;&nbsp;<a href="/yzyjyzxFzzcsq/index.jhtml">${channel.name}</a></span>
+            <!--<div style="float: right">-->
+                <!--<a>政策列表</a>-->
+            <!--</div>-->
+        </div>
+        <div class="search-main">
+            <div id="kinds" class="kinds wrapper">
+                <div class="type">
+                    <span class="kind1">级别：</span>
+                    <div class="type-content kind-one">
+                    </div>
+                </div>
+                <div class="type bottom">
+                    <span class="kind2">发布时间：</span>
+                    <div class="type-content kind-two">
+                    </div>
+                </div>
+            </div>
+            <div class="searchBox">
+                <ul class="clearfix">
+                    <li class="current"><a href="index.jhtml">综合</a></li>
+                    <li><a  onclick="abilitySearch('2','1')">发布时间&nbsp;&nbsp;↓</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="showPolicy clearfix">
+        <ul class="clearfix">
+            [@ext_content_page count='12' typeId='1' q=q  modelPath="fosteringPolicy"]
+            [#if tag_pagination.list?size = 0]
+            <div style="text-align: center">
+                <img style="width: 258px;height: 260px;border: none;" src="/${res}/images/default_list.png" alt="">
+            </div>
+            [#else]
+            [#list tag_pagination.list as a]
+            [#if a_index<24]
+            <li[#if a_index==3||a_index==7||a_index==11||a_index==15||a_index==19||a_index==23 ] style="margin-right:0;"[/#if]>
+            [#if a.content.staticContent]
+                [#if a.content.needRegenerate]
+                    [#if a.content.pictures[0]??]
+                        <a href="/yzyjyzxYjszc/cloudcenter_policy_info.jspx?policyId=${a.policyId}"target="_blank"><img src="${a.content.pictures[0].imgPath?default('')}" alt=""></a>
+                    [#else]
+                    <!--可以写死一张图片放到这里-->
+                        <a href="/yzyjyzxYjszc/cloudcenter_policy_info.jspx?policyId=${a.policyId}"target="_blank"><img src="/${res}/resources/images/searching/picture.jpg" alt=""></a>
+                    [/#if]
+                [#else]
+                    [#if a.content.pictures[0]??]
+                        <a href="${a.content.url}" target="_blank"><img src="${a.content.pictures[0].imgPath?default('')}" alt=""></a>
+                    [#else]
+                    <!--可以写死一张图片放到这里-->
+                        <a href="${a.content.url}" target="_blank"><img src="/${res}/resources/images/searching/picture.jpg" alt=""></a>
+                    [/#if]
+                [/#if]
+            [#else]
+                [#if a.content.pictures[0]??]
+                    <a href="/yzyjyzxYjszc/cloudcenter_policy_info.jspx?policyId=${a.policyId}"target="_blank"><img src="${a.content.pictures[0].imgPath?default('')}" alt=""></a>
+                [#else]
+                <!--可以写死一张图片放到这里-->
+                    <a href="/yzyjyzxYjszc/cloudcenter_policy_info.jspx?policyId=${a.policyId}"target="_blank"><img src="/${res}/resources/images/searching/picture.jpg" alt=""></a>
+                [/#if]
+            [/#if]
+                <div class="item-cname">
+                    <dl>
+                        <dt>
+                            [#if (a.content)??]
+                                [#if a.content.staticContent]
+                                    [#if a.content.needRegenerate]
+                                        <a href="/yzyjyzxYjszc/cloudcenter_policy_info.jspx?policyId=${a.policyId}"target="_blank" title="${a.policyName?default('')}">[@text_cut s=a.policyName len='20' append='...'/]</a>
+                                    [#else]
+                                        <a href="${a.content.url}" target="_blank" title="${a.policyName?default('')}">[@text_cut s=a.policyName len='20' append='...'/]</a>
+                                    [/#if]
+                                [#else]
+                                    <a href="/yzyjyzxYjszc/cloudcenter_policy_info.jspx?policyId=${a.policyId}"target="_blank" title="${a.policyName?default('')}">[@text_cut s=a.policyName len='20' append='...'/]</a>
+                                [/#if]
+                            [/#if]
+                        </dt>
+                        <dd class="news-content"><p>${a.content.txt?default("")}</p></dd>
+                    </dl>
+                    <p class="tips" style="max-width: 700px;">发布人：<span>管理员</span> 发布时间：<span>${a.releaseDt?default("")}</span><span>扶持类型：<span>${a.isSupport?default("")}</span></span></p>
+                    [#if a.between>-1]
+                    <a href="/member/cloudCenter_apply_add.jspx?id=${a.policyId}" target="_blank"><button type="button">政策申请</button></a>
+                    [/#if]
+                    <input id="searchOne" value=" ${tag_pagination.searchOne?default('')}" hidden="hidden" type="text">
+                    <input id="searchtwo" value=" ${tag_pagination.searchTwo?default('')}"  hidden="hidden" type="text">
+                    <input id="searchthree" value=" ${tag_pagination.searchThree?default('')}"  hidden="hidden" type="text">
+                    <input id="searchFour" value=" ${tag_pagination.searchFour?default('')}"  hidden="hidden" type="text">
+                </div>
+            </li>
+            [/#if]
+            [/#list]
+            [/#if]
+        </ul>
+    </div>
+    <div class="page clearfix">[@cms_pagination sysPage='1'/]</div> <!--分页显示-->
+    [/@ext_content_page]
+</div>
+<div id="historyData"></div>
+<!--content end-->
+<!--footer start-->
+[#include "../include/footer_icloud.html"]
+<!--footer end-->
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/searching.js"></script>
+<script type="text/javascript">
+    /*超链接事件*/
+    function abilitySearch(id,e){
+        var $historyData = $("#historyData");
+        var searchOne = $historyData.attr("data-search-1");
+        var searchTwo = $historyData.attr("data-search-2");
+        var searchthree = $historyData.attr("data-search-3");
+        var searchFour = $historyData.attr("data-search-4");
+        var searchFive = $historyData.attr("data-search-5");
+
+        if(id == '0'){
+            searchOne = e;
+        }if(id == '1'){
+            searchTwo = e;
+        }if(id == '2'){
+            searchthree = e;
+        }if(id == '3'){
+            searchFour = e;
+        }if(id == '4'){
+            searchFive = e;
+        }
+
+        location.href="index-"+searchOne+"-"+searchTwo+"-"+searchthree+"-"+searchFour+"-"+searchFive+"-.jhtml";
+    }
+    $(document).ready(function(){
+        initData();
+        initHistoryData();
+    });
+
+    /*初始化方法*/
+    function initData() {
+        /*定义查询条件 S*/
+        var kind1 = [
+            {"code":"qb","name":"全部"},
+            {"code":"gjj","name":"国家级"},
+            {"code":"sqj","name":"省区级"},
+            {"code":"msj","name":"盟市级"}
+        ];
+        var kind2 = [
+            {"code":"qb","name":"全部"},
+            {"code":"2017","name":"2017"},
+            {"code":"2016","name":"2016"},
+            {"code":"2015","name":"2015"},
+            {"code":"2014","name":"2014"},
+            {"code":"2013","name":"2013"},
+            {"code":"2012","name":"2012"}
+
+        ];
+        /*定义查询条件 E*/
+
+        /*初始化查询条件 S*/
+        initKind(kind1, "kind-one", "0");
+        initKind(kind2, "kind-two", "1");
+        /*初始化查询条件 E*/
+    }
+
+    /*初始化历史查询*/
+    function initHistoryData() {
+        var url = window.location.href;
+        var arr = url.split("-");
+        if(arr.length >= 6){
+            /*能力分类*/
+            var searchOne = arr[1];
+            /*制造企业展示*/
+            var searchTwo = arr[2];
+            /*企业性质*/
+            var searchThree = arr[3];
+            /*经营方式*/
+            var searchFour = arr[4];
+            /*综合 发布时间*/
+            var searchFive = arr[5];
+
+            $("#historyData").attr({
+                "data-search-1":searchOne,
+                "data-search-2":searchTwo,
+                "data-search-3":searchThree,
+                "data-search-4":searchFour,
+                "data-search-5":searchFive
+            });
+
+            addRed("kind-one",searchOne);
+            addRed("kind-two",searchTwo);
+            addRed("kind-three",searchThree);
+            addRed("kind-four",searchFour);
+
+            if("undefined" != searchThree){
+                if("1" == searchThree){
+                    $(".searchBox li").eq(1).addClass("current").siblings().removeClass("current");
+                }
+            }
+        }
+    }
+
+    /*标红方法*/
+    function addRed(kind, condition){
+        if("undefined" != condition && condition!=""){
+            $("."+kind).find("."+condition).css("color","red");
+        }
+    }
+
+    function initKind(kind, kindClass,index) {
+        var kindOne = "";
+        for(var i = 0; i < kind.length; i++){
+            kindOne += "<a href='javascript: void(0)' class='"+kind[i].code+"' " +
+                    "data-condition='"+kind[i].code+"'>"
+                    + kind[i].name + "</a>";
+        }
+        $("."+kindClass).html(kindOne);
+
+        $("."+kindClass+" a").click(function () {
+            var condition = $(this).attr("data-condition");
+            abilitySearch(index,condition)
+        });
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>大数据与产业深度融合-政策公告</title>
+    <meta http-equiv="keywords" content="产业融合,内蒙古政策公告"/>
+    <meta http-equiv="description" content="内蒙古政策公告,${site.description!}"/>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/searching.css"/>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        function sele() {
+            var searchOne = " ";
+            var searchTwo = " ";
+            var searchThree = " ";
+            var searchFour = $("#selec").val();
+            if (searchFour != "" && searchFour != undefined) {
+                searchFour.trim();
+            }
+//            location.href="index-"+searchOne+"-"+searchTwo+"-"+searchThree+"-"+searchFour+"-"+searchFive+".jhtml";
+            if(searchFour){
+                location.href="index-"+searchOne+"-"+searchTwo+"-"+searchThree+"-"+searchFour+".jhtml";
+            }else{
+                alert("请输入您要检索的内容！");
+            }
+        }
+    </script>
+</head>
+<body>
+<!--header start-->
+[#include "../include/header_cyrh.html"]
+<!--header end-->
+<!--content start-->
+<div class="content wrapper clearfix" style="margin-bottom: 30px; ">
+    <div class="searchIndex">
+        <div class="search-top">
+            <span>政策公告</span>
+        </div>
+        <div class="search-main">
+        </div>
+    </div>
+</div>
+<div class="content wrapper clearfix">
+    <div class="policy-list clearfix wrapper">
+        <ul class="p-list clearfix">
+            [@ext_content_page count='10' typeId='1' q=q modelPath="bigdataPolicy"]
+            [#if tag_pagination.list?size gt 0 ]
+            [#list tag_list as a]
+            [#if a_index<24]
+            <li class="p-li">
+                [#if (a.content)??]
+                [#if a.content.staticContent]
+                [#if a.content.needRegenerate]
+                <span class="p-title" style="width: 500px"><a title="${a.policyName}" href="/bigdata_policy_preview.jspx?id=${a.bigdataId?default('null')}" target="_blank">[@text_cut s=a.policyName len='30' append='...'/]</a></span>
+                [#else]
+                <span class="p-title" style="width: 500px"><a title="${a.policyName}" href="${a.content.url}" target="_blank">[@text_cut s=a.policyName len='30' append='...'/]</a></span>
+                [/#if]
+                [#else]
+                <span class="p-title" style="width: 500px"><a title="${a.policyName}" href="/bigdata_policy_preview.jspx?id=${a.bigdataId?default('null')}" target="_blank">[@text_cut s=a.policyName len='30' append='...'/]</a></span>
+                [/#if]
+                [#else]
+                <span class="p-title" style="width: 500px"><a title="${a.policyName}" href="/bigdata_policy_preview.jspx?id=${a.bigdataId?default('null')}" target="_blank">[@text_cut s=a.policyName len='30' append='...'/]</a></span>
+                [/#if]
+                <span class="level" style="margin-left: 50px">发布时间：${a.creatDate?date}</span>
+                [#if (a.content)??]
+                [#if a.content.staticContent]
+                [#if a.content.needRegenerate]
+                <a target="_blank" href="/bigdata_policy_preview.jspx?id=${a.bigdataId?default('null')}"><button class="button">查看详情</button></a>
+                [#else]
+                <a target="_blank" href="${a.content.url}"><button class="button">查看详情</button></a>
+                [/#if]
+                [#else]
+                <a target="_blank" href="/bigdata_policy_preview.jspx?id=${a.bigdataId?default('null')}"><button class="button">查看详情</button></a>
+                [/#if]
+                [#else]
+                <a target="_blank" href="/bigdata_policy_preview.jspx?id=${a.bigdataId?default('null')}"><button class="button">查看详情</button></a>
+                [/#if]
+            </li>
+            [/#if]
+            [/#list]
+            [#else]
+            <div style="text-align: center">
+                <img src="/${res}/images/default_list.png" alt="">
+            </div>
+            [/#if]
+            <div class="page clearfix">[@cms_pagination sysPage='1'/]</div> <!--分页显示-->
+            [/@ext_content_page]
+        </ul>
+    </div>
+</div>
+<div id="historyData"></div>
+<!--content end-->
+<!--footer start-->
+[#include "../include/footer_cyrh.html"]
+<!--footer end-->
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/searching.js"></script>
+<script type="text/javascript">
+    function openDetail(obj){
+        var test1 = $(obj).attr("name");
+        window.open("/commservice/sAmplePolicyDetail.jspx?id="+test1);
+    }
+    function openApply(obj){
+        var test1 = $(obj).attr("name");
+        window.open("/member/SAmplePolicyApply.jspx?id="+test1);
+    }
+    function abilitySearch(id,e) {
+        var $historyData = $("#historyData");
+        var searchOne = $historyData.attr("data-search-1");
+        var searchTwo = $historyData.attr("data-search-2");
+        var searchthree = $historyData.attr("data-search-3");
+        var searchFour = $historyData.attr("data-search-4");
+
+        if(id == '0'){
+            searchOne = e;
+        }if(id == '1'){
+            searchTwo = e;
+        }if(id == '2'){
+            searchthree = e;
+        }if(id == '3'){
+            searchFour = e;
+        }
+
+        location.href="index-"+searchOne+"-"+searchTwo+"-"+searchthree+"-"+searchFour+"-.jhtml";
+    }
+    $(document).ready(function(){
+        initData();
+        initHistoryData();
+    })
+    /*初始化方法*/
+    function initData() {
+        /*定义查询条件 S*/
+        var kind1 = [
+            {"code":"qb","name":"全部"},
+            {"code":"hhht","name":"呼和浩特"},
+            {"code":"bt","name":"包头"},
+            {"code":"eeds","name":"鄂尔多斯"},
+            {"code":"wlcb","name":"乌兰察布"},
+            {"code":"wh","name":"乌海"},
+            {"code":"hlbe","name":"呼伦贝尔"},
+            {"code":"tl","name":"通辽"},
+            {"code":"cf","name":"赤峰"},
+            {"code":"byze","name":"巴彦淖尔"},
+            {"code":"xlglm","name":"锡林郭勒盟"},
+            {"code":"alsm","name":"阿拉善盟"},
+            {"code":"xam","name":"兴安盟"}
+        ];
+        /*初始化查询条件 S*/
+        initKind(kind1, "kind-one", "0");
+        /* initKind(kind2, "kind-two", "1");*/
+        /*初始化查询条件 E*/
+    }
+    /*初始化历史查询*/
+    function initHistoryData() {
+        var url = window.location.href;
+        var arr = url.split("-");
+        if(arr.length >= 6){
+            /*能力分类*/
+            var searchOne = arr[1];
+            /*制造企业展示*/
+            var searchTwo = arr[2];
+            /*企业性质*/
+            var searchThree = arr[3];
+            /*经营方式*/
+            var searchFour = arr[4];
+            /*综合 发布时间*/
+            /* var searchFive = arr[5];*/
+
+            $("#historyData").attr({
+                "data-search-1":searchOne,
+                "data-search-2":searchTwo,
+                "data-search-3":searchThree,
+                "data-search-4":searchFour
+            });
+
+            addRed("kind-one",searchOne);
+            addRed("kind-two",searchTwo);
+            addRed("kind-three",searchThree);
+            addRed("kind-four",searchFour);
+
+            /*if("undefined" != searchFour){
+             if("1" == searchFour){
+             $(".searchBox li").eq(1).addClass("current").siblings().removeClass("current");
+             /!* }if("3" == searchFour){
+             $(".searchBox li").eq(2).addClass("current").siblings().removeClass("current");*!/
+             }
+             }*/
+        }
+    }
+
+    /*标红方法*/
+    function addRed(kind, condition){
+        if("undefined" != condition && condition!=""){
+            $("."+kind).find("."+condition).css("color","red");
+        }
+    }
+
+    function initKind(kind, kindClass,index) {
+        var kindOne = "";
+        for(var i = 0; i < kind.length; i++){
+            kindOne += "<a href='javascript: void(0)' class='"+kind[i].code+"' " +
+                    "data-condition='"+kind[i].code+"'>"
+                    + kind[i].name + "</a>";
+        }
+        $("."+kindClass).html(kindOne);
+
+        $("."+kindClass+" a").click(function () {
+            var condition = $(this).attr("data-condition");
+            abilitySearch(index,condition)
+        });
+    }
+</script>
+
+</body>
+</html>

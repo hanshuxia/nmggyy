@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="ie-comp">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>产融平台用户中心</title>
+    <link rel="shortcut  icon" type="image/x-icon" href="/${res}/resources/images/favicon.ico" media="screen"  />
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/userCenter.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .prompt{position: fixed;width:180px;height: 90px;right:0px;bottom:0px;background-color:#E7F3FC;border:1px #1F336B solid;z-index:9999}
+        .cancel{height: 30px;width: 180px;background-color:#2880AB;}
+        #hide{float: right;margin-top: 5px;margin-right:8px;padding-left:-2.5px;border: 0px;height: 20px;width: 20px;background-color: #3692D8;}
+        .font{margin-left:20px;line-height: 30px;font-weight: bolder}
+        #countDiv{font-size:12px; color:red;}
+        #hide span{font-size: 20px;margin-left:-3.5px;color: white;font-weight: bolder;line-height: 15px;}
+        /*.prompt div{margin-top: 40px;margin-left: 30px}*/
+        #close{margin:1px 3px 7px 76px;border: 0px;background-color: #2F91DA;height: 20px;}
+        #close span{font-size: 10px;color: white;line-height: 20px;}
+
+    </style>
+
+</head>
+<body>
+<div class="content">
+    <div class="prompt" id="prompt">
+        <div class="cancel"><button id="hide"><span>×</span></button></div>
+        <div class="font" >
+            <i class="user-icon"></i>
+            你好<span>,</span>
+            <i class="message"></i>你有
+            <a href="/member/message_mng.jspx" id="countNum" target="mainFrame" class="message-count"><span id="countDiv"></span></a>
+            条信息未读</a>
+        </div>
+        <div>
+            <button id="close"><span>关&nbsp;闭</span></button>
+        </div>
+
+    </div>
+    <div id="goodcover"></div>
+    <div class="logo">
+        <a href="/bigdata_page.jspx"><img src="/${res}/resources/images/index/cyrh.png" style="width: 350px;"></a>
+        <div class="logobar clearfix">
+            <div class="menubar" [#if user.username!="admin"] style="width: 800px;" [/#if]>
+            <ul id="menuList" class="clearfix" >
+                <li><a href="/bigdata_page.jspx">网站首页</a></li>
+                <li class="current" id="member"><a>会员管理</a></li>
+                <li><a>产业融合需求方</a></li>
+                <li><a>产业融合能力方</a></li>
+                [@shiro.hasPermission name="*"]
+                <li><a>管理员</a></li>
+                [/@shiro.hasPermission]
+                <!--<li><a>云资源交易中心管理</a></li>-->
+                <!--<li><a>公共服务管理</a></li>-->
+                <!--<li><a>软件应用管理</a></li>-->
+                [#if user??][#if user.username=='cyrh']
+                <li>
+                    <a>产融平台管理</a>
+                </li>
+                [/#if][/#if]
+            </ul>
+        </div>
+    </div>
+    <div class="userInfo">
+        [#if user??][#if user.userImg??]<img src="${user.userImg}" alt="用户头像" title="用户头像" >[#else]<img src="/${res}/images/userImg.png" >[/#if]
+        <div class="vipMessage">
+            <a class="user textOver" title="${user.username!}" >[@text_cut s=user.username! len='5' append='...'/]</a>
+            <ul>
+                <li><a href="${base}/member/index2.jspx">会员中心</a></li>
+                <li><a href="${base}/logout.jspx">退出账号</a></li>
+            </ul>
+        </div>
+        [#else]
+        <div class="vipMessage">
+            <a class="user">未登录，请返回登录界面</a>
+        </div>
+        [/#if]
+
+    </div>
+</div>
+<div class="sidebar">
+    <div id="menu1">
+        <ul class="menu">
+            <li class="menus active"><a class="icon-need" href="javascript:void(0)" target="mainFrame">首页</a></li>
+        </ul>
+    </div>
+    <div class="current" id="memberDetail">
+        <ul class="menu">
+            <li class="menus open">
+                <a id="the_center" class="icon icon-vip" href="javascript:void(0)" target="mainFrame">会员中心</a>
+                <ul class="menuList" >
+                    [#if user??][#if user.isMain??][#if user.isMain=='1']
+                    <li><a id="company_edit" href="/member/company_edit.jspx" target="mainFrame">维护企业信息</a></li>
+                    [/#if]
+                    [#else]
+                    [#if user.company.companyId??]
+                    <li><a href="/member/company_view.jspx?id=${user.company.companyId}" target="mainFrame">查看企业信息</a></li>
+                    [/#if]
+                    [/#if]
+                    [/#if]
+                    <li><a href="/member/profile.jspx" target="mainFrame">个人信息维护</a></li>
+                    <li><a href="/member/contact_address_manage.jspx?userId=${user.userId}" target="mainFrame">联系人信息管理</a></li>
+                    <!--             -->
+                </ul>
+            </li>
+            [@shiro.hasPermission name="*"]
+            <li class="menus">
+                <a class="icon icon-area" href="javascript:void(0)" target="mainFrame">互动专区管理</a>
+                <ul class="menuList">
+                    <li><a href="/member/ask_help_list.jspx?status=4" target="mainFrame">问题求助</a></li>
+                    <li><a href="/member/brain_storm_list.jspx?status=4" target="mainFrame">头脑风暴</a></li>
+                    <li><a href="/member/suggestion.jspx?status=4" target="mainFrame">意见建议</a></li>
+                    <li><a href="/member/company_notice_list.jspx" target="mainFrame">系统公告</a></li>
+                </ul>
+            </li>
+            [/@shiro.hasPermission]
+            <li class="menus letter" id="letter">
+                <a class="icon icon-message" href="/member/message_list.jspx?box=0" target="mainFrame">站内信</a>
+            </li>
+
+            <!--[@shiro.hasPermission name="*"]-->
+            <!--<li class="menus"><a class="icon icon-admin">管理员</a>-->
+                <!--<ul class="menuList">-->
+                    <!--<li><a href="/member/companies_checked.jspx?status=2" target="mainFrame">企业信息审核</a></li>-->
+                    <!--<li><a href="/member/cloud_resource_cfcaApplyList.jspx" target="mainFrame">签章申请审核</a></li>-->
+                    <!--<li><a href="/member/sCompanyCredentialsChecked.jspx?status=1" target="mainFrame">企业资质审核</a></li>-->
+                <!--</ul>-->
+            <!--</li>-->
+            <!--[/@shiro.hasPermission]-->
+
+        </ul>
+    </div>
+    <div>
+        <ul class="menu">
+            <li class="menus open">
+                <a class="icon icon-need">需求方</a>
+                <ul class="menuList" style="display:block;">
+                    <li><a href="/synergy_demand_add.jspx?cyrh=2" target="mainFrame">发布需求</a></li>
+                    <li><a href="/member/synergy_bigdata_demand_list.jspx" target="mainFrame">我的需求</a></li>
+                    <li><a href="/member/bigdata_demand_quote_list.jspx?status=0" target="mainFrame">对接的需求</a></li>
+                    <li><a href="/member/bigdata_demand_order_list.jspx?status=1" target="mainFrame">我的对接</a></li>
+                </ul>
+            </li>
+
+            <!--[@shiro.hasPermission name="*"]-->
+            <!--<li class="menus"><a class="icon icon-admin">管理员</a>-->
+                <!--<ul class="menuList">-->
+                    <!--<li><a href="/member/synergy_ability_manage.jspx?statusType=2" target="mainFrame">能力管理</a></li>-->
+                    <!--<li><a href="/member/admin_demand_list.jspx?statusType=2" target="mainFrame">需求管理</a></li>-->
+                    <!--<li><a href="/member/admin_hotdemand_list.jspx" target="mainFrame">热门推荐管理</a></li>-->
+                    <!--<li><a href="/member/companies_list.jspx?status=0" target="mainFrame">企业制造能力管理</a></li>-->
+                    <!--<li><a href="/member/device_inquiry_list.jspx" target="mainFrame">设备询价待报价方案</a></li>-->
+                    <!--<li><a href="/member/synergy_seller_list.jspx" target="mainFrame">管理员订单管理</a></li>-->
+                    <!--<li><a href="/member/deviceSellerOrder_list.jspx" target="mainFrame">企业设备订单管理</a></li>-->
+                <!--</ul>-->
+            <!--</li>-->
+            <!--[/@shiro.hasPermission]-->
+        </ul>
+    </div>
+    <div>
+        <ul class="menu">
+            <li class="menus open">
+                <a class="icon icon-need">能力方</a>
+                <ul class="menuList" style="display:block;">
+                    <li><a href="/synergy_ability_add.jspx?cyrh=2" target="mainFrame">发布能力</a></li>
+                    <li><a href="/member/synergy_ability_list.jspx?cyrh=2" target="mainFrame">我的能力</a></li>
+                    <li><a href="/member/bigdata_ability_quote_list.jspx?status=1" target="mainFrame">对接的能力</a></li>
+                    <li><a href="/member/bigdata_ability_q_list.jspx?status=0" target="mainFrame">我的对接</a></li>
+                </ul>
+            </li>
+            <!--[@shiro.hasPermission name="*"]-->
+            <!--<li class="menus"><a class="icon icon-admin">管理员</a>-->
+                <!--<ul class="menuList">-->
+                    <!--<li><a href="/member/synergy_ability_manage.jspx?statusType=2" target="mainFrame">能力管理</a></li>-->
+                    <!--<li><a href="/member/admin_demand_list.jspx?statusType=2" target="mainFrame">需求管理</a></li>-->
+                    <!--<li><a href="/member/admin_hotdemand_list.jspx" target="mainFrame">热门推荐管理</a></li>-->
+                    <!--<li><a href="/member/companies_list.jspx?status=0" target="mainFrame">企业制造能力管理</a></li>-->
+                    <!--<li><a href="/member/device_inquiry_list.jspx" target="mainFrame">设备询价待报价方案</a></li>-->
+                    <!--<li><a href="/member/synergy_seller_list.jspx" target="mainFrame">管理员订单管理</a></li>-->
+                    <!--<li><a href="/member/deviceSellerOrder_list.jspx" target="mainFrame">企业设备订单管理</a></li>-->
+                <!--</ul>-->
+            <!--</li>-->
+            <!--[/@shiro.hasPermission]-->
+        </ul>
+    </div>
+    [@shiro.hasPermission name="*"]
+    <div>
+        <ul class="menu">
+            <li class="menus open"><a class="icon icon-need">产融平台管理</a>
+                <ul class="menuList" style="display:block;">
+                    <li><a href="/member/bigdata_registred_manage.jspx" target="mainFrame">产业融合能力调查管理</a></li>
+                    <li><a href="/member/bigdata_online_manage.jspx" target="mainFrame">产业融合需求调查管理</a></li>
+                    <li><a href="/member/bigdata_news_manage.jspx" target="mainFrame">产业融合新闻管理</a></li>
+                    <li><a href="/member/bigdata_policy_manage.jspx" target="mainFrame">产业融合政策管理</a></li>
+                </ul>
+            </li>
+            <li class="menus"><a class="icon icon-admin">管理员管理</a>
+                <ul class="menuList">
+                    <li><a href="/member/synergy_ability_manage.jspx?statusType=2" target="mainFrame">能力管理</a></li>
+                    <li><a href="/member/admin_demand_list.jspx?statusType=2" target="mainFrame">需求管理</a></li>
+                    <li><a href="/member/companies_checked.jspx?status=2" target="mainFrame">企业信息审核</a></li>
+                    <!--<li><a href="/member/admin_hotdemand_list.jspx" target="mainFrame">热门推荐管理</a></li>-->
+                    <!--<li><a href="/member/companies_list.jspx?status=0" target="mainFrame">企业制造能力管理</a></li>-->
+                    <!--<li><a href="/member/device_inquiry_list.jspx" target="mainFrame">设备询价待报价方案</a></li>-->
+                    <!--<li><a href="/member/synergy_seller_list.jspx" target="mainFrame">管理员订单管理</a></li>-->
+                    <!--<li><a href="/member/deviceSellerOrder_list.jspx" target="mainFrame">企业设备订单管理</a></li>-->
+                </ul>
+            </li>
+        </ul>
+    </div>
+    [/@shiro.hasPermission]
+
+    [#if user??][#if user.username== 'cyrh']
+    <div>
+        <ul class="menu">
+            <li class="menus open"><a class="icon icon-need">产业融合管理</a>
+                <ul class="menuList" style="display:block;">
+                    <li><a href="/member/bigdata_registred_manage.jspx" target="mainFrame">产业融合能力调查管理</a></li>
+                    <li><a href="/member/bigdata_online_manage.jspx" target="mainFrame">产业融合需求调查管理</a></li>
+                    <li><a href="/member/bigdata_news_manage.jspx" target="mainFrame">产业融合新闻管理</a></li>
+                    <li><a href="/member/bigdata_policy_manage.jspx" target="mainFrame">产业融合政策管理</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    [/#if][/#if]
+
+
+</div>
+<div class="main" id="main">
+    <div class="nav"><i class="icon icon-index"></i><span>您现在的位置： 主页 &gt; 会员中心</span></div>
+    <div class="menu-content" style="position: relative ;">
+        <iframe src="" id="mainFrame" name="mainFrame" style="width: 100%;height: 100%;z-index: 100;position: absolute;" frameborder="0"></iframe>
+    </div>
+</div>
+</div>
+
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/userCenter.js"></script>
+<script type="text/javascript">
+    function showWindow(){
+        $('#goodcover').show();
+    }
+    function hideWindow(){
+        $('#goodcover').hide();
+    }
+
+    $("#hide").click(function(){
+        $("#prompt").remove();
+    });
+    $("#close").click(function(){
+        $("#prompt").remove();
+    });
+    $("#countNum").click(function () {
+        $("#menuList li").removeClass();
+        $(".sidebar div").removeClass();
+        $(".menu li").removeClass("active")
+        $("#member").addClass("current");
+        $("#memberDetail").addClass("current")
+        $("#letter").addClass("active")
+
+    })
+
+    $(function countUnreadMsg(){
+        $.post("/member/message_countUnreadMsg.jspx", {
+        }, function(data) {
+            if(data.result){
+                $(".prompt").show();
+                $("#countDiv").html(""+data.count+"");
+            }else{
+                $(".prompt").remove();
+            }
+        }, "json");
+        setTimeout( "countUnreadMsg() ",1000*60*10);
+    })
+
+
+    $(function showdefault(){
+        if('${redirect! }'=="company_edit"){
+            document.getElementById("the_center").click();
+            document.getElementById("company_edit").click();
+        }
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>维修需求管理界面</title>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+    <script src="https://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <!--<link rel="stylesheet" type="text/css" href="/${res}/css/index.css"/>-->
+
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/list.css"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/list.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#jvForm").validate();
+        });
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="/${res}/js/html5shiv.min.js"></script>
+    <script src="/${res}/js/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+
+    </style>
+    <script>
+
+        $(document).ready(function () {
+            $("a").addClass("link");
+            var num = "${state}";
+            $("#state").val(num);
+            $("#state" + num).addClass("current");
+            $("#state" + num).next().addClass("active");
+        })
+        /*tab页被点击*/
+        function chooseState(valu) {
+//            alert(valu);
+            $("#state").val(valu);
+            $("#titleIn").val("");
+            $("#tableForm").submit();
+        }
+        function getAll() {
+            var ch = document.getElementById("checkAll");
+            var che = document.getElementsByName("checkEach");
+            for (var i = 0; i < che.length; i++) {
+                if (ch.checked) {
+                    che[i].checked = true;
+                } else {
+                    che[i].checked = false;
+                }
+            }
+        }
+        function getEach() {
+            var ch = document.getElementById("checkAll");
+            var che = document.getElementsByName("checkEach");
+            for (var i = 0; i < che.length; i++) {
+                if (!che[i].checked) {
+                    ch.checked = false;
+                    break;
+                }
+                if (i == che.length - 1) {
+                    ch.checked = true;
+                }
+            }
+        }
+        function setState() {
+            var che = document.getElementsByName("checkEach");
+            var ids = new Array();
+            var i = 0;
+            var delflag = false;
+            for (i; i < che.length; i++) {
+                if (che[i].checked) {
+                    delflag = true
+                    ids[i] = che[i].id;
+                }
+            }
+            if (!delflag) {
+
+                return alert("请选择数据");
+            } else {
+                var state = $("#state").val();
+                var url = "repairDemand_callBack.jspx?ids=" + ids + "&nextUrl=gylxt_wxxqgl_list.jspx?state=" + state;
+                var mtf = $("#tableForm");
+                mtf.attr("action", url);
+                mtf.submit();
+            }
+
+        }
+        function del() {
+            var che = document.getElementsByName("checkEach");
+            var ids = new Array();
+            var i = 0;
+            var delflag = false;
+            for (i; i < che.length; i++) {
+                if (che[i].checked) {
+                    delflag = true
+                    ids[i] = che[i].id;
+                }
+            }
+            if (!delflag) {
+
+                return alert("请选择数据");
+            } else {
+                var state = $("#state").val();
+                var url = "repairDemand_delete.jspx?ids=" + ids + "&nextUrl=gylxt_wxxqgl_list.jspx?state=" + state;
+                var mtf = $("#tableForm");
+                mtf.attr("action", url);
+                mtf.submit();
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+<div class="content wrapper clearfix">
+    <div class="head wrapper">
+        <a href="${base}/member/synergy_demand_list.jspx" class="current">需求列表</a>
+        <!-- <a href="${base}/member/synergy_demand_add.jspx" class="btn">发布需求</a>-->
+    </div>
+    <div class="main" style="border-bottom: white ">
+        <form id="tableForm" action="gylxt_wxxqgl_list.jspx" method="post">
+            <div class="searchBox">
+                <label>询价主题：</label>
+                <input id="titleIn" name="queryTitle" value="${queryTitle!}">
+                <!-- <button class="submit" onclick="del()">删除</button>-->
+                <button class="submit">查询</button>
+
+                <!-- [#if queryTitle??]
+                 <script>
+                     document.getElementById("titleIn").value = "${queryTitle}";
+                 </script>
+                 [/#if]-->
+            </div>
+            <div class="switchBtn">
+                <span id="state00" value="00" onclick="chooseState('0'+'0')">全部</span><em
+                    class="arrow-down"></em>
+                <span id="state1" value="1" onclick="chooseState(1)">草稿</span><em
+                    class="arrow-down"></em>
+                <span id="state2" value="2" onclick="chooseState(2)">待发布</span><em
+                    class="arrow-down"></em>
+                <span id="state3" value="3" onclick="chooseState(3)">询价中</span><em
+                    class="arrow-down"></em>
+                <span id="state4" value="4" onclick="chooseState(4)">已优选</span><em
+                    class="arrow-down"></em>
+                <span id="state5" value="5" onclick="chooseState(5)">已下单</span><em
+                    class="arrow-down"></em>
+                <span id="state6" value="6" onclick="chooseState(6)">已截止</span><em
+                    class="arrow-down"></em>
+                <span id="state7" value="7" onclick="chooseState(7)">已关闭</span><em
+                    class="arrow-down"></em>
+                <input id="state" type="hidden" name="state">
+                <script>
+                    document.getElementById("state").value = "${state}";
+                </script>
+            </div>
+            <div class="tableDiv">
+
+                <table border="1" class="wrapper" cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr style="text-align: center">
+                        <th class="tggl-top"><input type="checkbox" id="checkAll" onclick="getAll()"></th>
+                        <th class="tggl-top">ID</th>
+                        <th class="tggl-top">维修主题</th>
+                        <th class="tggl-top">维修地址</th>
+                        <th class="tggl-top">发布日期</th>
+                        <th class="tggl-top">截止日期</th>
+                        [#if state=="1"||state="6"||state=="00"||state=="3"]
+                        <th class="tggl-top">状态</th>
+                        [/#if]
+                        <th class="tggl-top">付款方式</th>
+                        <th class="tggl-top">补充说明</th>
+                        [#if state=="4"]
+                        <th class="tggl-top">报价企业</th>
+                        [#elseif state=="5"]
+                        <th class="tggl-top">下单企业</th>
+                        [/#if]
+                        <th class="tggl-top">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    [#if pagination.list?size gt 0]
+                    [#list pagination.list as c]
+
+                    [#if state=="4"||state=="5"]
+                    [#list c.sRepairQuote as qt]
+                    <tr>
+                        <td><input type="checkbox" id="${c.repairId!}" name="checkEach" onclick="getEach()">
+                        </td>
+                        <td>${c.repairId!}</td>
+                        <td>${c.repairName!}</td>
+                        <td>${c.addrProvince!}</td>
+                        <td>日期</td>
+                        <td>日期</td>
+                        <td>
+                            ${c.payType!}
+                        </td>
+                        <td>
+                            ${c.description!}
+                        </td>
+                        <td class="tggl-top">${qt.companyId!}公司名称</td>
+                        <td>
+                            <a href="repairDemand_list_detail.jspx?ids=${c.repairId}&nextUrl=gylxt_wxxqgl_list.jspx?state=${state}">明细</a>
+                            <a href="supplychain_require_demand_detail.jspx?ids=${c.repairId}&nextUrl=gylxt_wxxqgl_list.jspx?state=${state}">预览</a>
+                            [#if state=="1"]
+                            <a href="repairDemand_edit.jspx?demandId=${c.repairId!}">编辑</a>
+                            <a href="repairDemand_setState.jspx?ids=${c.repairId}&callBack=2&nextUrl=gylxt_wxxqgl_list.jspx?state=${state}">发布</a>
+                            [#elseif state=="2" ||state=="3"]
+                            <a href="repairDemand_setState.jspx?ids=${c.repairId}&callBack=1&nextUrl=gylxt_wxxqgl_list.jspx?state=${state}">撤回</a>
+                            [#elseif state=="4"]
+                            <a href=" repairDemand_goOrder.jspx?demandId=${c.repairId}&demandQuoteID=1"
+                            >下单</a>
+                            [/#if]
+                            [#if state=="3"]
+                            <a href="repairDemand_choose.jspx?ids=${c.repairId}">
+                                优选</a>
+                            [/#if]
+                            [#if state=="1"||state=="7"]
+                            <a href="repairDemand_delete.jspx?ids=${c.repairId}&nextUrl=gylxt_wxxqgl_list.jspx?state=${state}">删除
+                            </a>
+                            [#elseif state=="6"]
+                            <a href="repairDemand_setState.jspx?ids=${c.repairId}&callBack=7&nextUrl=gylxt_wxxqgl_list.jspx?state=${state}">关闭</a>
+                            [/#if]
+                        </td>
+                    </tr>
+                    [/#list]
+                    [#else]
+                    <tr>
+                        <td><input type="checkbox" id="${c.repairId!}" name="checkEach" onclick="getEach()">
+                        </td>
+                        <td>${c.repairId!}</td>
+                        <td>${c.repairName!}</td>
+                        <td>${c.addrProvince!}${c.addrCity!}${c.addrStreet!}</td>
+                        <td>${c.releaseDt!}"日期"</td>
+                        <td>${c.dealineDt!"日期"}</td>
+                        [#if state=="6"||state=="00"||state=="1"||state=="3"]
+                        <td class="tggl-top">
+                            [#switch c.state]
+                            [#case "0"]
+                            被驳回
+                            [#break]
+                            [#case "1"]
+                            草稿
+                            [#break]
+                            [#case "2"]
+                            待发布
+                            [#break]
+                            [#case "3"]
+                            询价中
+                            [#break]
+                            [#case "4"]
+                            已优选
+                            [#break]
+                            [#case "5"]
+                            已下单
+                            [#break]
+                            [#case "6"]
+                            已截止
+                            [#break]
+                            [#case "7"]
+                            已下单
+                            [#break]
+                            [/#switch]
+                        </td>
+                        [/#if]
+                        <td>
+                            ${c.payType!}
+                        </td>
+                        <td>
+                            ${c.description!}
+                        </td>
+                        <td>
+                            <a href="repairDemand_list_detail.jspx?ids=${c.repairId}&nextUrl=gylxt_wxxqgl_list.jspx?state=${state}">明细</a>
+                            <a href="supplychain_require_demand_detail.jspx?ids=${c.repairId}&nextUrl=gylxt_wxxqgl_list.jspx?state=${state}">预览</a>
+                            [#if state=="1"]
+                            <a href="repairDemand_edit.jspx?demandId=${c.repairId!}">编辑</a>
+                            <a href="repairDemand_setState.jspx?ids=${c.repairId}&callBack=2&nextUrl=gylxt_wxxqgl_list.jspx?state=${state}">发布</a>
+                            [#elseif state=="2" ||state=="3"]
+                            <a href="repairDemand_setState.jspx?ids=${c.repairId}&callBack=1&nextUrl=gylxt_wxxqgl_list.jspx?state=${state}">撤回</a>
+                            [#elseif state=="4"]
+                            <a href="repairDemand_goOrder.jspx?demandId=${c.repairId}&demandQuoteID=1"
+                            >下单</a>
+                            [/#if]
+                            [#if state=="3"]
+                            <a href="repairDemand_choose.jspx?ids=${c.repairId}">
+                                优选</a>
+                            [/#if]
+                            [#if state=="1"||state=="7"]
+                            <a href="repairDemand_delete.jspx?ids=${c.repairId}&nextUrl=gylxt_wxxqgl_list.jspx?state=${state}">删除 </a>
+
+                            [#elseif state=="6"]
+                            <a href="repairDemand_setState.jspx?ids=${c.repairId}&callBack=7&nextUrl=gylxt_wxxqgl_list.jspx?state=${state}">关闭</a>
+                            [/#if]
+                        </td>
+                    </tr>
+                    [/#if]
+
+                    [/#list]
+
+                    [#else]
+                    <tr>
+                        <td colspan="9" ><h4>暂无数据</h4></td>
+                    </tr>
+                    [/#if]
+                    </tbody>
+                </table>
+                <input type="hidden" name="pageNo"/>
+                <div class="page clearfix">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+                        <td align="center" class="pn-sp">
+                            共 ${pagination.totalCount} 条&nbsp;
+                            每页 ${pagination.pageSize} 条&nbsp;
+                            <input type="button" value="首 页" onclick="_gotoPage('1');" [#if
+                                   pagination.firstPage] disabled="disabled" [/#if]/>
+                            <input type="button" value="上一页" onclick="_gotoPage('${pagination.prePage}');"
+                                   [#if
+                                   pagination.firstPage] disabled="disabled" [/#if]/>
+                            <input type="button" value="下一页" onclick="_gotoPage('${pagination.nextPage}');"
+                                   [#if
+                                   pagination.lastPage] disabled="disabled" [/#if]/>
+                            <input type="button" value="尾 页" onclick="_gotoPage('${pagination.totalPage}');"
+                                   [#if pagination.lastPage] disabled="disabled" [/#if]/>&nbsp;
+                            当前 ${pagination.pageNo}/${pagination.totalPage} 页 &nbsp;转到第<input type="text"
+                                                                                              id="_goPs"
+                                                                                              onfocus="this.select();"
+                                                                                              onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"
+                                                                                              style="width:50px; border:1px solid #e7e7e7;"/>页
+                            <input id="_goPage" type="button" value="转"
+                                   onclick="_gotoPage($('#_goPs').val());"
+                                   [#if pagination.totalPage==1] disabled="disabled" [/#if] />
+                        </td>
+
+                    </table>
+                </div>
+                <script type="text/javascript">
+                    function _gotoPage(pageNo) {
+                        try {
+                            var tableForm = document.getElementById("tableForm");
+                            $("input[name=pageNo]").val(pageNo);
+//                                tableForm.action = "contribute_list.jspx";
+                            tableForm.onsubmit = null;
+                            tableForm.submit();
+                        } catch (e) {
+                            alert('_gotoPage(pageNo)方法出错');
+                        }
+                    }
+                </script>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

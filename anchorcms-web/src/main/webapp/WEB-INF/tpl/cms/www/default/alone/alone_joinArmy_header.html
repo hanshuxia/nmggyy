@@ -1,0 +1,73 @@
+
+
+<div class="header">
+	<div class="header-content1">欢迎来到中国军民融合科技服务平台</div>
+	<div class="header-content2">
+		&nbsp;&nbsp;用户名&nbsp; <input type="text"
+									 style="width: 110px;height: 25px;" /> &nbsp;&nbsp; &nbsp;密码&nbsp; <input
+			type="text" style="width: 110px;height: 25px;" />&nbsp;&nbsp;
+		&nbsp;验证码&nbsp; <input type="text" style="width: 90px;height: 25px;" />
+		&nbsp;<img src="/${res}/images/joinArmy/yanzhengma.png"
+				   style="width: 48px;height: 21px;" /> &nbsp;获取验证码&nbsp;&nbsp;&nbsp;
+		&nbsp;免费注册&nbsp; &nbsp;找回密码&nbsp;
+	</div>
+	<div class="header-content3">&nbsp;服务电话：400-400-4000&nbsp;&nbsp;</div>
+</div>
+
+<div class="title">
+	<div class="logo">
+		<img src="/${res}/images/joinArmy/logo.png"
+			 style="width: 264px;height: 97px;margin-top: 10px;" />
+	</div>
+	<div class="nav1">&nbsp;中国军地网 | 军民科技融合网 | 军地专利创新网 | 军地双创汇 |
+		军民融合金融服务网 | 军民融合资讯网</div>
+	<div class="nav2">
+		&nbsp;民参军服务网
+		<div class="nav3">
+			<img src="/${res}/images/joinArmy/erweima.jpg"
+				 style="width: 70px;height: 70px;margin-top: 10px;" />
+		</div>
+	</div>
+</div>
+
+<div class="nav">
+	<input class="nav-button" type="button"
+		   style="width: 120px;height: 50px;" value="首页"  onclick="mincanjunIndex()" /><input
+		class="nav-button" type="button" style="width: 120px;height: 50px;"
+		value="民参军咨询服务" onclick="consultService()" /><input class="nav-button"
+															type="button" style="width: 120px;height: 50px;" value="军工资质辅导"
+															onclick="tutoring()" /><input class="nav-button" type="button"
+																						  style="width: 120px;height: 50px;" value="军地需求对接" onclick="xuqiuduijie()"/><input
+		class="nav-button" type="button" style="width: 210px;height: 50px;"
+		value="民参军企业产品技术推介" onclick="marketing()"/><input class="nav-button" type="button"
+														  style="width: 120px;height: 50px;" value="军工资讯" onclick="consult()"/><input
+		class="nav-button" type="button" style="width: 120px;height: 50px;"
+		value="通知公告"  onclick="consult()"/><input class="nav-button" type="button"
+												  style="width: 120px;height: 50px;" value="成功案例" /><input
+		class="nav-button" type="button" style="width: 120px;height: 50px;"
+		value="资料下载"  onclick="download()"/>
+</div>
+
+<script>
+	function mincanjunIndex(){
+		window.location.href="<%=basePath%>views/joinArmy/mincanjunIndex.jsp";
+	}
+	function consultService(){
+		window.location.href="<%=basePath%>views/joinArmy/consultService.jsp";
+	}
+	function tutoring(){
+		window.location.href="<%=basePath%>views/joinArmy/tutoring.jsp";
+	}
+	function consult(){
+		window.location.href="<%=basePath%>views/joinArmy/consult.jsp";
+	}
+	function xuqiuduijie(){
+		window.location.href="<%=basePath%>views/joinArmy/xuqiuduijie.jsp";
+	}
+	function marketing(){
+		window.location.href="<%=basePath%>views/joinArmy/marketing.jsp";
+	}
+	function download(){
+		window.location.href="<%=basePath%>views/joinArmy/download.jsp";
+	}
+</script>

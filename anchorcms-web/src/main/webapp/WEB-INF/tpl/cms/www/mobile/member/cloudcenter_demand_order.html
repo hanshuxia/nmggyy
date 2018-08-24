@@ -1,0 +1,311 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${site.siteName} - Powered by ANCHORCMS</title>
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/list.css"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/list.js"></script>
+    <script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <!--添加表单校验-->
+    <script src="${base}/res/common/js/jquery.validate.js" type="text/javascript"></script>
+    <script src="${base}/res/common/js/messages_zh.js" type="text/javascript"></script>
+    <!--自己写校验方法-->
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/validateCheck.js"></script>
+    <style type="text/css">
+        .openOrderView{color: #0A80AA}
+        .openOrder{color: #0A80AA}
+    </style>
+
+    <script type="text/javascript">
+        //表单验证
+        $().ready(function() {
+            $("#tableForm").validate()
+        });
+        $(function() {
+            _onload();
+        });
+        //点击状态标签刷新列表
+        $(document).ready(function() {
+            $(".yx").click(function(){
+                $(".window").css("display","block");
+            })
+            $(".noteTop img").click(function(){
+                $(".window").css("display","none");
+            })
+            $(".tableDiv tbody tr:odd").css("background", "#FAF7F7");
+            $(".tableDiv tbody tr:even").css("background", "#fff");
+
+            $(".switchBtn li").click(function(){
+                if($(this).attr("id") == "all"){
+                    $("#demandState").val("");
+                }else if($(this).attr("id") == "demandState1"){
+                    $("#demandState").val("1");
+                }else if($(this).attr("id") == "demandState2"){
+                    $("#demandState").val("2");
+                }else if($(this).attr("id") == "demandState3"){
+                    $("#demandState").val("3");
+                }else if($(this).attr("id") == "demandState4"){
+                    $("#demandState").val("4");
+                }else if($(this).attr("id") == "demandState5"){
+                    $("#demandState").val("5");
+                }
+                $("#tableForm").submit();
+            });
+            //采购合同确认
+            $(".openOrder").click(function(){
+                var quoteId = $(this).parent().prev().text();
+                window.location.href="/member/cloudcenter_quote_order.jspx?quoteId="+quoteId+"";
+
+            });
+            $(".openOrderView").click(function(){
+                var quoteId = $(this).parent().prev().text();
+                window.open("/member/cloudcenter_quote_orderview.jspx?quoteId="+quoteId);
+            });
+        });
+        //加载页面标签状态
+        function _onload(){
+            if($("#demandState").val() == "1"){
+                $("#demandState1").addClass("current");
+                $("#status").css("display","none");
+                $(".upOrder").css("display","none");
+            }else{
+                if($("#demandState").val() == ""){
+                    $("#all").addClass("current");
+                }else if ($("#demandState").val() == "1"){
+                    $("#demandState1").addClass("current");
+                    //当点击已下单单的时候，把状态字段删掉，并且这一列字段不显示
+                    $("#status").css("display","none");
+                    $(".upOrder").css("display","none");
+                }else if  ($("#demandState").val() == "2"){
+                    $("#demandState2").addClass("current");
+                    $("#status").html("合同信息");
+                    $(".orderAffir").html("<a class='openOrderView'>采购合同</a>");
+                }else if  ($("#demandState").val() == "3"){
+                    $("#demandState3").addClass("current");
+                    $("#status").html("合同信息");
+                    $(".orderAffir").html("<a class='openOrderView'>采购合同</a>");
+                }else if  ($("#demandState").val() == "4"){
+                    $("#demandState4").addClass("current");
+                    $("#status").html("合同信息");
+                    $(".orderAffir").html("<a class='openOrderView'>采购合同</a>");
+                }else if  ($("#demandState").val() == "5"){
+                    $("#demandState5").addClass("current");
+                    $("#status").html("合同信息");
+                    $(".orderAffir").html("<a class='openOrderView'>采购合同</a>");
+                }
+            }
+        };
+
+
+    </script>
+    <!--[if lt IE 9]>
+    <script src="/${res}/js/html5shiv.min.js"></script>
+    <script src="/${res}/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="content wrapper clearfix">
+    <div class="head wrapper">
+        <a href="${base}/member/cloudcenter_offerList.jspx" class="current">订单信息</a>
+    </div>
+    <div class="main">
+        <form id="tableForm" action="cloudcenter_offerList.jspx" method="post">
+            <div class="searchBox">
+                <label>订单号：</label>
+                    <input id="demandObjId" name="demandObjId" value="${demandObjId?default('')}" >
+                <label>下单时间：</label>
+                    <input name="startDate" id="startDate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate" value="${startDate?default('')}">
+                <label>至</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" name="endDate" id="endDate" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'startDate\')}'})" class="Wdate" value="${endDate?default('')}">
+                <br>
+                <label>提供商：</label>
+                    <input id="companyName" name="companyName" value="${companyName?default('')}">
+                <button class="submit">查询</button>
+            </div>
+            <div class="switchBtn">
+               <ul>
+                <li id="all"><span>全部</span></li>
+                <li id="demandState1"><span>已下单</span></li>
+                <li id="demandState2"><span>合同待确认订单</span></li>
+                <li id="demandState3"><span>待付款订单</span></li>
+                <li id="demandState4"><span>待完成订单</span></li>
+                <li id="demandState5"><span>已完成订单</span></li>
+              </ul>
+            </div>
+            <div class="tableDiv wrapper">
+                <table cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>订单号</th>
+                        <th>云资源主题</th>
+                        <th>提供商</th>
+                        <th>报价单价（元）</th>
+                        <!--<th>订单总数</th>-->
+                        <th>订单数量</th>
+                        <th>购买方式</th>
+                        <th>下单时间</th>
+                        <th class="" id="status">状态</th>
+                        <th>管理</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    [#if pagination.list?size gt 0]
+                    [#list pagination.list as c]
+                    <tr>
+                        <td>${c.quoteId?default("")}</td>
+                        <td style="text-align: left;width: 160px;padding-left:10px"><a class="show-title" title="${c.demand.demandName!}">[@text_cut s=c.demand.demandName! len='10' append='...' /]</a></td>
+                        <td style="text-align: left;width: 250px;padding-left:20px"><a class="show-title" title="${c.quote.company.companyName!}">[@text_cut s=c.quote.company.companyName! len='15' append='...' /]</a></td>
+                        <td>${c.quote.price!}</td>
+                        <!--<td>${c.demand.count!}</td>-->
+                        <td>${c.quote.distributionAmount!}&nbsp;${c.demand.unit!}</td>
+                        [#if !c.demand.payType??]
+                        <td></td>
+                        [#else]
+                        [#switch c.demand.payType]
+                        [#case "0"]
+                        <td>现金</td>
+                        [#break]
+                        [#case "1"]
+                        <td>银行转账</td>
+                        [#break]
+                        [#case "2"]
+                        <td>支票</td>
+                        [#break]
+                        [#case "3"]
+                        <td>增值税发票</td>
+                        [#break]
+                        [/#switch]
+                        [/#if]
+                        <td>${c.createDt?default("")}</td>
+                        [#if !c.demandState??]
+                        <td>无状态</td>
+                        [#else]
+                        <td style="display: none">${c.quoteId!} </td>
+                        [#switch c.demandState]
+                        [#case "1"]
+                        <td class="upOrder">已下单</td>
+                        [#break]
+                        [#case "2"]
+                        <td class="orderAffir">合同待确认订单</td>
+                        [#break]
+                        [#case "3"]
+                        <td class="orderAffir">待付款订单</td>
+                        [#break]
+                        [#case "4"]
+                        <td class="orderAffir">待完成订单</td>
+                        [#break]
+                        [#case "5"]
+                        <td class="orderAffir">已完成订单</td>
+                        [#break]
+                        [#default]
+                        <td></td>
+                        [/#switch]
+                        [/#if]
+                        [#if !demandState??]
+                        <td> <a class="link" href="cloudcenter_order_view.jspx?id=${c.quoteId}">明细</a></td>
+                        [#else]
+                        [#switch demandState]
+                        [#case "1"]
+                        <td>
+                            <a class="link" href="cloudcenter_order_view.jspx?id=${c.quoteId}">明细</a>
+                             <a class="link" onclick="removeConfirm(${c.quoteId},${c.demand.demandId})">撤单</a>
+                        </td>
+                        [#break]
+                        [#case "2"]
+                        <td>
+                            <a class="link" href="cloudcenter_order_view.jspx?id=${c.quoteId}">明细</a>
+                            <a class="link" onclick="if(confirm('请确认是否确认合同？')){location.href='/member/cloudCenter_quotoManger_updateState.jspx?id=${c.quoteId!}&demandState=3&quoteState=2'}">确认</a>
+                            <a class="link" onclick="removeConfirm(${c.quoteId},${c.demand.demandId})">撤单</a>
+                        </td>
+                        [#break]
+                        [#case "3"]
+                        <td>
+                            <a class="link" href="cloudcenter_order_view.jspx?id=${c.quoteId}">明细</a>
+                             <a class="link" onclick="removeConfirm(${c.quoteId},${c.demand.demandId})">撤单</a>
+                             <a class="link" href="cloudCenter_quotoManger_updateState.jspx?id=${c.quoteId}&demandState=4&quoteState=3&nextUrl=cloudcenter_offerList.jspx">付款</a>
+                        </td>
+                        [#break]
+                        [#case "4"]
+                        <td>
+                            <a class="link" href="cloudcenter_order_view.jspx?id=${c.quoteId}">明细</a>
+                             <a class="link" href="cloudCenter_quotoManger_updateState.jspx?id=${c.quoteId}&demandState=5&quoteState=4&nextUrl=cloudcenter_offerList.jspx">完成</a>
+                        </td>
+                        [#break]
+                        [#case "5"]
+                        <td>
+                            <a class="link" href="/member/cloudcenter_order_delete.jspx?id=${c.quoteId}&nextUrl=cloudcenter_offerList.jspx">删除</a>
+
+                        </td>
+                        [#break]
+                        [#default]
+                        <td>
+                            <a class="link" href="cloudcenter_order_view.jspx?id=${c.quoteId}">明细</a>
+                        </td>
+                        [/#switch]
+                        [/#if]
+                    </tr>
+                    [/#list]
+                    [#else]
+                    <tr>
+                        <td colspan="9"><h4>暂无数据</h4></td>
+                    </tr>
+                    [/#if]
+                    </tbody>
+                </table>
+            </div>
+            <input type="hidden" name="pageNo"/>
+            <div  class="page clearfix">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="left" class="pn-sp">
+                            每页 ${pagination.pageSize} 条&nbsp;
+                            <input class="first" type="button" onclick="_gotoPage('1');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input class="prev" type="button" onclick="_gotoPage('${pagination.prePage}');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input type="text" value=${pagination.pageNo} id="_goPs" onfocus="this.select();" onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>/${pagination.totalPage}
+                            <input class="next" type="button" onclick="_gotoPage('${pagination.nextPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>
+                            <input class="last" type="button" onclick="_gotoPage('${pagination.totalPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>&nbsp;
+                            <button id="_goPage" class="ok" type="button" onclick="_gotoPage($('#_goPs').val());"[#if pagination.totalPage==1] disabled="disabled"[/#if]>GO</button>
+                            共 ${pagination.totalCount} 条&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <script type="text/javascript">
+                function _gotoPage(pageNo) {
+                    if(!/^[0-9]*[1-9][0-9]*$/.test(pageNo)){alert("页码必须为正整数！");return false;}
+                    try{
+                        var tableForm = document.getElementById("tableForm");
+                        $("input[name=pageNo]").val(pageNo);
+                        tableForm.action="cloudcenter_offerList.jspx.jspx";
+                        tableForm.onsubmit=null;
+                        tableForm.submit();
+                    } catch(e) {
+                        alert('_gotoPage(pageNo)方法出错');
+                    }
+                }
+            </script>
+
+            <input type="text" id="demandState" name="demandState" hidden="hidden" value="${demandState?default('')}">
+        </form>
+
+    </div>
+</div>
+</div>
+<div class="m-sj"></div>
+</div>
+</div>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script>
+    function removeConfirm(Id1,Id2){
+        if(confirm("是否撤单？")){
+            location.href="cloudCenter_quotoManger_remove.jspx?id="+Id1+"&demandId="+Id2+"";
+        }
+    }
+</script>
+</body>
+</html>

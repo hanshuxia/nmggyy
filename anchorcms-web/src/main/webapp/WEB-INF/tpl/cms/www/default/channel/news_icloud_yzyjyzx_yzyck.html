@@ -1,0 +1,247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>云资源查看-${site.siteName!}</title>
+    <meta http-equiv="keywords" content="云资源查看,内蒙古云资源查看"/>
+    <meta http-equiv="description" content="内蒙古云资源查看,${site.description!}"/>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/searching.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!--header start-->
+[#include "../include/header_icloud.html"]
+<!--header end-->
+<!--content start-->
+<div class="content wrapper clearfix">
+    <div class="searchIndex">
+        <div class="search-top">
+            <span><a href="/yzyjyzx/index.jhtml" target="_blank">${channel.parent.name}</a>&nbsp;&gt;&nbsp;<a href="/yzyjyzxYzyck/index.jhtml">${channel.name}</a></span>
+            <!--<div style="float: right">-->
+                <!--<a>云资源列表</a>-->
+            <!--</div>-->
+        </div>
+        <div class="search-main">
+            <div id="kinds" class="kinds wrapper">
+                <div class="type">
+                    <span class="kind1">地区：</span>
+                    <div class="type-content kind-one"></div>
+                    <a class="more">更多∨</a>
+                </div>
+                <div class="type bottom">
+                    <span class="kind2">类型：</span>
+                    <div class="type-content kind-two"></div>
+                    <!-- <a class="more">更多∨</a> -->
+                </div>
+            </div>
+            <div class="searchBox">
+                <ul>
+                    <li class="current"><a href="index.jhtml">综合</a></li>
+                    <li><a onclick="abilitySearch('2','3')">发布时间&nbsp;&nbsp;↓</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="showProduct2 clearfix">
+        <ul>
+            [@ext_content_page count='12' typeId='1' q=q modelPath="check"]
+            [#if tag_pagination.list?size = 0]
+            <div style="text-align: center">
+                <img style="width: 258px;height: 260px;border: none;" src="/${res}/images/default_list.png" alt="">
+            </div>
+            [#else]
+            [#list tag_pagination.list as a]
+            [#if a_index<24]
+            <li[#if a_index==3||a_index==7||a_index==11||a_index==15||a_index==19||a_index==23 ] style="margin-right:0;"[/#if]>
+            [#if a.content.pictures[0]??]
+            <a href="cloudcenter_resource_manager_info.jspx?managerId=${a.managerId! }" target="_blank"> <img src="${a.content.pictures[0].imgPath?default('')}" alt=""></a>
+            [#else]
+            <!--可以写死一张图片放到这里-->
+            <a href="cloudcenter_resource_manager_info.jspx?managerId=${a.managerId! }" target="_blank"><img src="/${res}/resources/images/searching/picture.jpg" alt=""></a>
+            [/#if]
+            <div class="item-cname" style="position: relative;padding: 0;">
+                <dl>
+                    <br class="clearfix">
+                        [#if a.rentPrice??][#if a.rentPrice!="0"]<span>租赁价格：</span><span style="margin:0 5px;font-size:18px;font-weight:bold;color:#FAA300;">${a.rentPrice!}</span>元/${a.specVersion!}[#else]<span>价格描述：</span><span style="margin:0 5px;font-size:18px;font-weight:bold;color:#FAA300;" title="${a.unit!}">[@text_cut s=a.unit! len='10' append='...'/]</span></br>[/#if][#else]<span style="margin:0 5px;font-size:18px;font-weight:bold;color:#FAA300;">面议</span>[/#if]
+                    </dt>
+                    <dd class="aName">
+                        <a href="cloudcenter_resource_manager_info.jspx?managerId=${a.managerId!}" target="_blank" title="${a.resourceName!}">[@text_cut s=a.resourceName! len='8' append='...'/]</a>
+                    </dd>
+                    <dd>
+                        <span>地区：</span>[#if a.addrCity??][@s_typevalue typecode='QY' typekey=a.addrCity /][/#if]
+                    </dd>
+                    <dd>
+                        <span>类型：</span>${a.resourceType!}
+                    </dd>
+                    <dd>
+                        <span>产品简介：</span><a class="show-title" href="javascript:void(0)" title="${a.parameter!}">[@text_cut s=a.parameter! len=10 append='...'/]</a>
+                    </dd>
+                    <dd><span>发布时间：</span>${a.releaseDt!}</dd>
+                    <dd>
+                        <span>云计算中心：</span><a class="show-title" href="javascript:void(0)" title="${a.sIcloudCenter.centerName!}">[@text_cut s=a.sIcloudCenter.centerName len=10 append='...'/]</a>
+                    </dd>
+                </dl>
+                [#if a.rentPrice??]
+                [#if a.rentPrice!="0"]
+                <a href="/member/cloudcenter_managerrent_add.jspx?mangerId=${a.managerId!}" target="_blank"><button>租赁</button> </a>
+                [/#if]
+                [/#if]
+
+            </div>
+            </li>
+            [/#if]
+            [/#list]
+            [/#if]
+        </ul>
+    </div>
+    <div class="page clearfix">[@cms_pagination sysPage='1'/]</div> <!--分页显示-->
+    [/@ext_content_page]
+</div>
+<div id="historyData"></div>
+<!--content end-->
+<!--footer start-->
+[#include "../include/footer_icloud.html"]
+<!--footer end-->
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/searching.js"></script>
+<script type="text/javascript">
+    /*超链接事件*/
+    function abilitySearch(id,e){
+        var $historyData = $("#historyData");
+        var searchOne = $historyData.attr("data-search-1");
+        var searchTwo = $historyData.attr("data-search-2");
+        var searchthree = $historyData.attr("data-search-3");
+        var searchFour = $historyData.attr("data-search-4");
+        var searchFive = $historyData.attr("data-search-5");
+
+        if(id == '0'){
+            searchOne = e;
+        }if(id == '1'){
+            searchTwo = e;
+        }if(id == '2'){
+            searchthree = e;
+        }if(id == '3'){
+            searchFour = e;
+        }if(id == '4'){
+            searchFive = e;
+        }
+
+        location.href="index-"+searchOne+"-"+searchTwo+"-"+searchthree+"-"+searchFour+"-"+searchFive+"-.jhtml";
+    }
+    $(document).ready(function(){
+        initData();
+        initHistoryData();
+    });
+
+    /*初始化方法*/
+    function initData() {
+        /*定义查询条件 S*/
+        var kind1 = [
+            {"code":"qb","name":"全部"},
+            {"code":"490000","name":"呼和浩特"},
+            {"code":"500000","name":"包头"},
+            {"code":"510000","name":"鄂尔多斯"},
+            {"code":"520000","name":"乌兰察布"},
+            {"code":"530000","name":"乌海"},
+            {"code":"540100","name":"呼伦贝尔"},
+            {"code":"540200","name":"通辽"},
+            {"code":"540300","name":"赤峰"},
+            {"code":"540400","name":"巴彦淖尔"},
+            {"code":"540500","name":"锡林郭勒盟"},
+            {"code":"540600","name":"阿拉善盟"},
+            {"code":"540700","name":"兴安盟"}
+        ];
+        var kind2 = [
+            {"code":"qb","name":"全部"},
+            {"code":"ycc","name":"云存储"},
+            {"code":"yjs","name":"云计算"},
+            {"code":"ysjk","name":"云数据库"},
+            {"code":"qt","name":"其他"}
+        ];
+        /*定义查询条件 E*/
+
+
+        /*初始化查询条件 S*/
+        initKind(kind1, "kind-one", "0");
+        initKind(kind2, "kind-two", "1");
+        /*初始化查询条件 E*/
+    }
+
+    /*初始化历史查询*/
+    function initHistoryData() {
+        var url = window.location.href;
+        var arr = url.split("-");
+        if(arr.length >= 6){
+            /*能力分类*/
+            var searchOne = arr[1];
+            /*制造企业展示*/
+            var searchTwo = arr[2];
+            /*企业性质*/
+            var searchThree = arr[3];
+            /*经营方式*/
+            var searchFour = arr[4];
+            /*综合 发布时间*/
+            var searchFive = arr[5];
+
+            $("#historyData").attr({
+                "data-search-1":searchOne,
+                "data-search-2":searchTwo,
+                "data-search-3":searchThree,
+                "data-search-4":searchFour,
+                "data-search-5":searchFive
+            });
+
+            addRed("kind-one",searchOne);
+            addRed("kind-two",searchTwo);
+            addRed("kind-three",searchThree);
+            addRed("kind-four",searchFour);
+
+            if("undefined" != searchThree){
+                if("1" == searchThree){
+                    $(".searchBox li").eq(2).addClass("current").siblings().removeClass("current");
+                }
+                if("3" == searchThree){
+                    $(".searchBox li").eq(1).addClass("current").siblings().removeClass("current");
+                }
+            }
+        }
+    }
+
+    /*标红方法*/
+    function addRed(kind, condition){
+        if("undefined" != condition && condition!=""){
+            $("."+kind).find("."+condition).css("color","red");
+        }
+    }
+
+    function initKind(kind, kindClass,index) {
+        var kindOne = "";
+        for(var i = 0; i < kind.length; i++){
+            kindOne += "<a href='javascript: void(0)' class='"+kind[i].code+"' " +
+                    "data-condition='"+kind[i].code+"'>"
+                    + kind[i].name + "</a>";
+        }
+        $("."+kindClass).html(kindOne);
+
+        $("."+kindClass+" a").click(function () {
+            var condition = $(this).attr("data-condition");
+            abilitySearch(index,condition)
+        });
+    }
+
+</script>
+</body>
+</html>

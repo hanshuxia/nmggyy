@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    [#if cyrh??]
+    <title>新用户注册 - 大数据与产业深度融合服务平台</title>
+    [#else]
+    <title>新用户注册 - ${site.siteName} - Powered by ANCHORCMS</title>
+    [/#if]
+    <link rel="shortcut  icon" type="image/x-icon" href="/${res}/resources/images/favicon.ico" media="screen"  />
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="/res/common/js/spark-md5.min.js"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <link type="text/css" rel="stylesheet" href="/${res}/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+
+    <!--[if lt IE 9]>
+    <script src="/${res}/js/html5shiv.min.js"></script>
+    <script src="/${res}/js/respond.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        $(function() {
+            validate();
+            $("#guestbookCaptcha").click();
+            $("#register").click(function(){
+                if(validate().form()){
+                    var tabdd = document.getElementById("jvForm");
+                    tabdd.onsubmit=null;
+                    var  password = $('#password').val();
+                    password= SparkMD5.hash(password);
+                    $('#password').val(password);
+                    var  repassword = $('#repwd').val();
+                    repassword= SparkMD5.hash(repassword);
+                    $('#repwd').val(repassword);
+                    tabdd.submit();
+                }
+            });
+
+        });
+        function validate(){
+            return  $("#jvForm").validate();
+        }
+    </script>
+    <style>
+
+        .rheader .logo-title {
+
+            float: left;
+            height: 34px;
+            line-height: 34px;
+            font-size: 24px;
+            color: #333;
+            padding-left: 30px;
+            margin-top: 30px;
+            margin-left: 46px;
+
+        }
+
+        .register-list li{position:relative;}
+        .register-list li label {
+            position: absolute;
+            left:110px;
+            bottom:-30px;
+            display: block;
+            height:30px;
+            line-height: 30px;;
+            width:300px;
+        }
+    </style>
+</head>
+<body style="background:#F2F3F7;">
+[#if cyrh??]
+<div class="rheader">
+    <div class="logo-con wrapper clearfix">
+        <a href="/" class="logo">
+            <img src="/${res}/resources/images/index/cyrh.png" alt="logo"/>
+        </a>
+        <div class="logo-title" style="margin-left: 60px">欢迎注册</div>
+        <div class="have">已有账号？ <a href="${base}/login.jspx?cyrh=1" class="tc">请登录</a></div>
+    </div>
+</div>
+[#else]
+<div class="rheader">
+    <div class="logo-con wrapper clearfix">
+        <a href="/" class="logo">
+            <img src="/${res}/resources/images/index/logo3-1.gif" alt="logo"/>
+        </a>
+        <div class="logo-title">欢迎注册</div>
+        <div class="have">已有账号？ <a href="${base}/login.jspx" class="tc">请登录</a></div>
+    </div>
+</div>
+[/#if]
+<div class="register-box">
+        [#if cyrh??]
+    <form id="jvForm" action="${base}/register.jspx?cyrh=1" method="post">
+        [#else]
+    <form id="jvForm" action="${base}/register.jspx" method="post">
+        [/#if]
+        <div class="register-list">
+            <ul>
+                <li>
+                    <i>*</i>&nbsp;<span>用户名</span>
+                    <input type="text" id="username"  vld="{required:true,rangelength:[2,20],username:true,remote:'username_unique.jspx',messages:{remote:'用户名已存在'}}" name="username" placeholder="2~20个字符，中文字符/英文字母/数字" class="register-input" />
+                </li>
+                <li>
+                    <i>*</i>&nbsp;<span>电子邮箱</span>
+                    <input type="email" id="email" maxlength="59"  autocomplete="off" vld="{required:true,remote:'email_unique.jspx',messages:{remote:'email已被使用！'}}" name="email" placeholder="用于找回密码" class="register-input" />
+                </li>
+                <li>
+                    <i>*</i>&nbsp;<span>设置密码</span>
+                    <input id="password" type="password" name="loginPassword"  autocomplete="off" vld="{required:true,rangelength:[${site.passwordMinLen},20]}" class="register-input" />
+                </li>
+                <li>
+                    <i>*</i>&nbsp;<span>确认密码</span>
+                    <input type="password" equalto="#password" id="repwd" autocomplete="off" vld="{required:true,rangelength:[${site.passwordMinLen},20]}" class="register-input" />
+                </li>
+                <li>
+                    <i>*</i>&nbsp;<span>验证码</span>
+                    <input type="text" maxlength="20" name="captcha" class="register-input register-code"  vld="{required:true}"/>
+                    <i class="code-img"><img id="guestbookCaptcha" onclick="this.src='${base}/captcha.svl?d='+new Date()" alt="" src="${base}/captcha.svl"></i>
+                </li>
+                <li class="register-btn">
+                    <input type="button" name="register" id="register" value="立即注册" />
+                </li>
+            </ul>
+        </div>
+        <input type="hidden" name="cyrh" id="cyrh" value="${cyrh!}"/>
+    </form>
+</div>
+</body>
+</html>

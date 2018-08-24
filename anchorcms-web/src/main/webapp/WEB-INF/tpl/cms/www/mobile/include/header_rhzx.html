@@ -1,0 +1,44 @@
+<div id="header">
+    <div class="welcome-bar">
+        <span class="welcome-left">欢迎来到中国军民融合科技服务平台</span>
+        <form class="welcome-form">
+            <label>用户名</label><input type="text"  />
+            <label>密&nbsp;码</label><input type="password" />
+            <label>验证码</label><input type="text" /><img src="/${res}/images/double/code.jpg" alt="验证码"/>
+        </form>
+        <div class="welcome-right">
+            <a  href="javascript:void(0)" title="">免费注册</a>
+            <a href="javascript:void(0)" title="">找回密码</a>
+            <span>服务电话：400-400-4000</span>
+        </div>
+    </div>
+    <div class="logo-bar">
+        <div class="logo">
+            <img class=""src="/${res}/images/double/logo.png"  alt="logo"/>
+        </div>
+        <div class="logo-right">
+            <div class="navlink">
+                <a href="">中国军地网</a>
+                <a href="">军民科技融合网</a>
+                <a href="">民参军服务网</a>
+                <a href="">军地专利创新网</a>
+                <a href="">军地双创会</a>
+                <a href="">军民融合金融服务网</a>
+            </div>
+            <div class="bigtitle big">军民融合资讯网</div>
+        </div>
+    </div>
+    <div class="nav-bar">
+        <ul class="clearfix">
+            [@cms_channel_list parentId='134']
+            [#list tag_list as c]
+            [#if c_index!=5]
+            <li><a href="${c.url}"  target="_self">${c.name}</a></li>
+            [#else]
+            <li><a href="${c.url}"  target="_self"  style="width:180px;">${c.name}</a></li>
+            [/#if]
+            [/#list]
+            [/@cms_channel_list]
+        </ul>
+    </div>
+</div>

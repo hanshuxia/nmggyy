@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${site.siteName} - 物流列表管理</title>
+    <!--能力管理列表-->
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/list.css"/>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <!--[if lt IE 9]>
+    <script src="/${res}/js/html5shiv.min.js"></script>
+    <script src="/${res}/js/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        $(function() {
+            _onload();
+        });
+        function _onload(){
+            if($("#logisticsOrderState").val() == "00"){
+                $("#statusType2").addClass("current");
+
+            }else if  ($("#logisticsOrderState").val() == ""){
+                $("#all").addClass("current");
+            }else if  ($("#logisticsOrderState").val() == "10") {
+                $("#statusType3").addClass("current");
+            }
+        };
+
+        $(document).ready(function(){
+            $(".switchBtn li").click(function(){
+                if($(this).attr("id") == "all"){
+                    $("#logisticsOrderState").val("");
+                }else if($(this).attr("id") == "statusType2"){
+                    $("#logisticsOrderState").val("00");
+                }else if($(this).attr("id") == "statusType3"){
+                    $("#logisticsOrderState").val("10");
+                }
+                $("#tableForm").submit();
+            });
+        });
+
+        function queryBillByNo(txlogisticId) { // 得到物流信息
+            if (txlogisticId != "") {
+                $.ajax({
+                    type: "post",
+                    url: "/getWuliuDetail.jspx?orderId=" + txlogisticId,
+                    dataType: "json",
+                    success: function (deliverInfo) {
+                        if (deliverInfo.length != 0) {
+                            getWuliuInfo (deliverInfo, txlogisticId);
+                        } else {
+                            ui.alertFail("没有该订单物流信息,暂时不能进行结算");
+                        }
+                    },
+                    error: function () {
+                        ui.alertFail("数据传输失败，原因：1、用户未登录，2、用户无关联公司，3、请求查看的物流信息不存在");
+                    }
+                });
+            } else {
+                ui.alertFail("物流信息为空暂不能查询！");
+            }
+        }
+
+        function getWuliuInfo(deliverInfoJson, orderId){
+            var deleverOperations = [];
+            var deleverOperationtimes = [];
+            if (deliverInfoJson.length > 0) {
+                for (var i = 0; i < deliverInfoJson[0].operations.length; i ++) {
+                    deleverOperations.push(deliverInfoJson[0].operations[i].operationdes);
+                    deleverOperationtimes.push(deliverInfoJson[0].operations[i].operationtime);
+                }
+                if (deleverOperations.length == 5) {
+                    if(confirm("请确定是否进行结算？")){
+                    location.href="/member/zt_logistics_ModifyState.jspx?txlogisticId="+orderId+"";}
+                }else{
+                    ui.alertFail("物流未完成，等待物流订单完成后结算！");
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="content wrapper clearfix">
+    <!--遮罩-->
+    <div id="goodcover1"></div>
+    <div class="head wrapper">
+        <a href="${base}/member/zt_logistics_manage_list.jspx" class="current">物流列表管理</a>
+    </div>
+    <div class="main">
+        <form id="tableForm" action="zt_logistics_manage_list.jspx" method="post">
+            <div class="searchBox">
+                <label>订单号：</label><input id="txlogisticId" name="txlogisticId" class="" value="${txlogisticId?default('')}">
+                <button class="submit">查询</button>
+                <br>
+            </div>
+            <div class="switchBtn">
+                <ul>
+                    <li id="statusType2"><span>待结算</span></li>
+                    <li id="statusType3"><span>已结算</span></li>
+                    <li id="all"><span>全部</span></li>
+                </ul>
+            </div>
+            <input type="text" id="logisticsOrderState" name="logisticsOrderState" hidden="hidden" value="${logisticsOrderState!}">
+            <div class="tableDiv wrapper">
+                <table cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>订单号</th>
+                        <!--<th>购买人</th>-->
+                        <th>订单名称</th>
+                        <th>服务方</th>
+                        <th>结算(元)</th>
+                        <th>购买时间</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    [#if pagination.list?size gt 0]
+                    [#list pagination.list as c]
+                    <tr>
+                        <td>${c.txlogisticId!}</td>
+                        <!--[#if c.spOrder??]-->
+                        <!--<td><a class="show-title" title="${c.spOrder.buycompany.companyName!}">[@text_cut s=c.spOrder.buycompany.companyName! len='15' append='...' /]</a></td>-->
+                        <!--[/#if]-->
+                        [#if c.spOrder??]
+                        <td><a class="show-title" title="${c.spOrder.supplyName!}">[@text_cut s=c.spOrder.supplyName! len='15' append='无' /]</a></td>
+                        [#else]
+                        <td><a class="show-title">无订单名称</a></td>
+                        [/#if]
+                        <td> [#if c.logisticproviderId??] [#if c.logisticproviderId=="ZT"]中铁物流[/#if][/#if]</td>
+                        <td>${c.itemsValue?default('未结算')}</td>
+                        <td>${(c.createOrderTime?date)!""}</td>
+                        <td>[#if c.logisticsOrderState??] [#if c.logisticsOrderState=="00"]待结算[/#if][#if c.logisticsOrderState=="10"]已结算[/#if][/#if]</td>
+
+                        <td>
+                            <a class="link" href="/member/Wuliu_Manage_detail.jspx?txlogisticId=${c.txlogisticId!}">明细</a>
+                            <a class="link" href="/member/xtzz_wuliuorder_detail.jspx?orderId=${c.txlogisticId!}">物流查询</a>
+                            [#if c.logisticsOrderState??] [#if c.logisticsOrderState=="00"]
+                            <a class="link" onclick='queryBillByNo("${c.txlogisticId}")'>结算</a>
+                            [/#if][/#if]
+                        </td>
+
+                    </tr>
+                    [/#list]
+                    [#else]
+                    <tr>
+                        <td colspan="6"><h4>暂无数据</h4></td>
+                    </tr>
+                    [/#if]
+                    </tbody>
+                </table>
+            </div>
+            <input type="hidden" name="pageNo"/>
+            <div  class="page clearfix">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="left" class="pn-sp">
+                            每页 ${pagination.pageSize} 条&nbsp;
+                            <input class="first" type="button" onclick="_gotoPage('1');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input class="prev" type="button" onclick="_gotoPage('${pagination.prePage}');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input type="text" value=${pagination.pageNo} id="_goPs" onfocus="this.select();" onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>/${pagination.totalPage}
+                            <input class="next" type="button" onclick="_gotoPage('${pagination.nextPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>
+                            <input class="last" type="button" onclick="_gotoPage('${pagination.totalPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>&nbsp;
+                            <button id="_goPage" class="ok" type="button" onclick="_gotoPage($('#_goPs').val());"[#if pagination.totalPage==1] disabled="disabled"[/#if]>GO</button>
+                            共 ${pagination.totalCount} 条&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <input type="text" id="statusType" name="statusType" hidden="hidden" value="${statusType!}">
+            <script type="text/javascript">
+                function _gotoPage(pageNo) {
+                    if(!/^[0-9]*[1-9][0-9]*$/.test(pageNo)){ui.alertFail("页码必须为正整数！");return false;}
+                    try{
+                        var tableForm = document.getElementById("tableForm");
+                        $("input[name=pageNo]").val(pageNo);
+                        tableForm.action="zt_logistics_manage_list.jspx";
+                        tableForm.onsubmit=null;
+                        tableForm.submit();
+                    } catch(e) {
+                        ui.alertFail('_gotoPage(pageNo)方法出错');
+                    }
+                }
+            </script>
+            <input type="text" id="status" name="status" hidden="hidden" value="${statusType?default('')}">
+        </form>
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+</body>
+</html>

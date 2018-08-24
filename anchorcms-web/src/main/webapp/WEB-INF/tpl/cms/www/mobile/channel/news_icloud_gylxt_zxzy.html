@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>众修资源-${site.siteName!}</title>
+    <meta http-equiv="keywords" content="众修资源,内蒙古众修资源"/>
+    <meta http-equiv="description" content="内蒙古众修资源,${site.description!}"/>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/searching.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+[#include "../include/header_icloud.html"]
+<!--content start-->
+<div class="content wrapper clearfix">
+    <div class="searchIndex">
+        <div class="search-top">
+            <span><a href="/gylxt/index.jhtml" target="_blank">${channel.parent.name}</a>&nbsp;&gt;&nbsp;<a href="/gylxtZxzy/index.jhtml">${channel.name}</a></span>
+            <div style="float: right">
+                <a href="/member/Repair_relese.jspx?flag=front" style="width: 150px" target="_blank">发布众修资源</a>
+                <!--<button onclick="location.href='/member/demandrelease.jspx'">发布维修需求</button>-->
+            </div>
+        </div>
+        <div class="search-main">
+            <div id="kinds" class="kinds wrapper">
+                <div class="type">
+                    <span class="kind1">资源分类：</span>
+                    <div class="type-content kind-one">
+                        <a class="qb" href="javascript: void(0)" data-condition="qb" onclick="sercher(this,0)">全部</a>
+                        [@s_pub_code_list count='10' level="1" orderBy='1' menuType='ZXFWLX']
+                        [#list tag_list as a]
+                        <a class="${a.sortNo}" href="javascript: void(0)" data-condition="${a.sortNo}" onclick="sercher(this,0)">${a.value?default("")}</a>
+                        [/#list]
+                        [/@s_pub_code_list]
+                    </div>
+                </div>
+                <div class="type bottom">
+                    <span class="kind2">地区：</span>
+                    <div class="type-content kind-two"></div>
+                    <a class="more">更多∨</a>
+                </div>
+
+            </div>
+            <div class="searchBox">
+                <ul class="clearfix">
+                    <li class="current"><a href="index.jhtml">综合</a></li>
+                    <li ><a onclick="abilitySearch('2','2')" id="time0">发布时间&nbsp;&nbsp;↓</a></li>
+                    <li><a onclick="abilitySearch('2','1')" id="time1">截止时间&nbsp;&nbsp;↓</a></li>
+                </ul>
+                <div class="searchBar">
+                    <!--<input type="text" id="selec">-->
+                    <!--<button id="but" onclick="sele('')">搜索</button>-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="showProduct clearfix" style="right:100px">
+        <ul>
+            [@ext_content_page count='12' typeId='1' q=q  modelPath="repairRes"]
+            [#if tag_pagination.list?size gt 0]
+            [#list tag_pagination.list as a]
+            [#if a_index<24]
+            <li [#if a_index==3||a_index==7||a_index==11||a_index==15||a_index==19||a_index==23]style="margin-right:0;"[/#if]>
+            [#if (a.content)??]
+            [#if a.content.staticContent]
+            [#if a.content.needRegenerate]
+                    [#if a.content.pictures[0]??]
+                    <a href="/Repair_manager_preview.jspx?id=${a.repairId}" target="_blank"><img src="${a.content.pictures[0].imgPath?default('')}" alt=""></a>
+                    [#else]
+                    <!--可以写死一张图片放到这里-->
+                    <a href="/Repair_manager_preview.jspx?id=${a.repairId}" target="_blank"><img src="/${res}/images/default_img.jpg" alt=""></a>
+                    [/#if]
+            [#else]
+                    [#if a.content.pictures[0]??]
+                    <a href="/Repair_manager_preview.jspx?id=${a.repairId}" target="_blank"><img src="${a.content.pictures[0].imgPath?default('')}" alt=""></a>
+                    <!--<a href="${a.content.url}" target="_blank"><img src="${a.content.pictures[0].imgPath?default('')}" alt=""></a>-->
+
+                    [#else]
+                    <!--可以写死一张图片放到这里-->
+                    <!--<a href="${a.content.url}" target="_blank"><img src="/${res}/images/default_img.jpg" alt=""></a>-->
+                    <a href="/Repair_manager_preview.jspx?id=${a.repairId}" target="_blank"><img src="/${res}/images/default_img.jpg" alt=""></a>
+                    [/#if]
+            [/#if]
+            [#else]
+                    [#if a.content.pictures[0]??]
+                    <a href="/Repair_manager_preview.jspx?id=${a.repairId}" target="_blank"><img src="${a.content.pictures[0].imgPath?default('')}" alt=""></a>
+                    [#else]
+                    <!--可以写死一张图片放到这里-->
+                    <a href="/Repair_manager_preview.jspx?id=${a.repairId}" target="_blank"><img src="/${res}/images/default_img.jpg" alt=""></a>
+                    [/#if]
+            [/#if]
+            [#else]
+                    [#if a.content.pictures[0]??]
+                    <a href="/Repair_manager_preview.jspx?id=${a.repairId}" target="_blank"><img src="${a.content.pictures[0].imgPath?default('')}" alt=""></a>
+                    [#else]
+                    <!--可以写死一张图片放到这里-->
+                    <a href="/Repair_manager_preview.jspx?id=${a.repairId}" target="_blank"><img src="/${res}/images/default_img.jpg" alt=""></a>
+                    [/#if]
+            [/#if]
+
+            <div class="item-cname">
+                    <dl>
+
+                        <dt class="aName">
+                            [#if (a.content)??]
+                            [#if a.content.staticContent]
+                            [#if a.content.needRegenerate]
+                              <a href="/Repair_manager_preview.jspx?id=${a.repairId!}" target="view_window" title="${a.repairName!}">[@text_cut s=a.repairName! len='10' append='...'/]</a></dt>
+                            [#else]
+
+                                     <!--<a href="${a.content.url}" target="_blank" title="${a.repairName!}">[@text_cut s=a.repairName! len='10' append='...'/]</a></dt>-->
+                                <a href="/Repair_manager_preview.jspx?id=${a.repairId}" target="_blank" title="${a.repairName!}">[@text_cut s=a.repairName! len='10' append='...'/]</a></dt>
+                        [/#if]
+                        [#else]
+                             <a href="/Repair_manager_preview.jspx?id=${a.repairId}" target="_blank" title="${a.repairName!}">[@text_cut s=a.repairName! len='10' append='...'/]</a></dt>
+                        [/#if]
+                        [#else]
+                                <a href="/Repair_manager_preview.jspx?id=${a.repairId}" target="_blank" title="${a.repairName!}">[@text_cut s=a.repairName! len='10' append='...'/]</a></dt>
+                        [/#if]
+                        <dd>擅长：[@text_cut s=a.goodAt! len='10' append='...'/]</dd>
+                    </dl>
+                <dd>[#if a.repairType??][@s_typevalue typecode='ZXFWLX' typekey=a.repairType isfull='1' join='> ' /][/#if]</dd>
+                    <span class="special">有着${a.workYear?default('0')}年以上维修经验!</span>
+            </div>
+            </li>
+            [/#if]
+            [/#list]
+            [#else]
+            <div style="text-align: center">
+                <img src="/${res}/images/default_list.png" alt="">
+            </div>
+            [/#if]
+        </ul>
+    </div>
+    <div class="page clearfix">[@cms_pagination sysPage='1'/]</div> <!--分页显示-->
+    [/@ext_content_page]
+</div>
+<div id="historyData"></div>
+<!--content end-->
+[#include "../include/footer_icloud.html"]
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/searching.js"></script>
+
+<script type="text/javascript">
+    /*超链接事件*/
+    function abilitySearch(id,e){
+        var $historyData = $("#historyData");
+        var searchOne = $historyData.attr("data-search-1");
+        var searchTwo = $historyData.attr("data-search-2");
+        var searchthree = $historyData.attr("data-search-3");
+
+        if(id == '0'){
+            searchOne = e;
+        }if(id == '1'){
+            searchTwo = e;
+        }if(id == '2'){
+            searchthree = e;
+        }
+
+        location.href="index-"+searchOne+"-"+searchTwo+"-"+searchthree+"-.jhtml";
+    }
+    $(document).ready(function(){
+        initData();
+        initHistoryData();
+    });
+
+    /*初始化方法*/
+    function initData() {
+        /*定义查询条件 S*/
+        var kind1 = [
+            {"code":"qb","name":"全部"},
+            {"code":"440000","name":"机械设备"},
+            {"code":"450000","name":"办公设备"},
+            {"code":"460000","name":"交通设备"},
+            {"code":"470000","name":"专业设备"},
+            {"code":"480000","name":"其他"}
+        ];
+        var kind2 = [
+            {"code": "qb", "name": "全部"},
+            {"code": "bjs", "name": "北京市"},
+            {"code": "tjs", "name": "天津市"},
+            {"code": "hbs", "name": "河北省"},
+            {"code": "nmgzzq", "name": "内蒙古自治区"},
+            {"code": "lns", "name": "辽宁省"},
+            {"code": "jls", "name": "吉林省"},
+            {"code": "hljs", "name": "黑龙江省"},
+            {"code": "shs", "name": "上海市"},
+            {"code": "jss", "name": "江苏省"},
+            {"code": "zjs", "name": "浙江省"},
+            {"code": "ahs", "name": "安徽省"},
+            {"code": "fjs", "name": "福建省"},
+            {"code": "jxs", "name": "江西省"},
+            {"code": "sds", "name": "山东省"},
+            {"code": "hns", "name": "河南省"},
+            {"code": "hubs", "name": "湖北省"},
+            {"code": "huns", "name": "湖南省"},
+            {"code": "gds", "name": "广东省"},
+            {"code": "gxzzzzq", "name": "广西壮族自治区"},
+            {"code": "hains", "name": "海南省"},
+            {"code": "cqs", "name": "重庆市"},
+            {"code": "scs", "name": "四川省"},
+            {"code": "gzs", "name": "贵州省"},
+            {"code": "yns", "name": "云南省"},
+            {"code": "zzzzq", "name": "西藏自治区"},
+            {"code": "sxs", "name": "陕西省"},
+            {"code": "gss", "name": "甘肃省"},
+            {"code": "qhs", "name": "青海省"},
+            {"code": "nxhzzzq", "name": "宁夏回族自治区"},
+            {"code": "xjwwezzzq", "name": "新疆维吾尔自治区"}
+        ];
+
+        /*定义查询条件 E*/
+
+        /*初始化查询条件 S*/
+     //   initKind(kind1, "kind-one", "0");
+        initKind(kind2, "kind-two", "1");
+        /*初始化查询条件 E*/
+    }
+    /*初始化历史查询*/
+    function initHistoryData() {
+        var url = window.location.href;
+        var arr = url.split("-");
+        if(arr.length >= 4){
+            /*能力分类*/
+            var searchOne = arr[1];
+            /*制造企业展示*/
+            var searchTwo = arr[2];
+            /*企业性质*/
+            var searchThree = arr[3];
+
+            $("#historyData").attr({
+                "data-search-1":searchOne,
+                "data-search-2":searchTwo,
+                "data-search-3":searchThree,
+            });
+
+            addRed("kind-one",searchOne);
+            addRed("kind-two",searchTwo);
+
+            if("undefined" != searchThree){
+                if("2" == searchThree){
+                    $(".searchBox li").eq(1).addClass("current").siblings().removeClass("current");
+                }if("1" == searchThree){
+                    $(".searchBox li").eq(2).addClass("current").siblings().removeClass("current");
+                }
+            }
+        }
+    }
+
+    /*标红方法*/
+    function addRed(kind, condition){
+        if("undefined" != condition && condition!=""){
+            $("."+kind).find("."+condition).css("color","red");
+        }
+    }
+
+    function initKind(kind, kindClass,index) {
+        var kindOne = "";
+        for(var i = 0; i < kind.length; i++){
+            kindOne += "<a href='javascript: void(0)' class='"+kind[i].code+"' " +
+                    "data-condition='"+kind[i].code+"'>"
+                    + kind[i].name + "</a>";
+        }
+        $("."+kindClass).html(kindOne);
+
+        $("."+kindClass+" a").click(function () {
+            var condition = $(this).attr("data-condition");
+            abilitySearch(index,condition)
+        });
+    }
+    function sercher(obj,index){
+        var condition = $(obj).attr("data-condition");
+        abilitySearch(index, condition)
+    }
+</script>
+
+</body>
+</html>

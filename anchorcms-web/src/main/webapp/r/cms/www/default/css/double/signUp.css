@@ -1,0 +1,166 @@
+.txt {
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333333;
+	text-align: center;
+	line-height: normal;
+}
+
+.clear-bg {
+	background-image: none;
+}
+
+.posetion {
+	height: 30px;
+	background-image: url("../../images/double/roadshow/u0.png");
+}
+
+.posetion p {
+	margin-left: 10px;
+	text-align: left;
+	line-height: 30px;
+}
+
+.signup {
+	margin-top: 10px;
+	height: 1071px;
+}
+
+.signup-select {
+	width: 200px;
+	height: 610px;
+}
+
+.signup-select .li-title{
+	width: 200px;
+	height: 35px;
+	line-height:35px;
+	background-color: #ddd;
+}
+
+.li-show {
+	width: 200px;
+	height: 60px;
+	line-height: 30px;
+	border: 1px solid #aaa;
+	background-image: url("../../images/double/signUp/u7.png");
+}
+
+.signup-body {
+	width: 990px;
+	height: 1020px;
+}
+
+.signup-body-head {
+	width: 990px;
+	height: 55px;
+	line-height: 55px;
+	font-size: 18px;
+	font-weight: 700;
+	background-image: url("../../images/double/signUp/u6.png");
+}
+
+.signup-submit {
+	width: 990px;
+	height: 435px;
+	background-image: url("../../images/double/signUp/u4.png");
+}
+
+.signup-name {
+	width: 200px;
+	height: 40px;
+	background-image: url("../../images/double/signUp/u40.png");
+}
+
+.data {
+	margin-left: 30px;;
+	width: 250px;
+	height: 40px;
+}
+
+.submit-fist {
+	margin-top: 50px;
+	margin-left: 250px;
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+}
+
+.signup-submit-li{
+	margin: 10px 250px;
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+}
+
+.signup-submit-upload {
+	margin: 10px 0px 10px 22px;
+	width: 110px;
+	height: 40px;
+	line-height: 40px;
+}
+
+.signup-submit-upbody {
+	margin: 10px 30px;
+	width: 340px;
+	height: 40px;
+	line-height: 40px;
+	color: red;
+}
+
+.signup-submit-sub {
+	margin: 10px 300px;
+	width: 150px;
+	height: 42px;
+}
+
+.signup-body-foot {
+	margin-top: 10px;;
+	width: 990px;
+	height: 575px;
+}
+
+.introduce {
+	width: 990px;
+	height: 44px;
+	font-size: 18px;
+	background-image: url("../../images/double/signUp/u23.png");
+}
+
+.hello {
+	width: 990px;
+	height: 90px;
+	background-image: url("../../images/double/signUp/u26.png");
+}
+
+.service {
+	width: 990px;
+	height: 95px;
+	background-image: url("../../images/double/signUp/u28.png");
+}
+
+.process {
+	width: 990px;
+	height: 101px;
+	background-image: url("../../images/double/signUp/u30.png");
+}
+
+.process-fist {
+	margin-left: 20px;
+}
+
+.process img {
+	margin-top: 20px;
+}
+
+.foot-end {
+	width: 990px;
+	height: 240px;
+	background-image: url("../../images/double/signUp/u32.png");
+}
+
+.end-2 {
+	margin-left: 20px;
+}

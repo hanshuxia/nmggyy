@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta  http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${site.siteName} - Powered by ANCHORCMS</title>
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/list.css"/>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/list.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            _onload();
+        });
+
+        //点击状态标签刷新列表
+        $(document).ready(function() {
+            $(".switchBtn li").click(function(){
+                if($(this).attr("id") == "all"){
+                    $("#status").val("");
+                }else if($(this).attr("id") == "draft"){
+                    $("#status").val("0");
+                }else if($(this).attr("id") == "release"){
+                    $("#status").val("1");
+                }
+                $("#tableForm").submit();
+            });
+        });
+
+        //加载页面标签状态
+        function _onload(){
+            if($("#status").val() == ""){
+                $("#all").addClass("current");
+                $("#all").next().addClass("active");
+            }else if  ($("#status").val() == "0"){
+                $("#draft").addClass("current");
+                $("#draft").next().addClass("active");
+            }else if ($("#status").val() == "1") {
+                $("#release").addClass("current");
+                $("#release").next().addClass("active");
+            }
+        };
+    </script>
+    <!--[if lt IE 9]>
+    <script src="/${res}/js/html5shiv.min.js"></script>
+    <script src="/${res}/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div class="content wrapper clearfix">
+    <div class="head wrapper">
+        <a href="/member/manager_releasetask_list.jspx" class="current">任务下发管理列表</a>
+    </div>
+    <div class="main">
+        <form id="tableForm" action="/member/manager_releasetask_list.jspx" method="post">
+            <div class="searchBox">
+                <label>任务名称：</label><input name="taskName" value="${taskName?default('')}">
+                <label>开始时间：</label><input name="startDt" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate date" value="${startDate?default('')}">
+                &nbsp;&nbsp;至&nbsp;&nbsp;<input name="deadlineDt" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate date" value="${deadline?default('')}">
+                <button class="submit">查询</button>
+            </div>
+            <div class="switchBtn">
+                <ul>
+                    <li id="all" ><span>全部</span></li><em class="arrow-down"></em>
+                    <li id="draft"><span>草稿</span></li><em class="arrow-down"></em>
+                    <li id="release"><span>已下发</span></li><em class="arrow-down"></em>
+                </ul>
+            </div>
+            <div class="tableDiv wrapper">
+                <table cellpadding="0" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>任务名称</th>
+                            <th>开始时间</th>
+                            <th>截止时间</th>
+                            <th>发布人</th>
+                            <th>单位</th>
+                            <th>状态</th>
+                            <th>管理</th>
+                         </tr>
+                    </thead>
+                    <tbody>
+                        [#if pagination.list?size gt 0]
+                            [#list pagination.list as c]
+                                <tr>
+                                    <td style="text-align: left;width: 250px;padding-left:30px"><a class="show-title" title="${c.taskName!}">[@text_cut s=c.taskName!'未提交' len='15' append='...' /]</a></td>
+                                    <td>${c.startDt?default("")}</td>
+                                    <td>${c.deadlineDt?default("")}</td>
+                                    <td>${c.user.username?default("")}</td>
+                                    <td style="text-align: left;width: 250px;padding-left:20px"><a class="show-title" title="${c.company.companyName!}">[@text_cut s=c.company.companyName!'未提交' len='15' append='...' /]</a></td>
+                                    [#if !c.status??]
+                                    <td></td>
+                                    [#else]
+                                    [#switch c.status]
+                                    [#case "0"]
+                                    <td>草稿</td>
+                                    [#break]
+                                    [#case "1"]
+                                    <td>已下发</td>
+                                    [#break]
+                                    [#default]
+                                    <td></td>
+                                    [/#switch]
+                                    [/#if]
+                                    [#if !status??]
+                                    <td>
+                                        <a class="link" href="manager_task_view.jspx?taskId=${c.taskId}">明细</a>
+                                    </td>
+                                        [#else]
+                                        [#switch status]
+                                        [#case "0"]
+                                        <td>
+                                            <a class="link" href="manager_task_view.jspx?taskId=${c.taskId}">明细</a>
+                                            <a class="link" href="manager_task_editor.jspx?taskId=${c.taskId}">编辑</a>
+                                            <a class="link" onclick="if(confirm('请确定是否下发？')){location.href='manager_releasetaskupdate.jspx?taskId=${c.taskId}&status=1'}">下发</a>
+                                            <a class="link" onclick="if(confirm('请确定是否删除？')){location.href='manager_task_delete.jspx?taskId=${c.taskId}&status=${c.status}'}">删除</a>
+                                        </td>
+                                        [#break]
+                                        [#case "1"]
+                                        <td style="text-align: center;">
+                                            <a class="link" href="manager_task_view.jspx?taskId=${c.taskId}">明细</a>
+                                            <a class="link" onclick=" rebackTask(${c.taskId},${c.status});">撤回</a>
+                                        </td>
+                                        [#break]
+                                        [#default]
+                                        <td>
+                                            <a class="link" href="manager_task_view.jspx?taskId=${c.taskId}">明细</a>
+                                        </td>
+                                        [/#switch]
+                                    [/#if]
+                                </tr>
+                            [/#list]
+                        [#else]
+                            <tr>
+                                <td colspan="9"><h4>暂无任务信息</h4></td>
+                            </tr>
+                        [/#if]
+                    </tbody>
+                </table>
+            </div>
+            <input type="hidden" name="pageNo"/>
+            <div  class="page clearfix">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="left" class="pn-sp">
+                            每页 ${pagination.pageSize} 条&nbsp;
+                            <input class="first" type="button" onclick="_gotoPage('1');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input class="prev" type="button" onclick="_gotoPage('${pagination.prePage}');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input type="text" value=${pagination.pageNo} id="_goPs" onfocus="this.select();" onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>/${pagination.totalPage}
+                            <input class="next" type="button" onclick="_gotoPage('${pagination.nextPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>
+                            <input class="last" type="button" onclick="_gotoPage('${pagination.totalPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>&nbsp;
+                            <button id="_goPage" class="ok" type="button" onclick="_gotoPage($('#_goPs').val());"[#if pagination.totalPage==1] disabled="disabled"[/#if]>GO</button>
+                            共 ${pagination.totalCount} 条&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <script type="text/javascript">
+                function _gotoPage(pageNo) {
+                    if(!/^[0-9]*[1-9][0-9]*$/.test(pageNo)){ui.alertFail("页码必须为正整数！");return false;}
+                    try{
+                        var tableForm = document.getElementById("tableForm");
+                        $("input[name=pageNo]").val(pageNo);
+                        tableForm.action="/member/manager_releasetask_list.jspx";
+                        tableForm.onsubmit=null;
+                        tableForm.submit();
+                    } catch(e) {
+                        alert('_gotoPage(pageNo)方法出错');
+                    }
+                }
+                //撤回方法
+               function  rebackTask(taskId,status){
+                   //判断是否已经上报
+                   $.ajax({
+                       type:"post",
+                       url:"/member/tastModel_checkUpdate.jspx",
+                       dataType:"json",
+                       data:{taskId:taskId},
+                       cache:false,
+                       async:false,
+                       success:function(result){
+                           if(result){
+                               alert("下发已被上报不能撤回!");
+                           }else{
+                               if(confirm('请确定是否撤回？')){
+                                   location.href="manager_releasetaskupdate.jspx?taskId="+taskId+"&status="+status;
+                               }
+                           }
+                       },
+                       error:function(){
+                       }
+                   })
+                }
+
+            </script>
+            <input type="text" id="status" name="status" hidden="hidden" value="${status?default('')}">
+        </form>
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+</body>
+</html>

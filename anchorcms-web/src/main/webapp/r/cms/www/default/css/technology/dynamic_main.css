@@ -1,0 +1,170 @@
+.titile{
+    margin: 10px 0px;
+    padding: 12px 10px 12px 10px;
+    width: 1200px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 14px;
+    font-style: normal;
+    color: #333333;
+    text-align: left;
+    line-height: normal;
+    background-image: url("../../images/technology/dynamic_main/u5.png");
+}
+.content{
+    float: left;
+    margin-right: 5px;
+    width: 973px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    color: #333333;
+    text-align: center;
+    background-image: url("../../images/technology/dynamic_main/u202.png");
+}
+.title{
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 28px;
+    color: #333333;
+    text-align: center;
+    line-height: 65px;
+    background-image: url(../../images/technology/dynamic_main/u204.png);
+}
+.date{
+    margin-bottom: 5px;
+    margin-left: 246px;
+    width: 480px;
+    line-height: 40px;
+    background-image: url("../../images/technology/dynamic_main/u206.png");
+}
+.share{
+    float: left;
+    margin-left: 10px;
+    padding-top: 20px;
+    text-align: left;
+}
+.pic1{
+    float: right;
+    margin-right: 15px;
+}
+.content-pic{
+    margin-bottom: 5px;
+    width: 230px;
+    height: 192px;
+}
+.pic2{
+
+    margin-left: 20px;
+    width: 230px;
+    margin-bottom: 80px;
+}
+.content-main{
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 28px;
+    color: #333333;
+    text-align: center;
+    line-height: 90px;
+}
+.content-comments{
+    width: 973px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    color: #333333;
+
+    line-height:64px;
+    background-image: url("../../images/technology/dynamic_main/u218.png");
+}
+.content-comments-num{
+    float: left;
+    margin-left: 20px;
+}
+.content-comments-button{
+    float: right;
+    margin:7px 15px 7px 0px ;
+    width: 136px;
+    height: 50px;
+    line-height: 50px;
+    background-image: url("../../images/technology/dynamic_main/u222.png");
+}
+.navigation{
+    float: right;
+    height: 780px;
+    width: 220px;
+
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: left;
+    line-height: normal;
+    background-image: url("../../images/technology/dynamic_main/u73.png");
+}
+.navigation-roll{
+    padding-left: 10px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    color: red;
+    text-align: left;
+    line-height:50px;
+}
+.navigation-interval{
+    width: 220px;
+    height: 5px;
+}
+.navigation-row{
+    width: 220px;
+    height: 29px;
+    line-height: 29px;
+    background-image: url("../../images/technology/dynamic_main/u79.png");
+
+}
+.navigation-name{
+    float: left;
+    margin-left: 10px;
+}
+.navigation-price{
+    float: right;
+    margin-right: 10px;
+}
+.navigation-plat{
+    margin:30px 0px 10px 10px;
+    padding-top: 20px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    color: red;
+    text-align: left;
+    line-height:100px ;
+}
+.navigation-project{
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    color: red;
+    text-align: left;
+    line-height:40px;
+}
+.navigation-project-detail{
+    padding:10px 10px 10px 10px;
+    height: 158px;
+    text-align: left;
+    background-image: url("../../images/technology/dynamic_main/u238.png");
+}
+.navigation-project-pic{
+    margin-bottom: 10px;
+    width: 200px;
+    height: 109px;
+
+}

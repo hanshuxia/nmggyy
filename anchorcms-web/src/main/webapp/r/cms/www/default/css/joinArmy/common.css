@@ -1,0 +1,183 @@
+@CHARSET "UTF-8";
+
+/**
+ * @ClassName: common.css
+ * @Description: 民参军服务网-头部尾部公共样式表
+ * @Author: 王姝婷
+ * @Date: 2016年11月18日 下午15:32:15
+ */
+ 
+/* 公用头部*/
+.header {
+	width: 1202px;
+	height: 50px;
+	margin: 0 auto;
+	background-color: #E0E0E0;
+	border: 1px solid #000;
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400px;
+	font-style: normal;
+	font-size: 13px;
+	color: #333;
+	text-align: center;
+	line-height: 50px;
+}
+
+.header-content1 {
+	width: 230px;
+	height: 30px;
+	margin-top: 10px;
+	float: left;
+	border-right: 1px solid #BEBEBE;
+	text-align: center;
+	line-height: 30px;
+}
+
+.header-content2 {
+	height: 30px;
+	margin-top: 10px;
+	float: left;
+	text-align: center;
+	line-height: 30px;
+}
+
+.header-content3 {
+	float: right;
+}
+
+.title {
+	width: 1202px;
+	height: 123px;
+	margin: 0 auto;
+	background-color: #E0E0E0;
+	border-left: 1px solid #000;
+	border-right: 1px solid #000;
+}
+
+.logo {
+	width: 282px;
+	height: 123px;
+	background-color: #fff;
+	border-right: 1px solid #000;
+	float: left;
+	text-align: center;
+	line-height: 123px;
+}
+
+.nav1 {
+	width: 918px;
+	height: 38px;
+	float: left;
+	font-size: 16px;
+	line-height: 38px;
+}
+
+.nav2 {
+	width: 918px;
+	height: 85px;
+	float: left;
+	border-top: 1px solid #000;
+	font-family: '微软雅黑 Bold', '微软雅黑';
+	font-weight: 700;
+	font-size: 36px;
+	color: #FF0000;
+	line-height: 85px;
+}
+
+.nav3 {
+	width: 90px;
+	float: right;
+}
+
+.nav {
+	width: 1202px;
+	height: 50px;
+	background-color: #E0E0E0;
+	border: 1px solid #000;
+	margin: 0 auto;
+}
+
+.nav-button {
+	margin: 0;
+}
+
+/* 公用尾部*/
+.footer {
+	width: 1202px;
+	height: 280px;
+	background-color: #E0E0E0;
+	border-bottom: 1px solid #000;
+	border-left: 1px solid #000;
+	border-right: 1px solid #000;
+	margin: 0 auto;
+}
+
+.footer-content1 {
+	width: 250px;
+	height: 280px;
+	padding-left: 50px;
+	text-align: left;
+	line-height: 30px;
+	float: left;
+}
+
+.footer-content2 {
+	width: 900px;
+	height: 280px;
+	float: left;
+}
+
+.footer-content2-child1 {
+	width: 900px;
+	height: 94px;
+	border-left: 1px solid #000;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+	margin-top: 10px;
+	text-align: center;
+	line-height: 94px;
+}
+
+.footer-content2-child2 {
+	width: 900px;
+	height: 120px;
+	border-left: 1px solid #000;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+	margin-top: 10px; font-family : 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 14px;
+	color: #333;
+	text-align: center;
+	font-family: 'Arial Normal', 'Arial'; font-weight : 400; font-style :
+	normal; font-size : 14px; color : #333; text-align : center;
+	line-height: 50px;
+}
+
+.footer-content2-child3 {
+	width: 900px;
+	height: 30px;
+	border-left: 1px solid #000;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+	margin-top: 10px;
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333;
+	text-align: center;
+	line-height: 30px;
+}
+
+/*广告栏*/
+.ads {
+	width: 600px;
+	height: 60px;
+	background-color: #E0E0E0;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	float: left;
+}
+

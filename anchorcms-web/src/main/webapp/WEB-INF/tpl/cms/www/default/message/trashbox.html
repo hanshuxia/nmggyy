@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${site.siteName} - Powered by ANCHORCMS</title>
+    <link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script src="/${res}/js/tab.js" type="text/javascript"></script>
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/company.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/list.css"/>
+    <style type="text/css">
+        .wrapper{width: 95%;}
+        .tableDiv td a:hover{color:#3077B9;text-decoration: underline;}
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var iframeHeight = window.top.$("#main").height();
+            $(".nav-content").css("height",iframeHeight-152);
+            $(".navTab a").click(function(){
+                $(".navTab").find(".current").removeClass("current");
+                $(this).addClass("current");
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="content wrapper clearfix">
+    <div class="head wrapper">
+        <a href="${base}/message_list.jspx?box=3" class="current">垃圾箱列表</a>
+    </div>
+<div class="main">
+    <form id="tableForm" action="/message_list.jspx?box=3" method="post">
+        <div class="head searchBox">
+            <input class="submit oppose" type="button" style="float: left; width: 100px;" value="彻底删除" onclick="emptyMessage()"/>
+            <input class="submit pass" type="button" style="float:left; width: 100px; margin-left:15px;" id="zwbhbutton" value="还原" onclick="revertMessage()"/>
+            <span id="msgDiv" style="color: red; margin-left: 20px"></span>
+        </div>
+        <div class="switchBtn">
+            <ul>
+                <li><a href="${base}/member/message_list.jspx?box=0"><span>收件箱</span></a></li>
+                <li><a href="${base}/member/message_list.jspx?box=1"><span>发件箱</span></a></li>
+                <li><a href="${base}/member/message_list.jspx?box=2"><span>草稿箱</span></a></li>
+                <li class="current"><a href="/member/message_list.jspx?box=3"><span>垃圾箱</span></a></li>
+                <li><a href="${base}/member/message_add.jspx"><span>发送站内信</span></a></li>
+            </ul>
+        </div>
+        <div class="tableDiv wrapper">
+            <table cellpadding="0" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>选择</th>
+                    <th>标题</th>
+                    <th>发件人</th>
+                    <th>收件人</th>
+                    <th>发送时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                [#if pagination.list?size gt 0]
+                [#list pagination.list as c]
+                <tr id="tr_${c.msgReId!}">
+                    <td><input type="checkbox" class="member-check" name="ids" value="${c.msgReId!}" /></td>
+                    <td>
+                        <a href="${base}/member/message_read.jspx?id=${c.msgReId!}&&box=3">[@text_cut s=c.titleHtml len='15' append='...'/]</a>
+                    </td>
+                    <td>${c.msgSendUser.username!}</td>
+                    <td>${c.msgReceiverUser.username!}</td>
+                    <td>[#if c.sendTime??]${c.sendTime?string('yyyy-MM-dd HH:mm:ss')}[/#if]</td>
+                </tr>
+                [/#list]
+                [#else]
+                <tr>
+                    <td colspan="9"><h4>暂无数据</h4></td>
+                </tr>
+                [/#if]
+                </tbody>
+            </table>
+        </div>
+
+        <input type="hidden" name="pageNo"/>
+        <div  class="page clearfix">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="left" class="pn-sp">
+                        每页 ${pagination.pageSize} 条&nbsp;
+                        <input class="first" type="button" onclick="_gotoPage('1');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                        <input class="prev" type="button" onclick="_gotoPage('${pagination.prePage}');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                        <input type="text" value=${pagination.pageNo} id="_goPs" onfocus="this.select();" onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>/${pagination.totalPage}
+                        <input class="next" type="button" onclick="_gotoPage('${pagination.nextPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>
+                        <input class="last" type="button" onclick="_gotoPage('${pagination.totalPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>&nbsp;
+                        <button id="_goPage" class="ok" type="button" onclick="_gotoPage($('#_goPs').val());"[#if pagination.totalPage==1] disabled="disabled"[/#if]>GO</button>
+                        共 ${pagination.totalCount} 条&nbsp;
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        <script type="text/javascript">
+            function _gotoPage(pageNo) {
+                if(!/^[0-9]*[1-9][0-9]*$/.test(pageNo)){ui.alertFail("页码必须为正整数！");return false;}
+                try{
+                    var tableForm = document.getElementById("tableForm");
+                    $("input[name=pageNo]").val(pageNo);
+                    tableForm.action="message_list.jspx?box=3";
+                    tableForm.onsubmit=null;
+                    tableForm.submit();
+                } catch(e) {
+                    alert('_gotoPage(pageNo)方法出错');
+                }
+            }
+        </script>
+    </form>
+</div>
+    </div>
+<script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+<script type="text/javascript">
+    //删除垃圾箱
+    function emptyMessage(){
+        var ids=new Array();
+        $("input[name='ids']").each(function(i){
+            if($(this).prop("checked")){
+                ids.push($(this).val());
+            }
+        });
+        if(ids.length>0){
+            if(!confirm("您确定要彻底删除这些信息吗？")) {
+                return;
+            }
+            $.post("message_empty.jspx", {
+                "ids" : ids
+            }, function(data) {
+                if(data.result){
+                    for(var i=0;i<ids.length;i++){
+                        $("#tr_"+ids[i]).remove();
+                    }
+                    $("#msgDiv").html("您选择的站内信息已被彻底删除 ");
+                    window.location.reload();
+                }else{
+                    alert("请先登录");
+                }
+            }, "json");
+        }else{
+            $("#msgDiv").html("请先选择信息");
+        }
+    }
+
+    function revertMessage(){
+        var ids=new Array();
+        $("input[name='ids']").each(function(i){
+            if($(this).prop("checked")){
+                ids.push($(this).val());
+            }
+        });
+        if(ids.length>0){
+            if(!confirm("您确定要还原这些信息吗？")) {
+                return;
+            }
+            $.post("message_revert.jspx", {
+                "ids" : ids
+            }, function(data) {
+                if(data.result){
+                    for(var i=0;i<ids.length;i++){
+                        $("#tr_"+ids[i]).remove();
+                    }
+                    $("#msgDiv").html("您选择的站内信息已还原 ");
+                }else{
+                    alert("请先登录");
+                }
+            }, "json");
+        }else{
+            $("#msgDiv").html("请先选择信息");
+        }
+    }
+
+</script>
+
+</body>
+</html>

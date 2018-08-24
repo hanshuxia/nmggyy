@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>适合移动网页纯原生js选项卡tab切换</title>
+    <style>
+                                                                   *{ margin: 0; padding: 10px}
+        ul,li{ list-style: none}
+        .tabClick{ background: #f3f3f3; overflow: hidden}
+        .tabClick li{ height:40px; line-height: 40px; width: 14.5%; float: left; text-align: center}
+        .tabClick li.active{ color: #099; transition: 0.1s; font-weight: bold}
+        .tabCon{ overflow: hidden}
+        .tabBox{ position: relative}
+        .tabList{word-break: break-all; width:100%;float:left; line-height:100px; text-align:center; color:black; font-size:16px; font-family: "Arial Black"}
+        .lineBorder{ height: 2px; overflow: hidden; border-bottom:1px solid #099; background: #f3f3f3}
+        .lineDiv{ background: #099; height: 2px; width: 14.5%;}
+    </style>
+<body>
+<span style="display:none;">
+<script src="http://s94.cnzz.com/stat.php?id=4106941&web_id=4106941" language="JavaScript"></script>
+</span><!-- 代码部分begin -->
+<div class="wrap" id="wrap">
+    <ul class="tabClick">
+        <li class="active">全部</li>
+        <li ><span id="caogao">草稿</span></li>
+        <li ><span onclick="location.href='http://localhost:8080/member/supplychainDA.jspx?type='+'2'">待审核</span></li>
+        <li ><span onclick="location.href='http://localhost:8080/member/supplychainDA.jspx?type='+'3'">已下单</span></li>
+        <li ><span onclick="location.href='http://localhost:8080/member/supplychainDA.jspx?type='+'4'">已成交</span></li>
+        <li ><span onclick="location.href='http://localhost:8080/member/supplychainDA.jspx?type='+'5'">已评价</span></li>
+    </ul>
+    <div class="lineBorder">
+        <div class="lineDiv"><!--移动的div--></div>
+    </div>
+    <div class="tabCon">
+        <div class="tabBox">
+            <div class="tabList">
+                <h3>维修资源管理列表</h3>
+                <table width="100%">
+                    <tr><td cowspan="7" align="right"><input id="selePa">&nbsp;<input type="button" value="搜索" onclick="selePage()"> </td></tr>
+                    <tr><td><input type="checkbox" id="all"></td><td>维修资源名称</td><td>维修资源地点</td><td>发布日期</td><td>状态</td><td>补充说明</td><td>管理</td></tr>
+                    [#list  testt as a]  <tr><td><input type="checkbox" name="stuid" value="${a.repairId}"></td><td>${a.repairName}</td><td>${a.addrCity}</td><td>${a.createDt}</td><td>${a.status}</td><td>${a.description}</td><td><button value="${a.repairId}" onclick="detai(this)">明细</button>&nbsp;<button value="${a.repairId}" onclick="yulan(this)">预览</button><input type="button" onclick="dell()" value="删除"></td></tr>
+                    [/#list]
+                </table>
+                </div>
+            <div class="tabList">
+                <table width="100%">
+                    <tr><td cowspan="7" align="right"><input id="selePaA">&nbsp;<input type="button" value="搜索" onclick="selePage()"> </td></tr>
+                    <tr><td><input type="checkbox" ></td><td>维修资源名称</td><td>维修资源地点</td><td>发布日期</td><td>状态</td><td>补充说明</td><td>管理</td></tr>
+                    [#list  testt as a]  <tr><td><input type="checkbox" name="stuid"></td><td>${a.repairName}</td><td>${a.addrCity}</td><td>${a.createDt}</td><td>${a.status}</td><td>${a.description}</td><td><input type="button" value="明细">&nbsp;<button value="${a.repairId}"onclick="chehui(this)">撤回</button>&nbsp;<input type="button" onclick="dell()" value="删除"></td></tr>
+                    [/#list]
+                </table>
+               </div>
+            <div class="tabList" >
+                <table width="100%">
+                    <tr><td cowspan="7" align="right"><input id="selePaAA">&nbsp;<input type="button" value="搜索" onclick="selePage()"> </td></tr>
+                    <tr><td><input type="checkbox"></td><td>维修资源名称</td><td>维修资源地点</td><td>发布日期</td><td>状态</td><td>补充说明</td><td>管理</td></tr>
+                    [#list  testt as a]  <tr><td><input type="checkbox"></td><td>${a.repairName}</td><td>${a.addrCity}</td><td>${a.createDt}</td><td>${a.status}</td><td>${a.description}</td><td><button id="">明细</button>&nbsp;<input type="button" value="预览">&nbsp;<input type="button" value="删除"></td></tr>
+                    [/#list]
+                </table>
+            </div>
+            <div class="tabList" >
+                <table width="100%">
+                    <tr><td cowspan="7" align="right"><input id="selePaAAA">&nbsp;<input type="button" value="搜索" onclick="selePage()"> </td></tr>
+                    <tr><td><input type="checkbox"></td><td>维修资源名称</td><td>维修资源地点</td><td>发布日期</td><td>状态</td><td>补充说明</td><td>管理</td></
+                    [#list  testt as a]  <tr><td><input type="checkbox"></td><td>${a.repairName}</td><td>${a.addrCity}</td><td>${a.createDt}</td><td>${a.status}</td><td>${a.description}</td><td><input type="button" value="明细">&nbsp;<input type="button" value="预览">&nbsp;<input type="button" value="删除"></td></tr>
+                    [/#list]
+                </table>
+                </div>
+            <div class="tabList">
+                <table width="100%">
+                    <tr><td cowspan="7" align="right"><input id="selePaAAAA">&nbsp;<input type="button" value="搜索" onclick="selePage()"> </td></tr>
+                    <tr><td><input type="checkbox"></td><td>维修资源名称</td><td>维修资源地点</td><td>发布日期</td><td>状态</td><td>补充说明</td><td>管理</td></tr>
+                    [#list  testt as a]  <tr><td><input type="checkbox"></td><td>${a.repairName}</td><td>${a.addrCity}</td><td>${a.createDt}</td><td>${a.status}</td><td>${a.description}</td><td><input type="button" value="明细">&nbsp;<input type="button" value="预览">&nbsp;<input type="button" value="删除"></td></tr>
+                    [/#list]
+                </table></div>
+            <div class="tabList">
+                <table width="100%">
+                    <tr><td cowspan="7" align="right"><input id="selePaAAAAA">&nbsp;<input type="button" value="搜索" onclick="selePage()"> </td></tr>
+                    <tr><td><input type="checkbox"></td><td>维修资源名称</td><td>维修资源地点</td><td>发布日期</td><td>状态</td><td>补充说明</td><td>管理</td></tr>
+                    [#list  testt as a]  <tr><td><input type="checkbox"></td><td>${a.repairName}</td><td>${a.addrCity}</td><td>${a.createDt}</td><td>${a.status}</td><td>${a.description}</td><td><input type="button" value="明细">&nbsp;<input type="button" value="预览">&nbsp;<input type="button" value="删除"></td></tr>
+                    [/#list]
+                </table></div>
+        </div>
+    </div>
+</div>
+<script charset="utf-8">
+    function selePage() {
+        var sinner=document.getElementById("selePa").value;
+        if(sinner == ""){
+            alert("搜索内容不能为空");
+            return false;
+        }else{
+            newsinner=encodeURI(encodeURI(sinner));
+            location.href="/member/supplychainDA.jspx?name="+newsinner;
+        }
+    }
+    window.onload = function (){
+        var windowWidth = document.body.clientWidth; //window 宽度;
+        var wrap = document.getElementById('wrap');
+        var tabClick = wrap.querySelectorAll('.tabClick')[0];
+        var tabLi = tabClick.getElementsByTagName('li');
+
+        var tabBox =  wrap.querySelectorAll('.tabBox')[0];
+        var tabList = tabBox.querySelectorAll('.tabList');
+
+        var lineBorder = wrap.querySelectorAll('.lineBorder')[0];
+        var lineDiv = lineBorder.querySelectorAll('.lineDiv')[0];
+
+        var tar = 0;
+        var endX = 0;
+        var dist = 0;
+
+        tabBox.style.overflow='hidden';
+        tabBox.style.position='relative';
+        tabBox.style.width=windowWidth*tabList.length+"px";
+
+        for(var i = 0 ;i<tabLi.length; i++ ){
+            tabList[i].style.width=windowWidth+"px";
+            tabList[i].style.float='left';
+            tabList[i].style.float='left';
+            tabList[i].style.padding='0';
+            tabList[i].style.margin='0';
+            tabList[i].style.verticalAlign='top';
+            tabList[i].style.display='table-cell';
+        }
+
+        for(var i = 0 ;i<tabLi.length; i++ ){
+            tabLi[i].start = i;
+            tabLi[i].onclick = function(){
+                var star = this.start;
+                for(var i = 0 ;i<tabLi.length; i++ ){
+                    tabLi[i].className='';
+                };
+                tabLi[star].className='active';
+                init.lineAnme(lineDiv,windowWidth/tabLi.length*star)
+                init.translate(tabBox,windowWidth,star);
+                endX= -star*windowWidth;
+            }
+        }
+        function OnTab(star){
+            if(star<0){
+                star=0;
+            }else if(star>=tabLi.length){
+                star=tabLi.length-1
+            }
+            for(var i = 0 ;i<tabLi.length; i++ ){
+                tabLi[i].className='';
+            };
+
+            tabLi[star].className='active';
+            init.translate(tabBox,windowWidth,star);
+            endX= -star*windowWidth;
+        };
+
+        tabBox.addEventListener('touchstart',chstart,false);
+        tabBox.addEventListener('touchmove',chmove,false);
+        tabBox.addEventListener('touchend',chend,false);
+        //按下
+        function chstart(ev){
+            ev.preventDefault;
+            var touch = ev.touches[0];
+            tar=touch.pageX;
+            tabBox.style.webkitTransition='all 0s ease-in-out';
+            tabBox.style.transition='all 0s ease-in-out';
+        };
+        //滑动
+        function chmove(ev){
+            var stars = wrap.querySelector('.active').start;
+            ev.preventDefault;
+            var touch = ev.touches[0];
+            var distance = touch.pageX-tar;
+            dist = distance;
+            init.touchs(tabBox,windowWidth,tar,distance,endX);
+            init.lineAnme(lineDiv,-dist/tabLi.length-endX/6);
+        };
+        //离开
+        function chend(ev){
+            var str= tabBox.style.transform;
+            var strs = JSON.stringify(str.split(",",1));
+            endX = Number(strs.substr(14,strs.length-18));
+
+            if(endX>0){
+                init.back(tabBox,windowWidth,tar,0,0,0.3);
+                endX=0
+            }else if(endX<-windowWidth*tabList.length+windowWidth){
+                endX=-windowWidth*tabList.length+windowWidth
+                init.back(tabBox,windowWidth,tar,0,endX,0.3);
+            }else if(dist<-windowWidth/3){
+                OnTab(tabClick.querySelector('.active').start+1);
+                init.back(tabBox,windowWidth,tar,0,endX,0.3);
+            }else if(dist>windowWidth/3){
+                OnTab(tabClick.querySelector('.active').start-1);
+            }else{
+                OnTab(tabClick.querySelector('.active').start);
+            }
+            var stars = wrap.querySelector('.active').start;
+            init.lineAnme(lineDiv,stars*windowWidth/6);
+
+        };
+    };
+    var init={
+        translate:function(obj,windowWidth,star){
+            obj.style.webkitTransform='translate3d('+-star*windowWidth+'px,0,0)';
+            obj.style.transform='translate3d('+-star*windowWidth+',0,0)px';
+            obj.style.webkitTransition='all 0.3s ease-in-out';
+            obj.style.transition='all 0.3s ease-in-out';
+        },
+        touchs:function(obj,windowWidth,tar,distance,endX){
+            obj.style.webkitTransform='translate3d('+(distance+endX)+'px,0,0)';
+            obj.style.transform='translate3d('+(distance+endX)+',0,0)px';
+        },
+        lineAnme:function(obj,stance){
+            obj.style.webkitTransform='translate3d('+stance+'px,0,0)';
+            obj.style.transform='translate3d('+stance+'px,0,0)';
+            obj.style.webkitTransition='all 0.1s ease-in-out';
+            obj.style.transition='all 0.1s ease-in-out';
+        },
+        back:function(obj,windowWidth,tar,distance,endX,time){
+            obj.style.webkitTransform='translate3d('+(distance+endX)+'px,0,0)';
+            obj.style.transform='translate3d('+(distance+endX)+',0,0)px';
+            obj.style.webkitTransition='all '+time+'s ease-in-out';
+            obj.style.transition='all '+time+'s ease-in-out';
+        },
+    }
+</script>
+<!-- 代码部分end -->
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/lib/jquery/selec.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $(document)
+                .ready(
+                        function() {
+                            $("#all").click(function() {
+                                $(":checkbox").prop("checked", this.checked);
+                            });
+                            $("input[name='stuid']")
+                                    .click(
+                                            function() {
+                                                $("#all")
+                                                        .prop(
+                                                                "checked",
+                                                                $("input[name='stuid']").length == $("input[name='stuid']:checked").length ? true
+                                                                        : false);
+                                            });
+
+                        });
+``   });
+    function detai(obj) {
+        var ar=$(obj).val();
+        location.href="/member/supplychainDAAA.jspx?uid="+ar;
+    }
+    function yulan(obj) {
+        var ar=$(obj).val();
+        location.href="/member/supplychainDAAAA.jspx?uid="+ar;
+    }
+    function dell() {
+        var arr = new Array();
+        var j = 0;
+        $("input[name='stuid']:checked").each(
+                function(index, element) {
+                    arr[j] = $(element).val();
+                    j++;
+                })
+        if (arr.length == 0) {
+            alert("请选中要删除的数据");
+        } else {
+            var del = confirm("您确定要删除选中的数据吗？")
+            // 如果要删除，把选中的checkbox所在的员工编号存放的数组名赋给参数
+            if (del) {
+                location.href = "/member/supplychainDAA.jspx?delNum="
+                        + arr;
+            }
+        }
+    }
+    function chehui(obj) {
+        var ar=$(obj).val();
+        location.href="/member/supplychainDAB.jspx?uid="+ar;
+    }
+</script>
+</body>
+</html>

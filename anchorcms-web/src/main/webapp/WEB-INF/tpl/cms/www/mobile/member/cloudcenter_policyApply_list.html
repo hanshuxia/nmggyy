@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta  http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>政策申请跟踪</title>
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/list.css"/>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            _onload();
+        });
+
+        //点击状态标签刷新列表
+        $(document).ready(function() {
+            $(".switchBtn li").click(function(){
+                if($(this).attr("id") == "all"){
+                    $("#state").val("");
+                }else if($(this).attr("id") == "state0"){
+                    $("#state").val("0");
+                }else if($(this).attr("id") == "state1"){
+                    $("#state").val("1");
+                }else if($(this).attr("id") == "state2"){
+                    $("#state").val("2");
+                }else if($(this).attr("id") == "state3"){
+                    $("#state").val("3");
+                }
+                $("#tableForm").submit();
+            });
+        });
+
+        //加载页面标签状态
+        function _onload(){
+            if($("#state").val() == ""){
+                $("#all").addClass("current");
+            }else if ($("#state").val() == "0"){
+                $("#state0").addClass("current");
+            }else if  ($("#state").val() == "1"){
+                $("#state1").addClass("current");
+                $(".backReason").show();
+            }else if  ($("#state").val() == "2"){
+                $("#state2").addClass("current");
+            }else if  ($("#state").val() == "3"){
+                $("#state3").addClass("current");
+            }
+        };
+
+    </script>
+    <style>
+        .readonly{
+            background: #EBEBE4;
+            color: #91918e;
+            display: none;
+        }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="/${res}/js/html5shiv.min.js"></script>
+    <script src="/${res}/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div class="content wrapper clearfix">
+    <div class="head wrapper">
+        <a href="${base}/member/policy_feedback_list.jspx" class="current">政策申请跟踪</a>
+    </div>
+    <div class="main">
+        <form id="tableForm" action="policy_applyFollow_list.jspx" method="post">
+            <div class="switchBtn">
+               <ul>
+                <li id="all"><span>全部</span></li>
+                <li id="state0"><span>待审核</span></li>
+                <li id="state1"><span>已驳回</span></li>
+                <li id="state2"><span>已报送</span></li>
+                <li id="state3"><span>已通过</span></li>
+              </ul>
+            </div>
+            <div class="tableDiv wrapper">
+                <table cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>政策层别</th>
+                        <th>政策名称</th>
+                        <th>政策代码</th>
+                        <th>申请人</th>
+                        <th>所属企业</th>
+                        <th>申请期限</th>
+                        <th>审批进度</th>
+                        <th class="backReason" style="display: none">驳回原因</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    [#if pagination.list?size gt 0]
+                    [#list pagination.list as c]
+                    <tr>
+                        [#if c.policy??]
+                        <td style="width: 76px;" >${c.policy.policyLevel!}</td>
+                        <td style="text-align: left;width: 130px;padding-left:20px;overflow: hidden;white-space: nowrap;word-break: keep-all;"><a class="show-title" title="${c.policy.policyName!}">[@text_cut s=c.policy.policyName! len='6' append='...' /]</a></td>
+                        <td style="text-align: left;width: 130px;overflow: hidden;white-space: nowrap;word-break: keep-all;"><a class="show-title" title="${c.policy.policyNumber!}">[@text_cut s=c.policy.policyNumber! len='6' append='...' /]</a></td>
+                        <td style="width: 130px;overflow: hidden;white-space: nowrap;word-break: keep-all;"><a class="show-title" title="${c.user.username!}">[@text_cut s=c.user.username! len='5' append='...' /]</a></td>
+                        <td style="text-align: left;width: 150px;padding-left:20px;overflow: hidden;white-space: nowrap;word-break: keep-all;"><a class="show-title" title="${c.user.company.companyName!}">[@text_cut s=c.user.company.companyName! len='8' append='...' /]</a></td>
+                        <td>${(c.policy.endApplyDt)!}</td>
+                        [#if !c.state??]
+                        <td></td>
+                        [#else]
+                        [#switch c.state]
+                        [#case "0"]
+                        <td>待审核</td>
+                        [#break]
+                        [#case "1"]
+                        <td>已驳回</td>
+                        [#break]
+                        [#case "2"]
+                        <td>已报送</td>
+                        [#break]
+                        [#case "3"]
+                        <td>已通过</td>
+                        [#break]
+                        [#default]
+                        <td></td>
+                        [/#switch]
+                        [/#if]
+                        <td title="${c.backReason!}" class="backReason" style="display: none">[@text_cut s=c.backReason! len='10' append='...' /]</td>
+                        <td>${c.createDt?default("")}</td>
+                        [#if !state??]
+                        <td>
+                            <a class="link" href="/member/cloudCenter_apply_view.jspx?id=${c.applyId}">明细<a>
+                        </td>
+                        [#else]
+                        [#switch state]
+                        [#case "0"]
+                        <td>
+                            <a class="link" href="/member/cloudCenter_apply_view.jspx?id=${c.applyId}">明细<a>
+                            <a class="link" onclick="deleteConfirm(${c.applyId})">删除</a>
+                        </td>
+                        [#break]
+                        [#case "1"]
+                        <td>
+                            <a class="link" href="/member/cloudCenter_apply_view.jspx?id=${c.applyId}">明细<a>
+                            <a class="link" href="/member/cloudCenter_apply_edit.jspx?id=${c.applyId}">编辑</a>
+                            <a class="link" onclick="deleteConfirm(${c.applyId})">删除</a>
+                        </td>
+                        [#break]
+                        [#default]
+                        <td>
+                            <a class="link" href="/member/cloudCenter_apply_view.jspx?id=${c.applyId}">明细<a>
+                        </td>
+                        [/#switch]
+                        [/#if]
+                        [#else]
+                        <td colspan="8" style="text-align: left;width: 300px;padding-left:20px;">政策申请编号为“${c.applyId!}”的政策已被删除</td>
+                        <td style="text-align: left"><a class="link" style="margin-left: 20px" onclick="deleteConfirm(${c.applyId})">删除</a></td>
+                        [/#if]
+                    </tr>
+                    [/#list]
+                    [#else]
+                    <tr>
+                        <td colspan="9"><h4>暂无申请</h4></td>
+                    </tr>
+                    [/#if]
+                    </tbody>
+                </table>
+            </div>
+            <input type="hidden" name="pageNo"/>
+            <div  class="page clearfix">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="left" class="pn-sp">
+                            每页 ${pagination.pageSize} 条&nbsp;
+                            <input class="first" type="button" onclick="_gotoPage('1');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input class="prev" type="button" onclick="_gotoPage('${pagination.prePage}');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input type="text" value=${pagination.pageNo} id="_goPs" onfocus="this.select();" onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>/${pagination.totalPage}
+                            <input class="next" type="button" onclick="_gotoPage('${pagination.nextPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>
+                            <input class="last" type="button" onclick="_gotoPage('${pagination.totalPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>&nbsp;
+                            <button id="_goPage" class="ok" type="button" onclick="_gotoPage($('#_goPs').val());"[#if pagination.totalPage==1] disabled="disabled"[/#if]>GO</button>
+                            共 ${pagination.totalCount} 条&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <script type="text/javascript">
+                function _gotoPage(pageNo) {
+                    if(!/^[0-9]*[1-9][0-9]*$/.test(pageNo)){ui.alertFail("页码必须为正整数！");return false;}
+                    try{
+                        var tableForm = document.getElementById("tableForm");
+                        $("input[name=pageNo]").val(pageNo);
+                        tableForm.action="policy_feedback_list.jspx";
+                        tableForm.onsubmit=null;
+                        tableForm.submit();
+                    } catch(e) {
+                        alert('_gotoPage(pageNo)方法出错');
+                    }
+                }
+            </script>
+            <input type="text" id="state" name="state" hidden="hidden" value="${state?default('')}">
+            <input type="text" id="userName" hidden="hidden" name="userName"  value="${user.username?default('')}">
+
+        </form>
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+<script type="text/javascript">
+    function deleteConfirm(Ids){
+        if(confirm("请确定是否删除？")){
+            location.href="/member/apply_delete.jspx?id="+Ids+"";
+        }
+    }
+</script>
+</body>
+</html>

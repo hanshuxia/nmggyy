@@ -1,0 +1,111 @@
+.currLocation{
+    width: 1200px;
+    height: 40px;
+    background-image: url("../../images/double/doubleIntroduction/u58.png");
+}
+.currLocation p{
+    line-height: 40px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+}
+#sp-div-1{
+    width: 1200px;
+    height: 50px;
+    background-image: url("../../images/double/educationTraining/u111.png");
+}
+#sp-div-1 p{
+    line-height: 50px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 25px;
+    text-align: center;
+}
+#sp-div-2{
+    width: 1200px;
+    height: 110px;
+    background-image: url("../../images/double/toBeServiceProvider/u62.png");
+
+}
+#sp-div-2 p{
+    line-height: 110px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-size: 16px;
+    color: #333333;
+    text-align: center;
+}
+#sp-div-3{
+    width: 229px;
+    float: left;
+}
+#sp-div-3 ul li{
+    width: 230px;
+    height: 30px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 700;
+    font-size: 13px;
+    text-align: center;
+    line-height: 30px;
+    background-image: url("../../images/double/groupDetail/u60.png");
+}
+#sp-div-3 ul .li-red{
+    background-image: url("../../images/double/sharePlatform/u118.png");
+}
+#sp-div-3 ul .first-li{
+    height: 40px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    line-height: 40px;
+    background-image: url("../../images/double/groupDetail/u58.png");
+}
+#sp-div-4{
+    width: 970px;
+    height: 331px;
+    float: left;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+}
+#sp-div-4 table tr td{
+    width: 194px;
+    height: 30px;
+    background-image: url("../../images/double/sharePlatform/u121.png");
+    text-align: center;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+}
+#sp-div-4 table tr .th{
+    font-weight: 700;
+}
+#sp-div-5{
+    width: 680px;
+    height: 60px;
+    float: left;
+    margin-left: 380px;
+    margin-top: 30px;
+    background-image: url("../../images/double/specialService/u131.png");
+    text-align: center;
+}
+#sp-div-5 p{
+    line-height:34px;
+}
+#sp-div-5 p button {
+	margin-top:20px;
+	padding:0px;
+    width: 55px;
+    height: 34px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+}

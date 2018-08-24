@@ -1,0 +1,312 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta  http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${site.siteName} - 云计算政策管理列表</title>
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/list.css"/>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            _onload();
+        });
+
+        //点击状态标签刷新列表
+        $(document).ready(function() {
+            //全选框中的全选框
+            $("#checkAll").click(function(){
+                $(":checkbox[name='checkone']").prop("checked",this.checked);
+            });
+            $("input[name='checkone']").click(function(){
+                $("#checkAll").prop("checked",$("input[name='checkone']").length==$("input[name='checkone']:checked").length);
+            });
+
+
+            $(".switchBtn li").click(function(){
+                if($(this).attr("id") == "all"){
+                    $("#state").val("");
+                }else if($(this).attr("id") == "state0"){
+                    $("#state").val("0");
+                }else if($(this).attr("id") == "state1"){
+                    $("#state").val("1");
+                }else if($(this).attr("id") == "state2"){
+                    $("#state").val("2");
+                }
+                $("#tableForm").submit();
+            });
+        });
+
+        //加载页面标签状态
+        function _onload(){
+            if($("#state").val() == ""){
+                $("#all").addClass("current");
+            }else if ($("#state").val() == "0"){
+                $("#state0").addClass("current");
+            }else if  ($("#state").val() == "1"){
+                $("#state1").addClass("current");
+            }else if  ($("#state").val() == "2"){
+                $("#state2").addClass("current");
+            }
+        };
+
+        //批量发布
+        function passAll(type){
+            if(type ==1){
+                var demandIdsStr="";
+                $("input[name='checkone']:checked").each(function(){
+                    demandIdsStr+=($(this).val()+",");
+                });
+
+                if(demandIdsStr == ""){
+                    alert("至少选择一条信息，请选择");
+                    return false;
+                }
+                if (confirm("请确定是否全部发布？")){
+                    $('.submit.oppose').attr("disabled",true);
+                    $('.submit.pass').attr("disabled",true);
+                    location.href="/member/cloudcenter_policy_passMany.jspx?demandIdsStr="+demandIdsStr+"&nextUrl=/member/cloudcenter_policy_list.jspx?state="+$('#state').val();
+            }
+            }
+        }
+        //批量撤回
+        function rejectAll(type){
+            if(type ==1){
+                var demandIdsStr="";
+                $("input[name='checkone']:checked").each(function(){
+                    demandIdsStr+=($(this).val()+",");
+                });
+
+                if(demandIdsStr == ""){
+                    alert("至少选择一条信息，请选择");
+                    return false;
+                }
+                if(confirm("请确定是否全部撤回？")){
+                    $('.submit.oppose').attr("disabled",true);
+                    $('.submit.pass').attr("disabled",true);
+                    location.href="/member/cloudcenter_policy_rejectMany.jspx?demandIdsStr="+demandIdsStr+"&nextUrl=/member/cloudcenter_policy_list.jspx?state="+$('#state').val();
+                }
+            }
+        }
+        //批量删除
+        function deleteAll(type){
+            if(type ==1){
+                var demandIdsStr="";
+                $("input[name='checkone']:checked").each(function(){
+                    demandIdsStr+=($(this).val()+",");
+                });
+
+                if(demandIdsStr == ""){
+                    alert("至少选择一条信息，请选择");
+                    return false;
+                }
+                if(confirm("请确定是否全部删除？")){
+                    $('.submit.oppose').attr("disabled",true);
+                    $('.submit.pass').attr("disabled",true);
+                    location.href="/member/cloudcenter_policy_deleteMany.jspx?demandIdsStr="+demandIdsStr+"&nextUrl=/member/cloudcenter_policy_list.jspx?state="+$('#state').val();
+                }
+            }
+        }
+
+    </script>
+    <style>
+        .readonly{
+            background: #EBEBE4;
+            color: #91918e;
+            display: none;
+        }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="/${res}/js/html5shiv.min.js"></script>
+    <script src="/${res}/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div class="content wrapper clearfix">
+    <div class="head wrapper">
+        <a href="${base}/member/cloudcenter_policy_list.jspx" class="current">云计算政策管理列表</a>
+        <a href="/member/cloudcenter_policy_add.jspx" class="btn">添加</a>
+    </div>
+    <div class="main">
+        <form id="tableForm" action="cloudcenter_policy_list.jspx" method="post">
+            <div class="searchBox">
+                <label>政策名称：</label>
+                    <input name="policyName" id="policyName" value="${policyName?default('')}">
+                <label>发布日期：</label>
+                    <input name="startDate" id="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'endDate\')}'})" class="Wdate" value="${startDate?default('')}">
+                <label>至</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" name="endDate" id="endDate" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'startDate\')}'})" class="Wdate" value="${endDate?default('')}">
+                <br>
+                <label>政策级别：</label>
+                    <input name="policyLevel" id="policyLevel" value="${policyLevel?default('')}">
+                <button class="submit">查询</button>
+                <br>
+                [#if !state??]
+                [#else]
+                [#switch state]
+                [#case "0"]
+                <input class="submit oppose" type="button" style="float: none;width: 100px;" id="zwtgbutton" value="批量删除" onclick="deleteAll(1)"/>
+                <input class="submit pass" type="button" style="float: none;width: 100px; margin-left:15px;" id="zwbhbutton" value="批量发布" onclick="passAll(1)"/>
+                [#break]
+                [#case "1"]
+                <input class="submit oppose" type="button" style="float: none; width: 100px;" id="zwtgbutton" value="批量撤回" onclick="rejectAll(1)"/>
+                <input class="submit pass" type="button" style="float: none; width: 100px;margin-left:15px;" id="zwtgbutton" value="批量发布" onclick="passAll(1)"/>
+                [#break]
+                [#case "2"]
+                <input class="submit oppose" type="button" style="float: none; width: 100px;" id="zwtgbutton" value="批量删除" onclick="deleteAll(1)"/>
+                <input class="submit oppose" type="button" style="float: none; width: 100px; margin-left:15px;" id="zwbhbutton" value="批量撤回" onclick="rejectAll(1)"/>
+                [#break]
+                [#default]
+                [/#switch]
+                [/#if]
+            </div>
+            <div class="switchBtn">
+                <ul>
+                <li id="all"><span>全部</span></li>
+                <li id="state0"><span>草稿</span></li>
+                <li id="state1"><span>待发布</span></li>
+                <li id="state2"><span>已发布</span></li>
+                </ul>
+            </div>
+            <div class="tableDiv wrapper">
+                <table cellpadding="0" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="checkAll"/></th>
+                            <th>政策编号</th>
+                            <th>政策名称</th>
+                            <th>发布日期</th>
+                            <th>状态</th>
+                            <th>政策级别</th>
+                            <th>管理</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        [#if pagination.list?size gt 0]
+                            [#list pagination.list as c]
+                                <tr>
+                                    <td><input type="checkbox" name="checkone" value="${c.policyId!}"/></td>
+                                    <td>${c.policyId}</td>
+                                    <td style="text-align: left;width: 250px;padding-left:20px;overflow: hidden;white-space: nowrap;word-break: keep-all;"><a class="show-title" title="${c.policyName!}">[@text_cut s=c.policyName! len='20' append='...' /]</a></td>
+                                    <td>${c.releaseDt!}</td>
+                                    [#if !c.state??]
+                                        <td></td>
+                                        [#else]
+                                        [#switch c.state]
+                                            [#case "0"]
+                                                <td>草稿</td>
+                                                [#break]
+                                            [#case "1"]
+                                                <td>待发布</td>
+                                                [#break]
+                                            [#case "2"]
+                                                <td>已发布</td>
+                                                [#break]
+                                            [#default]
+                                                <td></td>
+                                        [/#switch]
+                                    [/#if]
+                                    <td>${c.policyLevel}</td>
+                                    [#if !state??]
+                                    <td>
+                                        <a class="link" href="cloudcenter_policy_view.jspx?policyId=${c.policyId}">明细<a>
+                                        <a class="link" href="/yzyjyzxYjszc/cloudcenter_policy_info.jspx?policyId=${c.policyId}" target="_blank">预览</a>
+                                    </td>
+                                    [#else]
+                                    [#switch state]
+                                    [#case "0"]
+                                    <td>
+                                        <a class="link" href="cloudcenter_policy_view.jspx?policyId=${c.policyId}">明细<a>
+                                        <a class="link" href="/yzyjyzxYjszc/cloudcenter_policy_info.jspx?policyId=${c.policyId}" target="_blank">预览</a>
+                                        <a class="link" href="cloudcenter_policy_edit.jspx?policyId=${c.policyId}">编辑</a>
+                                        <a class="link" onclick="deleteConfirm(${c.policyId})">删除</a>
+                                        <a class="link" onclick="if(confirm('请确定是否发布？')){location.href='cloudcenter_policy_manage.jspx?policyId=${c.policyId}&state=2&nextUrl=cloudcenter_policy_list.jspx?state=0'}">发布</a>
+                                    </td>
+                                    [#break]
+                                    [#case "1"]
+                                    <td>
+                                        <a class="link" href="cloudcenter_policy_view.jspx?policyId=${c.policyId}">明细<a>
+                                        <a class="link" href="/yzyjyzxYjszc/cloudcenter_policy_info.jspx?policyId=${c.policyId}" target="_blank">预览</a>
+                                        <a class="link" onclick="if(confirm('请确定是否发布？')){location.href='cloudcenter_policy_manage.jspx?policyId=${c.policyId}&state=2&nextUrl=cloudcenter_policy_list.jspx?state=1'}">发布</a>
+                                        <a class="link" onclick="if(confirm('请确定是否撤回？')){location.href='cloudcenter_policy_manage.jspx?policyId=${c.policyId}&state=0&nextUrl=cloudcenter_policy_list.jspx?state=1'}">撤回</a>
+                                    </td>
+                                    [#break]
+                                    [#case "2"]
+                                    <td>
+                                        <a class="link" href="cloudcenter_policy_view.jspx?policyId=${c.policyId}">明细<a>
+                                        <a class="link" href="/yzyjyzxYjszc/cloudcenter_policy_info.jspx?policyId=${c.policyId}" target="_blank">预览</a>
+                                        <a class="link" onclick="deleteConfirm(${c.policyId})">删除</a>
+                                        <a class="link" onclick="if(confirm('请确定是否撤回？')){location.href='cloudcenter_policy_manage.jspx?policyId=${c.policyId}&state=0&nextUrl=cloudcenter_policy_list.jspx?state=2'}">撤回</a>
+                                    </td>
+                                    [#break]
+                                    [#default]
+                                    <td>
+                                        <a class="link" href="cloudcenter_policy_view.jspx?policyId=${c.policyId}">明细<a>
+                                        <a class="link" href="/yzyjyzxYjszc/cloudcenter_policy_info.jspx?policyId=${c.policyId}" target="_blank">预览</a>
+                                    </td>
+                                    [/#switch]
+                                    [/#if]
+                                </tr>
+                            [/#list]
+                        [#else]
+                            <tr>
+                                <td colspan="9"><h4>暂无数据</h4></td>
+                            </tr>
+                        [/#if]
+                    </tbody>
+                </table>
+            </div>
+            <input type="hidden" name="pageNo"/>
+            <div  class="page clearfix">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="left" class="pn-sp">
+                            每页 ${pagination.pageSize} 条&nbsp;
+                            <input class="first" type="button" onclick="_gotoPage('1');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input class="prev" type="button" onclick="_gotoPage('${pagination.prePage}');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input type="text" value=${pagination.pageNo} id="_goPs" onfocus="this.select();" onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>/${pagination.totalPage}
+                            <input class="next" type="button" onclick="_gotoPage('${pagination.nextPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>
+                            <input class="last" type="button" onclick="_gotoPage('${pagination.totalPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>&nbsp;
+                            <button id="_goPage" class="ok" type="button" onclick="_gotoPage($('#_goPs').val());"[#if pagination.totalPage==1] disabled="disabled"[/#if]>GO</button>
+                            共 ${pagination.totalCount} 条&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <script type="text/javascript">
+                function _gotoPage(pageNo) {
+                    if(!/^[0-9]*[1-9][0-9]*$/.test(pageNo)){ui.alertFail("页码必须为正整数！");return false;}
+                    try{
+                        var tableForm = document.getElementById("tableForm");
+                        $("input[name=pageNo]").val(pageNo);
+                        tableForm.action="cloudcenter_policy_list.jspx";
+                        tableForm.onsubmit=null;
+                        tableForm.submit();
+                    } catch(e) {
+                        alert('_gotoPage(pageNo)方法出错');
+                    }
+                }
+            </script>
+            <input type="text" id="state" name="state" hidden="hidden" value="${state?default('')}">
+
+        </form>
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+<script type="text/javascript">
+    function deleteConfirm(Ids){
+        if(confirm("请确认是否删除？")){
+           location.href="cloudcenter_policy_delete.jspx?policyId="+Ids+"";
+        }
+    }
+</script>
+</body>
+</html>

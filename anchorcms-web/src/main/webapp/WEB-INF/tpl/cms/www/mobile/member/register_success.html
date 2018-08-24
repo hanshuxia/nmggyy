@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    [#if cyrh??]
+    <title>注册成功 - 大数据与产业深度融合服务平台</title>
+    <meta http-equiv="refresh" content="3; url='/login.jspx?cyrh=1'">
+    [#else]
+    <title>注册成功 - ${site.siteName}</title>
+    <meta http-equiv="refresh" content="3; url='/login.jspx'">
+    [/#if]
+    <link rel="shortcut  icon" type="image/x-icon" href="/${res}/resources/images/favicon.ico" media="screen"  />
+    <link type="text/css" rel="stylesheet" href="/${res}/css/index.css" />
+    <link type="text/css" rel="stylesheet" href="/${res}/css/prompt.css" />
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+
+</head>
+<body style="background:#F2F3F7;">
+[#if cyrh??]
+<div class="rheader">
+    <div class="logo-con wrapper clearfix">
+        <a href="/" class="logo">
+            <img src="/${res}/resources/images/index/cyrh.png" alt="logo"/>
+        </a>
+        <div class="logo-title" style="margin-left: 60px">注册成功</div>
+        <div class="have"> <a href="/login.jspx?cyrh=1" class="tc">请登录</a></div>
+    </div>
+</div>
+[#else]
+<div class="rheader">
+    <div class="logo-con wrapper clearfix">
+        <a href="/" class="logo">
+            <img src="/${res}/resources/images/index/logo3-1.gif" alt="logo"/>
+        </a>
+        <div class="logo-title">注册成功</div>
+        <div class="have"> <a href="/login.jspx" class="tc">请登录</a></div>
+    </div>
+</div>
+[/#if]
+<div class="register-box">
+    <div class="contents">
+        <div class="msg">注册成功！3秒后将自动跳到登录界面！</div>
+    </div>
+</div>
+</body>
+</html>

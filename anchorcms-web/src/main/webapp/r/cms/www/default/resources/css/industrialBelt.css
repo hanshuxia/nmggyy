@@ -1,0 +1,188 @@
+@charset "UTF-8";
+/**
+ * @Description: 产业带样式
+ * @Author: YoungMan
+ * @Date: 2017-4-26
+ */
+.wrapper{margin-top:30px;}
+.titleStyle{height: 30px;margin-bottom:20px;border-bottom:2px solid #009436;}
+.titleStyle span{float: left;padding: 0 10px;display:block;line-height:31px;background:#009436;color:#fff;font-size:16px;text-align: center;}
+img,li{transition:all .3s;}
+/*--------优秀货源*/
+.supply{float:left;width:955px;height:340px;}
+.supply dl{float:left;width:218px;height:340px;background:#f8f8f8;color:#333;border:1px solid #dcdcdc;}
+.supply dt{padding-left:40px;height:50px;font:600 16px/50px '微软雅黑','Microsoft YaHei';color:#fff;background:#02ad4d url(../img/industrailBelt/ham.png) no-repeat 15px center}
+.supply dd{position:relative;cursor: pointer;border-bottom:1px solid #eee;}
+.supply a{word-break:keep-all; word-wrap:normal;color: #333;font-size:14px}
+.supply span{display:block;height:71px;text-align: center;font:16px/71px '微软雅黑','Microsoft YaHei';}
+.supply .arrow{position:absolute;right:20px;top:0;width:15px;height:65px;background:url(../img/industrailBelt/arrow.png) no-repeat center;}
+.supply .supply1{background:url(../img/industrailBelt/supply1.png) no-repeat 38px center;}
+.supply .supply2{background:url(../img/industrailBelt/supply2.png) no-repeat 38px center;}
+.supply .supply3{background:url(../img/industrailBelt/supply3.png) no-repeat 38px center;}
+.supply .supply4{background:url(../img/industrailBelt/supply4.png) no-repeat 38px center;}
+.supply .supply5{background:url(../img/industrailBelt/supply5.png) no-repeat 38px center;}
+.supply .active,.supply dd:hover{background:#eee;}
+
+/*-轮播图*/
+.supply-img{margin-left:228px;height:340px;position: relative;overflow: hidden;}
+.slider{position: absolute;top: 0;left: 0}
+.slider li{float: left;width:728px;height:340px;}
+.slider li img{width:100%;height:100%;}
+.sliderBtn{display: none;}
+.sliderBtn span{display: block;width: 50px;height: 100px;cursor:pointer;}
+.sliderBtn .prev{position: absolute;left: 0;top: 50%;margin-top: -50px;background:url(../images/industrailBelt/left.png) no-repeat center;}
+.sliderBtn .next{position: absolute;right: 0;top: 50%;margin-top: -50px;background:url(../images/industrailBelt/right.png) no-repeat center;}
+
+/*--------产地快讯*/
+.originNews{float:right;width:235px;height:340px;}
+.goodCargo .titleStyle{margin:0;height: 30px}
+.originNews .newsHd{position:relative;height:34px;line-height: 34px;font-weight:600;color:#178610;border-bottom: 1px solid #c5d5b9;}
+.originNews .headLine{height:157px;border-bottom:1px solid #eee;}
+.originNews .headLine h3{height:47px;line-height:47px;font-size: 14px;}
+.newsCover{float:left;width:95px;height:95px;}
+.newsDetail{margin-left:110px;height:95px;overflow: hidden;font-size: 12px;line-height: 19px;color:#666;position: relative}
+.newsDetail p{height: 80%;overflow: hidden;}
+.newsDetail a{color:#178610;}
+.newsList{padding-top:10px;}
+.newsList li{position:relative;padding-right:50px;height:25px;line-height: 25px;font-size: 12px;color:#666;}
+.newsList li .newsListUrl{position:absolute;right:0;top:0;width:50px;height:25px;line-height: 25px;text-align: right;color:#178610;}
+.readMore{position: absolute;right:0;top:0;width:35px;height:34px;background:url(../images/industrailBelt/more.png) no-repeat center;}
+
+/*--------产地好货*/
+.video{position:relative;float:left;width:380px;height:338px;border:1px solid #eee;}
+.video video{margin:5px;width:370px;height:328px;}
+.video img{margin:5px;width:370px;height:328px;}
+.cargoBanner {width:151px;height:306px;}
+.bigCargo {width:360px;height:306px;}
+/*.smallCargo{width:250px;height:306px;overflow: hidden}*/
+.goodCargo{margin-left:400px;height:338px;}
+.cargoShow{width: 100%;float: left}
+.cargoShow img{float:left;}
+.cargo{float:left;width:142px;height:153px;border:1px solid #eee;border-top:none;}
+.cargo .cargoName{padding:6px 5px 0 5px;height:38px;font-size: 12px;line-height: 35px}
+.cargo .cargoDesc{padding:0 5px 0 5px;font-size: 12px;}
+.cargo img{width:143px;height:110px;}
+.cargo a{color: black}
+.videoDes{position:absolute;width:100%;bottom:0;height:64px;line-height: 64px;text-align: center;color:#fff;background:rgba(0,0,0,.5);font-size: 18px;}
+.see{position:absolute;top:110px;left:130px;width:120px;height:120px;cursor:pointer;}
+/*--------特色产业*/
+.specialBd .cover{float:left;width:206px;height:372px;}
+.specialBd .cover img{width:100%;height:100%;}
+
+/*--------产地好商*/
+.merchantBd .cover{float:left;width:206px;height:372px;}
+.merchantBd .cover img{width:100%;height:100%;}
+.merchantList,.specialList{margin-left:225px;height:372px;}
+.merchantList .m-item,.specialList .m-item{float:left;margin-left:16px;width:303px;height:372px;border:1px solid #eee;}
+.merchantList .m-cover,.specialList .m-cover{height:315px;border-bottom:1px solid #eee;}
+.merchantList .m-cover img,.specialList .m-cover img{width:100%;height:100%;}
+.merchantList .m-desc,.specialList .m-desc{padding:0 20px;}
+.merchantList .m-desc,.specialList .m-desc a{color: black;}
+.merchantList .m-name,.specialList .m-name{position:relative;padding-left:30px;height:52px;line-height: 52px;font-size: 16px;background:url(../images/industrailBelt/nong.png) no-repeat 0 center;}
+.merchantList .m-item:hover,.specialList .m-item:hover{border:1px solid #178610;}
+/*--------特色风景*/
+.viewIntro{float:left;padding:0 25px;width:282px;height:270px;background:#f5f5f5;}
+.viewIntro h2{padding-left:30px;height:60px;line-height: 60px;background:url(../images/industrailBelt/juxing.png) no-repeat 0 center;font-size:30px;}
+.viewIntro h2 span{color:#c10100;}
+.viewIntro .view-center{height:160px;overflow:hidden;text-indent: 2em;}
+.viewIntro .view-foot{height:40px;line-height:40px;text-align: right;}
+.viewIntro .view-foot a{color:#f59e10;}
+.viewList{margin-left:350px;height:270px;}
+.viewList li{float:left;width:190px;height:270px;margin-left:20px;}
+.viewList li img{width:190px;height:270px}
+.viewList li:hover{
+    z-index:2;
+    -webkit-box-shadow: 0 0 16px 5px rgba(0,0,0,.1);
+    -moz-box-shadow: 0 0 16px 5px rgba(0,0,0,.1);
+    -o-box-shadow: 0 0 16px 5px rgba(0,0,0,.1);
+    box-shadow: 0 0 16px 5px rgba(0,0,0,.1);
+    -webkit-transform: translate3d(0, -5px, 0);
+    -moz-transform:translate3d(0, -5px, 0);
+    -o-transform:translate3d(0, -5px, 0);
+    transform: translate3d(0, -5px, 0);
+}
+/*--------特色风景*/
+.otherBd li{position:relative;float:left;margin-right:2px;width:238px;height:168px;overflow: hidden;}
+.otherBd li:hover img{
+    -webkit-transform:scale(1.08);
+    -moz-transform:scale(1.08);
+    -o-transform:scale(1.08);
+    transform: scale(1.08);
+}
+.otherBd{margin-bottom:30px;}
+.beltInfo{position:absolute;left:20px;bottom:10px;width:200px;height:65px;background:rgba(0,0,0,0.5);}
+.beltInfo h4{height:25px;line-height:25px;color:#fff;text-align: center;font-size: 16px;}
+.beltInfo .textOver{margin:0 auto;width:145px;height:30px;line-height:30px;border:1px solid #f59e10;color:#fff;text-align: center;}
+.all-sort-list .item_list{
+    position: absolute;
+    float: left;
+    width: 735px;
+    margin-left: 218px;
+    border: 1px solid #f7f7f7;
+    background-color: #f7f7f7;
+    box-shadow: 2px 0 5px rgba(0,0,0,.3);
+    -webkit-transition: top .25s ease;
+    transition: top .25s ease;
+    z-index: 10;
+    min-height: 342px;
+    top: 360px;
+}
+.item_list_a1{
+    color: #333;
+    margin: 3px;
+    text-decoration: none;
+    text-align: right;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.item_list_a1:hover{
+    color: red;
+}
+.item_list_a1 .item_list_a2 {
+    float: left;
+    margin: 4px 0;
+    padding: 0 10px;
+    height: 16px;
+    border-left: 1px solid #e0e0e0;
+    line-height: 16px;
+    white-space: nowrap;
+}
+.item_list_a2:hover{
+    color: #76c01e;
+}
+.item-all{
+    width: 700px;
+    margin: auto;
+    padding: 5px;
+}
+.item-all:first-child{
+    margin-top:10px;
+}
+.item-all:last-child{
+    margin-bottom:10px;
+}
+.sec{
+    width: 90px;
+    float: left;
+    z-index: 10;
+    text-align: right;
+    overflow: hidden;
+    line-height: 20px;
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.tir{
+    margin-left: 8px;
+    float: left;
+    width: 600px;
+    z-index: 10;
+    line-height: 20px;
+    font-size: 12px;
+    /*border-bottom: 1px solid #e0e0e0;*/
+    color: #e0e0e0;
+    border-bottom: 1px solid #eee;
+}
+.item-all{
+    margin-bottom: 5px;
+}

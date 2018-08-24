@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="cpcn-payment-api-2.3.6">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/anchorcms-web/src/main/webapp/WEB-INF/lib/cpcn-payment-api-2.3.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/anchorcms-web/src/main/webapp/WEB-INF/lib/alipay-sdk-java20161129201425.jar!/" />
+      <root url="jar://$PROJECT_DIR$/anchorcms-web/src/main/webapp/WEB-INF/lib/javax.servlet-api-3.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/anchorcms-web/src/main/webapp/WEB-INF/lib/tools-1.7.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

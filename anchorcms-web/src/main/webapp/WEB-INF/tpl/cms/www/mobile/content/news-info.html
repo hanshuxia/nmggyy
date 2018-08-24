@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta name=”renderer” content=”webkit” />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>${channel.title!channel.name}</title>
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/css/double/base.css" />
+    <link rel="stylesheet" type="text/css" href="/${res}/css/double/news.css" />
+
+</head>
+<body >
+<div class="wrapper">
+
+    <div class="position">
+        <p>所在位置：首页 >> 动态资讯>>新闻公告</p>
+    </div>
+    <div class="main clearfix">
+        <div class="newsTitle clearfix">
+            <p class="title">${content.title}</p>
+            <p class="source">来源:${content.origin!'本站原创'}</p>
+            <p class="time">时间:${content.releaseDate}</p>
+        </div>
+        <div class="newsFoot clearfix">
+            ${txt!}
+            <div class="newFootBottom">
+                <div class="newsFootImg">
+                </div>
+                <p class="forward">上一篇：[@cms_content id=content.contentId next='1' channelId=channel.channelId][#if tag_bean??]<a href="${tag_bean.url}">[@text_cut s=tag_bean.title len=21 append='...'/]</a>[#else]没有了[/#if][/@cms_content]</p>
+                <p class="next">下一篇：[@cms_content id=content.contentId next='0' channelId=channel.channelId][#if tag_bean??]<a href="${tag_bean.url}">[@text_cut s=tag_bean.title len=21 append='...'/]</a>[#else]没有了[/#if][/@cms_content]</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

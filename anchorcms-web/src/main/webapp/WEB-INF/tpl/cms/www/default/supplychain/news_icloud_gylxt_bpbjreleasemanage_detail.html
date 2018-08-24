@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>备品备件待审核管理明细界面</title>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut  icon" type="image/x-icon" href="/${res}/resources/images/favicon.ico" media="screen"/>
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/searching.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/releasePower.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!--header start-->
+[#include "../include/header_icloud.html" /]
+<!--header end-->
+<!--content start-->
+<div class="content wrapper clearfix">
+
+    <div>
+        <div class="column wrapper">
+            <span class="head">求购信息</span>
+        </div>
+        <div class="service-content wrapper">
+            <div class="inputs">
+                <label><i>*</i>&nbsp;求购主题：</label>
+                <label>${oRepairDemandEntity.requestTheme?default("")}</label>
+            </div>
+            <div class="inputs">
+                <label><i>*</i>&nbsp;订单紧急程度：</label>
+                <label>${oRepairDemandEntity.isUrgency?default("")}</label>
+            </div>
+            <div class="inputs">
+                <label><i>*</i>&nbsp;要求到货日期：</label>
+                <label>${oRepairDemandEntity.deliverDt?default("")}</label>
+            </div>
+            <div class="inputs">
+                <label><i>*</i>&nbsp;求购截止日期：</label>
+                <label>${oRepairDemandEntity.deadlineDt?string('yyyy-MM-dd')?default("")}</label>
+            </div>
+        </div>
+
+        <div class="column wrapper">
+            <span class="head">求购备品备件信息</span>
+        </div>
+        <div class="service-content wrapper">
+            <div class="inputs">
+                <label>&nbsp;求购分类</label>
+                <label>&nbsp;备件名称</label>
+                <label>&nbsp;备件描述</label>
+                <label>&nbsp;求购数量</label>
+                <label>&nbsp;计量单位</label>
+                <label>&nbsp;期望价格</label>
+            </div>
+            <div class="inputs">
+                <label>${oRepairDemandObjEntity.spareType?default("")}</label>
+                <label>${oRepairDemandObjEntity.spareName?default("")}</label>
+                <label>${oRepairDemandObjEntity.spareDesc?default("")}</label>
+                <label>${oRepairDemandObjEntity.requestNum?default("")}</label>
+                <label>${oRepairDemandObjEntity.unit?default("")}</label>
+                <label>${oRepairDemandObjEntity.expectPrice?default("")}</label>
+            </div>
+            <div class="inputs">
+                <label><i>*</i>&nbsp;是否显示期望价格：</label>
+                <input type="radio"/>否
+                <input type="radio"/>是
+            </div>
+            <div class="inputs">
+                <label><i>*</i>&nbsp;补充说明：</label>
+            </div>
+
+        </div>
+
+        <div class="column wrapper">
+            <span class="head">商务条款</span>
+        </div>
+        <div class="service-content wrapper">
+            <div class="inputs">
+                <label><i>*</i>&nbsp;交易方式：</label>
+                <input type="radio"/>货到付款
+                <input type="radio"/>预付款
+                <input type="radio"/>其他
+            </div>
+            <div class="inputs">
+                <label><i>*</i>&nbsp;付款方式：</label>
+                <input type="radio"/>现金
+                <input type="radio"/>银行转账
+                <input type="radio"/>支票
+                <input type="radio"/>增值税发票
+            </div>
+            <div class="inputs">
+                <label><i>*</i>&nbsp;发票类型：</label>
+                <input type="radio"/>无需发票
+                <input type="radio"/>普通发票
+            </div>
+            <div class="inputs">
+                <label><i>*</i>&nbsp;运费承担商：</label>
+                <input type="radio"/>供应方
+                <input type="radio"/>采购方
+            </div>
+            <div class="inputs">
+                <label><i>*</i>&nbsp;收货地址：</label>
+                <label></label>
+            </div>
+        </div>
+
+        <div class="column wrapper">
+            <span class="head">发布方式</span>
+        </div>
+        <div class="service-content wrapper">
+            <div class="inputs">
+                <label><i>*</i>&nbsp;全网发布</label>
+                <input type="checkbox" checked="checked"/>只允许通过实地认证官方报价
+            </div>
+        </div>
+
+        <div class="contact">
+            <div class="column wrapper">
+                <span class="head">联系信息</span>
+            </div>
+            <div class="contact-content wrapper">
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;所在地区：</label>
+                    <label>${oRepairDemandEntity.addrCity?default("")}</label>
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;联系人：</label>
+                    <label>${oRepairDemandEntity.releaseId?default("")}</label>
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;联系电话：</label>
+                    <label>${oRepairDemandEntity.mobile?default("")}</label>
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;传真：</label>
+                    <label>${oRepairDemandEntity.fax?default("")}</label>
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;Email：</label>
+                    <label>${oRepairDemandEntity.email?default("")}</label>
+                </div>
+            </div>
+        </div>
+        <div class="release-button">
+            <button class="btn cancel">返回</button>
+        </div>
+    </div>
+
+</div>
+<!--content end-->
+<!--footer start-->
+[#include "../include/footer_icloud.html" /]
+<!--footer end-->
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/lib/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/lib/ueditor/ueditor.all.min.js"></script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/lib/editor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript">
+</script>
+
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>报价详细</title>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/searching.css"/>
+    <link rel="stylesheet" type="text/css" href="/r/cms/www/default/resources/lib/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/r/cms/www/default/resources/css/releasePower.css"/>
+    <link rel="stylesheet" type="text/css" href="/r/cms/www/default/resources/css/base.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <script type="text/javascript" src="/thirdparty/jquery-placeholder/placeholder-ie9.js" ></script>
+
+    <![endif]-->
+    <style type="text/css">
+        .wrapper {
+            width: 95%;
+        }
+    </style>
+    <style type="text/css">
+        .SDemandObj_table {
+            width: 100%;
+            margin: auto;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .SDemandObj_table td {
+            height: 30px;
+            line-height: 20px;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        #demanderInfo {
+            border-collapse: collapse;
+            width: 90%;
+            margin: auto
+        }
+
+        #demanderInfo tr td {
+            height: 40px;
+            line-height: 20px;
+            vertical-align: middle;
+            text-align: center;
+            border: solid thin #cccccc;
+            padding: 0 10px
+        }
+    </style>
+</head>
+<body>
+<!--header start-->
+<!--header end-->
+<!--content start-->
+<br>
+<div class="content wrapper">
+    <div class="servicePower">
+        <div class="column wrapper"><span class="head">需求方基本信息</span></div>
+        <div class="service-content wrapper">
+            <br>
+            [#if sRepairDemandList?size gt 0]
+            [#list sRepairDemandList as a]
+            <table id="demanderInfo" align="left">
+                <tr style="height: 100%">
+                    <td width="8%">询价单位：</td>
+                    <td width="26%">${(a.company.companyName)?default("")}</td>
+                    <td width="8%">联系人：</td>
+                    <td width="25%">${(a.contact)?default("")}</td>
+                    <td width="8%">联系电话：</td>
+                    <td width="25%">${(a.mobile)?default("")}</td>
+                </tr>
+                <tr>
+                    <td width="8%">传真：</td>
+                    <td width="25%">${(a.fax)?default("")}</td>
+                    <td width="8%">开始日期：</td>
+                    <td width="26%">${(a.startDt)?default("")}</td>
+                    <td width="8%">截止日期：</td>
+                    <td width="26%">${(a.deadlineDt)?default("")}</td>
+                </tr>
+                <tr>
+                    <td width="8%">Email：</td>
+                    <td width="25%">${(a.email)?default("")}</td>
+                    <td width="8%">维修地点：</td>
+                    <td width="26%" colspan="5">${(a.addrProvince)?default("")} ${(a.addrCity)?default("")}
+                        ${(a.addrCounty)?default("")} ${(a.addrStreet)?default("")}
+                    </td>
+                </tr>
+                <td width="8%" length="50%">维修说明:</td>
+                <td width="25%" colspan="5" style="text-align: left">${(a.description)?default("")}</td>
+
+            </table>
+            [/#list]
+            [/#if]
+        </div>
+        <div class="servicePower" style="margin-top: 250px;">
+            <div class="column wrapper"><span class="head">询价对象信息</span>
+                <!--<span class="tips">未填写报价的对象视为未对其报价，<i>*</i>&nbsp;为必填项</span>--> </div>
+            <div class="service-content wrapper">
+                <!--<span>请选择报价对象，</span>未填写报价的对象视为未对其报价<br>-->
+                <table id="SDemandObj_table" class="SDemandObj_table" border="1">
+                    <tr style="background-color:#318CB9; color: #FFFFFF;">
+                        <td width="15%">维修对象名称</td>
+                        <td width="10%">编码/编号</td>
+                        <td width="25%">数量</td>
+                        <td width="15%">要求备注</td>
+                        <td width="10%">期望单价(元)</td>
+                        <td width="10%">我的报价(元)</td>
+                    </tr>
+                    [#list sRepairDemandList as a]
+                    [#list a.sRepairDemandObj as b]
+
+                    <tr>
+                        <td>${b.repairName?default("")}</td>
+                        <td>${b.machineType?default("")}</td>
+                        <td>${b.repairNum?default("")}</td>
+                        <td>${b.repairRequest?default("")}</td>
+                        <td>${b.expectPrice?default("")}元</td>
+                        [#list sRepairQuote.sRepairAbility as c]
+                        [#if b.repairObjid = c.demandId]
+                        <td> ${c.offer?default("")}元</td>
+                        [/#if]
+                        [/#list]
+                    </tr>
+                    [/#list]
+                    [/#list]
+
+
+
+                </table>
+                <br><br>
+
+
+                [#if !sRepairQuote.selectStatus??]
+                [#else]
+                [#switch sRepairQuote.selectStatus?default("")]
+                [#case "2"]
+                <br>
+                <div style="color: #F41B0D" align="right"><h3>报价总价：￥${offerSum?default('')}元</h3></div>
+                <br>
+                [#break]
+                [#default]
+                [/#switch]
+                [/#if]
+
+
+                <div style="margin-left: 1px">
+                    <span>报价说明：<textarea rows="5" cols="100" readonly="true" style="resize: none;">
+${sRepairQuote.offerExplan?default("")}</textarea></span>
+                </div>
+                <br><br><br><br><br>
+                <br><br><br><br>
+
+
+                <!--联系信息-->
+                <div class="column wrapper"><span class="head" style="font-size: large">报价方基本信息</span>
+                    <div class="contact-content wrapper" style="margin-left: -80px;">
+                        <div class="inputs">
+                            <label>&nbsp;联系人：</label>
+                            <input class="codeInput" id="contact" name="contact" value="${sRepairQuote.contact?default('')}"
+                                   disabled="disabled" type="text" >
+
+                        </div>
+                        <div class="inputs">
+                            <label>&nbsp;联系电话：</label>
+                            <input class="codeInput phone" id="mobile" name="mobile" value="${sRepairQuote.mobile?default('')}"
+                                   disabled="disabled" type="text" placeholder="手机号码">
+
+                            <span class="special">${sRepairQuote.telephone?default('')}</span></div>
+                        <div class="inputs">
+                            <label>传真：</label>
+                            <input class="codeInput fox" id="fax" name="fax" value="${sRepairQuote.fax?default('')}"
+                                   disabled="disabled" type="text">
+                        </div>
+                        <div class="inputs">
+                            <label>emali：</label>
+                            <input class="codeInput" id="email" name="email" value="${sRepairQuote.email?default('')}"
+                                   disabled="disabled" type="text">
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="release-button">
+                        <a href="/repairQuote.jspx">
+                            <!--<button class="btn cancel" onclick="cancel()">返回</button>-->
+                            <button type="button"  onclick="javascpipt:history.go(-1);" class="btn cancel">返回</button>
+                        </a>
+                    </div>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--footer end-->
+    <script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/searching.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#demanderInfo tr').each(function () {
+                $(this).children('td:even').css({"background-color": "#318CB9", "color": "#FFFFFF", "padding": "0"});
+            })
+            $("input[type=text]").attr("readonly", "readonly");
+            $("span").css("color", "#000000");
+        })
+        //返回上一页方法
+        function cancel(){
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

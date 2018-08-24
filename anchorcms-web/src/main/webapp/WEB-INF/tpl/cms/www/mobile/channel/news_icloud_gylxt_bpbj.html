@@ -1,0 +1,389 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>备品备件-${site.siteName!}</title>
+    <meta http-equiv="keywords" content="备品备件,内蒙古备品备件"/>
+    <meta http-equiv="description" content="内蒙古备品备件,${site.description!}"/>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/searching.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!--header start-->
+[#include "../include/header_icloud.html"]
+<!--header end-->
+<!--content start-->
+<div class="content wrapper clearfix">
+    <div class="searchIndex clearfix">
+        <div class="search-top">
+            <span><a href="/gylxt/index.jhtml" target="_blank">${channel.parent.name}</a>&nbsp;&gt;&nbsp;<a href="/gylxtBpbj/index.jhtml">${channel.name}</a></span>
+        </div>
+        <div class="search-main">
+            <div id="kinds" class="kinds wrapper">
+                <div class="type">
+                    <span class="kind1">备件分类：</span>
+                    <div class="type-content kind-one">
+                        <a class="qb" href="javascript: void(0)" data-condition="qb" onclick="sercher(this,'kind-one',0)">全部</a>
+                        [@s_pub_code_list count='10' level="1" orderBy='1' menuType='BPBJLX']
+                        [#list tag_list as a]
+                        <a class="${a.sortNo}" href="javascript: void(0)" data-condition="${a.sortNo}" onclick="sercher(this,'kind-one',0)">${a.value?default("")}</a>
+                        [/#list]
+                        [/@s_pub_code_list]
+                    </div>
+                    <div class="kindInfo"></div>
+                    <!--<a class="more">更多∨</a>-->
+                </div>
+                <div class="type bottom">
+                    <span class="kind2">地区：</span>
+                    <div class="type-content kind-two"></div>
+                    <a class="more">更多∨</a>
+                </div>
+            </div>
+            <div class="searchBox">
+                <ul class="clearfix">
+                    <li class="current" ><a href="index.jhtml">综合&nbsp;&nbsp;↓</a></li>
+                    <li><a onclick="bpbjSearch('2','','2')">发布时间&nbsp;&nbsp;↓</a></li>
+                </ul>
+                <div class="searchBar">
+                    <!--<input type="text" id="searchInput" style="line-height: 20px;">-->
+                    <!--<button onclick="getBpbjList('3', '')">搜索</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="showProduct clearfix">
+        <ul>
+            [@ext_content_page count='12' typeId='1' q=q  modelPath="spare"]
+            [#if tag_pagination.list?size = 0]
+            <div style="text-align: center">
+                <img src="/${res}/images/default_list.png" alt="">
+            </div>
+            [#else]
+            [#list tag_pagination.list as a]
+            [#if a_index<24]
+            <li [#if a_index==3||a_index==7||a_index==11||a_index==15||a_index==19||a_index==23]style="margin-right:0;"[/#if]>
+            [#if (a.content)??]
+            [#if a.content.staticContent]
+                [#if a.content.needRegenerate]
+                    [#if a.content.pictures[0]??]
+                         <a href="/spare/detail.jspx?id=${a.sparepartsId!}" target="_blank"><img src="${a.content.pictures[0].imgPath?default('')}" alt=""></a>
+                     [#else]
+            <!--可以写死一张图片放到这里-->
+                         <a href="/spare/detail.jspx?id=${a.sparepartsId!}" target="_blank"><img src="/${res}/images/default_img.jpg" alt=""></a>
+                     [/#if]
+                    [#else]
+                        [#if a.content.pictures[0]??]
+                        <a href="${a.content.url}" target="_blank"><img src="${a.content.pictures[0].imgPath?default('')}" alt=""></a>
+                         [#else]
+            <!--可以写死一张图片放到这里-->
+                        <a href="${a.content.url}" target="_blank"><img src="/${res}/images/default_img.jpg" alt=""></a>
+                         [/#if]
+                    [/#if]
+                    [#else]
+                         [#if a.content.pictures[0]??]
+                             <a href="/spare/detail.jspx?id=${a.sparepartsId!}" target="_blank"><img src="${a.content.pictures[0].imgPath?default('')}" alt=""></a>
+                             [#else]
+                    <!--可以写死一张图片放到这里-->
+                            <a href="/spare/detail.jspx?id=${a.sparepartsId!}" target="_blank"><img src="/${res}/images/default_img.jpg" alt=""></a>
+                            [/#if]
+
+                    [/#if]
+                    [#else]
+                            [#if a.content.pictures[0]??]
+                            <a href="/spare/detail.jspx?id=${a.sparepartsId!}" target="_blank"><img src="${a.content.pictures[0].imgPath?default('')}" alt=""></a>
+                            [#else]
+                            <!--可以写死一张图片放到这里-->
+                            <a href="/spare/detail.jspx?id=${a.sparepartsId!}" target="_blank"><img src="/${res}/images/default_img.jpg" alt=""></a>
+                             [/#if]
+            [/#if]
+
+
+            <div class="item-cname">
+                <input id="searchOne" value=" ${tag_pagination.searchOne?default('')}" hidden="hidden" type="text">
+                <input id="searchtwo" value=" ${tag_pagination.searchTwo?default('')}" hidden="hidden"  type="text">
+                <input id="searchthree" value=" ${tag_pagination.searchThree?default('')}" hidden="hidden"  type="text">
+                <input id="searchFour" value=" ${tag_pagination.searchFour?default('')}"  hidden="hidden"  type="text">
+                    <dl>
+                        <dt class="aName">
+                            [#if (a.content)??]
+                                [#if a.content.staticContent]
+                                    [#if a.content.needRegenerate]
+                                         <a href="/spare/detail.jspx?id=${a.sparepartsId!}" target="_blank" title="${a.spareName!}">[@text_cut
+                                        s=a.spareName! len=6 append='...[详细]' /]</a>
+                                [#else]
+                                        <a href="${a.content.url}" target="_blank" title="${a.spareName!}">[@text_cut
+                                                s=a.spareName! len=6 append='...[详细]' /]</a>
+                                [/#if]
+                                [#else]
+                                            <a href="/spare/detail.jspx?id=${a.sparepartsId!}" target="_blank" title="${a.spareName!}">[@text_cut
+                                                s=a.spareName! len=6 append='...[详细]' /]</a>
+                                [/#if]
+                                [#else]
+                                            <a href="/spare/detail.jspx?id=${a.sparepartsId!}" target="_blank" title="${a.spareName!}">[@text_cut
+                                                s=a.spareName! len=6 append='...[详细]' /]</a>
+                            [/#if]
+
+                        </dt>
+
+                        <dd>类型：[#if a.spareType??][@s_typevalue typecode='BPBJLX' typekey=a.spareType isfull='1' join='>' /][/#if]</dd>
+                    </dl>
+                [#if a.referPrice?? && a.referPrice!=0]
+                <span class="special">价格：${a.referPrice?default("暂无")}元</span>
+                [#else]
+                <span class="special">价格面议</span>
+                [/#if]
+                <p>${a.company.companyType!}</p>
+            </div>
+            </li>
+            [/#if]
+            [/#list]
+            [/#if]
+        </ul>
+    </div>
+    <div class="page clearfix">[@cms_pagination sysPage='1'/]</div> <!--分页显示-->
+    [/@ext_content_page]
+</div>
+<div id="historyData"></div>
+<!--content end-->
+<!--footer start-->
+
+<!--footer end-->
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/searching.js"></script>
+<script type="text/javascript">
+    function bpbjSearch (id,index,e){
+        var $historyData = $("#historyData");
+        var searchOne = $historyData.attr("data-search-1");
+        var searchTwo = $historyData.attr("data-search-2");
+        var searchthree = $historyData.attr("data-search-3");
+        var searchFour = $historyData.attr("data-search-4");
+        var searchFive = $historyData.attr("data-search-5");
+        var searchSix = $historyData.attr("data-search-6");
+
+        if(id == '0'){
+            searchOne = e;
+            searchSix = index;
+        }if(id == '1'){
+            searchTwo = e;
+        }if(id == '2'){
+            searchthree = e;
+        }if(id == '3'){
+            searchFour = e;
+        }if(id == '4'){
+            searchFive = e;
+        }
+
+        location.href="index-"+searchOne+"-"+searchTwo+"-"+searchthree+"-"+searchFour+"-"+searchFive + "-" + searchSix + "-.jhtml";
+    }
+    $(document).ready(function () {
+        initData();
+        initHistoryData();
+    });
+
+    /*初始化方法*/
+    function initData() { // 定义查询条件
+        /*备件分类*/
+        var kind1 = [
+            {"code": "qb", "name": "全部"},
+            {"code": "370000", "name": "机械设备"},
+            {"code": "380000", "name": "设备配件"},
+            {"code": "390000", "name": "阀门/管件"},
+            {"code": "400000", "name": "五金"},
+            {"code": "410000", "name": "电器/仪表"},
+            {"code": "420000", "name": "轻化类"},
+            {"code": "430000", "name": "材料"},
+            {"code": "440000", "name": "其他"}
+        ];
+//        var kind2 = [
+//            {"code": "qb", "name": "全部"},
+//            {"code": "hhht", "name": "呼和浩特"},
+//            {"code": "bt", "name": "包头"},
+//            {"code": "eeds", "name": "鄂尔多斯"},
+//            {"code": "wlcb", "name": "乌兰察布"},
+//            {"code": "wh", "name": "乌海"},
+//            {"code": "hlbe", "name": "呼伦贝尔"},
+//            {"code": "tl", "name": "通辽"},
+//            {"code": "cf", "name": "赤峰"},
+//            {"code": "byze", "name": "巴彦淖尔"},
+//            {"code": "xlglm", "name": "锡林郭勒盟"},
+//            {"code": "alsm", "name": "阿拉善盟"},
+//            {"code": "xam", "name": "兴安盟"}
+//        ];
+        //搜索区域改为全国省市
+        var kind2 = [
+            {"code": "qb", "name": "全部"},
+            {"code": "bjs", "name": "北京市"},
+            {"code": "tjs", "name": "天津市"},
+            {"code": "hbs", "name": "河北省"},
+            {"code": "nmgzzq", "name": "内蒙古自治区"},
+            {"code": "lns", "name": "辽宁省"},
+            {"code": "jls", "name": "吉林省"},
+            {"code": "hljs", "name": "黑龙江省"},
+            {"code": "shs", "name": "上海市"},
+            {"code": "jss", "name": "江苏省"},
+            {"code": "zjs", "name": "浙江省"},
+            {"code": "ahs", "name": "安徽省"},
+            {"code": "fjs", "name": "福建省"},
+            {"code": "jxs", "name": "江西省"},
+            {"code": "sds", "name": "山东省"},
+            {"code": "hns", "name": "河南省"},
+            {"code": "hubs", "name": "湖北省"},
+            {"code": "huns", "name": "湖南省"},
+            {"code": "gds", "name": "广东省"},
+            {"code": "gxzzzzq", "name": "广西壮族自治区"},
+            {"code": "hains", "name": "海南省"},
+            {"code": "cqs", "name": "重庆市"},
+            {"code": "scs", "name": "四川省"},
+            {"code": "gzs", "name": "贵州省"},
+            {"code": "yns", "name": "云南省"},
+            {"code": "zzzzq", "name": "西藏自治区"},
+            {"code": "sxs", "name": "陕西省"},
+            {"code": "gss", "name": "甘肃省"},
+            {"code": "qhs", "name": "青海省"},
+            {"code": "nxhzzzq", "name": "宁夏回族自治区"},
+            {"code": "xjwwezzzq", "name": "新疆维吾尔自治区"}
+        ];
+
+        /*初始化查询条件 S*/
+       // initKind(kind1, "kind-one", "0");
+        initKind(kind2, "kind-two", "1");
+    }
+
+    /*初始化历史查询*/
+    function initHistoryData() {
+        var url = window.location.href;
+        var arr = url.split("-");
+        if (arr.length >= 4) {
+            /*备件分类*/
+            var searchOne = arr[1];
+            /*地区*/
+            var searchTwo = arr[2];
+            /*综合 发布时间*/
+            var searchThree = arr[3];
+            var searchFour = arr[4];
+            var searchFive = arr[5];
+            var searchSix = arr[6];
+
+            $("#historyData").attr({
+                "data-search-1":searchOne,
+                "data-search-2":searchTwo,
+                "data-search-3":searchThree,
+                "data-search-4":searchFour,
+                "data-search-5":searchFive,
+                "data-search-6":searchSix
+            });
+            if(searchOne != "qb" && searchOne != "150000" && searchOne != "undefined"){
+                $(".kindInfo").show();
+                getSiteInfo(searchSix,searchOne);//通过ajax获取放二级菜单的数据
+                addRed("kind-one",searchSix);
+                addRed("kindInfo",searchOne);
+            }else{
+                addRed("kind-one",searchOne);
+            }
+            addRed("kind-one", searchOne);
+            addRed("kind-two", searchTwo);
+            addRed("kind-three", searchThree);
+
+            if ("undefined" != searchThree) {
+                if ("2" == searchThree) {
+                    $(".searchBox li").eq(1).addClass("current").siblings().removeClass("current");
+                }
+            }
+        }
+    }
+
+    /*标红方法*/
+    function addRed(kind, condition) {
+        if ("undefined" != condition) {
+            $("." + kind).find("." + condition).css("color", "red");
+        }
+    }
+
+    function initKind(kind, kindClass, index) {
+        var kindOne = "";
+        for (var i = 0; i < kind.length; i++) {
+            kindOne += "<a href='javascript: void(0)' class='" + kind[i].code + "' " +
+                    "data-condition='" + kind[i].code + "'>"
+                    + kind[i].name + "</a>";
+        }
+        $("." + kindClass).html(kindOne);
+
+        $("." + kindClass + " a").click(function () {
+            var condition = $(this).attr("data-condition");
+            bpbjSearch(index,"",condition)
+        });
+    }
+
+
+
+    function initKind2(kind, kindClass,index) {
+        var kindOne = "";
+        for(var i = 0; i < kind.length; i++){
+            kindOne += "<a href='javascript: void(0)' class='"+kind[i].code+"' " +
+                    "data-condition='"+kind[i].code+"' parent-code='" + kind[i].par_code + "'>"
+                    + kind[i].name + "</a>";
+        }
+        $("."+kindClass).html(kindOne);
+
+        $("."+kindClass+" a").click(function () {
+            var condition = $(this).attr("data-condition");
+            var par_code = $(this).attr("parent-code");
+            bpbjSearch(index,par_code,condition);
+        });
+    }
+
+    function sercher(obj,kindClass,index){
+        var condition = $(obj).attr("data-condition");
+        if(condition == "qb" || condition == "150000"){
+            $(".kindInfo").hide();
+            bpbjSearch(index,"",condition);
+        }else{
+            $("."+kindClass+" a").css("color","");
+            $(obj).css("color","red");
+            bpbjSearch(index,condition,condition);
+        }
+    }
+
+
+    //查询二级菜单数据
+    function getSiteInfo(parentKey,key) {
+        $.ajax({ // 根据地址获取网站信息
+            type: "post",
+            url: "/dict/getTypeCatagory.jsp?typeCode=BPBJLX&parentKey=" + parentKey,
+            dataType: "json",
+            success: function (json) {
+                var kind=[ {"code":""+parentKey+"","name":"全部","par_code":""+parentKey+""}];
+                var jsonarr=json["cataList"];
+                for(var i=0;i<jsonarr.length;i++){
+                    var obj=jsonarr[i];
+                    var object={};
+                    object["code"]=obj["key"];
+                    object["name"]=obj["value"];
+                    object["par_code"]=parentKey;
+                    kind.push(object)
+                }
+                initKind2(kind, "kindInfo", "0");
+                addRed("kindInfo",key);
+            },
+            error: function () {
+                alert("操作失败，原因：1、用户未登录，2、用户无关联公司，3、请求的二级菜单不存在");
+            }
+        });
+    }
+</script>
+</body>
+[#include "../include/footer_icloud.html"]
+</html>

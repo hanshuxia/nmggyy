@@ -1,0 +1,123 @@
+.position{
+	width:1202px;
+	height:41px;
+	background-image:url(../../images/joinArmy/techInfo/u601.png);
+	margin-top:10px;
+}
+.position p{
+	font-size:13px;
+	font-weight:700;
+	line-height:41px;
+	text-align:left;
+}
+.info-content{
+	margin: 0 auto;
+}
+.info-content .nav{
+	margin-top:10px;
+	width:220px;
+	height:531px;
+	background-image:url(../../images/joinArmy/techInfo/u610.png);
+	float:left;
+}
+.info-content .nav .title{
+	width:220px;
+	height:60px;
+	background-image:url(../../images/joinArmy/techInfo/u621.png);
+}
+.info-content .nav .type{
+	width:150px;
+	height:250px;
+	margin-left:40px;
+	margin-top:40px;
+	}
+.info-content .nav .type ul li{
+	font-size:12px;
+	list-style:disc;
+}
+.info-content .nav .title p{
+	line-height:60px;
+	text-align:center;
+	font-size:15px;
+	
+}
+.main{
+	margin-left:16px;
+	margin-top:10px;
+	width:962px;
+	height:1051px;
+	background-image:url(../../images/joinArmy/techInfo/u66.png);
+	float:left;
+
+}
+.info-content .main .mainTitle{
+	text-align:center;
+	margin-top:25px;
+	font-size:19px;
+	}
+.info-content .main .mainImg{
+	width:590px;
+	height:220px;
+	background-image:url(../../images/joinArmy/techInfo/u75.png);
+	margin-top:40px;
+	margin-left:186px;
+	}
+.info-content .main .tableHead{
+	width:810px;
+	height:50px;
+	background-image:url(../../images/joinArmy/techInfo/u771.png);
+	margin-top:20px;
+	margin-left:76px;
+}
+.info-content .main .table{
+	width:810px;
+	height:200px;
+	background-image:url(../../images/joinArmy/techInfo/u791.png);
+	margin-top:0px;
+	margin-left:76px;
+	/*padding-top:24px;*/
+}
+.info-content .main .intro{
+	clear:both;
+	width:810px;
+	height:330px;
+	background-image:url(../../images/joinArmy/techInfo/u114.png);
+	margin-top:10px;
+	margin-left:76px;
+}
+.info-content .main .mainFoot{
+	width:810px;
+	height:81px;
+	margin-top:10px;
+	margin-left:76px;
+}
+.info-content .main .mainFoot img{
+	width:810px;
+	height:81px;
+}
+.info-content .main .intro p{
+	line-height:330px;
+	text-align:center;
+	font-size:12px;
+}
+.info-content .nav .sub{
+	font-size:12px;
+	text-align:center;
+	margin-top:10px;
+	}
+.info-content .main .table table{
+	clear:both;
+	border:1px;
+	width:642px;
+	height:154px;
+	margin-left:85px;
+	
+}
+.info-content .main .table table tr td{
+	text-align:center;
+	font-size:13px;
+	width:160px;
+	height:38px;
+	border:1px;
+	background-image:url(../../images/joinArmy/techInfo/u98.png);
+}

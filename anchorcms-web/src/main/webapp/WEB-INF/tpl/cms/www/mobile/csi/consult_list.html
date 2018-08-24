@@ -1,0 +1,17 @@
+<div class="title-more">
+	<h3><span>咨询留言</span></h3>
+	<a href="${base}/consult.jspx?contentId=${contentId!}&channelId=${channelId!}">更多留言</a>
+</div>
+<div class="closeReplay">
+	[@cms_consult_list contentId='${contentId!}' orderBy="1" count='5']
+	[#list tag_list as c]
+	<div class="message">
+		<img src="${(c.consultUser.userImg)!'/${res}/images/userImg.png'}">
+		<div class="reMsg">
+			<span class="user">[#if c.consultUser??]${(c.consultUser.username)!"匿名网友"}[#else]匿名网友[/#if]</span>：<span>${c.text!}</span>
+			<sapn class="replayDt">留言时间：${c.createTime}</sapn>
+		</div>
+	</div>
+	[/#list]
+	[/@cms_consult_list]
+</div>

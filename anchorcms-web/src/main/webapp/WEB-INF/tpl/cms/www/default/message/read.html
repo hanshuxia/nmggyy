@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${site.siteName} - Powered by ANCHORCMS</title>
+    <link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script src="/${res}/js/message.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/${res}/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/releasePower.css"/>
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/releasePower.css"/>
+    <!--添加表单校验-->
+    <script src="${base}/res/common/js/jquery.validate.js" type="text/javascript"></script>
+    <script src="${base}/res/common/js/messages_zh.js" type="text/javascript"></script>
+    <!--自己写校验方法-->
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/validateCheck.js"></script>
+    <style type="text/css">
+        .wrapper{width: 95%;}
+    </style>
+    <script type="">
+        $().ready(function() {
+            $("#jvForm").validate()
+        });
+    </script>
+</head>
+<body>
+<div class="content wrapper  ">
+    <form id="jvForm" action="/member/message_update.jspx" method="post" class="tggl fbgj">
+        <div class="servicePower">
+            <div class="column wrapper">
+                <span class="head">站内信查看</span>
+            </div>
+            <div class="service-content wrapper">
+                <div class="inputs">
+                    <label>&nbsp;发件人：</label>
+                    <input type="text" id="username" name="username" maxlength="150" class="member-change"
+                           onchange="find_user()" value="${message.msgSendUser.username!}" disabled="disabled"/>
+                </div>
+                <div class="inputs">
+                    <label>&nbsp;收件人：</label>
+                    <input type="text" id="reUsername" name="reUsername" maxlength="150" class="member-change"
+                           onchange="find_user()" value="${message.msgReceiverUser.username!}" disabled="disabled"/>
+                </div>
+                [#if message.sendTime??]
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;发件时间：</label>
+                    <input type="text" name="sendTime" required maxlength="150" disabled="disabled" class="member-change" [#if message.sendTime??]
+                           value="${message.sendTime?string('yyyy-MM-dd HH:mm:ss')}"[/#if]/>
+                </div>
+                [/#if]
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;主题：</label>
+                    <input type="text" name="msgTitle" maxlength="150" class="member-change" required
+                           value="${message.titleHtml!}"/>
+                </div>
+                <div class="fbgj" style="margin-top: 5px;">
+                    <label><i>*</i>&nbsp;内容：</label>
+                    <textarea name="msgContent" id="msgContent" maxlength="2000"  style="width:550px;height:200px" class="required">${message.contentHtml!}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="release-button" style="float: left;margin-left: 180px;">
+            <input name="box" type="hidden" value="${box!}"/>
+            <input name="nextUrl" type="hidden" value="message_mng.jspx?box=1"/>
+            <input name="id" type="hidden" value="${message.msgId!}"/>
+            <input name="msg" type="hidden" value="${message.titleHtml!}已被成功移除！"/>
+            [#if box??]
+            [#if box==0 || box=3]
+            <button class="btn member-submit" type="button" onclick="reply('${message.msgId!}')">回复</button>
+            <button class="btn member-submit" type="button" onclick="forward()">转发</button>
+            [#elseif box=1 || box=2]
+            <button class="btn member-submit" type="button" onclick="sendForward()">转发</button>
+            [/#if]
+            [/#if]
+
+
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    function sendForward(){
+        $("#jvForm").attr("action","message_sendForward.jspx");
+        $("#jvForm").submit();
+    }
+</script>
+</body>
+</html>

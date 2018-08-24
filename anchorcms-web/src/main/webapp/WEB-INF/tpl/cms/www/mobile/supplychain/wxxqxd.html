@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>下单界面</title>
+    <link rel="shortcut  icon" type="image/x-icon" href="/${res}/resources/images/favicon.ico" media="screen"/>
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/userCenter.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/releasePower.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="${base}/res/common/js/jquery.ext.js" type="text/javascript"></script>
+    <script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/swfupload.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/swfupload.queue.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/fileprogress.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/handlers.js" type="text/javascript"></script>
+    <link href="${base}/thirdparty/swfupload/process.css" rel="stylesheet" type="text/css"/>
+
+    <style type="text/css">
+        table {
+            text-align: center;
+            border: 0px solid;
+            margin-top: 20px;
+        }
+
+        td {
+            height: 30px;
+            border: 1px solid #DDDDDD;
+        }
+
+        table input[type="text"] {
+            width: 98%;
+            border-width: 0px;
+        }
+
+        table select {
+            width: 98%;
+            border-width: 0px;
+        }
+
+        textarea {
+            vertical-align: top;
+            width: 80%;
+            height: 100px;
+            margin-top: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        function getAll() {
+            var ch = document.getElementById("checkAll");
+            var che = document.getElementsByName("checkEach");
+            for (var i = 0; i < che.length; i++) {
+                if (ch.checked) {
+                    che[i].checked = true;
+                } else {
+                    che[i].checked = false;
+                }
+            }
+        }
+        function getEach() {
+            var ch = document.getElementById("checkAll");
+            var che = document.getElementsByName("checkEach");
+            for (var i = 0; i < che.length; i++) {
+                if (!che[i].checked) {
+                    ch.checked = false;
+                    break;
+                }
+                if (i == che.length - 1) {
+                    ch.checked = true;
+                }
+            }
+        }
+        function setState(vam) {
+            var che = document.getElementsByName("checkEach");
+            var quoids = new Array();
+            var i = 0;
+            var delflag = false;
+            for (i; i < che.length; i++) {
+                if (che[i].checked) {
+                    delflag = true
+                    quoids[i] = che[i].id;
+                }
+            }
+            if (!delflag) {
+                return alert("请选择数据");
+            } else {
+                var fd = "fb";
+                var ids = $("#demandId").val();
+                var url = "repairDemand_Changechoose.jspx?state=" + vam + "&id=" + quoids + "&nextUrl=repairDemand_choose.jspx?ids=" + ids;
+                var mtf = $("#youXuanForm");
+                mtf.attr("action", url);
+                mtf.submit();
+            }
+        }
+    </script>
+
+</head>
+<body>
+<div class="content">
+    <div class="menu-content">
+        <div class="servicePower">
+            <div class="service-content wrapper">
+                <img src="/r/cms/www/default/images/jindu.png" style="margin-left: 150px">
+            </div>
+        </div>
+    </div>
+    <div class="menu-content">
+        <form id="youXuanForm" action="repairDemand_doOrder.jspx" method="post">
+            <div class="servicePower">
+
+                <div class="column wrapper">
+                    <span class="head">下单列表</span>
+                    <span class="head" style="border:white">当前下单师傅是：${(quoteEntity.companyId)!}</span>
+                </div>
+                <div class="service-content wrapper">
+
+                    [#if quote?size gt 0]
+                    <input type="hidden" id="demandId" name="demandId" value="${demandId!}">
+                    <input type="hidden" name="demandQuoteId" value = "${quoteEntity.demandObjId!}"/>
+                    <div>
+                        <button><a href="gylxt_wxxqgl_list.jspx?state=4">返回</a></button>
+                        <button type="submit">确认下单</button>
+                    </div>
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr style="height: 50px;">
+                            <td width="50px"><input type="checkbox" id="checkAll" onclick="getAll()"/></td>
+                            <td class="tggl-top">维修需求代码</td>
+                            <td class="tggl-top">维修需求名称</td>
+                            <td class="tggl-top">维修需求分类</td>
+                            <td class="tggl-top">开始时间</td>
+                            <td class="tggl-top">截止时间</td>
+                            <td class="tggl-top">期望价格(元)</td>
+                            <td class="tggl-top">报价</td>
+                        </tr>
+                        [#list quote as c]
+                        <tr>
+                            <td class="tggl-top"><input type="checkbox" id="${c[0].repairObjid!}" name="checkEach"
+                                                        onclick="getEach()"></td>
+                            <td class="tggl-top">${c[0].repairObjid!}</td>
+                            <td class="tggl-top">${c[0].repairName!}</td>
+                            <td class="tggl-top">${c[0].machineType!}</td>
+                            <td class="tggl-top">${c[0].startDt!}</td>
+                            <td class="tggl-top">${c[0].deadlineDt!}</td>
+                            <td class="tggl-top">${c[0].expectPrice!}</td>
+                            <td class="tggl-top">${c[1].offer!}</td>
+                        </tr>
+                        [/#list]
+                    </table>
+                    [#else]
+                    <div>暂无优选</div>
+                    <div> <button><a href="gylxt_wxxqgl_list.jspx?state=4">返回</a></button></div>
+                    [/#if]
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" charset="utf-8"
+            src="/${res}/resources/lib/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="/${res}/resources/lib/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/userCenter.js"></script>
+</div>
+</body>
+</html>

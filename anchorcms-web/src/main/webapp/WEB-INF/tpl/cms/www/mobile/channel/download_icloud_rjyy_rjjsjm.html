@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>软件检索界面</title>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/searching.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+[#include "../include/header_icloud.html" /]
+<!--content start-->
+<div class="content wrapper clearfix">
+    <div class="searchIndex">
+        <div class="search-top">
+            <span><a href="/rjyy/index.jhtml" target="_blank">${channel.parent.name}</a>&nbsp;&gt;&nbsp;<a href="/rjyyRjjsym/index.jhtml">${channel.name}</a></span>
+        </div>
+        <div class="search-main">
+            <div id="kinds" class="kinds wrapper">
+                <div class="type">
+                    <span class="kind1">付费方式：</span>
+                    <div class="type-content kind-one">
+                      <!--  <a href="index.jhtml">全部</a>[#assign types=["免费","付费","租赁"]]
+                        [#list types as t]
+                        <a onclick="softSearch('0','${t}')">${t}</a>
+                        [/#list]-->
+                    </div>
+                    <!-- <a class="more">更多∨</a> -->
+                </div>
+                <div class="type bottom">
+                    <span  class="kind2">软件类型：</span>
+                    <div class="type-content kind-two">
+                     <!--   <a href="index.jhtml">全部</a>[#assign types=["制造工程师","图文档","实体设计","工艺图表","数控车","电子图版","线切割","其他"]]
+                        [#list types as t]
+                        <a onclick="softSearch('1','${t}')">${t}</a>
+                        [/#list]-->
+                    </div>
+                    <!-- <a class="more">更多∨</a> -->
+                </div>
+            </div>
+            <div class="searchBox">
+                <ul class="clearfix">
+                    <li class="current"><a href="index.jhtml">综合</a></li>
+                    <li> <a onclick="abilitySearch('2','1')">更新时间&nbsp;&nbsp;↓</a></li>
+                    <li> <a onclick="abilitySearch('2','2')">下载次数&nbsp;&nbsp;↓</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="showPolicy clearfix">
+        <ul class="clearfix">
+            [@ext_content_page count='12' typeId='1' q=q modelPath="software"]
+            [#if tag_pagination.list?size = 0]
+            <div style="text-align: center">
+                <img style="width: 258px;height: 260px;border: none;" src="/${res}/images/default_list.png" alt="">
+            </div>
+            [#else]
+            [#list tag_pagination.list as a]
+            [#if a_index<24]
+            <li[#if a_index==3||a_index==7||a_index==11||a_index==15||a_index==19||a_index==23 ] style="margin-right:0;"[/#if]>
+            <a href="software_info.jspx?id=${a.softwareId!}" target="_blank">
+                <img src="${(a.content.pictures[0].imgPath)?default('/${res}/resources/images/searching/picture.jpg')}" alt="软件图片">
+                </a>
+            <div class="item-cname" style="position: relative;">
+                <dl>
+                    <dt style="margin-bottom: 30px;">
+                        [#if (a.content)??]
+                            [#if a.content.staticContent]
+                                [#if a.content.needRegenerate]
+                                    <a href="software_info.jspx?id=${a.softwareId!}" target="_blank"><b title="${a.softwareName!}">[@text_cut s=a.softwareName! len='20' append='...' /]</b></a>
+                                [#else]
+                                    <a href="${a.content.url}" target="_blank"><b title="${a.softwareName!}">[@text_cut s=a.softwareName! len='20' append='...' /]</b></a>
+                                [/#if]
+                            [#else]
+                                <a href="software_info.jspx?id=${a.softwareId!}" target="_blank"><b title="${a.softwareName!}">[@text_cut s=a.softwareName! len='20' append='...' /]</b></a>
+                            [/#if]
+                        [/#if]
+                    </dt>
+                    <div style="float:right;color:#FF8000"></div>
+                    <dd style="line-height: 25px;color: #aaa; "><span style="margin-right: 30px;">类型:${a.softwareType!}</span><span>更新日期:${a.updateDt}</span></dd>
+                    <dd style="line-height: 25px;color: #aaa; ">地区:<span title="${a.addrProvince!}${a.addrCity!}${a.addrCounty!}">${a.addrProvince!}${a.addrCity!}${a.addrCounty!}</span></dd>
+                    <div style="position: absolute;right: 0;top: 30px;">
+                        [#if (a.content)??]
+                            [#if a.content.staticContent]
+                                [#if a.content.needRegenerate]
+                                    <a href="software_info.jspx?id=${a.softwareId!}" target="_blank"><button type="button">查看详情</button></a>
+                                [#else]
+                                    <a href="${a.content.url}" target="_blank"><button type="button">查看详情</button></a></a>
+                                [/#if]
+                            [#else]
+                                <a href="software_info.jspx?id=${a.softwareId!}" target="_blank"><button type="button">查看详情</button></a>
+                            [/#if]
+                        [/#if]
+
+                    </div>
+                </dl>
+            </div>
+            </li>
+            [/#if]
+            <input id="searchOne" value=" ${tag_pagination.searchOne?default('')}" hidden="hidden" type="text">
+            <input id="searchtwo" value=" ${tag_pagination.searchTwo?default('')}"  hidden="hidden" type="text">
+            <input id="searchthree" value=" ${tag_pagination.searchThree?default('')}"  hidden="hidden" type="text">
+            [/#list]
+            [/#if]
+        </ul>
+    </div>
+    <div class="page clearfix">[@cms_pagination sysPage='1'/]</div> <!--分页显示-->
+    [/@ext_content_page]
+</div>
+<div id="historyData"></div>
+<!--content end-->
+[#include "../include/footer_icloud.html" /]
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/searching.js"></script>
+<script type="text/javascript">
+    /*超链接事件*/
+    function abilitySearch(id,e){
+        var $historyData = $("#historyData");
+        var searchOne = $historyData.attr("data-search-1");
+        var searchTwo = $historyData.attr("data-search-2");
+        var searchthree = $historyData.attr("data-search-3");
+        var searchFour = $historyData.attr("data-search-4");
+        var searchFive = $historyData.attr("data-search-5");
+
+        if(id == '0'){
+            searchOne = e;
+        }if(id == '1'){
+            searchTwo = e;
+        }if(id == '2'){
+            searchthree = e;
+        }if(id == '3'){
+            searchFour = e;
+        }if(id == '4'){
+            searchFive = e;
+        }
+
+        location.href="index-"+searchOne+"-"+searchTwo+"-"+searchthree+"-"+searchFour+"-"+searchFive+"-.jhtml";
+    }
+    $(document).ready(function(){
+        initData();
+        initHistoryData();
+    });
+
+    /*初始化方法*/
+    function initData() {
+        /*定义查询条件 S*/
+        var kind1 = [
+            {"code":"qb","name":"全部"},
+            {"code":"mf","name":"免费"},
+            {"code":"ff","name":"付费"},
+            {"code":"zl","name":"租赁"}
+        ];
+        var kind2 = [
+            {"code":"qb","name":"全部"},
+            {"code":"zzgcs","name":"制造工程师"},
+            {"code":"twd","name":"图文档"},
+            {"code":"stsj","name":"实体设计"},
+            {"code":"gytb","name":"工艺图表"},
+            {"code":"skc","name":"数控车"},
+            {"code":"dztb","name":"电子图版"},
+            {"code":"xqg","name":"线切割"},
+            {"code":"qt","name":"其他"}
+        ];
+        /*定义查询条件 E*/
+
+        /*初始化查询条件 S*/
+        initKind(kind1, "kind-one", "0");
+        initKind(kind2, "kind-two", "1");
+        /*初始化查询条件 E*/
+    }
+
+    /*初始化历史查询*/
+    function initHistoryData() {
+        var url = window.location.href;
+        var arr = url.split("-");
+        if(arr.length >= 6){
+            /*付费方式*/
+            var searchOne = arr[1];
+            /*软件类型*/
+            var searchTwo = arr[2];
+
+            var searchThree = arr[3];
+
+            var searchFour = arr[4];
+
+            var searchFive = arr[5];
+
+            $("#historyData").attr({
+                "data-search-1":searchOne,
+                "data-search-2":searchTwo,
+                "data-search-3":searchThree,
+                "data-search-4":searchFour,
+                "data-search-5":searchFive
+            });
+
+            addRed("kind-one",searchOne);
+            addRed("kind-two",searchTwo);
+            addRed("kind-three",searchThree);
+            addRed("kind-four",searchFour);
+
+            if("undefined" != searchThree){
+                    if("1" == searchThree){
+                        $(".searchBox li").eq(1).addClass("current").siblings().removeClass("current");
+                    }if("2" == searchThree){
+                        $(".searchBox li").eq(2).addClass("current").siblings().removeClass("current");
+                }
+            }
+        }
+    }
+
+    /*标红方法*/
+    function addRed(kind, condition){
+        if("undefined" != condition && condition!=""){
+            $("."+kind).find("."+condition).css("color","red");
+        }
+    }
+
+    function initKind(kind, kindClass,index) {
+        var kindOne = "";
+        for(var i = 0; i < kind.length; i++){
+            kindOne += "<a href='javascript: void(0)' class='"+kind[i].code+"' " +
+                    "data-condition='"+kind[i].code+"'>"
+                    + kind[i].name + "</a>";
+        }
+        $("."+kindClass).html(kindOne);
+
+        $("."+kindClass+" a").click(function () {
+            var condition = $(this).attr("data-condition");
+            abilitySearch(index,condition)
+        });
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>大数据与产业深度融合-企业能力</title>
+    <meta http-equiv="keywords" content="能力池展示,内蒙古能力池展示"/>
+    <meta http-equiv="description" content="内蒙古能力池展示,${site.description!}"/>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/searching.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .demandli-h130{height: 130px;}
+        .demandli-h130 .zeroPaddingLeft{padding-left: 0;}
+        .demandli-h130 .demanddl-left1{width: 400px;float: left;}
+        .demandli-h130 .demanddl-left1 dd{height: 45px}
+        .demandli-h130 .demanddl-left1 p{margin-top: 0; clear: left}
+        .demandli-h130 .demanddl-left2{padding: 10px 0;width: 220px;height:100px;float: left;margin-left: 20px}
+        .demandli-h130 .demanddl-left2 img{width:25px; height:25px;margin-top: 5px}
+        .demandli-h130 .demanddl-left2 dd{height: 35px}
+        .demandli-h130 .demanddl-left2 dt a{color: #3077B9; font-size: 14px}
+        .demandli-h130 .demanddiv-left3{width: 240px;float: left;margin-left: 20px;}
+        .demandli-h130 .zeroPaddingLeft .demand-quote-button{background: #FFFFFF;color: black;margin-top: 20px}
+        .demandli-h130 .blue-span{color: #3077B9}
+        .demandli-h130 .red-span{color: #FF0000}
+        .kindInfo {
+            background: none;
+            border: none;
+        }
+        .type {
+            border-bottom: none;
+        }
+    </style>
+    [#include "../include/header_cyrh.html"]
+
+</head>
+<body>
+<!--header start-->
+<!--header end-->
+<!--content start-->
+<div class="content wrapper clearfix">
+    <div class="searchIndex clearfix">
+        <div class="search-top">
+            <span>产业融合企业能力展示</span>
+            <div style="float: right">
+                <a href="/synergy_ability_add.jspx?frontStatus=1&flag=front&cyrh=1" target="_blank">发布能力</a>
+            </div>
+        </div>
+        <div class="search-main">
+            <div id="kinds" class="kinds wrapper">
+                <div class="type">
+                    <span class="kind1">能力分类：</span>
+                    <div class="kindInfo"></div>
+                </div>
+                <div class="type">
+                    <span class="kind2">企业性质：</span>
+                    <div class="type-content kind-two"></div>
+                    <!--<a class="more">更多∨</a>-->
+                </div>
+            </div>
+            <div class="searchBox">
+                <ul>
+                    <li class="current"><a onclick="abilitySearch('4','','0')">综合</a></li>
+                    <li><a onclick="abilitySearch('4','','1')">发布时间&nbsp;&nbsp;↓</a></li>
+                    <!--<li class="down"><a onclick="abilitySearch('4','1')">截止时间</a></li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="showPolicy clearfix">
+    <ul class="clearfix">
+        [@ext_content_page count='10' typeId='1' q=q  modelPath="ability"]
+        [#if tag_pagination.list?size = 0]
+        <div style="text-align: center">
+            <img style="width: 258px;height: 260px;border: none;" src="/${res}/images/default_list.png" alt="">
+        </div>
+        [#else]
+        [#list tag_pagination.list as a]
+        [#if a_index<24]
+        <li class="demandli-h130">
+            <div class="zeroPaddingLeft item-cname">
+                <dl class="demanddl-left1">
+                    [#if (a.content)??]
+                    [#if a.content.staticContent]
+                    [#if a.content.needRegenerate]
+                    <dt><a href="/xtzzNlczs/xtzz_ability_preview.jspx?id=${a.abilityId}" target="_blank" title="${a.abilityName!}">[@text_cut s=a.abilityName len='15' append='...'/]</a></dt>
+                    [#else]
+                    <!--<dt><a href="${a.content.url}" target="_blank" title="${a.abilityName!}">[@text_cut s=a.abilityName len='15' append='...'/]</a></dt>-->
+                    <dt><a href="/xtzzNlczs/xtzz_ability_preview.jspx?id=${a.abilityId}" target="_blank" title="${a.abilityName!}">[@text_cut s=a.abilityName len='15' append='...'/]</a></dt>
+                    [/#if]
+                    [#else]
+                    <dt><a href="/xtzzNlczs/xtzz_ability_preview.jspx?id=${a.abilityId}" target="_blank" title="${a.abilityName!}">[@text_cut s=a.abilityName len='15' append='...'/]</a></dt>
+                    [/#if]
+                    [/#if]
+                    <p class="tips" style="margin-top: 45px">发布时间：<span>${a.releaseDt?default("")}</span> </p>
+                </dl>
+                <dl class="demanddl-left2" >
+                    <dt><a href="/xtzzNlczs/cyrh_company_preview.jspx?id=${a.company.companyId}"
+                           target="_blank" title="${a.company.companyName!}">[@text_cut s=a.company.companyName! len='40' append='...'/]</a></dt>
+                </dl>
+                <div class="demanddiv-left3">
+                    <p class="tips" style="clear: left;">已对接企业：<span class="blue-span">${a.bigdataQuoteCount?default("0")}</span>家</p>
+                    <p class="tips" style="clear: left; margin-top: 20px">交付地点：<a class="jf_area" title="${a.addrProvince!}${a.addrCity!}${a.addrCounty!}">${a.addrProvince!}${a.addrCity!}${a.addrCounty!}</a></p>
+                </div>
+                [#if (a.content)??]
+                [#if a.content.staticContent]
+                [#if a.content.needRegenerate]
+                <a href="/xtzzNlczs/xtzz_ability_preview.jspx?id=${a.abilityId}" target="_blank" > <button type="button">查看详情</button></a>
+                [#else]
+                <!--<a href="${a.content.url}" target="_blank"><button type="button">查看详情</button></a>-->
+                <a href="/xtzzNlczs/xtzz_ability_preview.jspx?id=${a.abilityId}" target="_blank"><button type="button">查看详情</button></a>
+                [/#if]
+                [#else]
+                <a href="/xtzzNlczs/xtzz_ability_preview.jspx?id=${a.abilityId}" target="_blank" > <button type="button">查看详情</button></a>
+                [/#if]
+                [/#if]
+                <a href="/bigdata_abilityquote_save.jspx?abilityId=${a.abilityId}&cyrh=1"><button type="button" class="demand-quote-button" style="margin-top: 20px;margin-right: 20px;margin-left: 100px"  onClick="return confirm('确定进行对接?');">我要对接</button></a>
+            </div>
+        </li>
+        [/#if]
+        [/#list]
+        [/#if]
+    </ul>
+</div>
+    <div class="page clearfix">[@cms_pagination sysPage='1'/]</div> <!--分页显示-->
+    [/@ext_content_page]
+</div>
+<div id="historyData"></div>
+<!--content end-->
+<!--footer start-->
+[#include "../include/footer_cyrh.html"]
+<!--footer end-->
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/searching.js"></script>
+<script>
+
+    function abilitySearch(id,index,e){
+        var $historyData = $("#historyData");
+        var searchOne = $historyData.attr("data-search-1");
+        var searchTwo = $historyData.attr("data-search-2");
+        var searchthree = $historyData.attr("data-search-3");
+        var searchFour = $historyData.attr("data-search-4");
+        var searchFive = $historyData.attr("data-search-5");
+        var searchSix = $historyData.attr("data-search-6");
+        if(id == '0'){
+            searchOne = e;
+            searchSix = index;
+        }if(id == '1'){
+            searchTwo = e;
+        }if(id == '2'){
+            searchthree = e;
+        }if(id == '3'){
+            searchFour = e;
+        }if(id == '4'){
+            searchFive = e;
+        }
+        location.href="index-"+searchOne+"-"+searchTwo+"-"+searchthree+"-"+searchFour+"-"+searchFive+"-"+searchSix +"-.jhtml";
+    }
+    $(document).ready(function(){
+            initData();
+        initHistoryData();
+    });
+
+    /*初始化方法*/
+    function initData() {
+        /*定义查询条件 S*/
+        var kind1 = [
+            {"code":"qb","name":"全部"},
+            {"code":"100000","name":"研发设计"},
+            {"code":"110000","name":"生产加工"},
+            {"code":"120000","name":"计量检测"},
+            {"code":"130000","name":"试验服务"},
+            {"code":"140000","name":"信息化服务"},
+            {"code":"150000","name":"其他"}
+        ];
+        var kind2 = [
+            {"code":"qb","name":"全部"},
+            {"code":"kfqy","name":"大数据应用开发企业"},
+            {"code":"ypt","name":"大数据云平台服务商"},
+            {"code":"yyy","name":"大数据云应用服务商"},
+            {"code":"jjfa","name":"解决方案服务商"},
+            {"code":"qtqy","name":"其他企业"}
+        ];
+        var kind3 = [
+            {"code":"qb","name":"全部"},
+            {"code":"scx","name":"生产型"},
+            {"code":"myx","name":"贸易型"},
+            {"code":"fwx","name":"服务型"},
+            {"code":"yfx","name":"研发型"},
+            {"code":"qtlx","name":"其他类型"}
+        ];
+        /*定义查询条件 E*/
+
+        /*初始化查询条件 S*/
+        initKind(kind2, "kind-two", "1");
+        initKind(kind3, "kind-three", "2");
+        /*初始化查询条件 E*/
+    }
+
+    function initData2() {
+        /*定义查询条件 S*/
+        var kind1 = [
+            {"code":"qb","name":"全部"},
+            {"code":"100000","name":"研发设计"},
+            {"code":"110000","name":"生产加工"},
+            {"code":"120000","name":"计量检测"},
+            {"code":"130000","name":"试验服务"},
+            {"code":"140000","name":"信息化服务"},
+            {"code":"150000","name":"其他"}
+        ];
+        var kind2 = [
+            {"code":"qb","name":"全部"},
+            {"code":"gyqy","name":"大数据应用开发企业"},
+            {"code":"jtqy","name":"大数据云平台服务商"},
+            {"code":"gfhzqy","name":"大数据云应用服务商"},
+            {"code":"lyqy","name":"解决方案服务商"},
+            {"code":"qtqy","name":"其他企业"}
+        ];
+        var kind3 = [
+            {"code":"qb","name":"全部"},
+            {"code":"scx","name":"生产型"},
+            {"code":"myx","name":"贸易型"},
+            {"code":"fwx","name":"服务型"},
+            {"code":"yfx","name":"研发型"},
+            {"code":"qtlx","name":"其他类型"}
+        ];
+        /*定义查询条件 E*/
+
+        /*初始化查询条件 S*/
+        initKind(kind2, "kind-two", "1");
+        initKind(kind3, "kind-three", "2");
+        /*初始化查询条件 E*/
+    }
+
+    /*初始化历史查询*/
+    function initHistoryData() {
+        var url = window.location.href;
+        var arr = url.split("-");
+        if(arr.length >= 6){
+            /*能力分类*/
+            var searchOne = arr[1];
+            /*制造企业展示*/
+            var searchTwo = arr[2];
+            /*企业性质*/
+            var searchThree = arr[3];
+            /*经营方式*/
+            var searchFour = arr[4];
+            /*综合 发布时间*/
+            var searchFive = arr[5];
+
+            var searchSix = arr[6];
+
+            $("#historyData").attr({
+                "data-search-1":searchOne,
+                "data-search-2":searchTwo,
+                "data-search-3":searchThree,
+                "data-search-4":searchFour,
+                "data-search-5":searchFive,
+                "data-search-6":searchSix
+            });
+
+            if(searchOne != "qb" && searchOne != "150000" && searchOne != "undefined"){
+                $(".kindInfo").show();
+                getSiteInfo(searchSix,searchOne);
+                addRed("kind-one",searchSix);
+                addRed("kindInfo",searchOne);
+            }else{
+                addRed("kind-one",searchOne);
+            }
+            addRed("kind-two",searchTwo);
+            addRed("kind-three",searchThree);
+            addRed("kind-four",searchFour);
+            if("undefined" != searchFive){
+                //“1”为按发布时间降序排序，更改发布时间为current
+                if("1" == searchFive){
+                    $(".searchBox li").eq(1).addClass("current").siblings().removeClass("current");
+                }
+            }
+        }
+    }
+
+    /*标红方法*/
+    function addRed(kind, condition){
+        if("undefined" != condition && condition!=""){
+            $("."+kind).find("."+condition).css("color","red");
+        }
+    }
+
+    function initKind(kind, kindClass,index) {
+        var kindOne = "";
+        for(var i = 0; i < kind.length; i++){
+            kindOne += "<a href='javascript: void(0)' class='"+kind[i].code+"' " +
+                    "data-condition='"+kind[i].code+"'>"
+                    + kind[i].name + "</a>";
+        }
+        $("."+kindClass).html(kindOne);
+
+        $("."+kindClass+" a").click(function () {
+            var condition = $(this).attr("data-condition");
+            abilitySearch(index,"",condition);
+        });
+    }
+    function initKind2(kind, kindClass,index) {
+        var kindOne = "";
+        for(var i = 0; i < kind.length; i++){
+            kindOne += "<a href='javascript: void(0)' class='"+kind[i].code+"' " +
+                    "data-condition='"+kind[i].code+"' parent-code='" + kind[i].par_code + "'>"
+                    + kind[i].name + "</a>";
+        }
+        $("."+kindClass).html(kindOne);
+
+        $("."+kindClass+" a").click(function () {
+            var condition = $(this).attr("data-condition");
+            var par_code = $(this).attr("parent-code");
+            abilitySearch(index,par_code,condition)
+        });
+    }
+
+
+    function sercher(obj,kindClass,index){
+        var condition = $(obj).attr("data-condition");
+        if(condition == "qb" || condition == "150000"){
+            $(".kindInfo").hide();
+            abilitySearch(index,"",condition);
+        }else{
+            $("."+kindClass+" a").css("color","");
+            $(obj).css("color","red");
+            abilitySearch("0",condition,condition);
+        }
+    }
+
+
+    //查询二级菜单数据
+    function getSiteInfo(parentKey,key) {
+        $.ajax({ // 根据地址获取网站信息
+            type: "post",
+            url: "/dict/getTypeCatagory.jsp?typeCode=NLFL&parentKey=" + parentKey,
+            dataType: "json",
+            success: function (json) {
+                var kind=[ {"id":"qb","code":""+parentKey+"","name":"全部","par_code":""+parentKey+""}];
+                var jsonarr=json["cataList"];
+                for(var i=0;i<jsonarr.length;i++){
+                    var obj=jsonarr[i];
+                    var object={};
+                    object["id"]=obj["id"];
+                    object["code"]=obj["key"];
+                    object["name"]=obj["value"];
+                    object["par_code"]=parentKey;
+                    kind.push(object)
+                }
+                initKind2(kind, "kindInfo", "0");
+                addRed("kindInfo",key);
+            },
+            error: function () {
+                alert("操作失败，原因：1、用户未登录，2、用户无关联公司，3、请求的二级菜单不存在");
+            }
+        });
+    }
+
+</script>
+</body>
+</html>
+

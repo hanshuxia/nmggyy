@@ -1,0 +1,299 @@
+@CHARSET "UTF-8";
+.position{
+ float:left;
+ width: 1200px;
+ height: 40px;
+ line-height:40px;
+ text-align: left;
+ font-family: 'Arial Negreta', 'Arial';
+ font-weight: 700;
+ font-size: 14px;	
+ background-image:url(../../images/technology/finance_institution/u5.png);
+}
+.top-left{
+	margin-top:5px;
+    width: 220px;
+    height: 125px;	
+    background-image:url(../../images/technology/finance_institution/u0.png);
+}
+
+.top-left-content{
+	margin-top:15px;
+	margin-left:10px;
+	width: 200px;
+    height: 42px;
+    font-size: 16px;
+    line-height:42px;
+	text-align: center;
+    color: #FF0000;	
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    background-image:url(../../images/technology/finance_institution/u2.png);
+}
+
+.content-left{
+	margin-top:10px;
+  width: 220px;
+  height: 418px;	
+  background-image:url(../../images/technology/finance_institution/u0.png);
+}
+.content-left>p{
+	color:red;
+	
+	
+	
+}
+.content-left-gap{
+
+	width: 220px;
+    height: 3px;	
+    background-image:url(../../images/technology/finance_institution/u393.png);
+}
+.p1{
+	font-size: 16px;
+    color: #FF0000;
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+}
+.content-left-content{
+   font-family: 'Arial Normal', 'Arial';
+   font-weight: 400;
+   font-style: normal;
+   font-size: 13px;
+   color: #FF0000;
+   text-align: left;
+   padding-top: 40%;
+   
+	
+}
+.content-left-layer{
+	
+	width: 220px;
+    height: 29px;
+	background-image:url(../../images/technology/finance_institution/u79.png);
+	
+}
+.content-right-title{
+	float:left;
+	clear:left;
+	margin-top:5px;
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+	width: 977px;
+    height: 46px;
+    line-height:46px;
+	background-image:url(../../images/technology/finance_institution/u205.png);
+	
+}
+.content-right-top2l{
+	float:left;
+	width: 187px;
+    height: 51px;
+	background-image:url(../../images/technology/finance_institution/u207.png);
+}
+.content-right-top2c{
+	float:left;
+	width: 303px;
+    height: 51px;
+	background-image:url(../../images/technology/finance_institution/u209.png);
+	
+}
+.content-right-top2r{
+	float:left;
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+	width: 300px;
+    height: 51px;
+    line-height:51px;
+	background-image:url(../../images/technology/finance_institution/u213.png);
+}
+.content-right-top3-l{
+	float:left;
+	width: 587px;
+    height: 278px;
+	background-image:url(../../images/technology/finance_institution/u215.png);
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    line-height:278px;
+    color: #333333;
+    text-align: center;	
+}
+.content-right-top3-r1one{
+	float:left;
+	width: 130px;
+    height: 40px;
+    line-height:40px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+	background-image:url(../../images/technology/finance_institution/u217.png);
+}
+.content-right-top3-r1two{
+	float:left;
+	width: 260px;
+    height: 40px;
+    line-height:40px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+	background-image:url(../../images/technology/finance_institution/u219.png);
+}
+.content-right-top3-r2{
+	float:left;
+	padding:10px;
+	width: 390px;
+    height: 57px;
+}
+.content-right-top3-r4{
+	float:left;
+	width: 390px;
+    height: 40px;
+    background-image:url(../../images/technology/finance_institution/u226.png);
+}
+.content-right-top3-r5{
+	float:left;
+	color: #B50000;
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-align: center;
+	width: 390px;
+    height: 101px;
+	background-image:url(../../images/technology/finance_institution/u228.png);
+}
+.content-right-top4{
+	float:left;
+	width: 488px;
+	line-height:40px;
+    height: 40px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 16px;
+    text-align: left;
+    background-image:url(../../images/technology/finance_institution/u312.png);
+}
+.layer11{
+	float:left;
+	width: 975px;
+    height: 125px;
+    background-image:url(../../images/technology/finance_institution/u107.png);
+}
+.right-1{
+    padding-top: 1px;
+    width: 970px;
+    height: 124px;
+    background-image: url("../../images/technology/finance_institution/u107.png");
+}
+.right-1 .hot-tech{
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-top: 5px;
+    float: left;
+    width: 30px;
+    height: 105px;
+    font-size: 14px;
+    color: #FF0000;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    text-align: center;
+    background-image: url("../../images/technology/finance_institution/u109.png");
+}
+.right-1 .hot-tech p{
+	line-height:15px;
+	margin:2px;
+}
+.right-1 .go-left{
+    width: 38px;
+    height: 39px;
+    float: left;
+    margin-top: 40px;
+    margin-left: 10px;
+    background-image: url("../../images/technology/finance_institution/u363.png");
+}
+.right-1 .sub-hot-tech{
+    width: 240px;
+    height: 110px;
+    float: left;
+    margin-top: 6px;
+    margin-left: 40px;
+    background-image: url("../../images/technology/finance_institution/u255.png");
+}
+.right-1 .sub-hot-tech .pro-title{
+    margin-top: 5px;
+    margin-left: 10px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-size: 13px;
+    width: 220px;
+    height: 23px;
+    line-height: 23px;
+    background-image: url("../../images/technology/finance_institution/u257.png");
+}
+.right-1 .sub-hot-tech .img{
+    margin-top: 5px;
+    margin-left: 10px;
+    width: 63px;
+    height: 69px;
+    float: left;
+}
+.right-1 .sub-hot-tech .img img{
+    width: 63px;
+    height: 69px;
+}
+.right-1 .sub-hot-tech .holder{
+    width: 153px;
+    height: 23px;
+    float: left;
+    margin-top: 5px;
+    margin-left: 5px;
+    background-image: url("../../images/technology/finance_institution/u259.png");
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: left;
+    line-height: 23px;
+}
+.right-1 .sub-hot-tech .tech-intro{
+    width: 153px;
+    height: 40px;
+    float: left;
+    margin-top: 5px;
+    margin-left: 5px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    line-height: 40px;
+    background-image: url("../../images/technology/finance_institution/u261.png");
+}
+.right-1 .go-right{
+    width: 38px;
+    height: 39px;
+    float: left;
+    margin-top: 40px;
+    margin-left: 10px;
+    background-image: url("../../images/technology/finance_institution/u385.png");
+}

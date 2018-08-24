@@ -1,0 +1,293 @@
+.lead{
+	width: 1200px;
+    height: 40px;
+    margin-top:10px;
+	background: url(../../images/technology/index/u5.png);
+	background-size: 1200px 41px;
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+	text-align:left;
+	padding-left:20px;
+	line-height:40px;
+	border: solid 1px #888888;
+	
+	
+}
+.title_content{
+	width: 1200px;
+    height: 51px;
+    margin-top:-10px;
+    background: url(../../images/technology/successdetail/u70.png);
+	background-size: 1200px 51px;
+
+    text-align:center;
+    line-height:51px;
+	border: solid 1px #888888;
+	border-top:0px;
+	border-left:0px;
+}
+.title_word{
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 18px;
+    color: #FF0000;
+}
+.introduction{
+	width: 1200px;
+    height: 340px;
+}
+.img_activity{
+	width: 330px;
+    height: 340px;
+    background: url(../../images/technology/successdetail/u72.png);
+	background-size: 330px 340px;
+	font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    color: #FF0000;
+    text-align: center;
+    font-style: normal;
+    font-size: 13px;
+    padding-top:65px;
+    border: solid 1px #888888;
+    border-right: 0px;
+    float:left;
+}
+.num_div{
+	width: 180px;
+    height: 25px;
+    position:relative;
+    top: 125px;
+    left: 143px;
+}
+.div_num{
+	width: 180px;
+    height: 25px;
+    position:relative;
+    top: 233px;
+    left: 143px;
+}
+.num_btn{
+	width: 30px;
+    height: 25px;
+    margin-right:10px;
+    background-image: url(../../images/technology/successdetail/transparent.gif);
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+    
+}
+.middle_content{
+	width: 470px;
+    height: 340px;
+    background: url(../../images/technology/successdetail/u80.png);
+	background-size: 470px 340px;
+	float:left;
+}
+.up_content{
+	width: 470px;
+    height: 60px;
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: 60px;
+    border: solid 1px #888888;
+}
+.down_content{
+	text-align: center;
+    line-height: 150px;
+    border-top: solid 1px #888888;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+}
+.window{
+	width: 50px;
+    height: 50px;
+	margin-top:9px;
+    margin-left:2px;
+}
+.size_img{
+    width: 50px;
+    height: 50px;
+}
+.right_content{
+	width: 390px;
+    height: 340px;   
+    float:right;
+}
+.right_title{
+	width: 390px;
+    height: 49px;
+    background: url(../../images/technology/collegetemplate/u279.png);
+	background-size: 390px 48px;
+	font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 16px;
+    color: #FF0000;
+    text-align: left;
+    line-height:49px;
+    
+    border-left: 0px;
+}
+.more{
+	width: 60px;
+    height: 25px;
+    background-image: url(../../images/technology/successdetail/transparent.gif);
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+    line-height:25px;
+    float:right;
+    margin-top:15px;
+    margin-right:10px;
+}
+.right_note{
+	width: 390px;
+    height: 97px;
+    border: solid 1px #888888;
+    border-top:0px;
+    border-bottom:solid 2px #888888;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: left;
+    padding-top:26px;
+}
+.exhibition_project{
+	width: 1200px;
+    height: 50px;
+    background: url(../../images/technology/successdetail/u70.png);
+	background-size: 1200px 51px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 16px;
+    color: #FF0000;
+    text-align:center;
+    padding-left:170px;
+    line-height:50px;
+	border: solid 1px #888888;
+	border-top:0px;
+	
+}
+.agent_btn{
+	width: 128px;
+    height: 25px;
+    background-image: url(../../images/technology/successdetail/transparent.gif);
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+    line-height:25px;
+    float:right;
+    margin-top:14px;
+    margin-right:60px;
+}
+.list{
+	width: 1200px;
+    height: 620px;
+    background: url(../../images/technology/collegetemplate/u90.png);
+	background-size: 1200px 620px;
+	margin-bottom:10px;
+}
+.list_word{
+	width: 1200px;
+    height: 29px;
+    border: solid 1px #888888;
+    border-bottom: solid 2px #888888;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    line-height:29px;
+}
+.left_window{
+	width: 200px;
+    height: 150px;
+   	margin-right:112px;
+   	margin-top:35px;
+   	margin-left:30px;
+    border: solid 1px #888888;
+    border-left:0px;
+    border-top:0px;
+    float:left;
+    background: url(../../images/technology/index/u695.png);
+	background-size: 200px 150px;
+}
+.middle_window{
+	width: 200px;
+    height: 150px;
+   	margin-right:112px;
+   	margin-top:35px;
+    border: solid 1px #888888;
+    border-left:0px;
+    border-top:0px;
+    float:left;
+    background: url(../../images/technology/index/u695.png);
+	background-size: 200px 150px;
+}
+.right_window{
+	width: 200px;
+    height: 150px;
+   	margin-top:35px;
+    border: solid 1px #888888;
+    border-left:0px;
+    border-top:0px;
+    float:left;
+    background: url(../../images/technology/index/u695.png);
+	background-size: 200px 150px;
+}
+.inner_div{
+	width: 180px;
+    height: 130px;
+    margin: 0px auto;
+    margin-top:10px;
+}
+.upside{
+	width: 180px;
+    height: 60px;
+    line-height:25px;
+    border: solid 1px #888888;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: left;
+}
+.first_row{
+	padding-left:7px;
+}
+.second_row{
+	padding-left:18px;
+}
+.lower{
+	width: 180px;
+    height: 70px;
+
+}
+.news-img-size{
+    width: 180px;
+    height: 70px;
+}

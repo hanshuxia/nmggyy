@@ -1,0 +1,348 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设备询价待报价管理 - ${site.siteName} - Powered by ANCHORCMS</title>
+    <link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/list.css"/>
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/list.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            _onload();
+        });
+
+        //点击状态标签刷新列表
+        $(document).ready(function() {
+            $(".switchBtn li").click(function(){
+                if($(this).attr("id") == "all"){
+                    $("#statusType").val("");
+                }else if($(this).attr("id") == "statusType0"){
+                    $("#statusType").val("0");
+                }else if($(this).attr("id") == "statusType1"){
+                    $("#statusType").val("1");
+                }else if($(this).attr("id") == "statusType2"){
+                    $("#statusType").val("2");
+                }else if($(this).attr("id") == "statusType3"){
+                    $("#statusType").val("3");
+                }
+                $("#tableForm").submit();
+            });
+        });
+        //加载页面标签状态
+        function _onload(){
+                if($("#statusType").val() == ""){
+                    $("#all").addClass("current");
+                }else if  ($("#statusType").val() == "0"){
+                    $("#statusType0").addClass("current");
+                }else if ($("#statusType").val() == "1"){
+                    $("#statusType1").addClass("current");
+                }else if  ($("#statusType").val() == "2"){
+                    $("#statusType2").addClass("current");
+                }else if  ($("#statusType").val() == "3"){
+                    $("#statusType3").addClass("current");
+                }
+        };
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        //关闭优选框
+        $(".noteTop img").click(function(){hideBjTable();});
+        //点击报价进行报价
+        $(".bj").click(function(){
+            var inquiryId = $(this).parent().parent().find('td:first input:first').val();
+            bjAjax(inquiryId);
+        })
+    });
+    //显示报价表格div 的方法
+    function showBjTable(){
+        $("#bjWindow").css("display","block");
+        parent.showWindow();
+        $('#goodcover1').show();
+        $(window.parent.document).find("#mainFrame").attr("scrolling","no");
+    }
+    //隐藏优选表格div 的方法
+    function hideBjTable(){
+        $("#bjWindow").css("display","none");
+        parent.hideWindow();
+        $('#goodcover1').hide();
+        $(window.parent.document).find("#mainFrame").attr("scrolling","yes");
+    }
+    //弹出报价界面的ajax
+    function bjAjax(inquiryId){
+        //获取报价的公司列表等信息
+        $.ajax({
+            type:"post",
+            url:"/member/device_inquiry_quoteList.jspx?inquiryId="+inquiryId,
+            dataType:"json",
+            success:function(json){
+                //先把表格填好
+                fillBjTable(json);
+                //显示表格div
+                showBjTable();
+            },
+            error:function(){
+                alert("数据传输失败，原因：1、用户未登录，2、用户无关联公司，3、请求报价的[设备询价]不存在/丢失");
+            }
+        })
+    }
+    //根据json填 询价对象 信息的方法，给能力方报价用
+    function fillBjTable(jsonObj){
+        var tBody = $('#bjTable tbody');
+        var aInq = jsonObj.aInquiryObj;
+        $('#bjTableInquiryId').val(aInq.aInquiryObjId);
+        $('#bjDivAbilityName').text(s_cut(aInq.abilityName,60,'..'));
+        $('#bjDivAbilityCode').text(aInq.abilityCode);
+        tBody.html("");
+        tBody.append("<tr></tr>");
+        var tr = tBody.find('tr:last');
+        tr.append("<td><a class='show-title' title='"+aInq.inquiryCompany+"'>"+s_cut(aInq.inquiryCompany,20,'..')+"</a></td>");
+        tr.append("<td>"+aInq.amount+"</td>");
+        tr.append("<td><a class='show-title' title='"+aInq.unit+"'>"+s_cut(aInq.unit,8,'..')+"</a></td>");
+        tr.append("<td>"+aInq.expPrice+"</td>");
+        tr.append("<td><input id='bjTableBjInput' type='text' style='width:70px' onblur='priceValidate(this)' maxlength='13'/></td>");
+    }
+    //提交能力方报价的ajax
+    function submitbjAjax(){
+        var bj = $('#bjTableBjInput').val();
+        var inquiryId = $('#bjTableInquiryId').val();
+        var reg= /^(0|[1-9][0-9]{0,9})(\.[0-9]{1,2})?$/;
+        if(bj==""){
+            alert("报价不能为空！");
+            return false;//这里相当于break
+        }else if(isNaN(bj)){
+            alert("输入的报价存在非数字！");
+            return false;//这里相当于break
+        }else if(!reg.test(bj)){
+            alert("整数不超过10位且只能保留两位小数点！");
+            return false;//这里相当于break
+        }
+
+        if(!confirm("请确定是否提交报价？")){
+            return false;
+        }
+        $.ajax({
+            type:"post",
+            url:"/member/device_inquiry_quoteSubmit.jspx",
+            data:{ bj : bj, inquiryId : inquiryId},
+            dataType:"json",
+            success:function(json){
+                hideBjTable();
+                alert("报价成功");
+                $('#statusType1').click();
+            },
+            error:function(){
+                hideBjTable();
+                alert("操作失败，原因：1、用户未登录，2、用户无关联公司，3、重复进行报价，4、请求报价的设备不属于用户公司");
+            }
+        });
+    }
+    //切字符串方法
+    function s_cut(s,lenth,append){
+        var index = 0;
+        var len = 0;
+        var str = "";
+        var a = "";
+        for (var i = 0; len < lenth; i++) {
+            index = i;
+            a = s.charAt(i);
+            str += a;
+            if (a.match(/[^\x00-\xff]/ig) != null) {
+                len += 2;
+            }
+            else {
+                len += 1;
+            }
+        }
+        if(s.charAt(index+1) == ""){
+            return str;
+        }else{
+            return (str+append);
+        }
+    }
+    </script>
+    <style>
+        .readonly{
+            background: #EBEBE4;
+            color: #91918e;
+            display: none;
+        }
+    </style>
+    <!--[if lt IE 9]>
+    <script src="/${res}/js/html5shiv.min.js"></script>
+    <script src="/${res}/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<div class="content wrapper clearfix">
+    <!--遮罩--><div id="goodcover1"></div>
+    <div class="head wrapper">
+        <a href="${base}/member/device_inquiry_list.jspx" class="current">设备询价待报价管理</a>
+    </div>
+    <div class="main">
+        <form id="tableForm" action="device_inquiry_list.jspx" method="post">
+            <div class="searchBox">
+                <label>询价主题：</label>
+                    <input name="inquiryTheme" value="${inquiryTheme?default('')}">
+                <label>报价截止日期：</label>
+                <input name="startDate" id="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'endDate\')}'})" class="Wdate" value="${startDate?default('')}">
+                <label>至</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" name="endDate" id="endDate" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'startDate\')}'})" class="Wdate" value="${endDate?default('')}">
+                <br>
+                <label>询价企业：</label>
+                    <input name="companyId" value="${companyId?default('')}">
+                <button class="submit">查询</button>
+            </div>
+            <div class="switchBtn">
+                <ul>
+                    <li id="all"><span>全部</span></li>
+                    <li id="statusType0"><span>未报价</span></li>
+                    <li id="statusType1"><span>已报价</span></li>
+                    <li id="statusType2"><span>已中标</span></li>
+                    <li id="statusType3"><span>未中标</span></li>
+                </ul>
+            </div>
+            <div class="tableDiv wrapper">
+                <table cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th class="tggl-top">询价企业</th>
+                        <th class="tggl-top">询价主题</th>
+                        <th class="tggl-top">询价日期</th>
+                        <th class="tggl-top" style="width: 100px;padding-left:20px">报价截止日期</th>
+                        <th class="tggl-top">询价状态</th>
+                        <th class="tggl-top">管理</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    [#if pagination.list?size gt 0]
+                    [#list pagination.list as c]
+                    <tr>
+                        <td style="width: 250px;padding-left:20px"><input type="hidden" value="${c.inquiryId}">[#if c.company??][@text_cut s=c.company.companyName! len='15' append='...' /][/#if]</td>
+                        <td style="width: 250px;padding-left:20px"><a class="show-title" title="${c.inquiryTheme!}">[@text_cut s=c.inquiryTheme! len='15' append='...' /]</a></td>
+                        <td style="width: 100px;padding-left:20px">${c.createDt?default("")}</td>
+                        <td style="width: 100px;padding-left:20px">${c.deadlineDt?default("")}</td>
+                        [#if !c.statusType??]
+                        <td></td>
+                        [#else]
+                        [#switch c.statusType]
+                        [#case "1"]<td style="width: 100px;padding-left:20px">[#if c.quotePrice??]报价:${c.quotePrice}/${c.scompanyDevice.unit}[#else]未报价[/#if]</td>[#break]
+                        [#case "2"]<td style="width: 100px;padding-left:20px">已中标</td>[#break]
+                        [#case "3"]<td style="width: 100px;padding-left:20px">未中标</td>[#break]
+                        [#default]<td></td>
+                        [/#switch]
+                        [/#if]
+                        <td style="text-align: left;width: 200px;padding-left:40px">
+                            <a class="link" href="device_inquiry_view.jspx?inquiryId=${c.inquiryId}">询价明细</a>
+                            <a [#if !c.quotePrice??] class="link bj" [#else]class="readonly" [/#if]>报价</a>
+                        </td>
+                    </tr>
+                    [/#list]
+                    [#else]
+                    <tr>
+                        <td colspan="6"><h4>暂无数据</h4></td>
+                    </tr>
+                    [/#if]
+                    </tbody>
+                </table>
+            </div>
+            <input type="hidden" name="pageNo"/>
+            <div  class="page clearfix">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="left" class="pn-sp">
+                            每页 ${pagination.pageSize} 条&nbsp;
+                            <input class="first" type="button" onclick="_gotoPage('1');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input class="prev" type="button" onclick="_gotoPage('${pagination.prePage}');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input type="text" value=${pagination.pageNo} id="_goPs" onfocus="this.select();" onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>/${pagination.totalPage}
+                            <input class="next" type="button" onclick="_gotoPage('${pagination.nextPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>
+                            <input class="last" type="button" onclick="_gotoPage('${pagination.totalPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>&nbsp;
+                            <button id="_goPage" class="ok" type="button" onclick="_gotoPage($('#_goPs').val());"[#if pagination.totalPage==1] disabled="disabled"[/#if]>GO</button>
+                            共 ${pagination.totalCount} 条&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <script type="text/javascript">
+                function _gotoPage(pageNo) {
+                    if(!/^[0-9]*[1-9][0-9]*$/.test(pageNo)){ui.alertFail("页码必须为正整数！");return false;}
+                    try{
+                        var tableForm = document.getElementById("tableForm");
+                        $("input[name=pageNo]").val(pageNo);
+                        tableForm.action="device_inquiry_list.jspx";
+                        tableForm.onsubmit=null;
+                        tableForm.submit();
+                    } catch(e) {
+                        alert('_gotoPage(pageNo)方法出错');
+                    }
+                }
+
+                function priceValidate(price){
+                    var reg= /^(0|[1-9][0-9]{0,9})(\.[0-9]{1,2})?$/;
+                    if (price.value == "") {
+                        alert("报价不能为空！");
+                        return false;//这里相当于break
+                    } else if (isNaN(price.value)) {
+                        alert("输入的报价存在非数字！");
+                        return false;//这里相当于break
+                    } else if (!reg.test(price.value)) {
+                        alert("整数不超过10位且只能保留两位小数点！");
+                        return false;//这里相当于break
+                    }
+                }
+            </script>
+            <script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+            <script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+            <input type="text" id="statusType" name="statusType" hidden="hidden" value="${statusType!}">
+        </form>
+        <!--报价隐藏div-->
+        <div class="window" id="bjWindow">
+            <div class="noteTop">
+                报价界面
+                <img id="bjTableCloseWindow" src="/${res}/resources/images/abilityPreview/close.png">
+            </div>
+            <div class="yxmain">
+                <div class="tipDiv">
+                    <h5>
+                        询价设备：<span id="bjDivAbilityName"></span>
+                    </h5>
+                    <h5>
+                        设备编码：<span id="bjDivAbilityCode"></span>
+                    </h5>
+                </div>
+                <div class="tableDiv tale"  style="padding-top:0;border-top: 5px solid #3077B9;">
+                    <input type="hidden" id="bjTableInquiryId" value=""/>
+                    <table border="0" class="wrapper" cellpadding="0" cellspacing="0" id="bjTable">
+                        <thead>
+                        <tr>
+                            <th>询价企业</th>
+                            <th>需求量</th>
+                            <th>单位</th>
+                            <th>期望单价(元)</th>
+                            <th>报价单价(元)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center" style="margin-top:30px;">
+                    <button type="button" class="ok" onclick="submitbjAjax()">确认报价</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="m-sj"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>需求方备品备件求购管理</title>
+    <link rel="shortcut  icon" type="image/x-icon" href="/${res}/resources/images/favicon.ico" media="screen"  />
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/userCenter.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/releasePower.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="${base}/res/common/js/jquery.ext.js" type="text/javascript"></script>
+    <script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/swfupload.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/swfupload.queue.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/fileprogress.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/handlers.js" type="text/javascript"></script>
+    <link href="${base}/thirdparty/swfupload/process.css" rel="stylesheet" type="text/css"/>
+
+    <script type="text/javascript">
+        function seleT() {
+            var inner=document.getElementById("selecT").value;
+            var type=document.getElementById("typeA").value;
+            if(inner == ""&&type==""){
+                alert("搜索内容不能为空");
+                return false;
+            }else{
+                var newinner =encodeURI(encodeURI(inner));
+                var newtype =encodeURI(encodeURI(type));
+                location.href="/member/supplychainBpbjqgmanageSearch.jspx?theme="+newinner+"&type="+newtype;
+            }
+        }
+        function searchList(place) {
+            var test=place.innerHTML;
+            var newin=encodeURI(encodeURI(test));
+            location.href="/member/supplychainBpbjqgmanageSearch.jspx?theme="+newin;
+        }
+        function sea() {
+            location.href="/member/supplychainBpbjqgmanageSearch.jspx";
+        }
+    </script>
+
+    <!--样式-->
+    <style>
+        *{ margin: 5px; padding: 4px}
+        ul,li{ list-style: none}
+        .tabClick{ background: #f3f3f3; overflow: hidden}
+        .tabClick li{ height:40px; line-height: 40px; width: 20%; float: left; text-align: center}
+        .tabClick li.active{ color: #077999; transition: 0.1s; font-weight: bold}
+        .tabCon{ overflow: hidden}
+        .tabBox{ position: relative}
+        .tabList{word-break: break-all; width:10%;float:left; line-height:5px; text-align:left; color: #242424; font-size:15px; font-family: "Arial Black"}
+        .lineBorder{ height: 2px; overflow: hidden;
+            border-bottom: 5px;11px solid #077898; background: #f3f3f3}
+        .lineDiv{ background: #077898; height: 20px; width: 20%;}
+    </style>
+    <!--TAB样式-->
+</head>
+<body>
+<div class="column wrapper"> <span class="head">发布需求信息</span></div>
+                <div class="service-content wrapper">
+                    <!--tab-->
+<span style="display:none;">
+<script src="http://s94.cnzz.com/stat.php?id=4106941&web_id=4106941" language="JavaScript"></script>
+</span><!-- 代码部分begin -->
+                    <div class="wrap" id="wrap">
+                        <ul class="tabClick">
+                            <li class="active">全部</li>
+                            <li>草稿</li>
+                            <li>待发布</li>
+                            <li>已发布</li>
+                            <li>已关闭</li>
+                        </ul>
+                        <div class="lineBorder">
+                            <div class="lineDiv"><!--移动的div--></div>
+                        </div>
+                        <div class="tabCon">
+                            <div class="tabBox">
+                                <div class="tabList">
+                                    <div class="searchBox">
+                                        <label>创建时间：</label> <input name="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate date" value="${startDate?default('')}">&nbsp;&nbsp;&nbsp;&nbsp;<label>至</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input name="endDate"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate date" value="${endDate?default('')}">&nbsp;&nbsp;
+                                        <label>求购主题：</label>&nbsp;&nbsp;&nbsp;<input id="selecT" name="求购主题"><br>
+                                        <label>备件分类：</label>
+                                        <input id="type" name="备品分类">
+                                        <button onclick="seleT()">查询</button>
+                                    </div>
+                                    <h4>发布信息管理列表</h4>
+                                    <table align="center" width="50%" style="height: 500px">
+                                        <tr><td align="left">求购主题</td>
+                                            <td>备件名称</td>
+                                            <td>求购截止日期</td>
+                                            <td>发布日期</td>
+                                            <td>状态</td>
+                                            <td>付款方式</td>
+                                            <td>管理</td>
+                                        </tr>
+                                        [#if pagination.list?size gt 0]
+                                        [#list pagination.list as a]
+                                        <tr>
+                                            <td>${a.requestTheme!}</td>
+                                            <td>${a.spareName!}</td>
+                                            <td>${a.deadlineDt!}</td>
+                                            <td>${a.releaseDt!}</td>
+                                            <td>${a.state!}</td>
+                                            <td>${a.payType!}</td>
+                                            <td>
+                                                <button><a href="/member/supplychainBpbjqgmanageDetail.jspx?uid=${a[0].demandId}">明细</a></button>&nbsp;
+                                                <button><a href="/member/supplychainBpbjqgmanagePreview.jspx?uid=${a[0].demandId}">预览</a></button>
+                                            </td>
+                                        </tr>
+                                        [#else]
+                                        <div>暂无求购信息</div
+                                        [/#list]
+                                    </table>
+                                </div>
+
+                                <div class="tabList">
+                                    <label>求购主题：</label><input type="text" name="备品分类">
+                                    <label>创建时间：</label><input type="text" name="创建时间">
+                                    <div>
+                                        <label>备件分类：</label><input type="text" name="备品分类" id="typeA">
+                                        <button onclick="seleT()">查询</button></div>
+                                    <h4>草稿列表</h4>
+                                    <table align="center" width="50%" style="height: 500px">
+                                        <tr><td align="left">求购主题</td>
+                                            <td>备件名称</td>
+                                            <td>求购截止日期</td>
+                                            <td>发布日期</td>
+                                            <td>状态</td>
+                                            <td>付款方式</td>
+                                            <td>管理</td>
+                                        </tr>
+                                        [#if pagination.list?size gt 0]
+                                        [#list pagination.list as a]
+                                        <tr>
+                                            <td>${a.requestTheme!}</td>
+                                            <td>${a.spareName!}</td>
+                                            <td>${a.deadlineDt!}</td>
+                                            <td>${a.releaseDt!}</td>
+                                            <td>${a.state!}</td>
+                                            <td>${a.payType!}</td>
+                                            <td>
+                                                <button><a href="/member/supplychainBpbjqgmanageDetail.jspx?uid=${a[0].demandId}">明细</a></button>&nbsp;
+                                                <button><a href="/member/supplychainBpbjqgmanagePreview.jspx?uid=${a[0].demandId}">预览</a></button>
+                                                <button><a href="/member/supplychainBpbjqgmanageDell.jspx?uid=${a[0].demandId}">删除</a></button>
+                                                <button><a href="/member/supplychainBpbjqgmanageIss.jspx?uid=${a[0].demandId}">发布</a></button>
+                                                <button><a href="/member/supplychainBpbjqgmanageUpdate.jspx?uid=${a[0].demandId}">编辑</a></button>
+                                            </td>
+                                        </tr>
+                                        [#else]
+                                        <div>暂无求购信息</div>
+                                        [/#if]
+                                        [/#list]
+                                    </table>
+                                </div>
+                                <div class="tabList">
+                                    <label>求购主题：</label><input type="text" name="备品分类">
+                                    <label>创建时间：</label><input type="text" name="创建时间">
+                                    <div>
+                                        <label>备件分类：</label><input type="text" name="备品分类" id="typeA">
+                                        <button onclick="seleT()">查询</button></div>
+                                    <h4>待发布列表</h4>
+                                    <table align="center" width="50%" style="height: 500px">
+                                        <tr><td align="left">求购主题</td>
+                                            <td>备件名称</td>
+                                            <td>求购截止日期</td>
+                                            <td>发布日期</td>
+                                            <td>状态</td>
+                                            <td>付款方式</td>
+                                            <td>管理</td>
+                                        </tr>
+                                        [#if pagination.list?size gt 0]
+                                        [#list pagination.list as a]
+                                        <tr>
+                                            <td>${a.requestTheme!}</td>
+                                            <td>${a.spareName!}</td>
+                                            <td>${a.deadlineDt!}</td>
+                                            <td>${a.releaseDt!}</td>
+                                            <td>${a.state!}</td>
+                                            <td>${a.payType!}</td>
+                                            <td>
+                                                <button><a href="/member/supplychainBpbjqgmanageDetail.jspx?uid=${a[0].demandId}">明细</a></button>&nbsp;
+                                                <button><a href="/member/supplychainBpbjqgmanagePreview.jspx?uid=${a[0].demandId}">预览</a></button>
+                                                <button><a href="/member/supplychainBpbjqgmanageRe.jspx?uid=${a[0].demandId}">撤回</a></button>
+                                            </td>
+                                        </tr>
+                                        [#else]
+                                        <div>暂无求购信息</div>
+                                        [/#if]
+                                        [/#list]
+                                    </table>
+                                </div>
+                                <div class="tabList">
+                                    <label>求购主题：</label><input type="text" name="备品分类">
+                                    <label>创建时间：</label><input type="text" name="创建时间">
+                                    <div>
+                                        <label>备件分类：</label><input type="text" name="备品分类" id="typeA">
+                                        <button onclick="seleT()">查询</button></div>
+                                    <h4>已发布列表</h4>
+                                    <table align="center" width="50%" style="height: 500px" >
+                                        <tr><td align="left">求购主题</td>
+                                            <td>备件名称</td>
+                                            <td>求购截止日期</td>
+                                            <td>发布日期</td>
+                                            <td>状态</td>
+                                            <td>付款方式</td>
+                                            <td>管理</td>
+                                        </tr>
+                                        [#if pagination.list?size gt 0]
+                                        [#list pagination.list as a]
+                                        <tr>
+                                            <td>${a.requestTheme!}</td>
+                                            <td>${a.spareName!}</td>
+                                            <td>${a.deadlineDt!}</td>
+                                            <td>${a.releaseDt!}</td>
+                                            <td>${a.state!}</td>
+                                            <td>${a.payType!}</td>
+                                            <td>
+                                                <button><a href="/member/supplychainBpbjqgmanageDetail.jspx?uid=${a[0].demandId}">明细</a></button>&nbsp;
+                                                <button><a href="/member/supplychainBpbjqgmanagePreview.jspx?uid=${a[0].demandId}">预览</a></button>
+                                            </td>
+                                        </tr>
+                                        [#else]
+                                        <div>暂无求购信息</div>
+                                        [/#if]
+                                        [/#list]
+                                    </table>
+                                </div>
+                                <div class="tabList">
+                                    <label>求购主题：</label><input type="text" name="备品分类">
+                                    <label>创建时间：</label><input type="text" name="创建时间">
+                                    <div>
+                                        <label>备件分类：</label><input type="text" name="备品分类" id="typeA">
+                                        <button onclick="seleT()">查询</button></div>
+                                    <h4>已关闭列表</h4>
+                                    <table align="center" width="50%" style="height: 500px">
+                                        <tr><td align="left">求购主题</td>
+                                            <td>备件名称</td>
+                                            <td>求购截止日期</td>
+                                            <td>发布日期</td>
+                                            <td>状态</td>
+                                            <td>付款方式</td>
+                                            <td>管理</td>
+                                        </tr>
+                                        [#if pagination.list?size gt 0]
+                                        [#list pagination.list as a]
+                                        <tr>
+                                            <td>${a.requestTheme!}</td>
+                                            <td>${a.spareName!}</td>
+                                            <td>${a.deadlineDt!}</td>
+                                            <td>${a.releaseDt!}</td>
+                                            <td>${a.state!}</td>
+                                            <td>${a.payType!}</td>
+                                            <td>
+                                                <button><a href="/member/supplychainBpbjqgmanageDetail.jspx?uid=${a[0].demandId}">明细</a></button>&nbsp;
+                                                <button><a href="/member/supplychainBpbjqgmanagePreview.jspx?uid=${a[0].demandId}">预览</a></button>
+                                            </td>
+                                        </tr>
+                                        [#else]
+                                        <div>暂无求购信息</div>
+                                        [/#if]
+                                        [/#list]
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script charset="utf-8">
+                        window.onload = function (){
+                            var windowWidth = document.body.clientWidth; //window 宽度;
+                            var wrap = document.getElementById('wrap');
+                            var tabClick = wrap.querySelectorAll('.tabClick')[0];
+                            var tabLi = tabClick.getElementsByTagName('li');
+
+                            var tabBox =  wrap.querySelectorAll('.tabBox')[0];
+                            var tabList = tabBox.querySelectorAll('.tabList');
+
+                            var lineBorder = wrap.querySelectorAll('.lineBorder')[0];
+                            var lineDiv = lineBorder.querySelectorAll('.lineDiv')[0];
+
+                            var tar = 0;
+                            var endX = 0;
+                            var dist = 0;
+
+                            tabBox.style.overflow='hidden';
+                            tabBox.style.position='relative';
+                            tabBox.style.width=windowWidth*tabList.length+"px";
+
+                            for(var i = 0 ;i<tabLi.length; i++ ){
+                                tabList[i].style.width=windowWidth+"px";
+                                tabList[i].style.float='left';
+                                tabList[i].style.float='left';
+                                tabList[i].style.padding='0';
+                                tabList[i].style.margin='0';
+                                tabList[i].style.verticalAlign='top';
+                                tabList[i].style.display='table-cell';
+                            }
+
+                            for(var i = 0 ;i<tabLi.length; i++ ){
+                                tabLi[i].start = i;
+                                tabLi[i].onclick = function(){
+                                    var star = this.start;
+                                    for(var i = 0 ;i<tabLi.length; i++ ){
+                                        tabLi[i].className='';
+                                    };
+                                    tabLi[star].className='active';
+                                    init.lineAnme(lineDiv,windowWidth/tabLi.length*star)
+                                    init.translate(tabBox,windowWidth,star);
+                                    endX= -star*windowWidth;
+                                }
+                            }
+
+                            function OnTab(star){
+                                if(star<0){
+                                    star=0;
+                                }else if(star>=tabLi.length){
+                                    star=tabLi.length-1
+                                }
+                                for(var i = 0 ;i<tabLi.length; i++ ){
+                                    tabLi[i].className='';
+                                };
+
+                                tabLi[star].className='active';
+                                init.translate(tabBox,windowWidth,star);
+                                endX= -star*windowWidth;
+                            };
+
+                            tabBox.addEventListener('touchstart',chstart,false);
+                            tabBox.addEventListener('touchmove',chmove,false);
+                            tabBox.addEventListener('touchend',chend,false);
+                            //按下
+                            function chstart(ev){
+                                ev.preventDefault;
+                                var touch = ev.touches[0];
+                                tar=touch.pageX;
+                                tabBox.style.webkitTransition='all 0s ease-in-out';
+                                tabBox.style.transition='all 0s ease-in-out';
+                            };
+                            //滑动
+                            function chmove(ev){
+                                var stars = wrap.querySelector('.active').start;
+                                ev.preventDefault;
+                                var touch = ev.touches[0];
+                                var distance = touch.pageX-tar;
+                                dist = distance;
+                                init.touchs(tabBox,windowWidth,tar,distance,endX);
+                                init.lineAnme(lineDiv,-dist/tabLi.length-endX/8);
+                            };
+                            //离开
+                            function chend(ev){
+                                var str= tabBox.style.transform;
+                                var strs = JSON.stringify(str.split(",",1));
+                                endX = Number(strs.substr(14,strs.length-18));
+
+                                if(endX>0){
+                                    init.back(tabBox,windowWidth,tar,0,0,0.3);
+                                    endX=0
+                                }else if(endX<-windowWidth*tabList.length+windowWidth){
+                                    endX=-windowWidth*tabList.length+windowWidth
+                                    init.back(tabBox,windowWidth,tar,0,endX,0.3);
+                                }else if(dist<-windowWidth/3){
+                                    OnTab(tabClick.querySelector('.active').start+1);
+                                    init.back(tabBox,windowWidth,tar,0,endX,0.3);
+                                }else if(dist>windowWidth/3){
+                                    OnTab(tabClick.querySelector('.active').start-1);
+                                }else{
+                                    OnTab(tabClick.querySelector('.active').start);
+                                }
+                                var stars = wrap.querySelector('.active').start;
+                                init.lineAnme(lineDiv,stars*windowWidth/8);
+
+                            };
+                        };
+
+                        var init={
+                            translate:function(obj,windowWidth,star){
+                                obj.style.webkitTransform='translate3d('+-star*windowWidth+'px,0,0)';
+                                obj.style.transform='translate3d('+-star*windowWidth+',0,0)px';
+                                obj.style.webkitTransition='all 0.3s ease-in-out';
+                                obj.style.transition='all 0.3s ease-in-out';
+                            },
+                            touchs:function(obj,windowWidth,tar,distance,endX){
+                                obj.style.webkitTransform='translate3d('+(distance+endX)+'px,0,0)';
+                                obj.style.transform='translate3d('+(distance+endX)+',0,0)px';
+                            },
+                            lineAnme:function(obj,stance){
+                                obj.style.webkitTransform='translate3d('+stance+'px,0,0)';
+                                obj.style.transform='translate3d('+stance+'px,0,0)';
+                                obj.style.webkitTransition='all 0.1s ease-in-out';
+                                obj.style.transition='all 0.1s ease-in-out';
+                            },
+                            back:function(obj,windowWidth,tar,distance,endX,time){
+                                obj.style.webkitTransform='translate3d('+(distance+endX)+'px,0,0)';
+                                obj.style.transform='translate3d('+(distance+endX)+',0,0)px';
+                                obj.style.webkitTransition='all '+time+'s ease-in-out';
+                                obj.style.transition='all '+time+'s ease-in-out';
+                            },
+                        }
+
+                    </script>
+                    <!-- 代码部分end -->
+
+                    <script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+                    <script type="text/javascript" charset="utf-8" src="/${res}/resources/lib/jquery/selec.js"></script>
+                    <script type="text/javascript">
+                        //删除
+                        $("#dell").click(function () {
+                            var ar=$("#dell").val();
+                            location.href="/member/supplychainBpbjqgmanageDell.jspx?uid="+ar;
+                        })
+                        //撤回
+                        $("#re").click(function () {
+                            var ar=$("#re").val();
+                            location.href="/member/supplychainBpbjqgmanageRe.jspx?uid="+ar;
+                        })
+                        //发布
+                        $("#iss").click(function () {
+                            var ar=$("#iss").val();
+                            location.href="/member/supplychainBpbjqgmanageIss.jspx?uid="+ar;
+                        })
+                    </script>
+                    <input id="nextUrl" name="nextUrl" value="contribute_list.jspx" hidden="hidden">
+                    <input id="modelId" name="modelId" value="98" hidden="hidden">
+                    <input id="channelId" name="channelId" value="103" hidden="hidden">
+                </div>
+            </div>
+
+
+
+            <script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+            <script type="text/javascript" charset="utf-8" src="/${res}/resources/lib/ueditor/ueditor.config.js"></script>
+            <script type="text/javascript" charset="utf-8" src="/${res}/resources/lib/ueditor/ueditor.all.js"> </script>
+            <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+            <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+            <script type="text/javascript" charset="utf-8" src="/${res}/resources/lib/editor/lang/zh-cn/zh-cn.js"></script>
+            <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+            <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+            <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/userCenter.js"></script>
+<!--富文本编辑，粘贴图片-->
+<script type="text/javascript">
+    var editor = UE.getEditor('editor',{autoHeightEnabled:false,zIndex:0});
+</script>
+<script language="javascript">
+    UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+    UE.Editor.prototype.getActionUrl = function(action) {
+        if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadimage') {
+            return "/ueditor/upload.jspx";
+        } else {
+            return this._bkGetActionUrl.call(this, action);
+        }
+    }
+</script>
+</body>
+</html>

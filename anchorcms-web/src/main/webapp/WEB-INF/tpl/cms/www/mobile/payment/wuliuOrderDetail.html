@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>订单明细</title>
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <style type="text/css">
+        body {
+            font-family: SimSun;
+        }
+        .content {
+            width: 100%;
+        }
+
+        table {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px solid #ddd;
+            font-family: SimSun;
+            table-layout: fixed;
+            word-break: break-all;
+        }
+
+        table tr td {
+            border-right: 1px dashed #ccc;
+        }
+
+        table tr td.left {
+            padding: 10px 20px;
+            line-height: 25px;
+            text-align: left;
+        }
+
+        table tr td:last-child {
+            border-right: none;
+        }
+
+        table thead tr {
+            height: 30px;
+            line-height: 30px;
+            color: #fff;
+            background: #318CB8;
+        }
+
+        table tbody tr {
+            height: 30px;
+            line-height: 30px;
+        }
+
+        table tbody tr:nth-child(odd) {
+            background: #E7F0F7;
+        }
+
+        .contract {
+            margin: 20px auto;
+            width: 100%;
+            text-align: center;
+            font-size: 18px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="content wrapper">
+    <div class="contract">
+        <span>物流订单明细信息</span>
+    </div>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <td width="14%">项目</td>
+            <td width="43%">寄件人信息</td>
+            <td width="43%">收件人信息</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>订单号</td>
+            <td>${(order.txlogisticId)!}</td>
+            <td>${(order.txlogisticId)!}</td>
+        </tr>
+        <tr>
+            <td>公司名称</td>
+            [#if order.supplyCompany??]
+            <td>${(order.supplyCompany)!}</td>
+            [#else]
+            <td>${(sp.supplycompany.companyName)!}</td>
+            [/#if]
+            [#if order.buyCompany??]
+            <td>${(order.buyCompany)!}</td>
+            [#else]
+            <td>${(sp.buycompany.companyName)!}</td>
+            [/#if]
+        </tr>
+        <tr>
+            <td>姓名</td>
+            [#if order.senderContact??]
+            <td>${(order.senderContact)!}</td>
+            [#else]
+            <td>${(sp.supplyContact)!}</td>
+            [/#if]
+            [#if order.receiverContact??]
+            <td>${(order.receiverContact)!}</td>
+            [#else]
+            <td>${(sp.buyContact)!}</td>
+            [/#if]
+        </tr>
+        <tr>
+            <td>地址</td>
+            [#if order.senderProv??]
+            <td>${(order.senderProv)!}${(order.senderCity)!}${(order.senderArea)!}</td>
+            [#else]
+            <td>${(sp.senderProv)!}${(sp.senderCity)!}${(sp.senderArea)!}</td>
+            [/#if]
+            [#if order.receiverProv??]
+            <td>${(order.receiverProv)!}${(order.receiverCity)!}${(order.receiverArea)!}</td>
+            [#else]
+            <td>${(sp.receiverProv)!}${(sp.receiverCity)!}${(sp.receiverArea)!}</td>
+            [/#if]
+        </tr>
+        <tr>
+            <td>详细地址</td>
+            [#if order.senderProv??]
+            <td>${(order.senderAddress)!}</td>
+            [#else]
+            <td>${(sp.senderAddress)!}</td>
+            [/#if]
+            [#if order.receiverAddress??]
+            <td>${(order.receiverAddress)!}</td>
+            [#else]
+            <td>${(sp.receiverAddress)!}</td>
+            [/#if]
+        </tr>
+        <tr>
+            <td>手机</td>
+            [#if order.senderMobile??]
+            <td>${(order.senderMobile)!}</td>
+            [#else]
+            <td>${(sp.supplyMobile)!}</td>
+            [/#if]
+            [#if order.receiverMobile??]
+            <td>${(order.receiverMobile)!}</td>
+            [#else]
+            <td>${(sp.buyMobile)!}</td>
+            [/#if]
+
+        </tr>
+        <tr>
+            <td>邮编</td>
+            [#if order.senderPostcode??]
+            <td>${order.senderPostcode!}</td>
+            [#else]
+            <td>${(sp.senderPostCode)!}</td>
+            [/#if]
+            [#if order.receiverPostcode??]
+            <td>${order.receiverPostcode!}</td>
+            [#else]
+            <td>${(sp.receiverPostCode)!}</td>
+            [/#if]
+        </tr>
+        <tr>
+            <td>创建时间</td>
+            <td>${order.createOrderTime!}</td>
+            <td>${order.createOrderTime!}</td>
+        </tr>
+        <!--<tr>-->
+            <!--<td>费用</td>-->
+            <!--<td>${order.goodsValue!}</td>-->
+        <!--</tr>-->
+        </tbody>
+
+    </table>
+
+    <br>
+    <br>
+    <!--<div style="padding-left: 200px">-->
+        <!--<h1><label>运单金额(元):</label><span style="color: #9C0000;padding-left: 200px">${(order.goodsValue)!}</span></h1>-->
+
+    <!--</div>-->
+    <div>
+        <h2 style="margin-left: 300px"><label>运单金额(元):</label><span style="color: #9C0000 ;padding-left: 200px">${order.goodsValue!}</span></h2>
+        <h2 style="margin-left: 300px"><label>结算金额(元):</label><span style="color: #9C0000;padding-left: 200px">${order.itemsValue!}</span></h2>
+
+    </div>
+</div>
+</body>
+</html>

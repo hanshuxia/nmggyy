@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/${res}/css/layout.css" rel="stylesheet" type="text/css"/>
+<title>成功提示页面 - ${site.siteName} - Powered by ANCHORCMS</title>
+<link rel="shortcut  icon" type="image/x-icon" href="/${res}/resources/images/favicon.ico" media="screen"  />
+</head>
+<body onload="closeWindow();">
+<div class="prompt">
+  <dl>
+    <dt></dt>
+    <dd class="msg">成功提示页面!</dd>
+    <dd>恭喜！您刚才的操作已经顺利提交。</dd>
+      <dd id="show"></dd>
+  </dl>
+</div>
+</body>
+<script type="text/javascript">
+    var time=3;
+    function closeWindow(){
+        window.setTimeout('closeWindow()',1000);
+        if(time>0){
+            document.getElementById("show").innerHTML=" 倒计时<font color=red>"+time+"</font>秒后关闭当前窗口";
+            time--;
+        }
+        else{
+            window.opener=null;
+            //window.open('','_self','');//关闭窗口时不出现提示窗口
+            window.close();
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:c="">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>备品备件求购页面</title>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/searching.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+[#include "../include/header_icloud.html"]
+<!--content start-->
+<br><br><br><br>
+<div class="content wrapper clearfix" style="font-size: small">
+
+
+    <!--<a style="color: #00a2ff">供应链协同</a>  >  <a style="color: #00a2ff">备品备件求购</a>  >-->
+    <!--<a style="color: #00a2ff">物联网技术与应用</a>   >其他</div><br><br>-->
+    <div style="font-size: small">
+    <a href="${base}/gylxt/index.jhtml" class="block" style="color: #00a2ff">供应链协同</a> <a href="${base}/gylxtBpbj/index.jhtml" class="block" style="color: #00a2ff">&gt;备品备件</a>&gt;${objEntityList[0].spareType}
+    </div><br><br>
+
+<li>
+    <div style="float: left">
+    <img src="/${res}/resources/images/searching/pic.png" alt="">
+    </div>
+    <a style="width: 300px;height: 200px; background-image:none;"></a>
+    <div style="float: left;margin-left: 200px;">
+        <h3>${sSpareDemand.requestTheme}询价</h3><br>
+    采购分类：${objEntityList[0].spareType}<br><br>
+    付款方式： ${sSpareDemand.payType}    <br><br>
+    附件：               <br>
+        <DIV align=center><FONT color="#dcdcdc">------------------------------------------------------------</FONT></DIV>
+        报价企业数：          <br><br>
+        <DIV align=center><FONT color=#dcdcdc>-------------------------------------------------------------</FONT></DIV>
+
+
+
+        发布日期：    ${sSpareDemand.createDt}         <br><br>
+    截止日期：    ${sSpareDemand.createDt}          <br><br>
+    还    剩：          <br><br>
+
+    <button href="#" style="background-color: #df8505;color: white;width: 110px;height: 40px;">我要报价</button><br><br>
+
+    </div>
+    <div style="float: left;font-size: small">
+        <img src="/${res}/resources/images/supply/company_info_title.png" alt=""><br>
+        &emsp;&emsp; &emsp;&emsp; 所属企业：${sSpareDemand.companyId}<br><br>
+        &emsp;&emsp; &emsp;&emsp; 发布人：${sSpareDemand.releaseId}<br><br>
+        &emsp;&emsp; &emsp;&emsp; 联系电话：${sSpareDemand.mobile}<br><br>
+        &emsp;&emsp; &emsp;&emsp; 固定电话：${sSpareDemand.telephone}<br><br>
+        &emsp;&emsp; &emsp;&emsp; 传真：${sSpareDemand.fax}<br><br>
+        &emsp;&emsp; &emsp;&emsp;邮箱：${sSpareDemand.email}<br><br>
+        &emsp;&emsp; &emsp;&emsp;详细地址：${sSpareDemand.addrProvince},${sSpareDemand.addrCity},${sSpareDemand.addrCounty}，${sSpareDemand.addrStreet}
+    </div>
+
+
+
+
+    <li>
+    <HR width="100%" color="" SIZE=10 align="left" /><br>
+    <a style="color: #00a0e9">求购详情</a>
+    <HR width="100%" color="f0f8ff" SIZE=10 align="left" />
+
+        <table border="1"  width="100%" style="height: 100px;text-align: center">
+                <tr>
+                    <td>备件名称</td>
+                    <td>备件编码</td>
+                    <td>求购数量</td>
+                    <td>期望报价</td>
+                    <td>要求到货日期</td>
+                    <td>备件描述</td>
+                </tr>
+                [#list objEntityList as objj ]
+                <tr>
+                    <td>${objj.spareName}</td>
+                    <td>${objj.spareCode}</td>
+                    <td>${objj.requestNum}</td>
+                    <td>${objj.expectPrice}</td>
+                    <td>${objj.deliverDt}</td>
+                    <td>${objj.spareDesc}</td>
+                </tr>
+            [/#list]
+            </table>
+
+
+
+    <a>补充说明：</a><br>
+    ${sSpareDemand.requestTheme}
+    <HR width="100%" color="00a2ff" SIZE=10 align="left" /><br>
+    <a style="color: #00a0e9">求购描述</a><br><br>
+
+    订单紧急程度： ${sSpareDemand.isUrgency}&emsp;&emsp; &emsp;&emsp;是否复验筛选： ${sSpareDemand.reinspection} <br><br>
+    是否DPA：  ${sSpareDemand.dpa}     &emsp;&emsp; &emsp;&emsp; &emsp; &emsp;是下场验收否： ${sSpareDemand.factoryInspection}  <br><br>
+    发票类型： ${sSpareDemand.invoiceType}    &emsp;&emsp; &emsp;&emsp; &emsp; 运费承担商： ${sSpareDemand.freightBorne}    <br><br>
+    收货地址：${sSpareDemand.addrProvince},${sSpareDemand.addrCity},${sSpareDemand.addrCounty}
+
+
+
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+</div>
+<!--content end-->
+[#include "../include/footer_icloud.html"]
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/searching.js"></script>
+</body>
+</html>

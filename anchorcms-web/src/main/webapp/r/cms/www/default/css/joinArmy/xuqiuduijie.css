@@ -1,0 +1,135 @@
+	.body {
+    margin: 0 auto;
+    width: 1202px;
+    text-align: left;
+    height: auto;
+    display: block;
+}
+
+input {
+    padding: 1px 0px 1px 0px;
+}
+.ax_shape {
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: normal;
+}
+
+p{
+    margin:0;
+    padding: 0;
+}
+ul{
+    list-style: none;
+    margin:0px;
+    padding: 0px;
+}
+.main .curr-location{
+	margin-top:10px;
+    width: 1202px;
+    height: 41px;
+    border-bottom:1px solid;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 14px;
+    text-align: left;
+    background-image: url("../../images/joinArmy/images/u60.png");
+}
+.main .content{
+	margin-top:10px;
+    width: 1202px;
+    height: 571px;
+    margin-bottom:10px;
+    background-image: url("../../images/joinArmy/images/u60 - 副本.png");
+}
+.bold-text{
+    word-wrap: break-word;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 14px;
+    text-align: left;
+    line-height: 41px;
+}
+.main .content .navigation{
+    width:270px;
+    height:500px;
+    float: left;
+    padding-top: 32px;
+    padding-left: 28px;
+}
+.main .content .navigation ul li{
+    margin:18px;
+    padding: 0px;
+}
+.main .content .nav-button1{
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    padding:10px 28px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 14px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+    background-image: url("../../images/joinArmy/images/transparent.gif");
+}
+.range{
+    margin-top:36px;
+    margin-left:15px;
+}
+.ctg{
+    width:860px;
+    height:40px;
+    margin-top: 40px;
+    margin-left:16px;
+    float: left;
+
+}
+ #search{
+     width:860px;
+     height:40px;
+     margin-left:16px;
+     float: left;
+ }
+ #result{
+     width: 808px;
+     height: 393px;
+     margin-left:16px;
+     float: left;
+ }
+ .subResult{
+     width: 402px;
+     height: 170px;
+     float: left;
+ }
+.subResult ul{
+    list-style:disc;
+    margin:2px;
+    padding: 0px;
+}
+.subResult ul li{
+    margin:10px;
+}
+.date{
+    float: right;
+    margin-right: 30px;
+}
+ .ctg-button{
+     width: 120px;
+     height: 28px;
+     background-image: url("../../images/joinArmy/images/transparent.gif");
+     font-family: 'Arial Normal', 'Arial';
+     font-weight: 400;
+     font-style: normal;
+     font-size: 13px;
+     text-decoration: none;
+     color: #000000;
+     text-align: center;
+ }
+ 

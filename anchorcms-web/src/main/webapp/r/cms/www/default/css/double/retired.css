@@ -1,0 +1,270 @@
+.position{
+	width:1200px;
+	height: 40px;
+	background: url(../../images/double/doIntroduce/u58.png);
+	background-size: 1200px 41px;
+	font-size:13px;
+	font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+	text-align:left;
+	padding-left:2px;
+	line-height:40px;
+	border-right: solid 1px #888888;
+
+}
+
+
+.retired_main{
+	width: 1200px;
+    height: 590px;
+}
+.sidebar{
+	width: 190px;
+    height: 200px;
+    float:left;
+    
+}
+.menu{
+	height: 50px;
+	border: solid 1px #888888;
+	
+}
+.btn_menu_active{
+    width: 190px;
+    height: 50px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: white;
+    text-decoration: none;
+    background: url(../../images/double/specialser/u66.png) no-repeat -4px -2px;
+    background-size: 194px 53px;
+    text-align: center;
+    line-height:50px;
+
+}
+.btn_menu{
+	width: 190px;
+    height: 50px;
+    background: url(../../images/double/specialser/u119.png) no-repeat -2px -2px;
+    background-size: 192px 53px;
+    border-bottom: solid 2px #888888;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    background-color: #e2e3e4;
+    text-align: center;
+    line-height:50px;
+
+}
+.guide_part{
+	width: 1010px;
+    height: 590px;
+    background: url(../../images/double/retireimg/u57.png);
+    background-size: 1010px 590px;
+    border: solid 1px #888888;
+    border-left:0px;
+    border-top:0px;
+    text-align:center;
+    line-height:590px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;    
+    float:right;
+    position:relative;
+   
+}
+.guide_div{
+	width:390px;
+	height:28px;
+	clear:both;
+	position:absolute;
+	left:310px;
+	bottom:65px;
+}
+.guide_btn{
+	width: 100px;
+    height: 25px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #000000;
+    text-align: center;
+    line-height: normal;
+}
+
+.seat_left{
+	float:left;
+}
+.seat_right{
+	float:right;
+}
+.recommend_part{
+	width: 1010px;
+    height: 590px;
+    border: solid 1px #888888;
+    float:right;
+    background: url(../../images/double/retireimg/u57.png);
+    background-size: 1010px 590px;
+    border-left:0px;
+    border-top:0px;
+    position: relative;
+}
+.explain{
+	width: 770px;
+    height: 130px;
+    margin-left: auto;
+	margin-right: auto;
+    border: solid 1px #888888;
+    text-align:center;
+    line-height:130px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+}
+.registry_form{
+	width: 770px;
+    height: 438px;
+    margin-top:8px;
+    margin-left: auto;
+	margin-right: auto;
+    border: solid 1px #888888;
+}
+.form_title{
+	width: 770px;
+    height: 40px;
+    border: solid 1px #888888;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 14px;
+    text-align:center;
+    line-height:40px;
+}
+.form_main{
+	width: 700px;
+    height: 380px;
+	margin-top:12px;
+    margin-left: 30px;
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+}
+.textbox_name{    
+    width: 200px;
+    height: 25px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: left;
+}
+.retract{
+	text-indent: 2em;
+}
+.sub_center{
+	text-align:center;
+}
+.sub{
+	width: 100px;
+    height: 25px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #000000;
+    text-align: center;
+    line-height: normal;
+   
+}
+.recollections{
+	margin-left: auto;
+	margin-right: auto;
+    width: 200px;
+    height: 40px;
+    background: url(../../images/double/retireimg/u57.png);
+    background-size: 200px 40px;
+    text-align:center;
+    line-height:40px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+     border: solid 1px #888888;
+}
+.note{
+	width: 770px;
+    height: 80px;
+    margin-left: auto;
+	margin-right: auto;
+	margin-top: 15px;
+	padding-left:25px;
+	padding-top:12px;
+	background: url(../../images/double/retireimg/u121.png);
+    background-size: 770px 80px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    border-bottom: solid 1px #888888;
+}
+.page{
+	width: 770px;
+    height: 50px;
+    position:absolute;
+    left:120px;
+    bottom:10px;
+	line-height: 50px;
+    text-align: center;
+    border: solid 1px #888888;
+
+}
+.day{
+	font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 14px;
+    color: #FF0000;
+}
+.note_content{
+	position:relative;
+	top:8px;
+}
+.page_number {
+    
+    width: 49px;
+    height: 25px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+}
+.number_box{
+	width: 30px;
+    height: 25px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: left;
+}

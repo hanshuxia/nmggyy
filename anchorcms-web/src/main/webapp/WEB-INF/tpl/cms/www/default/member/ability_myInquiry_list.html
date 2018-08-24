@@ -1,0 +1,288 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${site.siteName} - Powered by ANCHORCMS</title>
+<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/lib/bootstrap/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+<link rel="stylesheet" type="text/css" href="/${res}/resources/css/list.css"/>
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/list.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            _onload();
+        });
+        //点击状态标签刷新列表
+        $(document).ready(function() {
+            $(".switchBtn li").click(function(){
+                if($(this).attr("id") == "all"){
+                    $("#statusType").val("");
+                }else if($(this).attr("id") == "statusType0"){
+                    $("#statusType").val("0");
+                }else if($(this).attr("id") == "statusType1"){
+                    $("#statusType").val("1");
+                }else if($(this).attr("id") == "statusType2"){
+                    $("#statusType").val("2");
+                }
+                $("#tableForm").submit();
+            });
+        });
+        //加载页面标签状态
+        function _onload(){
+            if($("#statusType").val() == ""){
+                $("#all").addClass("current");
+                $("#all").next().addClass("active");
+            }else if  ($("#statusType").val() == "0"){
+                $("#statusType0").addClass("current");
+                $("#statusType0").next().addClass("active");
+            }else if ($("#statusType").val() == "1"){
+                $("#statusType1").addClass("current");
+                $("#statusType1").next().addClass("active");
+            }else if  ($("#statusType").val() == "2"){
+                $("#statusType2").addClass("current");
+                $("#statusType2").next().addClass("active");
+            }
+        };
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            //关闭优选框
+            $(".noteTop img").click(function(){hideBjxqTable();});
+            //点击查看报价详情
+            $(".bjxq").click(function(){
+                var quoteId = $(this).parent().find('input:first').val();
+                bjxqAjax(quoteId);
+            })
+        });
+        //弹出 报价详情 界面的ajax
+        function bjxqAjax(quoteId){
+            //获取该公司报价的 报价对象 和需求对象对应后输出的json 不分页了
+            $.ajax({
+                type:"post",
+                url:"/member/synergy_demandQuoteDetail_getQuoteAjax.jspx?quoteId="+quoteId,
+                dataType:"json",
+                success:function(json){
+                    //先把表格填好
+                    fillBjxqTable(json);
+                    //显示下单表格div
+                    showBjxqTable();
+                },
+                error:function(){
+                    alert("数据传输失败，原因：1、用户未登录，2、用户无关联公司，3、试图查看非本公司的报价，4、请求查看的报价不存在或未找到");
+                }
+            })
+        }
+        //根据json填 报价详情 信息的方法
+        function fillBjxqTable(jsonObj){
+            var tBody = $('#bjxqTable tbody');
+            var demandTheme = jsonObj.demandTheme;
+            $('#bjxqTableDemandTheme').text(s_cut(demandTheme,60,'..')).attr('title',demandTheme);
+            $('#bjxqTableDemandId').text(jsonObj.demandId);
+            tBody.html("");
+            $.each(jsonObj.objs,function(i,item){
+                tBody.append("<tr></tr>");
+                var tr = tBody.find('tr:last');
+                tr.append("<td><a class='show-title' title='"+item.objName+"'>"+s_cut(item.objName,20,'..')+"</a></td>");
+                tr.append("<td><a class='show-title' title='"+item.objCode+"'>"+s_cut(item.objCode,20,'..')+"</a></td>");
+                tr.append("<td>"+item.amount+"</td>");
+                tr.append("<td><a class='show-title' title='"+item.unit+"'>"+s_cut(item.unit,8,'..')+"</a></td>");
+                if (item.expPrice!=undefined){
+                tr.append("<td>"+item.expPrice+"</td>");
+            }else {
+                    tr.append("<td></td>"); };
+                tr.append("<td>"+item.qPrice+"</td>");
+            });
+            if( tBody.children('tr').length ==0){
+                tBody.append("<tr><td colspan='6'>拉取报价信息失败，或报价中不存在报价对象。</td></tr>");
+            }
+        }
+        //显示  报价详情 表格div 的方法
+        function showBjxqTable(){
+            $("#bjxqWindow").css("display","block");
+            parent.showWindow();
+            $('#goodcover1').show();
+            $(window.parent.document).find("#mainFrame").attr("scrolling","no");
+        }
+        //隐藏报价详情 表格div 的方法
+        function hideBjxqTable(){
+            $("#bjxqWindow").css("display","none");
+            parent.hideWindow();
+            $('#goodcover1').hide();
+            $(window.parent.document).find("#mainFrame").attr("scrolling","yes");
+        }
+        //切字符串方法
+        function s_cut(s,lenth,append){
+            var index = 0;
+            var len = 0;
+            var str = "";
+            var a = "";
+            for (var i = 0; len < lenth; i++) {
+                index = i;
+                a = s.charAt(i);
+                str += a;
+                if (a.match(/[^\x00-\xff]/ig) != null) {
+                    len += 2;
+                }
+                else {
+                    len += 1;
+                }
+            }
+            if(s.charAt(index+1) == ""){
+                return str;
+            }else{
+                return (str+append);
+            }
+        }
+    </script>
+<!--[if lt IE 9]> 
+<script src="/${res}/js/html5shiv.min.js"></script>
+<script src="/${res}/js/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+
+<div class="content wrapper clearfix">
+    <!--遮罩--><div id="goodcover1"></div>
+      <div class="head wrapper">
+          <a href="${base}/member/ability_myInquiry_list.jspx" class="current">我的方案报价管理界面</a>
+      </div>
+      <div class="main">
+          <form id="tableForm" action="ability_myInquiry_list.jspx" method="post">
+          <div class="switchBtn">
+              <ul>
+                  <li id="all"><span>全部</span></li>
+                  <li id="statusType0"><span>已报价</span></li>
+                  <li id="statusType1"><span>被优选</span></li>
+                  <li id="statusType2"><span>已中标</span></li>
+              </ul>
+          </div>
+          <div class="tableDiv wrapper">
+              <table cellpadding="0" cellspacing="0">
+                  <thead>
+                      <tr>
+                          <th class="tggl-top">需求编号</th>
+                          <th class="tggl-top">报价需求主题</th>
+                          <th class="tggl-top">需求公司名称</th>
+                          <th class="tggl-top">交货日期</th>
+                          <th class="tggl-top">状态</th>
+                          <th class="tggl-top">操作</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      [#if pagination.list?size gt 0]
+                      [#list pagination.list as c]
+                      <tr>
+                          <td>${c.demand.demandId?default("null")}</td>
+                          <td style="text-align: left;width: 250px;padding-left:20px"><a class="show-title" title="${c.demand.inquiryTheme!}">[@text_cut s=c.demand.inquiryTheme! len='15' append='...' /]</a></td>
+                          <td style="text-align: left;width: 250px;padding-left:20px"><a class="show-title" title="${c.demand.company.companyName?default('null')}">[@text_cut s=c.demand.company.companyName?default('null') len='15' append='...' /]</a></td>
+                          <td>${c.demand.deliverDt?default("null")}</td>
+                          [#if !c.selectedStatus??]
+                          <td></td>
+                          [#else]
+                          [#switch c.selectedStatus]
+                          [#case "0"]<td>已报价</td>[#break]
+                          [#case "1"]<td>被优选</td>[#break]
+                          [#case "2"]<td>中标</td>[#break]
+                          [#case ""]<td>已关闭</td>[#break]
+                          [#default]
+                          [/#switch]
+                          [/#if]
+                          <td>
+                              <input type="hidden" value="${c.demandQuoteId}"/>
+                              <a class="link" href="/member/synergy_demand_view.jspx?demandId=${c.demand.demandId}">需求详情</a>
+                              [#if c.selectedStatus??]
+                              [#if c.selectedStatus=='2']
+                              <a class="link" href="/member/ability_myInquiry_view.jspx?quoteId=${c.demandQuoteId}">中标详情</a>
+                              [#else]
+                              <a class="link bjxq">报价详情</a>
+                              [/#if]
+                              [/#if]
+                          </td>
+                      </tr>
+                      [/#list]
+                      [#else]
+                      <tr>
+                          <td colspan="6"><h4>暂无数据</h4></td>
+                      </tr>
+                      [/#if]
+                  </tbody>
+              </table>
+          </div>
+          <input type="hidden" name="pageNo"/>
+          <div  class="page clearfix">
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                      <td align="left" class="pn-sp">
+                          每页 ${pagination.pageSize} 条&nbsp;
+                          <input class="first" type="button" onclick="_gotoPage('1');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                          <input class="prev" type="button" onclick="_gotoPage('${pagination.prePage}');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                          <input type="text" value=${pagination.pageNo} id="_goPs" onfocus="this.select();" onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>/${pagination.totalPage}
+                          <input class="next" type="button" onclick="_gotoPage('${pagination.nextPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>
+                          <input class="last" type="button" onclick="_gotoPage('${pagination.totalPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>&nbsp;
+                          <button id="_goPage" class="ok" type="button" onclick="_gotoPage($('#_goPs').val());"[#if pagination.totalPage==1] disabled="disabled"[/#if]>GO</button>
+                          共 ${pagination.totalCount} 条&nbsp;
+                      </td>
+                  </tr>
+              </table>
+          </div>
+          <script type="text/javascript">
+            function _gotoPage(pageNo) {
+                if(!/^[0-9]*[1-9][0-9]*$/.test(pageNo)){ui.alertFail("页码必须为正整数！");return false;}
+                try{
+                    var tableForm = document.getElementById("tableForm");
+                    $("input[name=pageNo]").val(pageNo);
+                    tableForm.action="ability_myInquiry_list.jspx";
+                    tableForm.onsubmit=null;
+                    tableForm.submit();
+                } catch(e) {
+                    alert('_gotoPage(pageNo)方法出错');
+                }
+            }
+          </script>
+              <script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+              <script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+            <input type="text" id="statusType" name="statusType" hidden="hidden" value="${statusType!}">
+          </form>
+          <!--报价详情隐藏div-->
+          <div class="window" id="bjxqWindow">
+              <div class="noteTop">
+                  报价详情
+                  <img id="bjxqTableCloseWindow" src="/${res}/resources/images/abilityPreview/close.png">
+              </div>
+              <div class="yxmain">
+                  <div class="buttonDiv">
+                      <h5 style="">
+                          报价需求主题：<span id="bjxqTableDemandTheme"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                          报价需求编号：<span id="bjxqTableDemandId"></span>
+                      </h5>
+                  </div>
+                  <div class="tableDiv tale"  style="padding-top:0;border-top: 5px solid #3077B9;">
+                      <table border="0" class="wrapper" cellpadding="0" cellspacing="0" id="bjxqTable">
+                          <thead>
+                          <tr>
+                              <th>对象名称</th>
+                              <th>代码</th>
+                              <th>需求量</th>
+                              <th>单位</th>
+                              <th>期望单价（元）</th>
+                              <th>报价单价（元）</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+    <div class="m-sj"></div>
+</div>
+</body>
+</html>

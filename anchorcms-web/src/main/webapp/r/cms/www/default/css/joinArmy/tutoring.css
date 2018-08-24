@@ -1,0 +1,94 @@
+.t-titile{
+    margin: 0px 0px 0px 0px;
+    padding: 15px 0px;
+    width: 1202px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 14px;
+    text-align: left;
+    background-image:url("../../images/joinArmy/tutoring/u60.png");
+}
+.t-content{
+    width: 1202px;
+    height:580px;
+    background-image:url("../../images/joinArmy/tutoring/u71.png");
+}
+.t-menu{
+    margin: 25px 50px;
+    float: left;
+    width: 278px;
+
+}
+.t-menu li{
+    margin: 8px 0px;
+    width: 278px;
+    height: 50px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 14px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+    line-height:50px;
+    background-image: url("../../images/joinArmy/tutoring/transparent.gif");
+    border:1px solid #aaa;
+}
+.t-contentdatil{
+    margin: 20px auto 8px auto;
+    padding: 40px 0px 0px 0px;
+    float: left;
+    width: 780px;
+height:543px;
+    background-image:url("../../images/joinArmy/tutoring/u156.png");
+}
+.t-contentdatil ul{
+	margin:0px 47px;
+}
+.t-contentdatil li {
+	float:left;
+    margin: 0px 5px;
+    width: 125px;
+    height: 44px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+    line-height:44px;
+    background-image: url("../../images/joinArmy/tutoring/transparent.gif");
+    border:1px solid #aaa;
+}
+.t-detail{
+    margin: 35px ;
+    padding: 30px 0px 27px 0px;
+    width :700px;
+    height:255px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    color: #333333;
+    text-align: left;
+
+    background-image:url("../../images/joinArmy/tutoring/u158.png");
+}
+#t-turn{
+    margin:30px 0px 58px 0px;
+    padding: 1px 0px 1px 0px;
+    width: 210px;
+    height: 44px;
+    background-image: url("../../images/joinArmy/tutoring/transparent.gif");
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    text-decoration: none;
+    color: #FF0000;
+    text-align: center;
+}
+
+
+

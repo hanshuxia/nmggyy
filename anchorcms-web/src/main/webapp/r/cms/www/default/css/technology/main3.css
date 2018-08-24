@@ -1,0 +1,288 @@
+body {
+    margin: 0px;
+    width: 1290px;
+    text-align: left;
+    margin:0px auto;
+   
+}
+div{
+	 
+}
+p{
+	margin: 0px;
+	padding:0px;
+}
+.d0{    width: 1194px;
+margin:0 auto;
+   height:  50px;
+   background-color: #cccccc;
+   margin: 3px auto ;
+   font-size: 14px;
+   line-height: 50px;
+   padding-left: 3px;
+   
+}
+.d1{
+	    width: 1200px;
+margin:0 auto;
+   height:  125px;
+}
+.d11{
+	width: 220px;
+	height:121px;
+		float :left;
+
+	   	   background-color: #cccccc;
+	 margin:2px;
+	   
+}
+.d12{
+	float :left;
+
+	   margin:2px;
+	   	width: 972px;
+	height:121px;
+		   background-color: #cccccc;
+}
+.d111{
+	width: 200px;
+	height: 42px;
+	text-align: center;
+	background-color: white;
+	border: 1px solid black;
+	margin:10px auto;
+	color:red;
+	line-height: 42px;
+}
+.d121{
+	float: left;
+	height:101px;
+	width:26px;
+	border:1px solid #797979;
+	text-align: center;
+	background-color: white;
+	margin:8px;
+	font-size: 14px;
+	color:red;
+}
+.d122{
+	float: left;
+	height:121px;
+	margin:40px 6px;
+}
+.d123{
+	float: left;
+	height:100px;
+	border:1px solid #797979;
+	width:230px;
+	background-color: white;
+	margin:10px 20px;
+}
+.d1231{
+	width:210px;
+	height:22px;
+	margin:4px auto;
+	border:  1px solid #797979;
+	font-size: 13px;
+	line-height: 22px;
+		padding-left: 2px;
+}
+.d1232{
+	float: left;
+	margin:3px 9px;
+}
+.d1233{
+	float:left;
+}
+.d12331{
+	font-size: 13px;
+	border: 1px solid #797979;
+		height:23px;
+		width:140px;
+		line-height: 23px;
+		margin:2px auto;
+			padding-left: 3px;
+}
+.d12332{
+	font-size: 13px;
+		border: 1px solid #797979;
+		height:33px;
+		width:140px;
+				line-height: 33px;
+				margin:2px 3px;
+				padding-left: 3px;
+}
+#a1{
+	width:126px;
+}
+#a2{
+	width:126px;
+}
+#d2{
+width: 1200px;
+margin: 2px auto;
+
+}
+#d21{
+	width:220px;
+	margin: 2px;
+	float: left;
+			   	   
+}
+#d22{
+	width:972px;
+	margin: 2px ;
+
+	float: left;
+		  
+	
+}
+.d211{
+	height:42px;
+	width:215px;
+	color: red;
+	line-height: 42px;
+	background-color: #ccc;
+	margin-bottom: 2px ;
+	padding-left: 5px;
+	margin-right: 2px;
+	
+}
+.d212{
+	font-size: 13px;
+	border: 1px solid #797979;
+	width:218px;
+
+}.td1{
+	width:175px
+	;padding-left: 4px;
+	border-bottom: 1px solid #797979;
+	
+}
+.td2{
+		border-bottom: 1px solid #797979;
+		;padding-left: 4px;
+}
+table tr{
+	height:25px;
+	line-height: 25px;
+
+	
+}
+table{
+	border-collapse: collapse;
+	margin: 0;padding: 0;
+		width:218px;
+}
+.td3{}
+.td4{ padding-left: 4px;}
+.d213{
+	height:191px;
+	margin: 2px 0px;
+	 background-color: #cccccc;
+	 width:220px;
+}
+.d2131{
+	font-size: 13px;
+	color: red;
+	padding:65px 0 ;
+	padding-left: 4px;
+	
+}
+#sucee{
+	margin: 2px 0;
+}
+.d214{
+	font-size: 13px;
+	padding: 30px 10px 30px 5px;
+	border: 1px solid #797979;
+	height: 112px;
+}
+.d22{}
+.d221{
+	width: 972px;height: 46px; 
+	background-color: #Ececec;
+	border: 1px solid #797979;
+	text-align: center;line-height: 46px;
+	font-size: 13px;}
+	.d222{
+		background-color: #Ececec;
+		height: 163px;
+		width: 972px;
+		
+	}
+	.tab01{
+	width:972px;}
+	.tab01 td{height:47px; border:2px solid #797979 
+	;
+	text-align: center;line-height: 49px;font-size: 13px; }
+	#td01{width:300px;background-color: white;}
+	#td02{
+	width: 300px; background-color: white;}
+		.d223{
+	width: 972px;
+	margin-top: -2px;
+	}
+	.d2231{
+	float: left;
+	width: 557px;
+	 }
+	.d2232{
+	float: left;
+	width: 410px;
+}
+
+	.d22311{
+	
+	width: 506px;height: 46px; 
+	background-color: #Ececec;
+	border: 1px solid #797979;
+	padding-left:50px;;line-height: 46px;
+	font-size: 13px;
+	}
+	.d22312{
+	height: 644px;
+	
+	border: 1px solid #797979;
+	
+	}
+	.button1{
+border: none;
+width: 150px; height: 40px;
+line-height: 40px;
+text-align: center;
+color: red;
+font-size: 13px;
+margin: 16px 24px 0px 24px;
+	}
+	
+	.d22322{
+		background-color: #Ececec;
+	width: 410px;height: 101px;
+	border: 1px solid #797979;
+	}
+	.pp1{
+	text-align: center;
+	font-size: 13px;
+	margin:15px 5px  10px 8px;
+	color: red;
+	}
+	.pp2{ text-align: center;}
+	#button2{
+
+	}
+	.d22323{
+		width: 410px;height:580px;
+			border: 1px solid #797979;
+			position: relative;
+	}
+	.d223231{
+	height: 45px;
+	width: 380px;
+	line-height: 45px;
+	position: absolute;
+	left: 26px;
+	top: 534px;
+		border: 1px solid #797979;
+		padding-left: 3px;
+	}

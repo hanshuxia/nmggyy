@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>产业深度融合企业能力调查</title>
+    <link rel="shortcut  icon" type="image/x-icon" href="/${res}/resources/images/favicon.ico" media="screen"  />
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/contact.css"/>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+
+    <!--[if lte IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <script type="text/javascript" src="/thirdparty/jquery-placeholder/placeholder-ie9.js" ></script>
+    <![endif]-->
+
+    <link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="${base}/res/common/js/jquery.ext.js" type="text/javascript"></script>
+    <script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/swfupload.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/swfupload.queue.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/fileprogress.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/handlers.js" type="text/javascript"></script>
+    <link href="${base}/thirdparty/swfupload/process.css" rel="stylesheet" type="text/css"/>
+
+    <!--添加表单校验-->
+    <script src="${base}/res/common/js/jquery.validate.js" type="text/javascript"></script>
+    <script src="${base}/res/common/js/messages_zh.js" type="text/javascript"></script>
+    <!--自己写校验方法-->
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/validateCheck.js"></script>
+    <script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+    <script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+
+    <!--日期插件-->
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript">
+        function CurentTime() {
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = now.getMonth() + 1;
+            var day = now.getDate();
+            var hh = now.getHours();
+            var mm = now.getMinutes();
+            var clock = year + "-";
+            if (month < 10)
+                clock += "0";
+            clock += month + "-";
+            if (day < 10)
+                clock += "0";
+            clock += day + " ";
+            if (hh < 10)
+                clock += "0";
+            clock += hh + ":";
+            if (mm < 10) clock += '0';
+            clock += mm;
+            return (clock);}
+    </script>
+    <script type="text/javascript">
+        //表单验证
+        $().ready(function() {
+            $("#release_form").validate()
+
+        });
+
+
+    </script>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/releasePower.css"/>
+    <!--级联菜单相关js-->
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/commonDict.js"></script>
+    <!--传文件相关-->
+    <style>
+        .layui-layer-lan .layui-layer-btn a {
+            background-color: #2e8ded;
+            border: none;
+        }
+    </style>
+    <script type="text/javascript">
+        // 联系人信息是否有默认地址
+        window.isDef = 0;
+
+        //表单验证
+        $().ready(function() {
+            validform();
+            // 获取联系人信息
+            getContactAjax(${user.userId});
+            // 隐藏发票信息
+            $("#taxRegNoDiv").hide();
+            $("#invoiceCompanyName").hide();
+            $("#registeredAddress").hide();
+            $("#bankInfo").hide();
+            $("#dataSourse2").hide();
+            $("#dataCirculationPlatform2").hide();
+            $("#hardware2").hide();
+            $("#basicSoftware2").hide();
+            $("#applicationSoftware2").hide();
+            $("#infrastructure2").hide();
+            $("#systemIntegration2").hide();
+            $("#enterpriseApplication2").hide();
+
+        });
+
+        function validform(){
+            /*关键在此增加了一个return，返回的是一个validate对象，这个对象有一个form方法，返回的是是否通过验证*/
+            return $("#release_form").validate();
+        }
+
+        $(function() {
+            var uploadPicsUrl = "o_swfPicsUpload.jspx";
+            var uploadAttachsUrl = "o_swfAttachsUpload.jspx";
+            //在firefox、chrome下，上传不能保留登录信息，所以必须加上jsessionid。
+            var jsessionid ="${sessionId!}";
+            if(jsessionid) {
+                uploadPicsUrl += ";jsessionid="+jsessionid;
+                uploadAttachsUrl += ";jsessionid="+jsessionid;
+            }
+            swfu=new SWFUpload({
+                upload_url : uploadPicsUrl,
+                flash_url : "${base}/thirdparty/swfupload/swfupload.swf",
+                file_size_limit : "2 MB",
+                file_types : "*.jpg;*.gif;*.png;*.bmp",
+                file_types_description : "图片",
+                file_queue_limit : 0,
+                custom_settings : {
+                    progressTarget : "fsUploadProgress",
+                    cancelButtonId : "btnCancel"
+                },
+                debug: false,
+
+                button_image_url : "${base}/thirdparty/swfupload/button_notext.png",
+                button_placeholder_id : "spanButtonPlaceHolder",
+                button_text: "<span class='btnText'>上传</span>",
+                button_width: 84,
+                button_height: 24,
+                button_text_top_padding: 2,
+                button_text_left_padding: 20,
+                button_text_style: '.btnText{color:#666666;}',
+
+                file_queued_handler : fileQueued,
+                file_queue_error_handler : fileQueueError,
+                file_dialog_complete_handler : fileDialogComplete,
+                upload_progress_handler : uploadProgress,
+                upload_error_handler : uploadError,
+                upload_success_handler : uploadPicsSuccess,
+                upload_complete_handler : uploadComplete,
+                queue_complete_handler : queueComplete
+            });
+            swfau=new SWFUpload({
+                upload_url : uploadAttachsUrl,
+                flash_url : "${base}/thirdparty/swfupload/swfupload.swf",
+                file_size_limit : "2000 MB",
+                file_types : "*.*",
+                file_types_description : "All Types",
+                file_queue_limit : 0,
+                custom_settings : {
+                    progressTarget : "afsUploadProgress",
+                    cancelButtonId : "abtnCancel"
+                },
+                debug: false,
+
+                button_image_url : "${base}/thirdparty/swfupload/button_notext.png",
+                button_placeholder_id : "aspanButtonPlaceHolder",
+                button_text: "<span class='btnText'>上传</span>",
+                button_width: 84,
+                button_height: 24,
+                button_text_top_padding: 2,
+                button_text_left_padding: 20,
+                button_text_style: '.btnText{color:#666666;}',
+
+                file_queued_handler : fileQueued,
+                file_queue_error_handler : fileQueueError,
+                file_dialog_complete_handler : fileDialogComplete,
+                upload_progress_handler : uploadProgress,
+                upload_error_handler : uploadError,
+                upload_success_handler : uploadAttachSuccess,
+                upload_complete_handler : uploadComplete,
+                queue_complete_handler : queueComplete
+            });
+        });
+
+        function uploadPicsSuccess(file,data) {
+            var jsonData=eval("("+data+")");//转换为json对象
+            if(jsonData.error!=null){
+                $.alert("[@s.m 'global.prompt'/]",jsonData.error);
+            }else{
+                addPicLine();
+                var index = picIndex - 1;
+                imgUrl=jsonData.imgUrl;
+                $("#preImg"+index).attr("src",""+imgUrl);
+                var imgSrc = parent.document.getElementById("preImg"+index);
+                if(!$(imgSrc).attr("noResize")) {
+                    $(imgSrc).css("width","auto");
+                    $(imgSrc).css("height","auto");
+                }
+                $("#uploadImgPath"+index).val(imgUrl);
+            }
+        }
+        function uploadAttachSuccess(file,data) {
+            var jsonData=eval("("+data+")");//转换为json对象
+            if(jsonData.error!=null){
+                $.alert("[@s.m 'global.prompt'/]",jsonData.error);
+            }else{
+                addAttachLine();
+                var index = attachIndex - 1;
+                var attachUrl=jsonData.attachUrl;
+                var attachName=jsonData.attachName;
+                $("#attachmentPaths"+index).val(attachUrl);
+                $("#attachmentNames"+index).val(attachName);
+            }
+        }
+
+        // 弹出和更新联系人信息界面的ajax
+        function getContactAjax(userId){
+            $.ajax({
+                type:"post",
+                url:"/member/getContactList.jspx?userId=" + userId,
+                dataType:"json",
+                success:function(json){
+                    if (json.data.length == 0) { // 没有用户联系信息
+                        openContactAdd();
+                    } else {
+                        // 填充表格信息
+                        fillContactTable(json);
+                        // 塞入联系人信息
+                        fillContactInfo();
+                    }
+                },
+                error:function(){
+                    ui.alertFail("数据传输失败，原因：1、用户未登录，2、用户无关联公司，3、请求的联系信息不存在或未找到");
+                }
+            })
+        }
+        //切字符串方法
+        function s_cut(s,lenth,append){
+            var index = 0;
+            var len = 0;
+            var str = "";
+            var a = "";
+            for (var i = 0; len < lenth; i++) {
+                index = i;
+                a = s.charAt(i);
+                str += a;
+                if (a.match(/[^\x00-\xff]/ig) != null) {
+                    len += 2;
+                }
+                else {
+                    len += 1;
+                }
+            }
+            if(s.charAt(index+1) == ""){
+                return str;
+            }else{
+                return (str+append);
+            }
+        }
+        // 根据json填联系人信息的方法
+        function fillContactTable(jsonObj){
+            var tBody = $('#bjTable tbody');
+            tBody.html("");
+
+            $.each(jsonObj.data, function(i, item){
+                tBody.append("<tr id = 'infoSelected' onclick='infoSelected(this)'></tr>");
+                var tr = tBody.find('tr:last');
+                if(item.defAddr == "1") {
+                    tr.append("<td id='shipAddressName' class='ckt-checkbox selected'><a title='"+item.shipAddressName+"'>"+s_cut(item.shipAddressName,4,'..')+"</a></td>");
+                } else {
+                    tr.append("<td id='shipAddressName' class='ckt-checkbox'><a title='"+item.shipAddressName+"'>"+s_cut(item.shipAddressName,4,'..')+"</a></td>");
+                }
+                tr.append("<td id='userName1' class='name-li-ckt-info' style='width: 100px'><a title='"+item.userName+"'>"+item.userName+"</a></td>");
+                tr.append("<td id='addrProvince1' hidden><a title='"+item.province+"'>"+item.province+"</a></td>");
+                tr.append("<td id='addrCity1' hidden><a title='"+item.city+"'>"+item.city+"</a></td>");
+                tr.append("<td id='addrCounty1' hidden><a title='"+item.country+"'>"+item.country+"</a></td>");
+                tr.append("<td id='addrStreet1' hidden><a title='"+item.address+"'>"+item.address+"</a></td>");
+                tr.append("<td id='addr' class='address-li-ckt-info'><a title='"+item.province+item.city+item.country+item.address+"'>"+item.province+item.city+item.country+item.address+"</a></td>");
+                tr.append("<td id='fax1' hidden><a title='"+item.fax+"'>"+item.fax+"</a></td>");
+                tr.append("<td id='email1' hidden><a title='"+item.email+"'>"+item.email+"</a></td>");
+                tr.append("<td id='mobile1' class='mobile-li-ckt-info'><a title='"+item.mobile+"'>"+item.mobile+"</a></td>");
+                tr.append("<td id='postCode1' hidden><a title='"+item.zip+"'>"+item.zip+"</a></td>");
+                tr.addClass("li-ckt-info");
+//                $('#bjTable tbody').find('tr:eq(0)').addClass("infoSelected");
+                if(item.defAddr == "1") {
+                    window.isDef += 1;
+                    tr.append("<td id='defAddr' class='default-li-ckt-info'>默认地址</td>");
+                    $('#bjTable tbody').find('tr:eq(' + i + ')').addClass("infoSelected");
+                } else {
+                    tr.append("<td id='defAddr'></td>");
+                }
+            });
+            $('#bjWindow').show();
+            if(tBody.children('tr').length == 0){
+                openContactAdd();
+            }
+        }
+    </script>
+    <style type="text/css">
+        /*.wrapper {*/
+            /*width: 95%;*/
+        /*}*/
+        .choose-catagory-layout {
+            background-color: #fff;
+            width: 670px;
+            height: 250px;
+            border: solid thin #ccc;
+            z-index: 999;
+        }
+        .catagory-columns .catagory-ul {
+            float: left;
+            width: 330px;
+            height: 200px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            border-width: thin;
+            border-style: solid;
+            border-color: rgb(204, 204, 204);
+            border-image: initial;
+        }
+        .catagory-columns .catagory-ul .catagory-li {
+            line-height: 25px;
+            width: 300px;
+            height: 25px;
+            cursor: pointer;
+            text-indent: .8em;
+        }
+        body {background-image:url(../images/login/loginbg.png);}
+
+    </style>
+    [#include "image_upload.html" /]
+    [#include "attachment_upload.html" /]
+</head>
+<body>
+[#include "../include/header_cyrh.html"]
+
+<div class="content wrapper">
+    <form id="release_form" action="/member/bigdata_registed_save.jspx" method="post" onsubmit="return false">
+        <!--需求信息-->
+        <div class="servicePower">
+            <div class="column wrapper"> <span class="head">企业基本信息</span> <span class="tips">
+                <i>*</i>&nbsp;为必填项</span>
+            </div>
+            <div class="service-content wrapper">
+                <div class="inputs dTypeFrameOuter">
+                    <label><i>*</i>&nbsp;选择分类：</label>
+                    <input type="hidden" id="demandTypeHidden" name="duties" value="${user.company.industryType?default('')}">
+                    <input class="power category" id="demandTypeInput" type="text" readonly="readonly" value="[#if user.company.industryType??][@s_typevalue typecode='ZYHY' typekey=user.company.industryType isfull='1' join=' > ' /][/#if]" required>
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;企业全称：</label>
+                    <input class="power space" id="companyName" name="companyName" type="text" required maxlength="50" value="${companyName!}">
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;企业网址：</label>
+                    <input class="power space" id="companySite" name="companySite" type="text" required maxlength="50" placeholder="如无网址请填写无" value="${sites!}">
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;工商注册业务区域：</label>
+                    <input class="power space" id="registrationArea" name="registrationArea" type="text" required maxlength="50" value="${company.addrProvince!}${company.addrCity!}${company.addrCounty!}">
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;工商注册业务范围：</label>
+                    <input class="power space" id="scopeOfBusiness" name="scopeOfBusiness" type="text" required maxlength="50">
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;注册时间：</label>
+                      <span>
+                      <input type="text" id="dealDt" name="registrationTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate" required value="${registerDt!}">
+                      </span>
+                </div>
+                [#if company.aptitude?size gt 0]
+                [#list company.aptitude as d]
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;企业法人：</label>
+                    <input class="power space" id="legalPerson" name="legalPerson" type="text" required maxlength="50" value="${d.legRepresentName!}">
+                </div>
+                [/#list]
+                [/#if]
+                <!--<div class="inputs">-->
+                    <!--<label><i>*</i>&nbsp;成立时间：</label>-->
+                  <!--<span>-->
+                  <!--<input type="text" id="registrationTime" name="registrationTime" class="Wdate" onfocus="WdatePicker({minDate:'%y-%M-{%d}',maxDate:'#F{$dp.$D(\'deliverDt\')}'})" required>-->
+                  <!--</span>-->
+                <!--</div>-->
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;注册资金</label>
+                    <input class="power space" style="width: 100px" id="registeredCapital" name="registeredCapital" type="text" required maxlength="10">万元
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;企业规模：</label>
+                    <select class="codeInput" name="staffNumber" required>
+                        <option value="5人以下"[#if companyScale =="5人以下"]selected="selected"[/#if]>5人以下</option>
+                        <option value="5-10人"[#if companyScale =="5-10人"]selected="selected"[/#if]>5-10人</option>
+                        <option value="11-50人"[#if companyScale =="11-50人"]selected="selected"[/#if]>11-50人</option>
+                        <option value="51-100人"[#if companyScale =="51-100人"]selected="selected"[/#if]>51-100人</option>
+                        <option value="101-200人"[#if companyScale =="101-200人"]selected="selected"[/#if]>101-200人</option>
+                        <option value="201-300人"[#if companyScale =="201-300人"]selected="selected"[/#if]>201-300人</option>
+                        <option value="301-500人"[#if companyScale =="301-500人"]selected="selected"[/#if]>301-500人</option>
+                        <option value="501-1000人"[#if companyScale =="501-1000人"]selected="selected"[/#if]>501-1000人</option>
+                        <option value="1000人及以上"[#if companyScale =="1000人及以上"]selected="selected"[/#if]>1000人及以上</option>
+                    </select>
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;企业类型：</label>
+                    <select class="codeInput" name="enterpriseNature" required>
+                        <option value="国有企业" [#if companyType =="国有企业"]selected="selected"[/#if]>国有企业</option>
+                        <option value="集体企业" [#if companyType =="集体企业"]selected="selected"[/#if]>集体企业</option>
+                        <option value="股份合作企业" [#if companyType =="股份合作企业"]selected="selected"[/#if]>股份合作企业</option>
+                        <option value="联营企业"[#if companyType =="联营企业"]selected="selected"[/#if]>联营企业</option>
+                        <option value="有限责任公司"[#if companyType =="有限责任公司"]selected="selected"[/#if]>有限责任公司</option>
+                        <option value="股份有限公司"[#if companyType =="股份有限公司"]selected="selected"[/#if]>股份有限公司</option>
+                        <option value="私营企业"[#if companyType =="私营企业"]selected="selected"[/#if]>私营企业</option>
+                        <option value="其他企业"[#if companyType =="其他企业"]selected="selected"[/#if]>其他企业</option>
+                    </select>
+                </div>
+                <!--<div class="inputs">-->
+                    <!--<label><i>*</i>&nbsp;经营模式：</label>-->
+                    <!--<input type="text" name="operateType" hidden="hidden" required>-->
+                    <!--<input class="boxs" type="checkbox" name="type" value="生产型">生产型-->
+                    <!--<input class="boxs" type="checkbox" name="type" value="贸易型">贸易型-->
+                    <!--<input class="boxs" type="checkbox" name="type" value="服务型">服务型-->
+                    <!--<input class="boxs" type="checkbox" name="type" value="研发型">研发型-->
+                    <!--<input class="boxs" type="checkbox" name="type" value="其他类型">其他类型-->
+                    <!--<span id="spanA1"></span>-->
+                <!--</div>-->
+
+            </div>
+        </div>
+        <!--需求对象信息-->
+
+        <!--商务条款-->
+        <div class="servicePower">
+            <div class="column wrapper"> <span class="head">&nbsp;产业融合</span> <span class="tips">
+                <i>*</i>&nbsp;为必填项</span> </div>
+            <div class="service-content wrapper">
+                <div class="inputs" id="invoiceType">
+                    <label style="width: 215px;"><i>*</i>&nbsp;是否已加入大数据相关组织：</label>
+                    <input type="radio" name="isInBigdata" value="0" onclick="invoiceTypeChange(this)" checked="checked">
+                    否&nbsp;&nbsp;
+                    <input type="radio" name="isInBigdata" value="1" onclick="invoiceTypeChange(this)">
+                    是
+                </div>
+
+                <div class="inputs" id="invoiceCompanyName">
+                    <label><i>*</i>&nbsp;组织级别：</label>
+                    <input type="radio" name="organizationalLevel" value="国家级" checked="checked">
+                    国家级&nbsp;&nbsp;
+                    <input type="radio" name="organizationalLevel" value="省级">
+                    省级&nbsp;&nbsp;
+                    <input type="radio" name="organizationalLevel" value="其他">
+                    其他&nbsp;&nbsp;
+                </div>
+                <div class="inputs" id="taxRegNoDiv">
+                    <label><i>*</i>&nbsp;组织名称：</label>
+                    <input class="power space" id="taxRegNo" name="organizationalName" type="text" required maxlength="50">
+                    <!--onblur="isValidBusCode('nsrsbh')"-->
+                    <!--<span style="color: red" id="taxRegNoSpan"></span>-->
+                </div>
+                <!--<div class="inputs" id="registeredAddress">-->
+                    <!--<label><i></i>&nbsp;注册地址、电话：</label>-->
+                    <!--<input class="power space" id="Address" name="registeredAddress" type="text" maxlength="50">-->
+                <!--</div>-->
+                <!--<div class="inputs" id="bankInfo">-->
+                    <!--<label><i></i>&nbsp;开户行信息：</label>-->
+                    <!--<input class="power space" id="bank" name="bankInfo" type="text" maxlength="50">-->
+                <!--</div>-->
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;产业融合服务方向：</label>
+                    <select class="codeInput" name="serviceDirection" required>
+                        <option >工业</option>
+                        <option >农牧业</option>
+                        <option >服务业</option>
+                        <option >能源行业</option>
+                        <option >多方数据融合创新</option>
+                        <option >大数据公共服务平台</option>
+                    </select>
+                </div>
+
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;服务提供方企业类型：</label>
+                    <input type="radio" name="serviceCompanyType" value="大数据应用开发企业" checked="checked">
+                    大数据应用开发企业&nbsp;&nbsp;
+                    <input type="radio" name="serviceCompanyType" value="大数据云平台服务商">
+                    大数据云平台服务商&nbsp;&nbsp;
+                    <input type="radio" name="serviceCompanyType" value="大数据云应用服务商">
+                    大数据云应用服务商&nbsp;&nbsp;
+                    <input type="radio" name="serviceCompanyType" value="解决方案服务商">
+                    解决方案服务商&nbsp;&nbsp;
+                    <input type="radio" name="serviceCompanyType" value="其他">
+                    其他&nbsp;&nbsp;
+                </div>
+
+            </div>
+        </div>
+
+        <div class="servicePower">
+            <div class="column wrapper"> <span class="head">&nbsp;技术支撑内容</span> <span class="tips">
+                <i>*</i>&nbsp;为必填项</span> </div>
+
+<table style=" border:1px solid black;width: 1150px;margin-top: 15px;">
+    <tr><td style=" border:1px solid black;width: 15%;text-align: center;font-size: 16px;" rowspan="3"> 数据</td></tr>
+    <tr>
+    <td style=" border:1px solid black;">
+            <div class="inputs" id="invoiceCompanyName4" style="font-size: 14px">
+                <label>&nbsp;数据源&API：</label>
+                <input type="text" name="dataSourse" hidden="hidden" required>
+                <input class="boxs" type="checkbox" name="dataSourse1" value="互联网爬取；企业运营产生；传感终端获取">互联网爬取；企业运营产生；传感终端获取
+                <input class="boxs" type="checkbox" name="dataSourse1" value="政府；API">政府；API
+                <input class="boxs" type="checkbox" name="dataSourse1" id="dataSourse1" value="其他" onclick="invoiceTypeChange1(this)">其他
+                <input class="boxs" type="text" name="dataSourse2" id="dataSourse2" value="" style="margin-bottom: 5px;background-color: transparent;border: solid 1px transparent;padding: 3px;_border-color: white;border-bottom: solid 1px #cdcdcd;"/>
+                <span id="spanA4"></span>
+            </div>
+    </td>
+    </tr>
+    <tr>
+        <td style=" border:1px solid black;background-color:#eef3f6;">
+            <div class="inputs" id="invoiceCompanyName5" style="font-size: 14px">
+                <label>&nbsp;数据流通平台：</label>
+                <input type="text" name="dataCirculationPlatform" hidden="hidden" required>
+                <input class="boxs" type="checkbox" name="dataCirculationPlatform1" value="数据共享平台；数据开放平台；数据交易平台">数据共享平台；数据开放平台；数据交易平台
+                <input class="boxs" type="checkbox" name="dataCirculationPlatform1" id="dataCirculationPlatform1" value="其他" onclick="invoiceTypeChange2(this)">其他
+                <input class="boxs" type="text" name="dataCirculationPlatform2" id="dataCirculationPlatform2" value="" style="margin-bottom: 5px;background-color: transparent;border: solid 1px transparent;padding: 3px;_border-color: white;border-bottom: solid 1px #cdcdcd;"/>
+                <span id="spanA5"></span>
+            </div>
+
+        </td>
+    </tr>
+        </table>
+            <table style=" border:1px solid black;width: 1150px;margin-top: 15px;">
+                <tr><td style=" border:1px solid black;width: 15%;text-align: center;font-size: 16px;" rowspan="4"> 产品</td></tr>
+                <tr>
+                    <td style=" border:1px solid black;">
+                        <div class="inputs" id="invoiceCompanyName6" style="font-size: 14px">
+                            <label>&nbsp;硬件：</label>
+                            <input type="text" name="hardware" hidden="hidden" required>
+                            <input class="boxs" type="checkbox" name="hardware1" value="服务器；存储设备；网络设备；微模块">服务器；存储设备；网络设备；微模块
+                            <input class="boxs" type="checkbox" name="hardware1" value="其他" id="hardware1" onclick="invoiceTypeChange3(this)">其他
+                            <input class="boxs" type="text" name="hardware2" id="hardware2" value="" style="margin-bottom: 5px;background-color: transparent;border: solid 1px transparent;padding: 3px;_border-color: white;border-bottom: solid 1px #cdcdcd;"/>
+                            <span id="spanA6"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" border:1px solid black;background-color:#eef3f6;">
+                        <div class="inputs" id="invoiceCompanyName7" style="font-size: 14px">
+                            <label>&nbsp;基础软件：</label>
+                            <input type="text" name="basicSoftware" hidden="hidden" required>
+                            <input class="boxs" type="checkbox" name="basicSoftware1" value="数据采集；数据清洗；数据管理；结构化数据库；非结构化数据库；大数据计算平台；底层操作系统；云服务平台；数据安全">数据采集；数据清洗；数据管理；结构化数据库；非结构化数据库；大数据计算平台；底层操作系统；云服务平台；数据安全
+                            <input class="boxs" type="checkbox" name="basicSoftware1" id="basicSoftware1" value="其他" onclick="invoiceTypeChange4(this)">其他
+                            <input class="boxs" type="text" name="basicSoftware2" id="basicSoftware2" value="" style="width: 58px;margin-bottom: 5px;background-color: transparent;border: solid 1px transparent;padding: 3px;_border-color: white;border-bottom: solid 1px #cdcdcd;"/>
+                            <span id="spanA7"></span>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" border:1px solid black;">
+                        <div class="inputs" id="invoiceCompanyName8" style="font-size: 14px">
+                            <label>&nbsp;应用软件：</label>
+                            <input type="text" name="applicationSoftware" hidden="hidden" required>
+                            <input class="boxs" type="checkbox" name="applicationSoftware1" value="机器视觉；商业智能（BI）；空间分析；用户分析；用户分析；日志分析；图像分析；文本分析；语音分析；数据可视化">机器视觉；商业智能（BI）；空间分析；用户分析；用户分析；日志分析；图像分析；文本分析；语音分析；数据可视化
+                            <input class="boxs" type="checkbox" name="applicationSoftware1" id="applicationSoftware1" value="其他" onclick="invoiceTypeChange5(this)">其他
+                            <input class="boxs" type="text" name="applicationSoftware2" id="applicationSoftware2" value="" style="width: 58px;margin-bottom: 5px;background-color: transparent;border: solid 1px transparent;padding: 3px;_border-color: white;border-bottom: solid 1px #cdcdcd;"/>
+                            <span id="spanA8"></span>
+                        </div>
+
+                    </td>
+                </tr>
+            </table>
+            <table style=" border:1px solid black;width: 1150px;margin-top: 15px;">
+                <tr><td style=" border:1px solid black;width: 15%;text-align: center;font-size: 16px;" rowspan="4"> 服务</td></tr>
+                <tr>
+                    <td style=" border:1px solid black;background-color:#eef3f6;">
+                        <div class="inputs" id="invoiceCompanyName9" style="font-size: 14px">
+                            <label>&nbsp;基础设施：</label>
+                            <input type="text" name="infrastructure" hidden="hidden" required>
+                            <input class="boxs" type="checkbox" name="infrastructure1" value="存储设备；云服务（IaaS、PaaS）；宽带；移动网络">存储设备；云服务（IaaS、PaaS）；宽带；移动网络
+                            <input class="boxs" type="checkbox" name="infrastructure1" id="infrastructure1" value="其他" onclick="invoiceTypeChange6(this)">其他
+                            <input class="boxs" type="text" name="infrastructure2" id="infrastructure2" value="" style="margin-bottom: 5px;background-color: transparent;border: solid 1px transparent;padding: 3px;_border-color: white;border-bottom: solid 1px #cdcdcd;"/>
+                            <span id="spanA9"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" border:1px solid black;">
+                        <div class="inputs" id="invoiceCompanyName10" style="font-size: 14px">
+                            <label>&nbsp;系统集成和软件开发：</label>
+                            <input type="text" name="systemIntegration" hidden="hidden" required>
+                            <input class="boxs" type="checkbox" name="systemIntegration1" value="定制软件开发；系统集成">定制软件开发；系统集成
+                            <input class="boxs" type="checkbox" name="systemIntegration1" id="systemIntegration1" value="其他" onclick="invoiceTypeChange7(this)">其他
+                            <input class="boxs" type="text" name="systemIntegration2" id="systemIntegration2" value="" style="margin-bottom: 5px;background-color: transparent;border: solid 1px transparent;padding: 3px;_border-color: white;border-bottom: solid 1px #cdcdcd;"/>
+
+                            <span id="spanA10"></span>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" border:1px solid black;background-color:#eef3f6;">
+                        <div class="inputs" id="invoiceCompanyName11" style="font-size: 14px">
+                            <label>&nbsp;企业应用：</label>
+                            <input type="text" name="enterpriseApplication" hidden="hidden" required>
+                            <input class="boxs" type="checkbox" name="enterpriseApplication1" value="风险控制；广告营销；产品开发；运营优化；人力资源；客户服务；安全监控；供应链管理；企业管理">风险控制；广告营销；产品开发；运营优化；人力资源；客户服务；安全监控；供应链管理；企业管理
+                            <input class="boxs" type="checkbox" name="enterpriseApplication1" id="enterpriseApplication1" value="其他" onclick="invoiceTypeChange8(this)">其他
+                            <input class="boxs" type="text" name="enterpriseApplication2" id="enterpriseApplication2" value="" style="margin-bottom: 5px;background-color: transparent;border: solid 1px transparent;padding: 3px;_border-color: white;border-bottom: solid 1px #cdcdcd;"/>
+                            <span id="spanA11"></span>
+                        </div>
+
+                    </td>
+                </tr>
+            </table>
+
+</div>
+
+
+        <div class="servicePower">
+            <div class="column wrapper"> <span class="head">详细信息</span> <span class="tips"><i>*</i>&nbsp;为必填项</span> </div>
+            <div class="service-content wrapper">
+                <!--附件上传div-->
+                <!--<div class="uploadImgs" id="imgUploadDiv2">-->
+                    <!--<label>上传附件：</label>-->
+                    <!--<span>(可批量上传附件)</span>-->
+                    <!--<div class="upLoadDiv">-->
+                        <!--<span id="aspanButtonPlaceHolder"></span><br>-->
+                        <!--<span style="display: none;"><input class="cancel" id="abtnCancel" type="button" value="取消" onclick="swfu.cancelQueue();" disabled="disabled" /></span>-->
+                        <!--<div id="afsUploadProgress" style="display: none;"></div>-->
+                        <!--<table id="attachTable" border="0" class="fbgj-fj" style="margin-left: 0;">-->
+                        <!--</table>-->
+                    <!--</div>-->
+                    <!--<textarea id="attachTr" style="display:none">-->
+                        <!--<tr id="attachTr{0}">-->
+                            <!--<td align="center">附件名称:&nbsp;<input type="text" id="attachmentNames{0}" name="attachmentNames" class="member-change" style="width:200px;height:24px;"/></td>-->
+                            <!--<td align="center" width="50"><a onclick="$('#attachTr{0}').remove();" href="javascript:void(0);" class="pn-opt">删除</a></td>-->
+                            <!--<td align="center"><input type="text" id="attachmentPaths{0}" name="attachmentPaths" class="member-change" style="width:130px;height:24px;display:none;"/></td>-->
+                            <!--<td align="center">-->
+                                <!--<span id="afc{0}" style="position:relative;display:block;width:250px;">-->
+                                <!--<input type='text' id='attachmentText{0}' class="member-change" style="width:150px;height:24px;display:none;" />-->
+                                <!--<input class="browse" type='button' value='浏览' style="width:40px;height:24px;cursor:pointer;background:#3694d7;color:#fff;font-size:12px;cursor:pointer;display:none;"/>-->
+                                <!--<input onchange="$('#attachmentText{0}').val(this.value)" size="19" type="file" name="attachmentFile" id="attachmentFile{0}" style="height:28px;width:200px;opacity:0;filter:alpha(opacity=0);position:absolute;left:0;top:0;display:none;"/>-->
+                                <!--<input type="button" value="上传" onclick="uploadAttachment({0});" style="width:40px;height:24px;cursor:pointer;background:#3694d7;color:#fff;font-size:12px;cursor:pointer;display:none;" />-->
+                                <!--</span>-->
+                                <!--<input type="hidden" id="attachmentFilenames{0}" name="attachmentFilenames"/>-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                    <!--</textarea>-->
+                    <!--<script type="text/javascript">-->
+                        <!--var attachIndex = 1;-->
+                        <!--var attachTpl = $.format($("#attachTr").val());-->
+                        <!--function addAttachLine() {-->
+                            <!--$('#attachTable').append(attachTpl(attachIndex++));-->
+                        <!--}-->
+                    <!--</script>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;图片上传div&ndash;&gt;-->
+                <!--<div class="uploadImgs" id="imgUploadDiv">-->
+                    <!--<label>上传图片：</label>-->
+                    <!--<span>(最多可添加5张图片，建议上传400*400像素的图片，单张大小不超过2M)</span><span style="color: red" id="pictureSpan"></span>-->
+                    <!--<div class="upLoadDiv">-->
+                        <!--<span id="spanButtonPlaceHolder"></span><br>-->
+                        <!--<span style="display: none;"><input class="cancel" id="btnCancel" type="button" value="取消" onclick="swfu.cancelQueue();" disabled="disabled" /></span>-->
+                        <!--<div id="fsUploadProgress" style="display: none;"></div>-->
+                    <!--</div>-->
+                    <!--<div id="picWrapper" class="picWrapper clearfix"> </div>-->
+                    <!--<div id="picBefore" style="clear:both"></div>-->
+                    <!--<div id="picTable" style="display:none;">-->
+                        <!--<table id="picTable{0}" border="0" cellpadding="0" cellspacing="0" class="fbgj-tab">-->
+                            <!--<tr>-->
+                                <!--<td><img id="preImg{0}" alt="预览" noResize="true" style="width:110px;height:110px;background-color:#ccc;border:1px solid #c7c7c7;"/></td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td style="line-height:1;">-->
+                                    <!--<div style="margin-top:4px;"><input type="text" id="uploadImgPath{0}" name="picPaths" class="member-change" style="display:none;"/> <a href="javascript:void(0);" onclick="$('#picTable{0}').remove();clearSpan();" class="pn-opt">删除</a></div>-->
+                                    <!--<div>-->
+                                        <!--<span id="ufc{0}" style="position:relative;">-->
+                                        <!--<input type='text' id='uploadFileText{0}' size="10" class="member-change" style="width:115px;height:30px;display:none;"/>-->
+                                        <!--<input onchange="$('#uploadFileText{0}').val(this.value)" size="10" type="file" id="uploadFile{0}" style="width:72px;height:30px;display:none;"/>-->
+                                        <!--</span>-->
+                                        <!--<input type="button" value="重新上传" onclick="upload({0});" style="width:50px;height:30px;display:none;cursor:pointer;background:#3694d7;color:#fff;font-size:12px;"/>-->
+                                    <!--</div>-->
+                                    <!--<div><textarea style="width:300px;height:60px;margin-bottom:0;margin-top:10px;display:none;" name="picDescs" maxlength="255" ></textarea></div>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                    <!--</div>-->
+                    <!--<script type="text/javascript">-->
+                        <!--var picIndex = 1;-->
+                        <!--var picTpl = $.format($("#picTable").html());-->
+                        <!--function addPicLine() {-->
+<!--//                            $('#picBefore').before(picTpl(picIndex++));-->
+                            <!--$("#picWrapper").append(picTpl(picIndex++));-->
+                        <!--}-->
+                    <!--</script>-->
+                <!--</div>-->
+                <div class="myDiv">
+                    <label><i>*</i>&nbsp;企业资质及成功案例：</label>
+                    <script class="myEditor" id="editor" name="editor" type="text/plain"></script>
+                </div>
+            </div>
+            <br>
+            <span style="color: red;margin-left: 200px" id="detailSpan"></span>
+        </div>
+
+
+        <div class="servicePower">
+            <div class="column wrapper"> <span class="head">联系信息</span> <button type="button" id="addContact" class="addBtn" style="width:130px;">新增联系人信息</button> </div>
+            <!--收货人信息 start-->
+            <div class="ckt-item info">
+                <div class="top-ckt">
+                    <span class="span-title-top">注：选中某条联系信息，该条联系信息设置为联系信息。不选择联系信息，会将默认地址设为联系信息</span>
+                    <!--<span class="other-top"><a href="javascript: void(0);" class="c-new-address">新增联系人信息</a></span>-->
+                    <div class="clearfix"></div>
+                </div>
+
+                <!--地址列表-->
+                <div class="center-ckt-info">
+                    <ul id="address_list">
+                        <!--通过load方法加载-->
+                        <!--<script type="text/javascript">-->
+                        <!--$(function(){-->
+                        <!--//  初始化收货人地址列表-->
+                        <!--//Ckt.info.i_InfoInitAddress();-->
+                        <!--});-->
+                        <!--</script>-->
+                    </ul>
+                    <!--报价隐藏div-->
+                    <div class="window" id="bjWindow" hidden>
+                        <div class="yxmain">
+                            <div class="tableDiv tale">
+                                <table border="0" class="wrapper" cellpadding="0" cellspacing="0" id="bjTable">
+                                    <!--<thead>-->
+                                    <!--<tr>-->
+                                    <!--<th>地址标签</th>-->
+                                    <!--<th>姓名</th>-->
+                                    <!--<th>地址</th>-->
+                                    <!--<th>电话</th>-->
+                                    <!--<th>是否为默认地址</th>-->
+                                    <!--</tr>-->
+                                    <!--</thead>-->
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--地址列表 end-->
+                <div class="collapse-ckt-info">
+                    <span class="more-collapse-ckt">更多地址</span>
+                    <i class="icon-collapse-ckt-info"></i>
+                </div>
+                <div class="placeholder-20"></div>
+            </div>
+        </div>
+        <!--联系信息-->
+        <div hidden>
+            <input id="contact" name="contact" type="text" value="">
+            <input id="mobilphone" name="mobilphone" type="text" value="">
+            <input id="fax" name="fax" type="text" value="">
+            <input id="email" name="email" type="text" value="">
+            <input id="addrProvince" name="addrProvince" type="text" value="">
+            <input id="addrCity" name="addrCity" type="text" value="">
+            <input id="addrCounty" name="addrCounty" type="text" value="">
+            <input id="companyAddress" name="companyAddress" type="text" value="">
+            <input id="postCode" name="postCode" type="text" value="">
+        </div>
+        <!--需求池展示频道id-->
+        <input type="hidden" name="channelId" value="104">
+        <input type="hidden" id="statusType" name="statusType" value="2">
+        <input type="hidden" id="demandObjList" name="demandObjListJsonString" value="">
+        <input type="hidden" id="frontStatus" name="frontStatus" value="${frontStatus?default('3')}">
+    </form>
+    <div class="release-button">
+        <input class="btn" id="formSubmit1" value="确认保存" type="button"/>
+    </div>
+</div>
+<!--footer start-->
+[#include "../include/footer_cyrh.html"]
+<!--footer end-->
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="${base}/thirdparty/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="${base}/thirdparty/ueditor/ueditor.all.js"> </script>
+<script charset="utf-8" src="/${res}/resources/js/mapDistPicker/distpicker.data.js" type="text/javascript"></script>
+<script charset="utf-8" src="/${res}/resources/js/mapDistPicker/distpicker.js" type="text/javascript"></script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8" src="${base}/thirdparty/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<!--富文本编辑，粘贴图片-->
+<script type="text/javascript">
+    var editor = UE.getEditor('editor',{autoHeightEnabled:false,zIndex:0});
+
+    UE.Editor.prototype.placeholder = function (justPlainText) {
+        var _editor = this;
+        _editor.addListener("focus", function () {
+            var localHtml = _editor.getPlainTxt();
+            if ($.trim(localHtml) === $.trim(justPlainText)) {
+                _editor.setContent(" ");
+            }
+        });
+        _editor.addListener("blur", function () {
+            var localHtml = _editor.getContent();
+            if (!localHtml) {
+                _editor.setContent(justPlainText);
+            }
+        });
+        _editor.ready(function () {
+            _editor.fireEvent("blur");
+        });
+    };
+    editor.placeholder("企业简介、成功案例及相关资质荣誉图片最多2000字");
+</script>
+<script language="javascript">
+    UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+    UE.Editor.prototype.getActionUrl = function(action) {
+        if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadimage') {
+            return "/ueditor/upload.jspx";
+        } else {
+            return this._bkGetActionUrl.call(this, action);
+        }
+    }
+</script>
+<!--by GJN-->
+<script>
+    $(function(){
+        $("#formSubmit1").click(beforeSubmit);
+    })
+
+    function beforeSubmit(event){
+
+        event.preventDefault()
+        var statusType = 2
+        var type = "";
+        $("input[name='dataSourse1']:checked").each(function () {
+            if($(this).val()=="其他"){
+                var a =$("input[name='dataSourse2']").val();
+                type+="其他："+a;
+            }else{
+                type += $(this).val() + ",";
+            }
+        });
+        var dataSourse = type.substring(0, type.length - 1);
+        $("input[name='dataSourse']").val(dataSourse);
+
+        var type = "";
+        $("input[name='dataCirculationPlatform1']:checked").each(function () {
+            if($(this).val()=="其他"){
+                var a =$("input[name='dataCirculationPlatform2']").val();
+                type+="其他："+a;
+            }else{
+                type += $(this).val() + ",";
+            }
+        });
+        var dataCirculationPlatform = type.substring(0, type.length - 1);
+        $("input[name='dataCirculationPlatform']").val(dataCirculationPlatform);
+
+
+        var type = "";
+        $("input[name='hardware1']:checked").each(function () {
+            if($(this).val()=="其他"){
+                var a =$("input[name='hardware2']").val();
+                type+="其他："+a;
+            }else{
+                type += $(this).val() + ",";
+            }
+        });
+        var hardware = type.substring(0, type.length - 1);
+        $("input[name='hardware']").val(hardware);
+
+        var type = "";
+        $("input[name='basicSoftware1']:checked").each(function () {
+            if($(this).val()=="其他"){
+                var a =$("input[name='basicSoftware2']").val();
+                type+="其他："+a;
+            }else{
+                type += $(this).val() + ",";
+            }
+        });
+        var basicSoftware = type.substring(0, type.length - 1);
+        $("input[name='basicSoftware']").val(basicSoftware);
+
+        var type = "";
+        $("input[name='applicationSoftware1']:checked").each(function () {
+            if($(this).val()=="其他"){
+                var a =$("input[name='applicationSoftware2']").val();
+                type+="其他："+a;
+            }else{
+                type += $(this).val() + ",";
+            }
+        });
+        var applicationSoftware = type.substring(0, type.length - 1);
+        $("input[name='applicationSoftware']").val(applicationSoftware);
+
+        var type = "";
+        $("input[name='infrastructure1']:checked").each(function () {
+            if($(this).val()=="其他"){
+                var a =$("input[name='infrastructure2']").val();
+                type+="其他："+a;
+            }else{
+                type += $(this).val() + ",";
+            }
+        });
+        var infrastructure = type.substring(0, type.length - 1);
+        $("input[name='infrastructure']").val(infrastructure);
+
+        var type = "";
+        $("input[name='systemIntegration1']:checked").each(function () {
+            if($(this).val()=="其他"){
+                var a =$("input[name='systemIntegration2']").val();
+                type+="其他："+a;
+            }else{
+                type += $(this).val() + ",";
+            }
+        });
+        var systemIntegration = type.substring(0, type.length - 1);
+        $("input[name='systemIntegration']").val(systemIntegration);
+
+        var type = "";
+        $("input[name='enterpriseApplication1']:checked").each(function () {
+            if($(this).val()=="其他"){
+                var a =$("input[name='enterpriseApplication2']").val();
+                type+="其他："+a;
+            }else{
+                type += $(this).val() + ",";
+            }
+        });
+        var enterpriseApplication = type.substring(0, type.length - 1);
+        $("input[name='enterpriseApplication']").val(enterpriseApplication);
+
+        var result = checkPicture();
+        var result1 = checkEdit();
+        var result2 = checkBigdata();
+        var result4 = checkContact(); // 联系人非空检验
+        var obj = $("#bjTable tbody").find(".infoSelected");
+        if (obj != undefined) {
+            if (obj.length != 0) {
+                window.isDef += 1;
+            }
+        }
+        fillContactInfo(obj); // 塞入联系信息
+
+        if(validform().form()){
+            if(result && result1 /* && taxRegNoResult*/) {
+                if (result4 == false) {
+                    ui.alertFail("请在本页面底部【新增联系人信息】");
+                    return false;
+                }
+                if (window.isDef < 1) {
+                    ui.alertFail("请在本页面底部选择发布需求的联系人信息");
+                    return false;
+                }
+                $('#statusType').val(statusType);
+                layer.confirm('是否提交能力调查信息？提交成功之后您可以直接发布能力信息！', {
+                            skin: 'layui-layer-lan',
+                            icon: 3,
+
+                            btn: ['确定','取消'] //可以无限个按钮
+
+                        },
+                        function (){
+                            $('#release_form')[0].submit()
+                        }
+                )
+            }
+        }
+    }
+
+    $(document).ready(function(e){
+        if(self.frameElement!=null && self.frameElement.tagName=="IFRAME"){
+            // 在iframe中时处理
+            $(".wrapper").css("width","95%");
+        };
+        if(location.search.indexOf("front")>0){
+            $(".j_head").show();
+        };
+        var SObjTr= $('#originTr').prop('outerHTML');
+        $('#tianjiaSObj').click(function(){
+            $('#SDemandObj_table').append(SObjTr);
+        });
+
+        //自动填写
+        $('.autoInput').click(function(){
+            if($(this).is(':checked')){
+                $(this).prevAll('input').eq(0).val($(this).next('span.special').text()).attr("readonly","readonly");
+                $(this).prevAll('input').eq(0).focus().blur();
+            }else{
+                $(this).prevAll('input').eq(0).val("").removeAttr("readonly");
+                $(this).prevAll('input').eq(0).focus().blur();
+            }
+        });
+
+        //级联菜单初始化
+        var aTypeFrame = new typeFrame("ZYHY", "dTypeFrameOuter", 173, "demandTypeInput", "demandTypeHidden");
+        aTypeFrame.ini();
+
+        //把没有图片上传的提示语删掉
+        $("#imgUploadDiv").mouseleave(function(){
+            if($("#imgUploadDiv").find('img').size()>1 && $("#imgUploadDiv").find('img').size()<7) {
+                $("#pictureSpan").html("");
+            }
+        });
+
+        //把没有文本编辑的提示语删掉
+        editor.addListener("focus", function (type, event) {
+            $("#detailSpan").html("");
+        });
+
+        //把没有税号提示语删掉
+//        taxRegNo.addListener("focus", function (type, event) {
+//            $("#taxRegNoSpan").html("");
+//        });
+        $("#taxRegNo").mousedown(function(){
+            $("#taxRegNoSpan").html("");
+        });
+    });
+    function checkBigdata() {
+        if($("input[name='dataSourse1']:checked").length !=0
+                ||$("input[name='dataCirculationPlatform1']:checked").length !=0
+                ||$("input[name='hardware1']:checked").length !=0
+                ||$("input[name='basicSoftware1']:checked").length !=0
+                ||$("input[name='applicationSoftware1']:checked").length !=0
+                ||$("input[name='infrastructure1']:checked").length !=0
+                ||$("input[name='systemIntegration1']:checked").length !=0
+                ||$("input[name='enterpriseApplication1']:checked").length !=0){
+            $('#release_form').submit();
+        }else{
+            ui.alertFail("技术支撑内容未选择");
+        }
+    }
+    function grabJsonSObjs(){
+        var hasEmpty = false;
+        var hasNaN1 = false;
+        var hasNaN2 = false;
+        var hasToolong = false;
+        var hasToolong1 = false;
+        var hasToolong2 = false;
+        var hasToolong3 = false;
+        var hasToolong4 = false;
+        var JsonObjs = "{\"demandObjs\":[";
+        if($('#SDemandObj_table').find('tr:gt(0)').size()<1){
+            return "hasEmpty";
+        }
+        $('#SDemandObj_table').find('tr:gt(0)').each(function(i){
+            JsonObjs+="{";
+            $(this).children('td:lt(6)').each(function(i){
+                var inputVal = $(this).find('input:first').val();
+//                if(typeof inputVal === 'undefined' || inputVal == ""){
+//                    hasEmpty=true;
+//                    return false;
+//                }
+                if((i == 0 || i == 1|| i == 2|| i == 3) && inputVal == ""){
+                    hasEmpty = true;
+                    return false;
+                }
+                if((i == 2 || i == 5) && isNaN(inputVal)){
+                    hasNaN1 = true;
+                    return false;
+                }
+                if ((i == 5) && (inputVal == "")) {
+                    hasNaN2 = false;
+                    return true;
+                } else if((i == 5) && !/^([1-9]\d{0,15}|0)(\.\d{1,2})?$/.test(inputVal)) {
+                    hasNaN2 = true;
+                    return false;
+                }
+                if(i == 0 && inputVal.length>100){
+                    hasToolong=true;
+                    return false;
+                }
+                if(i == 1 && inputVal.length>50){
+                    hasToolong1=true;
+                    return false;
+                }
+                if(i == 2 && inputVal.length>10){
+                    hasToolong2=true;
+                    return false;
+                }
+                if(i == 3 && inputVal.length>16){
+                    hasToolong3=true;
+                    return false;
+                }
+                if(i == 4 && inputVal.length>500){
+                    hasToolong4=true;
+                    return false;
+                }
+                JsonObjs+=("\""+$(this).find('input:first').attr('name')+"\"");
+                JsonObjs+=":\"";
+                JsonObjs+=(inputVal).replace(/"/g,"\\\"");
+                JsonObjs+="\",";
+            });
+            if(hasEmpty){
+                return false;
+            }
+            JsonObjs+="\"demandObjId\":\"\"},"
+        });
+        if(hasEmpty){
+            return "hasEmpty";
+        }
+        if(hasNaN1){
+            return "hasNaN1";
+        }
+        if(hasNaN2){
+            return "hasNaN2";
+        }
+        if(hasToolong){
+            return "hasToolong";
+        }
+        if(hasToolong1){
+            return "hasToolong1";
+        }
+        if(hasToolong2){
+            return "hasToolong2";
+        }
+        if(hasToolong3){
+            return "hasToolong3";
+        }
+        if(hasToolong4){
+            return "hasToolong4";
+        }
+
+        JsonObjs=(JsonObjs.replace(/,$/,""))+"]}";
+        return JsonObjs;
+    }
+    function grandSubCheck(){
+        //表单验证here
+//        var ids = ["demandTypeHidden","powerName","deadlineDt","deliverDt","contact","email"];
+//        for(var i=0; i<ids.length; i++){
+//            if($("#"+ids[i]).val() == ""){
+//                alert("存在未填写的必填项！请检查。");
+//                return false;
+//            }
+//        }
+//        if($("#mobile").val() == "" && $("#telephone").val() == ""){
+//            alert("未填写联系方式，请检查。");
+//            return false;
+//        }
+//        if($("#imgUploadDiv").find('img').size()<2){
+//            alert("未上传图片！请检查。");
+//            return false;
+//        }
+        var objJson = grabJsonSObjs();
+        if(objJson == "hasEmpty"){
+            ui.alertFail("需求对象信息存在未填项！请检查。");
+            return false;
+        }
+        if(objJson == "hasNaN1"){
+            ui.alertFail("需求数量或期望单价必须是数字！请检查。");
+            return false;
+        }
+        if(objJson == "hasNaN2"){
+            ui.alertFail("期望单价最多保留两位小数！请检查。");
+            return false;
+        }
+        if(objJson == "hasToolong"){
+            ui.alertFail("需求对象名称处的字段过长！请检查。(提示：对象名称不能超过100字符。)");
+            return false;
+        }
+        if(objJson == "hasToolong1"){
+            ui.alertFail("代码/编号处的字段过长！请检查。(提示：代码/编号不能超过50字符。)");
+            return false;
+        }
+        if(objJson == "hasToolong2"){
+            ui.alertFail("需求数量处的字段过长！请检查。(提示：需求数量不能超过10字符。)");
+            return false;
+        }
+        if(objJson == "hasToolong3"){
+            ui.alertFail("计量单位处的字段过长！请检查。(提示：计量单位不能超过16字符。)");
+            return false;
+        }
+        if(objJson == "hasToolong4"){
+            ui.alertFail("要求/备注处的字段过长！请检查。(提示：要求/备注不能超过500字符。)");
+            return false;
+        }
+        $('#demandObjList').val(objJson);
+        return true;
+    }
+    /**
+     * 图片校验
+     *
+     */
+    function checkPicture(){
+//        if($("#imgUploadDiv").find('img').size()<2){
+//            $("#pictureSpan").html("未上传图片！请检查.");
+//            return false;
+//        }
+        if($("#imgUploadDiv").find('img').size()>6){
+            $("#pictureSpan").html("最多上传5张图片！请检查");
+            return false;
+        }
+        return true;
+    }
+
+    //富文本校验
+    function checkEdit(){
+        var length = editor.getContentLength();
+        var maxWord = editor.getOpt("maximumWords") || 20000;
+        if(length<=0){
+            $("#detailSpan").html("补充说明未填写！请检查");
+            return false;
+        }
+        if(length>maxWord){
+            $("#detailSpan").html("补充说明文字过多");
+            return false;
+        }
+        return true;
+    }
+    function clearSpan(){
+        if($("#imgUploadDiv").find('img').size()>1 && $("#imgUploadDiv").find('img').size()<7) {
+            $("#pictureSpan").html("");
+            return false;
+        }
+        return true;
+    }
+
+    //  新增联系人信息
+    $('#addContact').on('click', function(){
+        openContactAdd();
+    });
+
+    // 打开联系人新增页面
+    function openContactAdd () {
+        layer.open({
+            type: 2,
+            title: ['联系人信息', 'background-color: #318CB8;text-align:center;font-size:18px;'],
+            shadeClose: true,
+            shade: false,
+            maxmin: true,
+            area: ['800px', '490px'],
+            content: '/member/getContactAddrAdd.jspx',
+//            end: function(){
+//                // 如果是通过单击关闭按钮关闭弹出层，父画面没有此表单
+//                if($("#popupForm").length === 1){
+//                    $("#popupForm").submit();
+//                }
+//            }
+        });
+    }
+
+    function invoiceTypeChange(obj) {
+        if (obj.value == "1") {
+            $("#taxRegNoDiv").show();
+            $("#invoiceCompanyName").show();
+            $("#registeredAddress").show();
+            $("#bankInfo").show();
+        }else if (obj.value == "0") {
+            $("#taxRegNoDiv").hide();
+            $("#invoiceCompanyName").hide();
+            $("#registeredAddress").hide();
+            $("#bankInfo").hide();
+        }
+    }
+    function invoiceTypeChange1(obj) {
+        if (obj.checked) {
+            $("#dataSourse2").show();
+        }else  {
+            $("#dataSourse2").hide();
+        }
+    }
+    function invoiceTypeChange2(obj) {
+        if (obj.checked) {
+            $("#dataCirculationPlatform2").show();
+        }else  {
+            $("#dataCirculationPlatform2").hide();
+        }
+    }
+    function invoiceTypeChange3(obj) {
+        if (obj.checked) {
+            $("#hardware2").show();
+        }else  {
+            $("#hardware2").hide();
+        }
+    }
+    function invoiceTypeChange4(obj) {
+        if (obj.checked) {
+            $("#basicSoftware2").show();
+        }else  {
+            $("#basicSoftware2").hide();
+        }
+    }
+    function invoiceTypeChange5(obj) {
+        if (obj.checked) {
+            $("#applicationSoftware2").show();
+        }else  {
+            $("#applicationSoftware2").hide();
+        }
+    }
+    function invoiceTypeChange6(obj) {
+        if (obj.checked) {
+            $("#infrastructure2").show();
+        }else  {
+            $("#infrastructure2").hide();
+        }
+    }
+    function invoiceTypeChange7(obj) {
+        if (obj.checked) {
+            $("#systemIntegration2").show();
+        }else  {
+            $("#systemIntegration2").hide();
+        }
+    }
+    function invoiceTypeChange8(obj) {
+        if (obj.checked) {
+            $("#enterpriseApplication2").show();
+        }else  {
+            $("#enterpriseApplication2").hide();
+        }
+    }
+    function isValidBusCode(flag) {
+        var busCode = $("#businessRegNo").val();
+        if (flag == "nsrsbh") {
+            busCode = $("#taxRegNo").val();
+        }
+        var ret = true;
+        if (busCode.length == 15){ // 15位
+            var sum = 0;
+            var s = [];
+            var p = [];
+            var a = [];
+            var m = 10;
+            p[0] = m;
+            for (var i = 0; i < busCode.length; i ++){
+                a[i] = parseInt(busCode.substring(i, i + 1), m);
+                s[i] = (p[i] % (m + 1)) + a[i];
+                if (0 == s[i] % m) {
+                    p[i + 1] = 10 * 2;
+                } else{
+                    p[i + 1] = (s[i] % m) * 2;
+                }
+            }
+            if (1 == (s[14] % m)) { // 营业执照编号正确
+                ret = true;
+            } else{ // 营业执照编号错误
+                ret = false;
+            }
+        } else if ("" == busCode) {
+            ret = true;
+        } else if (busCode.length == 18) {
+            var reg = /^([0-9ABCDEFGHJKLMNPQRTUWXY]{2})([0-9]{6})([0-9ABCDEFGHJKLMNPQRTUWXY]{9})([0-9Y])$/;
+            if (!reg.test(busCode)) {
+//                 alert("社会信用代码校验错误！");
+                ret = false;
+            }
+            var str = '0123456789ABCDEFGHJKLMNPQRTUWXY';
+            var ws = [1, 3, 9, 27, 19, 26, 16, 17, 20, 29, 25, 13, 8, 24, 10, 30, 28];
+            var codes  = new Array();
+            codes[0] = busCode.substr(0, busCode.length - 1);
+            codes[1] = busCode.substr(busCode.length - 1, busCode.length);
+            var sum = 0;
+            for (var i = 0; i < 17; i ++){
+                sum += str.indexOf(codes[0].charAt(i)) * ws[i];
+            }
+            var c18 = 31 - (sum % 31);
+            if (c18 == 31){
+                alert("第18位 == 31");
+                c18 = 'Y';
+            } else if(c18 == 30){
+                alert("第18位 == 30");
+                c18 = '0';
+            }
+            if(c18 != codes[1]){
+//                 alert("社会信用代码有误！" + c18);
+                ret = false;
+            }
+        } else if ((busCode.length != 18) && (busCode.length != 15)) {
+            ret = false;
+        }
+        if (ret == false&&flag == "nsrsbh") {
+            $("#taxRegNoSpan").html("纳税人识别号不合法！请重新输入");
+        }  else {
+            if (flag == "gszch") {
+                $("#businessRegNoSpan").html("");
+            } else if (flag == "nsrsbh") {
+                $("#taxRegNoSpan").html("");
+            }
+        }
+        return ret;
+    }
+
+    // 设置联系信息为发布需求联系信息
+    function infoSelected (obj) {
+        layer.confirm('确定该条联系信息设为报名的联系信息？', {
+                    skin: 'layui-layer-lan',
+                    icon: 3,
+                    shift: -1,
+                    btn: ['确定', '取消'] //可以无限个按钮
+                },
+                function (index, layero) {
+                    // 塞入联系信息
+                    fillContactInfo(obj);
+                    layer.close(index);
+                    $(obj).siblings().removeClass("infoSelected");
+                    $(obj).addClass("infoSelected");
+                    $(obj).siblings().find("#shipAddressName").removeClass("ckt-checkbox selected");
+                    $(obj).find("#shipAddressName").addClass("ckt-checkbox selected");
+                    window.isDef += 1;
+                }, function (index) {
+                    layer.close(index);
+                    return false;
+                });
+    }
+
+    // 检验联系人信息非空
+    function checkContact() {
+        var isCheck = ($("#contact").val() != "") && ($("#contact").val() != null) && ($("#contact").val() != undefined);
+        return isCheck;
+    }
+
+    // 塞入联系信息
+    function fillContactInfo (obj) {
+        if ($("#userName1")[0] != undefined) {
+            if ($(obj).length != 0) {
+                if (($(obj).find("#userName1")[0].innerText != "") && ($(obj).find("#userName1")[0].innerText != null) && ($(obj).find("#userName1")[0].innerText != undefined)) {
+                    $("#contact").val($(obj).find("#userName1")[0].innerText);
+                    $("#mobilphone").val($(obj).find("#mobile1")[0].innerText);
+                    $("#postCode").val($(obj).find("#postCode1")[0].innerText);
+                    if ($("#fax1")[0].innerText == 'undefined') {
+                        $("#fax").val("");
+                    } else {
+                        $("#fax").val($(obj).find("#fax1")[0].innerText);
+                    }
+                    if ($("#email1")[0].innerText == 'undefined') {
+                        $("#email").val("");
+                    } else {
+                        $("#email").val($(obj).find("#email1")[0].innerText);
+                    }
+                    $("#addrProvince").val($(obj).find("#addrProvince1")[0].innerText);
+                    $("#addrCity").val($(obj).find("#addrCity1")[0].innerText);
+                    $("#addrCounty").val($(obj).find("#addrCounty1")[0].innerText);
+                    $("#companyAddress").val($(obj).find("#addrStreet1")[0].innerText);
+                }
+            } else {
+                $("#contact").val($("#userName1")[0].innerText);
+                $("#mobilphone").val($("#mobile1")[0].innerText);
+                $("#postCode").val($("#postCode1")[0].innerText);
+                if ($("#fax1")[0].innerText == 'undefined') {
+                    $("#fax").val("");
+                } else {
+                    $("#fax").val($("#fax1")[0].innerText);
+                }
+                if ($("#email1")[0].innerText == 'undefined') {
+                    $("#email").val("");
+                } else {
+                    $("#email").val($("#email1")[0].innerText);
+                }
+                $("#addrProvince").val($("#addrProvince1")[0].innerText);
+                $("#addrCity").val($("#addrCity1")[0].innerText);
+                $("#addrCounty").val($("#addrCounty1")[0].innerText);
+                $("#companyAddress").val($("#addrStreet1")[0].innerText);
+            }
+        }
+    }
+
+
+</script>
+
+</body>
+</html>

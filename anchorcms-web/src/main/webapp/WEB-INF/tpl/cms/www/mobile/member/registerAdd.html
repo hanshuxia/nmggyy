@@ -1,0 +1,87 @@
+﻿﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>子账号创建 - ${site.siteName} - Powered by ANCHORCMS</title>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/${res}/resources/lib/bootstrap/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+<link rel="stylesheet" type="text/css" href="/${res}/resources/css/releasePower.css"/>
+
+<!--[if lte IE 9]>
+<script src="/${res}/js/html5shiv.min.js"></script>
+<script src="/${res}/js/respond.min.js"></script>
+<script type="text/javascript" src="/thirdparty/jquery-placeholder/placeholder-ie9.js" ></script>
+<![endif]-->
+
+<script type="text/javascript">
+    $(function() {
+        vali();
+    });
+function vali(){
+    return $("#jvForm").validate();
+}
+</script>
+    <style>
+        .hight{height: 30px;}
+        .wrapper{width: 95%;}
+        .rewardUpload{position:relative;padding-top:10px;min-height: 108px;}
+        .rewardUpload p{font-size:12px; color:#b4b4b4; line-height:36px;}
+        .rewardUpload p,.rewardUpload span,.rewardUpload .uploadBtn{margin-left: 173px;}
+        .inputs i{font-size: 14px;  color: #FF172F; vertical-align: middle;padding-right: 3px;}
+        .inputs input{width: 250px;height:30px;line-height: 30px;}
+        .ghtx{margin-left: 520px;margin-top: -100px;min-height: 108px;}
+        .ufcl{position:relative;margin-left: 173px;margin-top: -30px;}
+        .member-change{width:250px; float:left;}
+        .change-Btn{height:30px; margin-left:4px; border:1px solid #c7c7c7;}
+        #uploadFile1{height:30px;width:376px;opacity:0;filter:alpha(opacity=0);position:absolute;top:0;left:0;cursor:pointer;}
+    </style>
+
+</head>
+<body>
+<div class="content wrapper">
+    <form id="jvForm" action="${base}/admin_register.jspx" method="post">
+        <div class="servicePower">
+            <div class="column wrapper">
+                <span class="head">新增子账号</span>
+            </div>
+            <div class="inputs" style="margin-top:15px">
+                <label><i>*</i>&nbsp;用户名：</label>
+                <input type="text" id="username"  vld="{required:true,rangelength:[${site.usernameMinLen},20],username:true,remote:'username_unique.jspx',messages:{remote:'用户名已存在'}}" name="username" placeholder="5~20个字符，中文字符/英文字母/数字"  />
+            </div>
+            <div class="inputs" style="margin-top:15px">
+                <label><i>*</i>&nbsp;电子邮箱：</label>
+                <input type="text" id="email" maxlength="59" vld="{required:true,email,remote:'email_unique.jspx',messages:{remote:'email已被使用！'}}" name="email" placeholder="用于找回密码" />
+            </div>
+            <div class="inputs" style="margin-top:15px">
+                <label><i>*</i>&nbsp;设置密码：</label>
+                <input id="password" type="password" name="loginPassword" vld="{required:true,rangelength:[${site.passwordMinLen},20]}"  />
+            </div>
+            <div class="release-button" style="float: left;margin-left: 165px;margin-top: 20px">
+                <button class="btn submit" type="button" onclick="sub()">立即注册</button>
+                <button class="btn cancel" type="button" onclick="returnList();">返回</button>
+            </div>
+
+        </div>
+     </form>
+    </div>
+<script src="/res/common/js/spark-md5.min.js"></script>
+<script type="text/javascript">
+    function sub(){
+if(vali().form()){
+    var tabn = document.getElementById("jvForm");
+    tabn.onsubmit=null;
+    var password = $("#password").val();
+    password = SparkMD5.hash(password);
+    $("#password").val(password);
+    tabn.submit();
+    }
+    }
+    function returnList(){
+        location.href = "/member/register_list.jspx";
+    };
+</script>
+</body>
+</html>

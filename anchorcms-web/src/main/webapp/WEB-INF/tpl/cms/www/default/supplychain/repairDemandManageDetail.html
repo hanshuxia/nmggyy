@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>${sRepairDemand.repairName!}</title>
+    <meta http-equiv="keywords" content="${sRepairDemand.repairName!}"/>
+    <meta http-equiv="description" content="内蒙古工业云+${sRepairDemand.repairName!}+[#if sRepairDemand.repairType??][@s_typevalue typecode='ZXFWLX' typekey=sRepairDemand.repairType isfull='1' join='> ' /][/#if]"/>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/abilityPreview.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+[#include "../include/header_icloud.html" /]
+<!--content start-->
+<div class="content clearfix">
+    <div class="search-top wrapper">
+        <a href="${base}/gylxt/index.jhtml" class="block" >供应链协同</a> <a href="${base}/gylxtZxxq/index.jhtml" class="block" >众修需求</a>
+        <a href="/gylxtZxxq/index-${sRepairDemand.repairType}-undefined-undefined-undefined-undefined-.jhtml">[#if sRepairDemand.repairType??][@s_typevalue typecode='ZXFWLX' typekey=sRepairDemand.repairType isfull='1' join='> ' /][/#if]</a>
+        <a class="current show-title" title="${(sRepairDemand.repairName)?default('')}">[@text_cut s=sRepairDemand.repairName?default("") len='15' append='...'/]</a>
+    </div>
+
+    <div class="ability">
+        <div class="showAbility wrapper clearfix">
+            <div class="showImg">
+                <div id="bigImg" class="bigImg">
+                    [#if content.pictures?size gt 0]
+                    [#list content.pictures as p]
+                    <img class="" id="0" src="${p.imgPath}">
+                    [/#list]
+                    [#else]
+                    <img class="" id="0 " src="/${res}/images/default_img.jpg">
+                    [/#if]
+                </div>
+                <div class="left">
+                    <img src="/${res}/resources/images/abilityPreview/left.png">
+                </div>
+                <div class="smallImg clearfix">
+                    <div id="smallImg" class="images">
+                        [#if content.pictures?size gt 0]
+                        [#list content.pictures as p]
+                        <img class="" id="${p_index}" src="${p.imgPath}">
+                        [/#list]
+                        [#else]
+                        <img class="" id="0   " src="/${res}/images/default_img.jpg">
+                        [/#if]
+                    </div>
+                </div>
+                <div class="right">
+                    <img src="/${res}/resources/images/abilityPreview/right.png">
+                </div>
+            </div>
+            <div class="showMessage">
+                <div class="titleDiv">
+                    <p class="title">${(sRepairDemand.repairName)?default("")}</p>
+                </div>
+                <div class="descDiv">
+                    </span><br>
+                    <span>需求类型：</span><span><a>[#if sRepairDemand.repairType??][@s_typevalue typecode='ZXFWLX' typekey=sRepairDemand.repairType isfull='1' join='> ' /][/#if]</a></span><br>
+                    <span>发布日期：</span><span>${(sRepairDemand.createDt?string("yyyy-MM-dd"))!''}</span><br>
+                    <span>截止日期：</span><span>${(sRepairDemand.deadlineDt?string("yyyy-MM-dd"))!''}</span><br>
+                    <br><br><br><br>
+                    <br>
+                    <br>
+
+                </div>
+            </div>
+            <div class="showCompany">
+                <div class="company">
+                    <span class="title">${sRepairDemand.company.companyName?default("")}</span><br>
+                    [#if (sRepairDemand.company.mobile)??]
+                    <span>电话：</span><span>${(sRepairDemand.company.mobile)?default("")}</span><br>
+                    [/#if]
+                    [#if (sRepairDemand.company.fax)??]
+                    <span>传真：</span><span>${(sRepairDemand.company.fax)?default("")}</span><br>
+                    [/#if]
+                    [#if (sRepairDemand.company.email)??]
+                    <span>邮箱：</span><span>${(sRepairDemand.company.email)?default("")}</span><br>
+                    [/#if]
+                    <span>地址：</span>
+                    <span title=' ${(sRepairDemand.company.addrProvince)?default("")}${(sRepairDemand.company.addrCity)?default("")}${(sRepairDemand.company.addrCounty)?default("")}${(sRepairDemand.company.addrStreet)?default("")}'>
+                        ${(sRepairDemand.company.addrProvince)?default("")}${(sRepairDemand.company.addrCity)?default("")}${(sRepairDemand.company.addrCounty)?default("")}}[@text_cut s=sRepairDemand.company.addrStreet! len=20 append='...'/]
+                    </span><br>
+                    <div class="navTop">
+                        <div class="topDiv"></div>
+                    </div>
+                    <span>联系人：</span><span>${(sRepairDemand.contact)?default("")}</span><br>
+                    <span>联系电话：</span><span>${(sRepairDemand.mobile)?default("")}</span><br>
+                    <div class="text-center">
+                        <button onclick="onLineCo();">在线联系</button><br>
+                    </div>
+                    <!--<a>访问该企业</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="showKinds clearfix">
+        <div class="kingsTop wrapper">
+            <span class="current">需求对象</span>
+            <span>需求详情</span>
+        </div>
+        <div class="kindsMessage wrapper">
+            <div class="current wrapper">
+                <table id="SDemandObj_table" class="SDemandObj_table" border="0">
+                    <thead>
+                    <tr>
+                        <th>对象名称</th>
+                        <th>对象型号</th>
+                        <th>需求数量</th>
+                        <th>维修要求</th>
+                        [#switch sRepairDemand.isShow]
+                        [#case "1"]
+                        <th>期望单价(元)</th>
+                        [#break]
+                        [/#switch]
+                    </tr>
+                    </thead>
+                    <tbody>
+                    [#list sRepairDemandObjList as rdolist ]
+                    <tr>
+                        <td><input class="SDemandObj_input" name="objectName"  value="${(rdolist.repairName)?default('')}" disabled="disabled" style="text-align: center"></td>
+                        <td><input class="SDemandObj_input" name="classifyCode" value="${(rdolist.machineType)?default('')}" disabled="disabled" style="text-align: center"></td>
+                        <td><input class="SDemandObj_input" name="demandCount"  value="${(rdolist.repairNum)?default('')}" disabled="disabled" style="text-align: center"></td>
+                        <td><input class="SDemandObj_input" name="expectPrice"  value="${(rdolist.repairRequest)?default('')}" disabled="disabled"></td>
+                        [#switch sRepairDemand.isShow]
+                        [#case "1"]
+                        <td><input class="SDemandObj_input" name="unit"  value="${(rdolist.expectPrice)?default('')}" disabled="disabled" style="text-align: center"></td>
+                        [#break]
+                        [/#switch]
+                    </tr>
+                    [/#list]
+                    </tbody>
+                </table>
+            </div>
+            <div class="wrapper">
+                <h4>&nbsp;<label>补充说明：</label></h4>
+                <div id="contentTxtHere" style="display:block">
+                    <p>${content.txt!?default("")}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br><br>
+</div>
+[#include "../include/footer_icloud.html"]
+<!--content end-->
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/imgPage.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/abilityPreview.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".current p").html('${content.txt!?default("")}');
+    })
+</script>
+<script>
+    //在线咨询功能
+    function onLineCo(){
+        var name=encodeURI(encodeURI('${userName!}'));
+        window.open ("/member/sendMessage_add.jspx?userName="+name+"&channelId=99&nextUrl=${location}");
+    }
+</script>
+</body>
+</html>

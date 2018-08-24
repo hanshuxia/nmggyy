@@ -1,0 +1,65 @@
+@charset "UTF-8";
+/**
+ * @ClassName: base.css
+ * @Description: 融合资讯网首页样式表
+ * @Author: 王丽娟
+ * @Date: 2016年11月24日 下午15:32:15
+ */
+ #content{margin:10px auto 0;}
+.carousel{margin-bottom:10px;height:425px;border:1px solid #888;}
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {height: 425px;;width: 100%;}
+.noice{position:relative;margin-bottom:10px;padding-left:10px;height:40px;line-height:40px;overflow: hidden;border:1px solid #888;}
+.noice i{float:left;padding-left:25px;width:85px;height:40px;background:url(../../images/information/index/noice.png) no-repeat 0 center;font-style:normal;border-right:1px solid #888;}
+.noice ul{position:absolute;left:180px;width:1020px;list-style:none;}
+.noice ul li{height:40px;line-height:40px; display:none;}
+.noice ul li a{padding:0;height:40px;line-height:40px;text-decoration:none; color:#333; display:inline-block; overflow:hidden; }
+
+.easing a, .easing span{transition:.25s linear; -moz-transition:.25s linear; -webkit-transition:.25s linear;}
+
+
+.ads{margin-bottom:10px;height:50px;line-height:50px;text-align: center;border:1px solid #888;background:#e3e3e3;}
+.ads-long{margin-bottom:10px;height:60px;line-height:60px;text-align: center;border:1px solid #888;background:#e3e3e3;}
+
+.column .left{float:left;width:810px;}
+.column .right{float:right;width:370px;}
+.column-head{position:relative;padding-left:10px;height:40px;line-height:40px;color:red;font-size:16px;font-weight:bold;border:1px solid #888;background:#e3e3e3;}
+.column-head a{position:absolute;right:10px;top:0;display:block;height:40px;font-size:13px;font-weight:normal;line-height:40px;}
+
+.column-bbs ul {padding:10px 0;}
+.column-bbs ul li{float:left;width:190px;margin-left:16px;}
+.column-bbs ul li img{width:190px;height:240px;}
+.column-bbs ul li p{padding:5px 10px;height:70px;line-height:20px;background:#E1E6EA;}
+
+.column-headline{margin-bottom:10px;}
+.column-headline .item,
+.column-sight .item,
+.column-dynamic .item,
+.column-observe .item{float:left;margin-top:10px;margin-left:17px;padding:15px;width:396px;height:320px;background:#e3e3e3;}
+.column-headline .item img,
+.column-sight .item img,
+.column-dynamic .item img,
+.column-observe .item img{width:100%;height:140px;}
+.column-headline .item ul li,
+.column-sight .item ul li,
+.column-dynamic .item ul li,
+.column-observe .item ul li{height:30px;line-height:30px;}
+
+.column-sight{margin-bottom:10px;}
+.column-dynamic{margin-bottom:10px;}
+.column-observe{float:left;width:810px;}
+
+.rpanel{margin-bottom:10px;}
+.rpanel .rpanel-head{position:relative;margin-bottom:10px;height:40px;line-height:40px;color:red;font-size:16px;font-weight:bold;border:1px solid #888;background:#e3e3e3;}
+.rpanel .rpanel-head a{position:absolute;top:0;right:10px;height:40px;line-height:40px;font-size:13px;font-weight:normal;}
+.rpanel ul{padding:33px 10px;background:#e3e3e3;border:1px solid #888;}
+.rpanel ul li{height:30px;line-height:30px;}
+
+.analysis{margin-bottom:10px;height:370px;background:#e3e3e3;border:1px solid #888;}
+.analysis p{padding-top:140px;text-align: center;font-size:16px;font-weight:bold;}
+
+.search-panel{margin-bottom:32px;}
+.search-panel input{margin-right:30px;vertical-align:top;width:250px;height:24px;padding-left:10px;}
+.search-panel button{width:90px;height:24px;line-height:24px;}
+.policy{float:right;width:375px;}
+.btn-tab{height:24px;background:#e3e3e3;}
+.btn-tabcon{height:296px;background:#e3e3e3;}

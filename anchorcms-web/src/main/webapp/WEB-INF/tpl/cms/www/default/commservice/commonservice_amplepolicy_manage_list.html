@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${site.siteName} - 惠补政策管理</title>
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/list.css"/>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${base}/res/common/js/jquery-ui.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            _onload();
+        });
+
+        //点击状态标签刷新列表
+        $(document).ready(function () {
+            $(".tableDiv tbody tr:odd").css("background", "#FAF7F7");
+            $(".tableDiv tbody tr:even").css("background", "#fff");
+
+            $(".switchBtn span").click(function () {
+                var state = $(this).attr("name");
+                $("#state").val(state);
+                $("#title").val("");
+                $("#tradeType").val("");
+                $("#startDT").val("");
+                $("#endDT").val("");
+                $("#flag").val("");
+                tableForm.onsubmit = null;
+                $("#tableForm").submit();
+            });
+
+        });
+
+        // 加载页面标签状态
+        function _onload() {
+//            $("a").addClass("link");
+            var num = "${state}";
+            $("#state").val(num);
+            $("#state" + num).parent("li").addClass("current");
+//            $("#state" + num).next().addClass("active");
+        }
+        // 点击事件的提交
+        function Myoperate(operateType,id) {
+//            var tableForm = document.getElementById("tableForm");
+//            tableForm.action = "commonservice_ample_policy_manage_list.jspx";
+            $("#itemId").val(id);
+//            $("#flag").val("00");
+            $("#flag").val(operateType);
+//            alert($("#flag").val());
+//            alert( $("#itemId").val());
+            tableForm.onsubmit = null;
+            tableForm.submit();
+        }
+function beSubmit(){
+    $("#flag").val("");
+}
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="/${res}/js/html5shiv.min.js"></script>
+    <script src="/${res}/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div class="content wrapper clearfix">
+    <div class="head wrapper">
+        <a href="${base}/member/commonservice_ample_policy_manage_list.jspx"class="current">惠补政策管理</a>
+        <a href="${base}/member/P_save.jspx" class="btn">发布政策</a>
+    </div>
+    <div class="main">
+        <form id="tableForm" action="commonservice_ample_policy_manage_list.jspx" method="post" onsubmit="beSubmit()">
+            <div class="searchBox">
+                <label>政策名称：</label>
+                <input style="width:14%"id="title" name="title" value="${title?default('')}">
+                <label>行业：</label>
+                <input style="width:14%"id="tradeType" name="tradeType" value="${tradeType?default('')}">
+                <label>发布时间：</label>
+                <input style="width:14%"id="startDT" name="startDT" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+                       class="Wdate date" value="${startDT?default('')}">
+                <label>至</label>
+                <input style="width:14%"id="endDT" name="endDT" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+                       class="Wdate date" value="${endDT?default('')}">
+                <button class="submit" style="margin-right: 3%">查询</button>
+            </div>
+            <div class="switchBtn">
+                <li><span id="state1" name="1">未发布</span></li>
+                <li> <span id="state2" name="2">已发布</span></li>
+                <input id="state" type="hidden" name="state" value="${state!'1'}"/>
+                <input id="itemId" type="hidden" name="itemId" value="12"/>
+                <input id="flag" type="hidden" name="flag" value="" />
+                <!--<input type="text" id="status" name="status" hidden="hidden" value="${status?default('')}">-->
+            </div>
+            <div class="tableDiv wrapper">
+                <table  cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <!--<th><input type="checkbox" id="checkAll"/></th>-->
+                        <!--<th>ID</th>-->
+                        <th>项目政策名称</th>
+                        <th>发布层面</th>
+                        <th>行业类型</th>
+                        <th>发布时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    [#if pagination.list?size gt 0]
+                    [#list pagination.list as c]
+                    <tr>
+                        <!--<td><input type="checkbox" id="${c.amplePolicyId!}" name="checkEach"/></td>-->
+                        <!--<td>${c.amplePolicyId!}</td>-->
+                        <td style="padding-left: 30px;text-align: left;width: 300px" title="${c.policyName!}">[@text_cut s=c.policyName! len='16' append='...'/]</td>
+                        <td title="${c.releaseLevel!''}">[@text_cut s=c.releaseLevel! len='10' append='...'/]</td>
+                        <td title="${c.tradeType!}" >[@text_cut s=c.tradeType! len='10' append='...'/]</td>
+                      <!--  <(c.content.contentTxtSet[0].txt)!''}>-->
+                        <td>${c.releaseDt!""}</td>
+                        <td>
+                            <a class="link"  onclick="Myoperate('detail','${c.amplePolicyId!}')">明细</a>
+                            [#if state="1"]
+                            <a class="link"  onclick="Myoperate('edit','${c.amplePolicyId!}')">编辑</a>
+                            <a class="link"
+                               href="javascript:void(0)" onclick="javascript:if(confirm('是否发布？'))
+                               {Myoperate('release','${c.amplePolicyId!}')}">发布</a>
+                            <!--<a class="link"  onclick="Myoperate('release','${c.amplePolicyId!}')">发布</a>-->
+                            <!--<a class="link"  onclick="Myoperate('delete','${c.amplePolicyId!}')">删除</a>-->
+                            <a class="link"
+                               href="javascript:void(0)" onclick="javascript:if(confirm('是否删除？'))
+                               {Myoperate('delete','${c.amplePolicyId!}')}">删除</a>
+                            [#else]
+                            <!--<a class="link"  onclick="Myoperate('recall','${c.amplePolicyId!}')">撤回</a>-->
+                            <a class="link"
+                               href="javascript:void(0)" onclick="javascript:if(confirm('是否撤回？'))
+                               {Myoperate('recall','${c.amplePolicyId!}')}">撤回</a>
+                            [/#if]
+                        </td>
+                    </tr>
+                    [/#list]
+                    [#else]
+                    <tr>
+                        <td colspan="9" ><h4>暂无数据</h4></td>
+                    </tr>
+                    [/#if]
+                    </tbody>
+                </table>
+            </div>
+            <input type="hidden" name="pageNo"/>
+            <div class="page clearfix">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="left" class="pn-sp">
+                            每页 ${pagination.pageSize} 条&nbsp;
+                            <input class="first" type="button" onclick="_gotoPage('1');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input class="prev" type="button" onclick="_gotoPage('${pagination.prePage}');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input type="text" value=${pagination.pageNo} id="_goPs" onfocus="this.select();" onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>/${pagination.totalPage}
+                            <input class="next" type="button" onclick="_gotoPage('${pagination.nextPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>
+                            <input class="last" type="button" onclick="_gotoPage('${pagination.totalPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>&nbsp;
+                            <button id="_goPage" class="ok" type="button" onclick="_gotoPage($('#_goPs').val());"[#if pagination.totalPage==1] disabled="disabled"[/#if]>GO</button>
+                            共 ${pagination.totalCount} 条&nbsp;
+                        </td>
+                    </tr>
+                    <!--[#--<tr>-->
+                        <!--<td align="center" class="pn-sp">-->
+                            <!--共 <span id="index">${pagination.totalCount}</span> 条&nbsp;-->
+                            <!--每页 <span id="eachIndex">${pagination.pageSize}</span> 条&nbsp;-->
+                            <!--<input type="button" value="首 页" onclick="_gotoPage('1');" [#if pagination.firstPage]-->
+                                   <!--disabled="disabled" [/#if] />-->
+                            <!--<input type="button" value="上一页" onclick="_gotoPage('${pagination.prePage}');" [#if-->
+                                   <!--pagination.firstPage] disabled="disabled" [/#if]/>-->
+                            <!--<input type="button" value="下一页" onclick="_gotoPage('${pagination.nextPage}');" [#if-->
+                                   <!--pagination.lastPage] disabled="disabled" [/#if]/>-->
+                            <!--<input type="button" value="尾 页" onclick="_gotoPage('${pagination.totalPage}');" [#if-->
+                                   <!--pagination.lastPage] disabled="disabled" [/#if]/>&nbsp;-->
+                            <!--当前 <span id="curPage">${pagination.pageNo}</span>/<span id="totalPage">${pagination.totalPage}</span>-->
+                            <!--页 &nbsp;-->
+                            <!--转到第<input type="text" id="_goPs" onfocus="this.select();"-->
+                                      <!--onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"-->
+                                      <!--style="width:50px; border:1px solid #e7e7e7;"/>页-->
+                            <!--<button id="_goPage" class="ok" type="button" onclick="_gotoPage($('#_goPs').val());" [#if-->
+                                    <!--pagination.totalPage==1] disabled="disabled" [/#if]>确定</button>-->
+                        <!--</td>-->
+                    <!--</tr>--]-->
+                </table>
+            </div>
+            <script type="text/javascript">
+                function _gotoPage(pageNo) {
+                    if(!/^[0-9]*[1-9][0-9]*$/.test(pageNo)){ui.alertFail("页码必须为正整数！");return false;}
+                    try {
+                        var tableForm = document.getElementById("tableForm");
+                        $("input[name=pageNo]").val(pageNo);
+//                        tableForm.action = "commonservice_tender_manage_list.jspx";
+                        tableForm.onsubmit = null;
+                        tableForm.submit();
+                    } catch (e) {
+                        alert('_gotoPage(pageNo)方法出错');
+                    }
+                }
+            </script>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+</body>
+</html>

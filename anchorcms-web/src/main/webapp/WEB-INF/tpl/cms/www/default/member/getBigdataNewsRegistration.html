@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>产业深度融合企业需求调查</title>
+    <link rel="shortcut  icon" type="image/x-icon" href="/${res}/resources/images/favicon.ico" media="screen"  />
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/contact.css"/>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+
+    <!--[if lte IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <script type="text/javascript" src="/thirdparty/jquery-placeholder/placeholder-ie9.js" ></script>
+    <![endif]-->
+
+    <link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="${base}/res/common/js/jquery.ext.js" type="text/javascript"></script>
+    <script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/swfupload.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/swfupload.queue.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/fileprogress.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/handlers.js" type="text/javascript"></script>
+    <link href="${base}/thirdparty/swfupload/process.css" rel="stylesheet" type="text/css"/>
+
+    <!--添加表单校验-->
+    <script src="${base}/res/common/js/jquery.validate.js" type="text/javascript"></script>
+    <script src="${base}/res/common/js/messages_zh.js" type="text/javascript"></script>
+    <!--自己写校验方法-->
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/validateCheck.js"></script>
+    <script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+    <script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+
+    <!--日期插件-->
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript">
+        function CurentTime() {
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = now.getMonth() + 1;
+            var day = now.getDate();
+            var hh = now.getHours();
+            var mm = now.getMinutes();
+            var clock = year + "-";
+            if (month < 10)
+                clock += "0";
+            clock += month + "-";
+            if (day < 10)
+                clock += "0";
+            clock += day + " ";
+            if (hh < 10)
+                clock += "0";
+            clock += hh + ":";
+            if (mm < 10) clock += '0';
+            clock += mm;
+            return (clock);}
+    </script>
+    <script type="text/javascript">
+        //表单验证
+        $().ready(function() {
+            $("#release_form").validate()
+
+        });
+
+
+    </script>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/releasePower.css"/>
+    <!--级联菜单相关js-->
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/commonDict.js"></script>
+    <!--传文件相关-->
+    <script type="text/javascript">
+        // 联系人信息是否有默认地址
+        window.isDef = 0;
+
+        //表单验证
+        $().ready(function() {
+            validform();
+            // 获取联系人信息
+            getContactAjax(${user.userId});
+            // 隐藏发票信息
+            $("#taxRegNoDiv").hide();
+            $("#invoiceCompanyName").hide();
+            $("#registeredAddress").hide();
+            $("#bankInfo").hide();
+            $("#agriculture2").hide();
+            $("#industry2").hide();
+            $("#service2").hide();
+            $("#energy2").hide();
+            $("#multipartyDataFusion2").hide();
+            $("#largeDataPublicService2").hide();
+            $("#systemIntegration2").hide();
+            $("#enterpriseApplication2").hide();
+
+        });
+
+        function validform(){
+            /*关键在此增加了一个return，返回的是一个validate对象，这个对象有一个form方法，返回的是是否通过验证*/
+            return $("#release_form").validate();
+        }
+
+        $(function() {
+            var uploadPicsUrl = "o_swfPicsUpload.jspx";
+            var uploadAttachsUrl = "o_swfAttachsUpload.jspx";
+            //在firefox、chrome下，上传不能保留登录信息，所以必须加上jsessionid。
+            var jsessionid ="${sessionId!}";
+            if(jsessionid) {
+                uploadPicsUrl += ";jsessionid="+jsessionid;
+                uploadAttachsUrl += ";jsessionid="+jsessionid;
+            }
+            swfu=new SWFUpload({
+                upload_url : uploadPicsUrl,
+                flash_url : "${base}/thirdparty/swfupload/swfupload.swf",
+                file_size_limit : "2 MB",
+                file_types : "*.jpg;*.gif;*.png;*.bmp",
+                file_types_description : "图片",
+                file_queue_limit : 0,
+                custom_settings : {
+                    progressTarget : "fsUploadProgress",
+                    cancelButtonId : "btnCancel"
+                },
+                debug: false,
+
+                button_image_url : "${base}/thirdparty/swfupload/button_notext.png",
+                button_placeholder_id : "spanButtonPlaceHolder",
+                button_text: "<span class='btnText'>上传</span>",
+                button_width: 84,
+                button_height: 24,
+                button_text_top_padding: 2,
+                button_text_left_padding: 20,
+                button_text_style: '.btnText{color:#666666;}',
+
+                file_queued_handler : fileQueued,
+                file_queue_error_handler : fileQueueError,
+                file_dialog_complete_handler : fileDialogComplete,
+                upload_progress_handler : uploadProgress,
+                upload_error_handler : uploadError,
+                upload_success_handler : uploadPicsSuccess,
+                upload_complete_handler : uploadComplete,
+                queue_complete_handler : queueComplete
+            });
+            swfau=new SWFUpload({
+                upload_url : uploadAttachsUrl,
+                flash_url : "${base}/thirdparty/swfupload/swfupload.swf",
+                file_size_limit : "2000 MB",
+                file_types : "*.*",
+                file_types_description : "All Types",
+                file_queue_limit : 0,
+                custom_settings : {
+                    progressTarget : "afsUploadProgress",
+                    cancelButtonId : "abtnCancel"
+                },
+                debug: false,
+
+                button_image_url : "${base}/thirdparty/swfupload/button_notext.png",
+                button_placeholder_id : "aspanButtonPlaceHolder",
+                button_text: "<span class='btnText'>上传</span>",
+                button_width: 84,
+                button_height: 24,
+                button_text_top_padding: 2,
+                button_text_left_padding: 20,
+                button_text_style: '.btnText{color:#666666;}',
+
+                file_queued_handler : fileQueued,
+                file_queue_error_handler : fileQueueError,
+                file_dialog_complete_handler : fileDialogComplete,
+                upload_progress_handler : uploadProgress,
+                upload_error_handler : uploadError,
+                upload_success_handler : uploadAttachSuccess,
+                upload_complete_handler : uploadComplete,
+                queue_complete_handler : queueComplete
+            });
+        });
+
+        function uploadPicsSuccess(file,data) {
+            var jsonData=eval("("+data+")");//转换为json对象
+            if(jsonData.error!=null){
+                $.alert("[@s.m 'global.prompt'/]",jsonData.error);
+            }else{
+                addPicLine();
+                var index = picIndex - 1;
+                imgUrl=jsonData.imgUrl;
+                $("#preImg"+index).attr("src",""+imgUrl);
+                var imgSrc = parent.document.getElementById("preImg"+index);
+                if(!$(imgSrc).attr("noResize")) {
+                    $(imgSrc).css("width","auto");
+                    $(imgSrc).css("height","auto");
+                }
+                $("#uploadImgPath"+index).val(imgUrl);
+            }
+        }
+
+
+
+        //切字符串方法
+        function s_cut(s,lenth,append){
+            var index = 0;
+            var len = 0;
+            var str = "";
+            var a = "";
+            for (var i = 0; len < lenth; i++) {
+                index = i;
+                a = s.charAt(i);
+                str += a;
+                if (a.match(/[^\x00-\xff]/ig) != null) {
+                    len += 2;
+                }
+                else {
+                    len += 1;
+                }
+            }
+            if(s.charAt(index+1) == ""){
+                return str;
+            }else{
+                return (str+append);
+            }
+        }
+
+    </script>
+    <style type="text/css">
+        /*.wrapper {*/
+        /*width: 95%;*/
+        /*}*/
+        .choose-catagory-layout {
+            background-color: #fff;
+            width: 670px;
+            height: 250px;
+            border: solid thin #ccc;
+            z-index: 999;
+        }
+        .catagory-columns .catagory-ul {
+            float: left;
+            width: 330px;
+            height: 200px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            border-width: thin;
+            border-style: solid;
+            border-color: rgb(204, 204, 204);
+            border-image: initial;
+        }
+        .catagory-columns .catagory-ul .catagory-li {
+            line-height: 25px;
+            width: 300px;
+            height: 25px;
+            cursor: pointer;
+            text-indent: .8em;
+        }
+        body {background-image:url(../images/login/loginbg.png);}
+    </style>
+    [#include "image_upload.html" /]
+    [#include "attachment_upload.html" /]
+</head>
+<body>
+
+<div class="content wrapper">
+    <form id="release_form" action="bigdata_news_registed_save.jspx" method="post">
+        <div class="servicePower">
+            <div class="column wrapper"> <span class="head">新闻发布</span> <span class="tips"><i>*</i>&nbsp;为必填项</span> </div>
+            <div class="service-content wrapper">
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;新闻标题：</label>
+                    <input class="power space" id="newsName" name="newsName" type="text" required maxlength="50">
+                </div>
+                <div class="myDiv">
+                    <label><i>*</i>&nbsp;新闻内容：</label>
+                    <script class="myEditor" id="editor" name="editor" type="text/plain"></script>
+                </div>
+            </div>
+            <br>
+            <span style="color: red;margin-left: 200px" id="detailSpan"></span>
+        </div>
+        <div class="release-button">
+            <button class="btn submit" type="button" onclick="beforeSubmit()">确认发布</button>
+            <!--<button type="button" class="btn cancel" onclick="beforeSubmit(1)">保存到草稿</button>-->
+        </div>
+        <!--需求池展示频道id-->
+        <input type="hidden" name="channelId" value="104">
+        <input type="hidden" id="statusType" name="statusType" value="2">
+        <input type="hidden" id="demandObjList" name="demandObjListJsonString" value="">
+        <input type="hidden" id="frontStatus" name="frontStatus" value="${frontStatus?default('3')}">
+    </form>
+</div>
+<!--footer start-->
+
+<!--footer end-->
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="${base}/thirdparty/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="${base}/thirdparty/ueditor/ueditor.all.js"> </script>
+<script charset="utf-8" src="/${res}/resources/js/mapDistPicker/distpicker.data.js" type="text/javascript"></script>
+<script charset="utf-8" src="/${res}/resources/js/mapDistPicker/distpicker.js" type="text/javascript"></script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8" src="${base}/thirdparty/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<!--富文本编辑，粘贴图片-->
+<script type="text/javascript">
+    var editor = UE.getEditor('editor',{autoHeightEnabled:false,zIndex:0});
+</script>
+<script language="javascript">
+    UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+    UE.Editor.prototype.getActionUrl = function(action) {
+        if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadimage') {
+            return "/ueditor/upload.jspx";
+        } else {
+            return this._bkGetActionUrl.call(this, action);
+        }
+    }
+</script>
+<!--by GJN-->
+<script>
+
+    function beforeSubmit(){
+        $('#release_form').submit();
+    }
+
+    $(document).ready(function(e){
+        if(self.frameElement!=null && self.frameElement.tagName=="IFRAME"){
+            // 在iframe中时处理
+            $(".wrapper").css("width","95%");
+        };
+        if(location.search.indexOf("front")>0){
+            $(".j_head").show();
+        };
+        var SObjTr= $('#originTr').prop('outerHTML');
+        $('#tianjiaSObj').click(function(){
+            $('#SDemandObj_table').append(SObjTr);
+        });
+
+        //自动填写
+        $('.autoInput').click(function(){
+            if($(this).is(':checked')){
+                $(this).prevAll('input').eq(0).val($(this).next('span.special').text()).attr("readonly","readonly");
+                $(this).prevAll('input').eq(0).focus().blur();
+            }else{
+                $(this).prevAll('input').eq(0).val("").removeAttr("readonly");
+                $(this).prevAll('input').eq(0).focus().blur();
+            }
+        });
+
+        //级联菜单初始化
+        var aTypeFrame = new typeFrame("ZYHY", "dTypeFrameOuter", 173, "demandTypeInput", "demandTypeHidden");
+        aTypeFrame.ini();
+
+        //把没有图片上传的提示语删掉
+        $("#imgUploadDiv").mouseleave(function(){
+            if($("#imgUploadDiv").find('img').size()>1 && $("#imgUploadDiv").find('img').size()<7) {
+                $("#pictureSpan").html("");
+            }
+        });
+
+        //把没有文本编辑的提示语删掉
+        editor.addListener("focus", function (type, event) {
+            $("#detailSpan").html("");
+        });
+
+        //把没有税号提示语删掉
+//        taxRegNo.addListener("focus", function (type, event) {
+//            $("#taxRegNoSpan").html("");
+//        });
+        $("#taxRegNo").mousedown(function(){
+            $("#taxRegNoSpan").html("");
+        });
+    });
+    function checkBigdata() {
+        if($("input[name='agriculture1']:checked").length !=0){
+            $('#release_form').submit();
+        }else{
+            ui.alertFail("融合需求内容未选择");
+        }
+        if($("input[name='industry1']:checked").length !=0){
+            $('#release_form').submit();
+        }else{
+            ui.alertFail("融合需求内容未选择");
+        }
+
+        if($("input[name='service1']:checked").length !=0){
+            $('#release_form').submit();
+        }else{
+            ui.alertFail("融合需求内容未选择");
+        }
+        if($("input[name='energy1']:checked").length !=0){
+            $('#release_form').submit();
+        }else{
+            ui.alertFail("融合需求内容未选择");
+        }
+        if($("input[name='multipartyDataFusion1']:checked").length !=0){
+            $('#release_form').submit();
+        }else{
+            ui.alertFail("融合需求内容未选择");
+        }
+        if($("input[name='largeDataPublicService1']:checked").length !=0){
+            $('#release_form').submit();
+        }else{
+            ui.alertFail("融合需求内容未选择");
+        }
+
+
+    }
+    function grabJsonSObjs(){
+        var hasEmpty = false;
+        var hasNaN1 = false;
+        var hasNaN2 = false;
+        var hasToolong = false;
+        var hasToolong1 = false;
+        var hasToolong2 = false;
+        var hasToolong3 = false;
+        var hasToolong4 = false;
+        var JsonObjs = "{\"demandObjs\":[";
+        if($('#SDemandObj_table').find('tr:gt(0)').size()<1){
+            return "hasEmpty";
+        }
+        $('#SDemandObj_table').find('tr:gt(0)').each(function(i){
+            JsonObjs+="{";
+            $(this).children('td:lt(6)').each(function(i){
+                var inputVal = $(this).find('input:first').val();
+//                if(typeof inputVal === 'undefined' || inputVal == ""){
+//                    hasEmpty=true;
+//                    return false;
+//                }
+                if((i == 0 || i == 1|| i == 2|| i == 3) && inputVal == ""){
+                    hasEmpty = true;
+                    return false;
+                }
+                if((i == 2 || i == 5) && isNaN(inputVal)){
+                    hasNaN1 = true;
+                    return false;
+                }
+                if ((i == 5) && (inputVal == "")) {
+                    hasNaN2 = false;
+                    return true;
+                } else if((i == 5) && !/^([1-9]\d{0,15}|0)(\.\d{1,2})?$/.test(inputVal)) {
+                    hasNaN2 = true;
+                    return false;
+                }
+                if(i == 0 && inputVal.length>100){
+                    hasToolong=true;
+                    return false;
+                }
+                if(i == 1 && inputVal.length>50){
+                    hasToolong1=true;
+                    return false;
+                }
+                if(i == 2 && inputVal.length>10){
+                    hasToolong2=true;
+                    return false;
+                }
+                if(i == 3 && inputVal.length>16){
+                    hasToolong3=true;
+                    return false;
+                }
+                if(i == 4 && inputVal.length>500){
+                    hasToolong4=true;
+                    return false;
+                }
+                JsonObjs+=("\""+$(this).find('input:first').attr('name')+"\"");
+                JsonObjs+=":\"";
+                JsonObjs+=(inputVal).replace(/"/g,"\\\"");
+                JsonObjs+="\",";
+            });
+            if(hasEmpty){
+                return false;
+            }
+            JsonObjs+="\"demandObjId\":\"\"},"
+        });
+        if(hasEmpty){
+            return "hasEmpty";
+        }
+        if(hasNaN1){
+            return "hasNaN1";
+        }
+        if(hasNaN2){
+            return "hasNaN2";
+        }
+        if(hasToolong){
+            return "hasToolong";
+        }
+        if(hasToolong1){
+            return "hasToolong1";
+        }
+        if(hasToolong2){
+            return "hasToolong2";
+        }
+        if(hasToolong3){
+            return "hasToolong3";
+        }
+        if(hasToolong4){
+            return "hasToolong4";
+        }
+
+        JsonObjs=(JsonObjs.replace(/,$/,""))+"]}";
+        return JsonObjs;
+    }
+    function grandSubCheck(){
+        //表单验证here
+//        var ids = ["demandTypeHidden","powerName","deadlineDt","deliverDt","contact","email"];
+//        for(var i=0; i<ids.length; i++){
+//            if($("#"+ids[i]).val() == ""){
+//                alert("存在未填写的必填项！请检查。");
+//                return false;
+//            }
+//        }
+//        if($("#mobile").val() == "" && $("#telephone").val() == ""){
+//            alert("未填写联系方式，请检查。");
+//            return false;
+//        }
+//        if($("#imgUploadDiv").find('img').size()<2){
+//            alert("未上传图片！请检查。");
+//            return false;
+//        }
+        var objJson = grabJsonSObjs();
+        if(objJson == "hasEmpty"){
+            ui.alertFail("需求对象信息存在未填项！请检查。");
+            return false;
+        }
+        if(objJson == "hasNaN1"){
+            ui.alertFail("需求数量或期望单价必须是数字！请检查。");
+            return false;
+        }
+        if(objJson == "hasNaN2"){
+            ui.alertFail("期望单价最多保留两位小数！请检查。");
+            return false;
+        }
+        if(objJson == "hasToolong"){
+            ui.alertFail("需求对象名称处的字段过长！请检查。(提示：对象名称不能超过100字符。)");
+            return false;
+        }
+        if(objJson == "hasToolong1"){
+            ui.alertFail("代码/编号处的字段过长！请检查。(提示：代码/编号不能超过50字符。)");
+            return false;
+        }
+        if(objJson == "hasToolong2"){
+            ui.alertFail("需求数量处的字段过长！请检查。(提示：需求数量不能超过10字符。)");
+            return false;
+        }
+        if(objJson == "hasToolong3"){
+            ui.alertFail("计量单位处的字段过长！请检查。(提示：计量单位不能超过16字符。)");
+            return false;
+        }
+        if(objJson == "hasToolong4"){
+            ui.alertFail("要求/备注处的字段过长！请检查。(提示：要求/备注不能超过500字符。)");
+            return false;
+        }
+        $('#demandObjList').val(objJson);
+        return true;
+    }
+
+
+    //富文本校验
+    function checkEdit(){
+        var length = editor.getContentLength();
+        var maxWord = editor.getOpt("maximumWords") || 20000;
+        if(length<=0){
+            $("#detailSpan").html("补充说明未填写！请检查");
+            return false;
+        }
+        if(length>maxWord){
+            $("#detailSpan").html("补充说明文字过多");
+            return false;
+        }
+        return true;
+    }
+    function clearSpan(){
+        if($("#imgUploadDiv").find('img').size()>1 && $("#imgUploadDiv").find('img').size()<7) {
+            $("#pictureSpan").html("");
+            return false;
+        }
+        return true;
+    }
+
+</script>
+
+</body>
+</html>

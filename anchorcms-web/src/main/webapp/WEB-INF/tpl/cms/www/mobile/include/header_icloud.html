@@ -1,0 +1,89 @@
+<!--header start-->
+<div id="header">
+    <div class="topbar">
+        <div class="wrapper  clearfix">
+            <div class="top-left">
+                <label>您好，欢迎来到内蒙古工业云！</label>
+                [#include "./header_register.html"]
+               <!--[#if user??][#if user.userImg??]<img src="${user.userImg}">[#else]<img src="/${res}/images/userImg.png">[/#if]
+                <span class="vip">
+                    <a class="username textOver" title="${user.username}">[@text_cut s=user.username! len='5' append='...'/]</a>
+                    <ul>
+                        <li><a href="${base}/member/index.jspx">会员中心</a></li>
+                        <li><a href="${base}/logout.jspx">退出账号</a></li>
+                    </ul>
+                </span>
+                [#else]
+                <a class="btnLogin" href="${base}/login.jspx">登录</a><a  class="btnRegister" href="${base}/register.jspx">注册</a>
+                [/#if]-->
+            </div>
+            <div class="top-right">
+                <div class="toplink fl">
+                    <ul>
+                        <li><a href="/channel/aboutUs.jspx" target="_blank">关于工业云</a></li>
+                        <li><a href="/downloadfile.jspx">帮助手册</a></li>
+                        <li>客服中心：400-857-6688</li>
+                        <li>
+                            <span class="wechat">微信公众号
+                            <img src="/${res}/resources/images/index/wechat2.jpg">
+                            </span>
+                        </li>
+                        <li class="friend">
+                            <div class="link"><span>友情链接</span></div>
+                            <ul class="linkUl">
+                                <li><a href="http://www.casicloud.com" target="_blank">航天云网</a></li>
+                                <li><a href="http://www.jxicloud.com/" target="_blank">江西航天云网</a></li>
+                                <li><a href="http://www.gz-icloud.com.cn/" target="_blank">贵州航天云网</a></li>
+                                <li><a href="http://www.能源设备网.cn/" target="_blank">能源设备网</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!--<span class="fr">微信公众号</span>-->
+            </div>
+        </div>
+    </div>
+    <div class="logobar wrapper">
+        <a href="/"><img  class="logo" src="/${res}/resources/images/index/logo3.gif" alt="logo"></a>
+        <div class="menubar">
+            <div class="search">
+                <form action="${base}/search.jspx" target="_blank" id="searchForm">
+                    <input type="text" placeholder="请输入搜索内容" name="q" value="${oldq!}" maxlength="50" autocomplete="off" class="searchCon">
+                    <input type="submit" value="" class="searchMenu">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="menu1">
+        <ul id="menu" class="wrapper clearfix">
+            [@cms_channel_list]
+
+            [#assign currentCh=(channel!)]
+            [#list 1..99 as infinity]
+            [#if !channel??][#break][/#if]
+            [#if !currentCh.parent??][#assign bigFatherId=currentCh.id][#break][#else][#assign currentCh=currentCh.parent][/#if]
+            [/#list]
+
+            <li [#if !channel??] class="current"[#else][#if bigFatherId=121]class="current"[/#if][/#if]><a class="underline" href="/">首页</a></li>
+            [#list tag_list as a]
+            [#if a_index<6]
+            <li [#if channel??&&bigFatherId==a.id] class="current"[/#if]>
+            <a class="underline" href="${a.url}">${a.name}</a>
+            [@cms_channel_list parentId=a.id]
+            [#if tag_list?size>0]
+            <ul>
+                [#list tag_list as cchs]
+                <li><a href="${cchs.url}">${cchs.name}</a></li>
+                [/#list]
+            </ul>
+            [/#if]
+            [/@cms_channel_list]
+            </li>
+            [#else][#break]
+            [/#if]
+            [/#list]
+            [/@cms_channel_list]
+        </ul>
+    </div>
+</div>
+<!--header end-->

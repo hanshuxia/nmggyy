@@ -1,0 +1,202 @@
+@charset "UTF-8";
+/* 模块样式
+ ============================================================================ */
+.ckt-item {
+    border-bottom: 1px solid #ddd;
+}
+
+.top-ckt {
+    clear: both;
+    line-height: 40px;
+}
+
+.title-top {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    color: #333333;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.other-top {
+    float: right;
+    height: 40px;
+    line-height: 40px;
+}
+
+.other-top a {
+    color: #005ea7;
+}
+
+.other-top a:hover {
+    color: #ff6700;
+}
+
+
+/* 收货人信息
+ ============================================================================ */
+.center-ckt-info {
+    height: 120px;
+    margin: 10px 20px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.li-ckt-info {
+    position: relative;
+    height: 30px;
+    margin: 6px 0;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #ffffff;
+    overflow: hidden;
+    /*border: 1px solid #888787;*/
+}
+
+.li-ckt-info:hover {
+    background-color: #cccccc;
+}
+
+.name-li-ckt-info,
+.address-li-ckt-info,
+.mobile-li-ckt-info,
+.operate-li-ckt-info {
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+}
+
+.name-li-ckt-info {
+    margin-left: 50px;
+    width: auto;
+    text-align: center;
+}
+
+.ckt-checkbox.info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 148px;
+}
+
+.ckt-checkbox.info:hover,
+.ckt-checkbox.info.selected {
+    width: 146px;
+}
+
+.address-li-ckt-info {
+    margin-left: 80px;
+    width: 350px;
+}
+
+.address-li-ckt-info.min {
+    width: 300px;
+}
+
+.mobile-li-ckt-info {
+    margin-left: 100px;
+    width: 100px;
+}
+
+.default-li-ckt-info {
+    float: left;
+    width: 60px;
+    height: 20px;
+    line-height: 20px;
+    margin-top: 4px;
+    margin-left: 150px;
+    background-color: #7b7b7b;
+    color: #ffffff;
+    text-align: center;
+}
+
+.set-default-li-ckt-info {
+    margin-left: 10px;
+    color: #005ea7;
+    line-height: 28px;
+}
+
+.operate-li-ckt-info {
+    display: none;
+    float: left;
+    margin-left: 10px;
+}
+
+.operate-li-ckt-info.show {
+    display: block;
+}
+
+.operate-li-ckt-info a {
+    margin-right: 5px;
+    color: #005ea7;
+}
+
+.collapse-ckt-info {
+    display: none;
+    width: 70px;
+    height: 30px;
+    margin-left: 20px;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.collapse-ckt-info.show {
+    display: block;
+}
+
+.icon-collapse-ckt-info {
+    display: inline-block;
+    vertical-align: middle;
+    height: 10px;
+    line-height: 10px;
+    width: 9px;
+    margin-left: 5px;
+    background: url('../images/icon-ckt-addr.png') no-repeat 0 0;
+}
+
+.icon-collapse-ckt-info.more {
+    background: url('../images/icon-ckt-addr.png') no-repeat 0 -10px;
+}
+
+.c-new-address {
+    font-size: 13px;
+    color: #3077B9;
+    font-weight: bold;
+}
+
+/* 一些公共样式
+ ============================================================================ */
+.ckt-checkbox {
+    position: relative;
+    /*display: block;*/
+    height: 28px;
+    line-height: 28px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.ckt-checkbox:hover,
+.ckt-checkbox.selected {
+    height: 26px;
+    line-height: 26px;
+    border: 2px solid #ff3500;
+    width: 50px;
+}
+.ckt-checkbox.selected {
+    background: url("../../images/icon-ckt-selected.png") no-repeat bottom right;
+    background-size: 20px 20px;
+}
+
+.span-title-top {
+    font-size: 10px;
+    color: #3b4240;
+}
+
+.infoSelected {
+    background-color: #cccccc;
+}

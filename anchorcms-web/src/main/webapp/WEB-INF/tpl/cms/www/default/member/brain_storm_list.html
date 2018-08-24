@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${site.siteName} - 头脑风暴列表</title>
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/list.css"/>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            _onload();
+            //全选框中的全选框
+            $("#checkAll").click(function(){
+                $(":checkbox[name='checkone']").prop("checked",this.checked);
+            });
+            $("input[name='checkone']").click(function(){
+                $("#checkAll").prop("checked",$("input[name='checkone']").length==$("input[name='checkone']:checked").length);
+            });
+            //点击状态标签刷新列表
+            $(document).ready(function () {
+                $(".switchBtn li").click(function () {
+                    if ($(this).attr("id") == "all") {
+                        $("#status").val("");
+                    } else if ($(this).attr("id") == "state0") {
+                        $("#status").val(4);
+                    } else if ($(this).attr("id") == "state1") {
+                        $("#status").val(2);
+                    }
+                    $("#tableForm").submit();
+                });
+            });
+        });
+
+        //加载页面标签状态
+        function _onload() {
+            if ($("#status").val() == "") {
+                $("#all").addClass("current");
+            } else if ($("#status").val() == 4) {
+                $("#state0").addClass("current");
+            } else if ($("#status").val() == 2) {
+                $("#state1").addClass("current");
+            }
+        }
+
+        //置为通过
+        function passAll(type){
+            if(type ==1){
+                var ids="";
+                $("input[name='checkone']:checked").each(function(){
+                    ids+=($(this).val()+",");
+                });
+
+                if(ids == ""){
+                    ui.alertFail("至少选择一条信息，请选择");
+                    return false;
+                }
+                if (confirm("请确定是否全部通过？")){
+                    $('.submit.oppose').attr("disabled",true);
+                    $('.submit.pass').attr("disabled",true);
+                    location.href="/member/synergy_brain_passMany.jspx?ids="+ids+"&nextUrl=/member/brain_storm_list.jspx?status="+$('#status').val();
+                }
+            }
+        }
+
+        //批量删除
+        function rejectAll(type){
+            if(type ==1){
+                var ids="";
+                $("input[name='checkone']:checked").each(function(){
+                    ids+=($(this).val()+",");
+                });
+
+                if(ids == ""){
+                    ui.alertFail("至少选择一条信息，请选择");
+                    return false;
+                }
+                if(confirm("请确定是否全部删除？")){
+                    $('.submit.oppose').attr("disabled",true);
+                    $('.submit.pass').attr("disabled",true);
+                    location.href="/member/synergy_brain_deleteMany.jspx?ids="+ids+"&nextUrl=/member/brain_storm_list.jspx?status="+$('#status').val();
+                }
+            }
+        }
+    </script>
+    <style>
+        .readonly {
+            background: #EBEBE4;
+            color: #91918e;
+            display: none;
+        }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="/${res}/js/html5shiv.min.js"></script>
+    <script src="/${res}/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="content wrapper clearfix">
+    <div class="head wrapper">
+        <a href="${base}/member/brain_storm_list.jspx" class="current">头脑风暴列表</a>
+    </div>
+    <div class="main">
+        <form id="tableForm" action="/member/brain_storm_list.jspx" method="post">
+            <div class="searchBox commonDictOuter">
+                <label>头脑风暴主题：</label><input id="title" name="title" value="${title?default('')}">
+                <label>发布人：</label><input id="author" name="author" value="${author?default('')}">
+                <button class="submit">查询</button>
+                <br>
+                [#if status??]
+                [#switch status]
+                [#case 4]
+                <input class="submit pass" type="button" style="float: none; width: 100px;" id="zwtgbutton" value="置为通过" onclick="passAll(1)"/>
+                <input class="submit  oppose" type="button" style="float: none; width: 100px; margin-left:15px;" id="zwbhbutton" value="批量删除" onclick="rejectAll(1)"/>
+                [#break]
+                [#case 2]
+                <input class="submit  oppose" type="button" style="float: none; width: 100px;" id="zwbhbutton" value="批量删除" onclick="rejectAll(1)"/>
+                [#break]
+                [#default]
+                <input class="submit pass" type="button" style="float: none; width: 100px;" id="zwtgbutton" value="置为通过" onclick="passAll(1)"/>
+                <input class="submit  oppose" type="button" style="float: none; width: 100px; margin-left:15px;" id="zwbhbutton" value="批量删除" onclick="rejectAll(1)"/>
+                [/#switch]
+                [#else]
+                <input class="submit pass" type="button" style="float: none; width: 100px;" id="zwtgbutton" value="置为通过" onclick="passAll(1)"/>
+                <input class="submit  oppose" type="button" style="float: none; width: 100px; margin-left:15px;" id="zwbhbutton" value="批量删除" onclick="rejectAll(1)"/>
+                [/#if]
+            </div>
+            <div class="switchBtn">
+                <ul>
+                    <li id="state0"><span>待审批</span></li>
+                    <li id="state1"><span>已通过</span></li>
+                    <li id="all"><span>全部</span></li>
+                </ul>
+            </div>
+            <div class="tableDiv wrapper">
+                <table cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" id="checkAll"/></th>
+                        <th>头脑风暴标题</th>
+                        <th>发布人</th>
+                        <th>状态</th>
+                        [#if status??]
+                        [#switch status]
+                        [#case 4]<th>创建时间</th>[#break]
+                        [#case 2]<th>发布时间</th>[#break]
+                        [#default]
+                        [/#switch]
+                        [#else]
+                        <th>创建时间</th>
+                        [/#if]
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    [#if pagination.list?size gt 0]
+                    [#list pagination.list as c]
+                    <tr>
+                        <td><input type="checkbox" name="checkone" value="${c.contentId!}"/></td>
+                        <td style="text-align: left;width: 250px;padding-left:20px"><a class="show-title" title="${c.title!}">[@text_cut s=c.title! len='9' append='...' /]</a></td>
+                        <td><a class="show-title" title="${c.contentExt.author!}">[@text_cut s=c.contentExt.author! len='5' append='...' /]</a></td>
+                        [#if !c.status??]
+                        <td></td>
+                        [#else]
+                        [#switch c.status]
+                        [#case 4]
+                        <td>待审批</td>
+                        [#break]
+                        [#case 2]
+                        <td>已通过</td>
+                        [#break]
+                        [#default]
+                        <td></td>
+                        [/#switch]
+                        [/#if]
+                        [#if status??]
+                        [#switch status]
+                        [#case 4]<td>${c.sortDate?string('yyyy-MM-dd')}</td>[#break]
+                        [#case 2]<td>${c.releaseDate?string('yyyy-MM-dd')}</td>[#break]
+                        [#default]
+                        [/#switch]
+                        [#else]
+                        <td>${c.sortDate?string('yyyy-MM-dd')}</td>
+                        [/#if]
+                        [#if !status??]
+                        <td>
+                            <a class="link" href="/member/brain_storm_view.jspx?id=${c.contentId!}">明细<a>
+                            <a class="link" href="/hdzq/brain_storm_preview.jspx?id=${c.contentId!}" target="_blank">预览<a>
+                        </td>
+                        [#else]
+                        [#switch status]
+                        [#case 2]
+                        <td>
+                            <a class="link" href="/member/brain_storm_view.jspx?id=${c.contentId!}">明细<a>
+                            <a class="link" href="/hdzq/brain_storm_preview.jspx?id=${c.contentId!}" target="_blank">预览<a>
+                            <a class="link" onclick="deleteConfirm(${c.contentId})">删除<a>
+                        </td>
+                        [#break]
+                        [#case 4]
+                        <td>
+                            <a class="link" href="/member/brain_storm_view.jspx?id=${c.contentId!}">明细<a>
+                            <a class="link" href="/hdzq/brain_storm_preview.jspx?id=${c.contentId!}" target="_blank">预览<a>
+                            <a class="link"  onclick="if(confirm('请确定是否通过？')){location.href='/member/brain_storm_pass.jspx?id=${c.contentId!}&nextUrl=/member/brain_storm_list.jspx?status='+$('#status').val()}">通过<a>
+                            <a class="link" onclick="deleteConfirm(${c.contentId})">删除<a>
+                        </td>
+                        [#break]
+                        [#default]
+                        <td>
+                            <a class="link" href="/member/brain_storm_view.jspx?id=${c.contentId!}">明细<a>
+                            <a class="link" href="/hdzq/brain_storm_preview.jspx?id=${c.contentId!}" target="_blank">预览<a>
+                        </td>
+                        [/#switch]
+                        [/#if]
+                    </tr>
+                    [/#list]
+                    [#else]
+                    <tr>
+                        <td colspan="6"><h4>暂无数据</h4></td>
+                    </tr>
+                    [/#if]
+                    </tbody>
+                </table>
+            </div>
+            <input type="hidden" name="pageNo"/>
+            <div  class="page clearfix">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="left" class="pn-sp">
+                            每页 ${pagination.pageSize} 条&nbsp;
+                            <input class="first" type="button" onclick="_gotoPage('1');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input class="prev" type="button" onclick="_gotoPage('${pagination.prePage}');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+                            <input type="text" value=${pagination.pageNo} id="_goPs" onfocus="this.select();" onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>/${pagination.totalPage}
+                            <input class="next" type="button" onclick="_gotoPage('${pagination.nextPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>
+                            <input class="last" type="button" onclick="_gotoPage('${pagination.totalPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>&nbsp;
+                            <button id="_goPage" class="ok" type="button" onclick="_gotoPage($('#_goPs').val());"[#if pagination.totalPage==1] disabled="disabled"[/#if]>GO</button>
+                            共 ${pagination.totalCount} 条&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <script type="text/javascript">
+                function _gotoPage(pageNo) {
+                    if(!/^[0-9]*[1-9][0-9]*$/.test(pageNo)){ui.alertFail("页码必须为正整数！");return false;}
+                    try {
+                        var tableForm = document.getElementById("tableForm");
+                        $("input[name=pageNo]").val(pageNo);
+                        tableForm.action = "/member/brain_storm_list.jspx";
+                        tableForm.onsubmit = null;
+                        tableForm.submit();
+                    } catch (e) {
+                        ui.alertFail('_gotoPage(pageNo)方法出错');
+                    }
+                }
+            </script>
+            <input type="text" id="status" name="status" hidden="hidden"  value="${status?default('')}">
+
+        </form>
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+<!--级联菜单相关js-->
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/commonDict.js"></script>
+<script type="text/javascript">
+    function deleteConfirm(Ids) {
+        if (confirm("请确定是否删除？")) {
+            location.href = "/member/brain_storm_delete.jspx?id=" + Ids + "&nextUrl=/member/brain_storm_list.jspx?status="+$('#status').val();
+        }
+    }
+</script>
+</body>
+</html>

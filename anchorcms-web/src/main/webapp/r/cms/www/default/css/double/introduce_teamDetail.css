@@ -1,0 +1,131 @@
+.header{
+    padding: 12px 0px 10px 3px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+    font-size: 13px;
+    color: #333333;
+    background-size: cover;
+    background-image: url("../../images/double/introduce_teamDetail/u58-1.png");
+    background-size: 1200px 40px;
+}
+.button{
+    border: none;
+    float: left;
+    margin: 10px 0px 0px 0px;
+    width: 230px;
+    text-align: center;
+}
+.li1-1{
+    border: none;
+    width: 230px;
+    height: 30px;
+    background-image: url("../../images/double/introduce_teamDetail/u60.png");
+    border:1px solid #aaa;
+}
+.li1-2{
+    border: none;
+    width: 230px;
+    height:40px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight:700;
+    font-style: normal;
+    font-size: 16px;
+    color: #333333;
+    line-height: 40px;
+    background-image: url("../../images/double/introduce_teamDetail/u58.png");
+    border:1px solid #aaa;
+}
+.li1-3{
+    margin-left: 184px;
+    width: 46px;
+    height:20px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    line-height: 16px;
+    background-image: url("../../images/double/introduce_teamDetail/u58.png");
+}
+.button1{
+    margin-top: 20px;
+}
+.content{
+    float: left;
+    margin: 10px 0px 0px 10px;
+    width: 960px ;
+}
+.pic{
+   float: left;
+    padding:10px 10px ;
+    width: 170px;
+    height: 160px;
+    background-image: url("../../images/double/introduce_teamDetail/u88.png");
+}
+.pic-1{
+    width: 150px;
+    height: 140px;
+}
+.describle{
+    float: left;
+    margin-left: 10px;
+    width: 780px;
+    height: 160px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    color: #333333;
+    text-align: center;
+    line-height: 130px;
+    background-image: url("../../images/double/introduce_teamDetail/u98.png");
+}
+.collection{
+
+    width: 60px;
+    height: 30px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    color: #333333;
+    text-align: center;
+    line-height: 30px;
+    background-image: url("../../images/double/introduce_teamDetail/u100.png");
+}
+.button-collection{
+    margin-left: 720px;
+    width: 60px;
+    height: 30px;
+}
+.detail{
+    padding-left: 10px;
+    margin: 7px 0px;
+    width: 960px;
+    height: 35px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    color: #333333;
+    text-align: left;
+    line-height: 35px;
+}
+.product{
+    margin-top: 5px;
+    width: 960px;
+    height: 133px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: left;
+}
+.prodect-detail{
+	width:960px;
+	height:133px;
+}

@@ -1,0 +1,39 @@
+<div class="logo">
+    <a href="/"><img src="/${res}/resources/images/userCenter/logo.png"></a>
+    <div class="logobar wrapper">
+        <div class="menubar">
+            <ul id="menu" class="clearfix">
+                <li class="current"><a href="/">首页</a></li>
+                [@cms_channel_list]
+                [#list tag_list as a]
+                [#if a_index<5]
+                <li>
+                    <a class="underline" href="${a.url}">${a.name}</a>
+                    [@cms_channel_list parentId=a.id]
+                    [#if tag_list?size>0]
+                    <ul>
+                        [#list tag_list as cchs]
+                        <li><a href="${cchs.url}">${cchs.name}</a></li>
+                        [/#list]
+                    </ul>
+                    [/#if]
+                    [/@cms_channel_list]
+                </li>
+                [#else][#break]
+                [/#if]
+                [/#list]
+                [/@cms_channel_list]
+            </ul>
+        </div>
+    </div>
+    <div class="userInfo">
+        [#if user.userImg??]<img src="${user.userImg}">[#else]<img src="/${res}/images/userImg.png">[/#if]
+        <div class="vipMessage">
+            <a class="user">${user.username}</a>
+            <ul>
+                <li><a href="${base}/member/index.jspx">会员中心</a></li>
+                <li><a href="${base}/logout.jspx">退出账号</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,227 @@
+.titile{
+    margin: 10px 0px;
+    padding: 12px 10px 12px 10px;
+    width: 1200px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 14px;
+    font-style: normal;
+    color: #333333;
+    text-align: left;
+    line-height: normal;
+    background-image: url("../../images/technology/innovation/u5.png");
+}
+.name{
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 18px;
+    color: #FF0000;
+    text-align: center;
+    line-height: 51px;
+    background-image: url("../../images/technology/innovation/u70.png");
+}
+.match{
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: normal;
+}
+.match-describle{
+    float: left;
+    padding-top: 70px;
+    width: 330px;
+    color: red;
+    font-weight: 700;
+    background-image: url("../../images/technology/innovation/u72.png");
+}
+.match-input{
+    margin: 139px 10px 10px 140px;
+    width: 180px;
+}
+.match-input input{
+    margin: 0px 5px;
+    width: 30px;
+    height:25px;
+    color: black;
+}
+.universtiy{
+    float: left;
+    width: 470px;
+
+}
+.university-title{
+    line-height: 60px;
+    background-image: url("../../images/technology/innovation/u78.png");
+}
+.university-content{
+    padding-bottom: 60px;
+    background-image: url("../../images/technology/innovation/u80.png");
+}
+.universtity-pic{
+    width: 50px;
+    height: 50px;
+}
+.university-logo{
+   padding:10px 420px 0px 0px ;
+    width: 50px;
+}
+.logo-descible{
+    line-height: 160px;
+}
+.event{
+    float: left;
+    margin-left: 5px;
+}
+.event-button{
+    width: 390px;
+    background-image: url("../../images/technology/innovation/u339.png");
+}
+.event-button div{
+    float: left;
+    margin-left: 0px;
+    width:100px ;
+    height: 60px;
+    line-height: 60px;
+    background-image: url("../../images/technology/innovation/u341.png");
+}
+.event-regular{
+    margin-top: 10px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 16px;
+    color: #FF0000;
+    text-align: left;
+    line-height: 39px;
+    background-image: url("../../images/technology/innovation/u278.png");
+}
+.event-regular-button{
+    margin-left: 170px;
+    width: 60px;
+    height: 25px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+    line-height: 25px;
+}
+.event-regular-detail{
+    padding: 22.5px 0px;
+    background-image: url("../../images/technology/innovation/u280.png");
+}
+.team{
+    background-image: url("../../images/technology/innovation/u347.png");
+}
+.team-column{
+    float: left;
+    margin-right: 70px;
+    padding:68px 0px ;
+    width: 100px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 18px;
+    color: #FF0000;
+    text-align: center;
+    line-height: normal;
+    background-image: url("../../images/technology/innovation/u349.png");
+}
+.team-rows{
+    float: left;
+    margin:  70.5px 0px;
+    width: 41px;
+    height: 39px;
+}
+.team-content{
+    float: left;
+    margin: 20px 15px;
+    width: 150px;
+    height: 140px;
+    background-image: url("../../images/technology/innovation/u359.png");
+}
+.team-content img{
+    margin: 10px 20px 27px 20px;
+    width: 108px;
+    height: 78px;
+}
+.team-content div{
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    color: #333333;
+    text-align: center;
+    line-height: 30px;
+    line-height: 30px;
+    background-image: url("../../images/technology/innovation/u361.png");
+}
+.project-colum{
+    margin-top: 5px;
+    background-image: url("../../images/technology/innovation/u641.png");
+}
+.project-colum-1{
+    margin-left: 512px;
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 16px;
+    color: #FF0000;
+}
+.project-agent{
+    margin: 12.5px 30px 12.5px 300px;
+    width: 128px;
+    height: 25px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+    line-height: 25px;
+}
+.visit-infor{
+    font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: left;
+    line-height: 28px;
+    background-image: url("../../images/technology/innovation/u86.png");
+}
+.visit-infor-1{
+    margin-left: 20px;
+}
+.visit-infor-2{
+    margin: 0px 200px 0px 360px;
+}
+.event-project{
+    padding: 26px 0px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: left;
+    line-height: normal;
+    background-image: url("../../images/technology/innovation/u90.png");
+}
+.event-project-content{
+    float: left;
+    margin: 15px 50px ;
+    padding: 10px;
+    background-image: url("../../images/technology/innovation/u695.png");
+}
+.event-project-content div{
+    padding: 5px;
+    height: 60px;
+    background-image: url("../../images/technology/innovation/u697.png");
+}
+.event-project-content img{
+    width: 180px;
+    height: 70px;
+}

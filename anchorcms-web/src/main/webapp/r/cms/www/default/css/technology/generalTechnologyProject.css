@@ -1,0 +1,287 @@
+/*军民通用技术项目*/
+.location{
+	width: 1200px;
+	height: 40px;
+	background-color: #E0E0E0;
+	border: 1px solid #000;
+	font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 14px;
+    text-align: left;
+    line-height: 40px;
+}
+
+.fast{
+	width: 220px;
+	height: 125px;
+	background-color: #E0E0E0;
+	border: 1px solid #000;
+	margin-top: 5px;
+	float: left;
+}
+
+.fast button{
+	width: 200px;
+	height: 42px;
+	background-color: #fff;
+	font-size: 16px;
+	color: #ff0000;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.hot{
+	width: 970px;
+	height: 125px;
+	background-color: #E0E0E0;
+	border: 1px solid #000;
+	float: left;
+	margin-top: 5px;
+	margin-left: 6px;
+	text-align: center;
+}
+
+.hot-title{
+	width: 30px;
+	height: 110px;
+	background-color: #fff;
+	border:1px solid #000;
+	color: #ff0000;
+	font-size: 16px;
+	margin-left: 5px;
+	margin-top: 5px;
+	text-align: center;
+	float: left;
+}
+
+.hot-arrow{
+	float: left;
+	margin-left: 10px;
+	margin-top: 40px;
+}
+
+.hot-project{
+	width: 240px;
+	height: 110px;
+	background-color: #fff;
+	border: 1px solid #000;
+	margin-top: 5px;
+	float: left;
+}
+
+.recommend{
+	width: 220px;
+	height: 260px;
+	background-color: #E0E0E0;
+	border: 1px solid #000;
+	margin-top: 5px;
+	font-size: 16px;
+    color: #FF0000;
+    text-align: left;
+    line-height: 50px;
+    float: left;
+}
+
+.recommend-table td{
+	width: 220px;
+	height: 30px;
+	background-color: #fff;
+	border: 1px solid #000;
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-align: left;
+}
+
+.ads-1{
+	width: 220px;
+	height: 150px;
+	background-color: #E0E0E0;
+	border: 1px solid #000;
+	border-top:1px solid #E0E0E0;
+	margin-top: 0px;
+	font-size: 20px;
+    color: #FF0000;
+}
+
+.success-case{
+	width: 220px;
+	height: 365px;
+	background-color: #E0E0E0;
+	border: 1px solid #000;
+    border-top:1px solid #E0E0E0;
+	float: left;
+	margin-top: 0px;
+	font-size: 16px;
+    color: #FF0000;
+    text-align: left;
+    line-height: 50px;
+}
+
+.success-table td{
+	width: 220px;
+	height: 158px;
+	background-color: #fff;
+	border: 1px solid #000;
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-align: left;
+}
+
+.ads-2{
+	width: 220px;
+	height: 150px;
+	background-color: #E0E0E0;
+	border: 1px solid #000;
+	margin-top: 365px;
+	font-size: 13px;
+    color: #FF0000;
+}
+
+.content-left{
+	float: left;
+}
+
+.project-search{
+	width: 970px;
+	height: 314px;
+	background-color: #E0E0E0;
+	border: 1px solid #000;
+	margin-left:6px;
+	margin-top:5px;
+	float: left;
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    color: #333333;
+    text-align: left;
+    line-height: normal;
+}
+
+.project-search td{
+	line-height: 40px;
+}
+
+.project-list{
+	width: 970px;
+	height: 320px;
+	background-color: #fff;
+	border: 1px solid #000;
+    margin-left: 6px;
+	margin-top: 5px;
+	float: left;
+	line-height: 40px;
+}
+
+.project-list td{
+	width:200px;
+	height:40px;
+	border-bottom:1px solid #000;
+    font-family: 'Arial Negreta', 'Arial';
+	font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.content-bottom{
+	width: 970px;
+	height: 280px;
+	border: 1px solid #000;
+	background-color: #E0E0E0;
+	margin-top:5px;
+	margin-left:6px;
+	float: left;
+}
+
+.content-bottom-child{
+	width: 200px;
+	height: 150px;
+	background-color: #fff;
+	border: 1px solid #000;
+	margin-left:30px;
+	margin-top:50px;
+	float: left;
+}
+
+
+/*四级页面-技术*/
+.techFieldSelect{
+	width: 220px;
+	height: 929px;
+	background-color: #E0E0E0;
+	border: 1px solid #000;
+	margin-top: 5px;
+	font-size: 16px;
+    color: #FF0000;
+    text-align: left;
+    line-height: 50px;
+    float: left;
+}
+
+.techFieldSelect button{
+	width: 220px;
+	height: 38px;
+	font-family: 'Arial Negreta', 'Arial';
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    line-height: 38px;
+}
+
+/*四级页面-协作*/
+.ads-3{
+	width: 220px;
+	height: 150px;
+	background-color: #E0E0E0;
+	border: 1px solid #000;
+	margin-top: 361px;
+	margin-left:-222px;
+	font-size: 13px;
+    color: #FF0000;
+    float: left;
+}
+
+.cooperation-content{
+	width: 970px;
+	height: 924px;
+	border: 1px solid #000;
+	background-color: #fff;
+	float: left;
+	margin-top: -412px;
+	margin-left: 6px;
+}
+
+.cooperation-content td{
+	height:50px;
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    color: #333333;
+    border: 1px solid #000;
+    text-align: left;
+    line-height: normal;
+}
+
+.contact-content{
+	width: 343px;
+	height: 170px;
+	background-color: #E0E0E0;
+	float: left;
+}
+
+.contact-content button{
+	font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    color: #ff0000;
+    text-align: center;
+    line-height: normal;
+    margin-left: 10px;
+    margin-top: 10px;
+}

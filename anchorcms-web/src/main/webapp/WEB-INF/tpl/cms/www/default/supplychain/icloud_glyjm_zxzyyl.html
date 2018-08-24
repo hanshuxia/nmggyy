@@ -1,0 +1,129 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>众修资源预览</title>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/abilityPreview.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .wrapper {
+            width: 1040px;
+        }
+
+        .likeMessage img {
+            width: 190px;
+        }
+
+        .likeMessage {
+            padding-left: 17px;
+        }
+    </style>
+</head>
+<body>
+<!--content start-->
+<div class="content wrapper">
+    <div class="top">
+        <div class="search-top">
+            <a>供应链协同管理</a>&gt;<a>管理员</a>&gt;<a>维修资源管理</a>&gt;<a>预览</a>&gt;<a class="current">${oRepairDemandEntity.repairName?default("")}</a>
+        </div>
+        <div class="showAbility wrapper clearfix">
+            <div class="showImg">
+                <div id="bigImg" class="bigImg">
+                    <img class="" id="" src="/${res}/images/default_img.jpg">
+                </div>
+                <div>
+                    <img class="left" src="/${res}/resources/images/abilityPreview/left.png">
+                </div>
+                <div class="smallImg">
+                    <div id="smallImg" class="images">
+                        <img class="" id="" src="/${res}/images/default_img.jpg">
+                    </div>
+                </div>
+                <div class="right">
+                    <img class="right" src="/${res}/resources/images/abilityPreview/right.png">
+                </div>
+            </div>
+            <div class="showMessage">
+                <div class="titleDiv">
+                    <p class="title"></p>
+                </div>
+                <div class="descDiv">
+                    <span>价格：</span><span>面议</span><br>
+                    <span>所在地：</span><span>${oRepairDemandEntity.addrCity!}</span><br>
+                    <span>擅长领域：</span><span>${oRepairDemandEntity.goodAt!}</span><br>
+                    <span>从业年限：</span><span>${oRepairDemandEntity.workYear!}</span><br>
+                    <span>联系方式：</span><span>${oRepairDemandEntity.mobile!}</span><br>
+                </div>
+            </div>
+            <div class="showCompany">
+                <div class="navTop">
+                    <div class="topDiv"></div>
+                </div>
+                <div class="company">
+                    <span class="title">重庆西冶铝制品有限公司</span><img src="/${res}/resources/images/abilityPreview/company.png" alt=""><br>
+                    <span>电话：</span><span>${oRepairDemandEntity.mobile!}</span><br>
+                    <span>传真：</span><span>${oRepairDemandEntity.fax!}</span><br>
+                    <span>邮箱：</span><span>${oRepairDemandEntity.email!}</span><br>
+                    <span>地址：</span><span>${oRepairDemandEntity.addrProvince?default('')},${oRepairDemandEntity.addrCity?default('')},${oRepairDemandEntity.addrCounty?default('')},${oRepairDemandEntity.addrStreet?default('')}</span><br>
+                </div>
+                <div class="navTop">
+                    <div class="topDiv"></div>
+                </div>
+                <div class="contact">
+                    <span>联系人：</span><span>${oRepairDemandEntity.contact!}</span><br>
+                    <span>联系电话：</span><span>${oRepairDemandEntity.mobile!}</span><br>
+                    <button>在线联系</button>
+                    <br>
+                    <span class="fun">企业未开通此功能</span><br>
+                    <a>访问该企业>></a>
+                </div>
+            </div>
+        </div>
+        <div class="showKinds">
+            <div class="kingsTop wrapper">
+                <span class="current">维修资源详情</span><em class="arrow-down active"></em>
+                <span>维修资源推荐</span><em class="arrow-down"></em>
+                <span>咨询留言</span><em class="arrow-down"></em>
+            </div>
+            <div class="kindsMessage">
+                <div class="current wrapper">
+                    <label>补充说明：</label>
+                    <p>${oRepairDemandEntity.description?default('')}</p>
+                </div>
+                <div class="wrapper">
+                    <p>无</p>
+                </div>
+                <div class="wrapper">
+                    <p>50000吨，是国内生产规模最大、技术装备最先进、产品覆盖范围最广、
+                        综合实力最强的铝合金厚板生产线，年生产能力50000吨，是国内生产规模最大、技术装备最先进、产品覆盖范围最广、综合实力最强的铝合金厚板生产线，
+                        年生产能力50000吨，是国内生产规模最大、技术装备最先进、产品覆盖范围最广、综合实力最强的铝合金厚板生产线</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--content end-->
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/imgPage.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/abilityPreview.js"></script>
+
+<script type="text/javascript">
+</script>
+</body>
+</html>
+
+

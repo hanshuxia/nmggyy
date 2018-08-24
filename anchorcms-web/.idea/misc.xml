@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/anchorcms-bbs" />
+    <file type="web" url="file://$PROJECT_DIR$/anchorcms-web" />
+    <file type="web" url="file://$PROJECT_DIR$/anchorcms-webservice" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_3" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="SvnBranchConfigurationManager">
+    <option name="myConfigurationMap">
+      <map>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="trunkUrl" value="svn://222.74.31.171:9002/%E5%86%85%E8%92%99%E5%8F%A4%E5%B7%A5%E4%B8%9A%E4%BA%91/01-%E7%B3%BB%E7%BB%9F%E6%BA%90%E7%A0%81/%E5%B7%A5%E4%B8%9A%E4%BA%91%E6%94%B9%E7%89%882" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="mySupportsUserInfoFilter" value="true" />
+  </component>
+</project>

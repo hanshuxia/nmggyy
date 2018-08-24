@@ -1,0 +1,139 @@
+@CHARSET "UTF-8";
+/**
+ * @ClassName: kjrhIndex.css
+ * @Description: 军民科技融合网首页样式表
+ * @Author: 王丽娟
+ * @Date: 2016年11月21日 下午15:32:15
+ */
+ 
+
+#content{margin:10px 0;}
+.ads{margin-bottom:10px;height:120px;border:1px solid #888;}
+.ads1{float:left;height:100%;width:595px;}
+.ads2{margin-left:600px;height:100%;}
+.ads img,.ads1 img,.ads2 img{width:100%;height:100%;}
+.floor-zero,.floor-one,.floor-two,.floor-three,.floor-four{margin-bottom:10px;}
+.floor-head{height:40px;line-height:40px;padding:0 15px;font-size:15px;font-weight:bold;border-bottom:1px solid #888;}
+
+/* 0楼区域*/
+.fastquery{float:left;width:200px;height:261px;border:1px solid #888;border-bottom:none;}
+.fastquery dt{height:30px;line-height:30px;color:red;font-size:15px;font-weight:bold;border-bottom:1px solid #888;text-align: center;}
+.fastquery dd{padding-left:10px;height:21px;line-height:21px;border-bottom:1px solid #888;}
+.carousel{float:left;margin:0 10px;width:740px;height:261px;border:1px solid #888;}
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {width:740px;height:261px;}
+.floor-zero .right{float:left;width:240px;}
+.fastentry{height:130px;border:1px solid #888;}
+.entry-left{float:left;padding:30px 0;width:20px;height:100%;text-align: center;border-right:1px solid #888;}
+.entry-right{margin-left:20px;height:100%;}
+.entry-right li{float:left;margin:10px 0 0 10px;text-align: center;}
+.entry-right li a{display:block;width:60px;height:50px;border:1px solid #888;}
+.armynews{margin-top:10px;height:120px;border:1px solid #888;}
+.news-head{position:relative;padding-left:10px;height:30px;line-height:30px;}
+.news-head a{position:absolute;bottom:0;right:0;width:50px;height:20px;line-height:20px;text-align:center;border:1px solid #888;}
+.armynews ul li{height:30px;line-height:30px;border-top:1px solid #888;}
+
+/* 1楼区域*/
+.floor-one{border:1px solid #888;background:#e3e3e3;}
+.floor-head button{float:right;margin-right:10px;margin-top:5px;height:30px;line-height:30px;}
+.floor-one .floor-body{height:320px;padding:15px 0 15px 15px;}
+.flow{position:relative;float:left;margin-right:10px;width:410px;height:140px;border:1px solid #888;}
+.flow img{width:408px;height:138px;}
+.flow button{position:absolute;bottom:0;right:10px;}
+.floor-one dl{float:left;width:373px;height:140px;border:1px solid #888;background:#fff;}
+.floor-one dl dt{height:30px;line-height:30px;text-align: center;color:red;}
+.floor-one dl dd{height:27px;line-height:27px;text-align: center;border-top:1px solid #888;}
+
+/* 2楼区域*/
+.floor-two{}
+.floor-head{border:1px solid #888;background:#e3e3e3;}
+
+.floor-two .left{float:left;width:1010px;}
+.universalItems{margin-bottom:10px;}
+.universalItems .nav{border-left:1px solid #888;border-right:1px solid #888;}
+.universalItems .nav>li>a {padding:7px 15px;}
+.tab-content{padding:10px 15px;height:253px;border:1px solid #888;background:#e3e3e3;}
+.hotImg{position:relative;float:left;width:170px;height:230px;}
+.hotImg img{width:170px;height:230px;}
+.hotImg button{position:absolute;bottom:0;left:5px;width:160px;height:23px;}
+.hotItems{margin-left:180px;height:230px;}
+.hotItems li{float:left;padding:5px 10px;margin:0 36px 10px 0;width:240px;height:110px;border:1px solid #888;background:#fff;}
+.hotItems li .item-name{margin-bottom:5px;padding-left:5px;height:23px;line-height:23px;border:1px solid #888;}
+.hotItems li .item-cover{float:left;width:60px;height:67px;}
+.hotItems li .item-content{margin-left:70px;height:67px;}
+.hotItems li .item-content h6{margin-bottom:5px;padding-left:5px;height:23px;line-height:23px;border:1px solid #888;}
+.hotItems li .item-content p{padding:5px;height:40px;border:1px solid #888;}
+
+.specialActivity{margin-bottom:10px;border:1px solid #888;background:#e3e3e3;}
+.activity-head{position:relative;height:40px;line-height:40px;font-size: 15px;font-weight: bold;border-bottom:1px solid #888;}
+.activity-head button{position:absolute;right:30px;top:5px;height:30px;line-height: 30px;}
+.activity-body .sidenav{float:left;width:92px;height:340px;border-right:1px solid #888;}
+.activity-body .sidenav li{padding:20px 0 0;height:68px;border-bottom:1px solid #888;background:url(../../images/technology/index/u645.png);text-align: center;}
+.activity-body .sidecontent{margin-left:92px;padding:10px;height:340px;}
+.sidecontent .rule{margin-bottom:20px;height:160px;line-height:160px;border:1px solid #888;text-align: center;background:#fff;color:red;font-size:16px;}
+.slidebox .prev,.slidebox .outer,.slidebox .next{float:left;}
+.slidebox .prev,.slidebox .next{width:35px;height:140px;border:1px solid #888;}
+.slidebox .outer{width:825px;height:140px;overflow: hidden;}
+.outer ul{height:140px;width:1360px;}
+.outer ul li{float:left;width:150px;height:140px;margin-right:18px;background:#fff;}
+.outer ul li img{width:150px;height:110px;}
+.outer ul li h5{text-align: center;line-height:30px;}
+.prev{background:url(../../images/technology/index/prev.png) no-repeat center;}
+.next{background:url(../../images/technology/index/next.png) no-repeat center;}
+
+.technicalItems{border:1px solid #888;background:#e3e3e3;}
+.technic-head{height:40px;line-height:40px;border-bottom:1px solid #888;background:#e3e3e3;font-size: 15px;font-weight: bold;border-bottom:1px solid #888;}
+.technic-body{padding:10px 15px;}
+.technic-body .category{height:70px;}
+.technic-body .category ul{float:left;height:70px;width:875px;border-left:1px solid #888;border-top:1px solid #888;}
+.technic-body .category ul li{float:left;height:35px;line-height:35px;width:145px;background:#fff;text-align: center;border-bottom:1px solid #888;border-right:1px solid #888;}
+.technic-body .category button{float:left;margin-left:10px;width:90px;height:70px;}
+.technic-body .item-list ul li{float:left;margin-top:10px;margin-right:59px;padding:10px;width:200px;height:150px;border:1px solid #888;background:#fff;}
+.technic-body .item-list .intro{height:60px;border:1px solid #888;}
+.VIPbox{padding:15px;height:270px;border-top:1px solid #888;}
+.VIP-head{float:left;padding:60px 10px;width:50px;height:240px;background:#fff;text-align: center;}
+.VIP-list{margin-left:60px;padding-top:40px;}
+.VIP-list li{float:left;width:170px;height:160px;margin-left:40px;}
+
+.floor-two .right{float:right;width:181px;}
+.dynamic{margin-bottom:10px;height:285px;border:1px solid #888;border-top:none;}
+.dynamic h6{height:35px;line-height:35px;text-align:center;border-bottom:1px solid #888;color:red;}
+.dynamic ul{padding:45px 25px;height:249px;background:#e3e3e3;}
+.dynamic ul li{height:16px;margin-bottom:15px;}
+.dynamic ul li span{padding:0 5px;height:16px;background:#fff;}
+.recommond{margin-bottom:10px;border:1px solid #888;}
+.recommond h6{height:60px;line-height:60px;text-align: center;color:red;}
+.recommond ul li{padding-left:10px;height:45px;line-height:45px;border-top:1px solid #888;background:#e3e3e3;}
+.case{margin-bottom:10px;border:1px solid #888;}
+.case h6{height:60px;line-height:60px;text-align: center;color:red;}
+.case ul li{height:333px;border-top:1px solid #888;background:#e3e3e3;text-align: center;}
+.case ul li img{margin-top:100px;}
+
+
+/* 3楼区域*/
+.floor-three .left{position:relative;float:left;padding:15px;width:177px;height:277px;border:1px solid #888;border-top:none;background:#e3e3e3;}
+.floor-three .left img{width:100%;height:100%;}
+.floor-three .btns{position:absolute;bottom:0;left:15px;}
+.floor-three .btns button{width:145px;height:36px;line-height:36px;margin-bottom:10px;}
+.floor-three .right{margin-left:177px;height:277px;border-right:1px solid #888;border-bottom:1px solid #888;background:#e3e3e3;}
+.floor-three .menu {height:80px;}
+.floor-three .menu  li {position:relative;float:left;width:253px;height:40px;line-height:40px;text-align:center;border-bottom:1px solid #888;border-right:1px solid #888;}
+.floor-three .menu  li p{position:absolute;top:40px;left:0;width:253px;border:1px solid #888;border-top:none;}
+.floor-three .second-menu span{display:inline-block;width:125px;height:40px;line-height:40px;border-right:1px solid #888;}
+
+.floor-three .info{height:48px;margin-top:40px;}
+.floor-three .info button{margin:0 25px 0 10px;padding:0;width:35px;height:48px;vertical-align: top;}
+.floor-three .info span{display:inline-block;margin-right:45px;width:188px;height:48px;border:1px solid #888;text-align: center;line-height:48px;}
+
+/* 4楼区域*/
+.floor-four .left{float:left;padding:15px;width:177px;height:277px;border:1px solid #888;border-top:none;background:#e3e3e3;}
+.floor-four .left img{width:100%;height:100%;}
+.floor-four .right{margin-left:177px;height:277px;border-right:1px solid #888;border-bottom:1px solid #888;background:#e3e3e3;}
+.floor-four .right li{float:left;padding:10px;width:170px;height:275px;border-right:1px solid #888;background:#e3e3e3;}
+.floor-four .right li h5{height:40px;line-height:40px;margin-top:40px;text-align: center;color:red;font-weight:bold;}
+.floor-four .right li p{line-height:40px;margin-top:10px;}
+
+/* 指导单位*/
+.guidUnit{margin-bottom:10px;border:1px solid #888;background:#e3e3e3;}
+.unit-head{height:40px;line-height:40px;padding:0 15px;font-size:15px;font-weight:bold;border-bottom:1px solid #888;}
+.unit-list {padding:10px;}
+.unit-list a{display:inline-block;margin-left:10px;margin-top:15px;width:180px;height:38px;line-height:38px;text-align: center;background:#fff;border:1px solid #888;}

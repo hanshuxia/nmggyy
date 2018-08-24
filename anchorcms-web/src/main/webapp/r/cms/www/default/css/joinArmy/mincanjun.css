@@ -1,0 +1,445 @@
+@CHARSET "UTF-8";
+
+
+.content {
+	width: 1202px;
+	height: 260px;
+	border-left: 1px solid #000;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	margin: 0 auto;
+}
+
+.scroll-image {
+	float: left;
+	position: relative;
+}
+
+.news {
+	width: 490px;
+	height: 260px;
+	float: left;
+	border-left: 1px solid #000;
+	border-right: 1px solid #000;
+	background-color: #E0E0E0;
+}
+
+.fast-entry {
+	width: 330px;
+	height: 260px;
+	float: left;
+	background-color: #E0E0E0;
+}
+
+.news-title {
+	width: 490px;
+	height: 40px;
+	background-color: #E0E0E0;
+	border-bottom: 1px solid #000;
+	font-family: 'Arial Negreta', 'Arial';
+	font-weight: 700;
+	font-style: normal;
+	font-size: 13px;
+	color: #333;
+	text-align: center;
+	line-height: 40px;
+}
+
+.content-news {
+	width: 490px;
+	height: 56px;
+	background-color: #E0E0E0;
+	border-bottom: 1px solid #000;
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333;
+	text-align: left;
+	line-height: normal;
+	font-family: 'Arial Normal', 'Arial';
+}
+
+.news-list {
+	width: 490px;
+	height: 160px;
+	border-bottom: 1px solid #000;
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333;
+	text-align: left;
+	line-height: normal;
+	background-color: #e0e0e0;
+}
+
+.news-list td {
+	border: 1px solid #000;
+	height: 30px;
+}
+
+.news-title2 {
+	width: 330px;
+	height: 40px;
+	background-color: #E0E0E0;
+	border-bottom: 1px solid #000;
+	font-family: 'Arial Negreta', 'Arial';
+	font-weight: 700;
+	font-style: normal;
+	font-size: 13px;
+	color: #333;
+	text-align: center;
+	line-height: 40px;
+}
+
+.fast-entry-table {
+	width: 330px;
+	height: 220px;
+	border-bottom: 1px solid #000;
+	text-align: center;
+}
+
+.title2 {
+	width: 1202px;
+	height: 50px;
+	background-color: #E0E0E0;
+	border-left: 1px solid #000;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	margin: 0 auto;
+	font-family: 'Arial Negreta', 'Arial';
+	font-weight: 700;
+	font-size: 20px;
+	color: #FF0000;
+	text-align: left;
+	line-height: 50px;
+}
+
+.content2 {
+	width: 1202px;
+	height: 290px;
+	background-color: #E0E0E0;
+	border-left: 1px solid #000;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	margin: 0 auto;
+}
+
+.mincanjun-child {
+	width: 237px;
+	height: 290px;
+	background-color: #E0E0E0;
+	border-right: 1px solid #000;
+	float: left;
+}
+
+.child-title {
+	width: 237px;
+	height: 40px;
+	background-color: #E0E0E0;
+	border-bottom: 1px solid #000;
+	font-family: 'Arial Negreta', 'Arial';
+	font-weight: 700;
+	font-size: 14px;
+	text-align: center;
+	line-height: 40px;
+}
+
+.child-image {
+	width: 237px;
+	height: 150px;
+	background-color: #E0E0E0;
+	border-bottom: 1px solid #000;
+	text-align: center;
+	line-height: 149px;
+}
+
+.child-content {
+	width: 237px;
+	height: 98px;
+	background-color: #E0E0E0;
+	border-bottom: 1px solid #000;
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333;
+	text-align: center;
+	line-height: normal;
+}
+
+
+
+.content3 {
+	width: 1202px;
+	height: 582px;
+	background-color: #E0E0E0;
+	border-left: 1px solid #000;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	margin: 0 auto;
+}
+
+.jungongzizhi-child {
+	width: 274px;
+	height: 290px;
+	background-color: #E0E0E0;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	float: left;
+}
+
+.child-title2 {
+	width: 274px;
+	height: 40px;
+	background-color: #E0E0E0;
+	border-bottom: 1px solid #000;
+	font-family: 'Arial Negreta', 'Arial';
+	font-weight: 700;
+	font-size: 14px;
+	text-align: center;
+	line-height: 40px;
+}
+
+.child-image2 {
+	width: 274px;
+	height: 150px;
+	background-color: #E0E0E0;
+	border-bottom: 1px solid #000;
+	text-align: center;
+}
+
+.child-content2 {
+	width: 274px;
+	height: 98px;
+	background-color: #E0E0E0;
+	border-bottom: 1px solid #000;
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333;
+	text-align: center;
+	line-height: normal;
+}
+
+.child-image3 {
+	width: 275px;
+	height: 100px;
+	background-color: #E0E0E0;
+	border-bottom: 1px solid #000;
+	text-align: center;
+}
+
+.child-content3 {
+	width: 275px;
+	height: 145px;
+	border-right: 1px solid #E0E0E0;
+}
+
+.child-content3 td {
+	height: 27px;
+	background-color: #E0E0E0;
+	border-bottom: 1px solid #000;
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333;
+	text-align: left;
+	line-height: normal;
+}
+
+.xuqiuduijie-content {
+	width: 1202px;
+	height: 700px;
+	background-color: #E0E0E0;
+	border-left: 1px solid #000;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	margin: 0 auto;
+}
+
+.xuqiuduijie-child {
+	width: 600px;
+	height: 350px;
+	background-color: #E0E0E0;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	float: left;
+}
+
+.xuqiuduijie-title {
+	width: 600px;
+	height: 50px;
+	background-color: #E0E0E0;
+	border-bottom: 1px solid #000;
+	font-family: 'Arial Negreta', 'Arial';
+	font-weight: 700;
+	font-size: 16px;
+	text-align: left;
+	line-height: 50px;
+}
+
+.xuqiuduijie-list {
+	width: 600px;
+	height: 299px;
+	border-collapse: collapse;
+	border: 1px solid #000;
+}
+
+.xuqiuduijie-list-title td {
+	width: 104px;
+	height: 40px;
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.xuqiuduijie-list-content {
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333;
+	line-height: normal;
+}
+
+.xuqiuduijie-list-content td {
+	border: 1px solid #000;
+}
+
+.tuijie-content {
+	width: 1202px;
+	height: 320px;
+	background-color: #E0E0E0;
+	margin: 0 auto;
+	border-left: 1px solid #000;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+}
+
+.tuijie-content1 {
+	width: 653px;
+	height: 320px;
+	background-color: #E0E0E0;
+	border-right: 1px solid #000;
+	float: left;
+}
+
+.tuijie-content1-title {
+	width: 653px;
+	height: 36px;
+	border-bottom: 1px solid #000;
+	font-family: 'Arial Negreta', 'Arial';
+	font-weight: 700;
+	font-size: 16px;
+	color: #000;
+	text-align: left;
+	line-height: 36px;
+}
+
+.tuijie-content1-nav {
+	width: 651px;
+	height: 102px;
+}
+
+.tuijie-content1-table {
+	width: 600px;
+	height: 90px;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+.tuijie-content1-table td {
+	width: 50px;
+	height: 50px;
+	border: 1px solid #000;
+}
+
+.tuijie-content1-list {
+	width: 600px;
+	height: 170px;
+	margin-top: 10px;
+}
+
+.tuijie-content1-table2 {
+	width: 600px;
+	background-color: #fff;
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333;
+	line-height: normal;
+	border-collapse: collapse;
+	line-height: 22px;
+	font-family: 'Arial Normal', 'Arial';
+}
+
+.tuijie-content2 {
+	width: 547px;
+	height: 320px;
+	background-color: #E0E0E0;
+	border-right: 1px solid #000;
+	float: left;
+}
+
+.tuijie-content2-title {
+	width: 547px;
+	height: 36px;
+	border-bottom: 1px solid #000;
+	font-family: 'Arial Negreta', 'Arial';
+	font-weight: 700;
+	font-size: 16px;
+	color: #000;
+	text-align: left;
+	line-height: 36px;
+}
+
+.tuijie-content2-list {
+	width: 547px;
+	height: 270px;
+	margin-top: 10px;
+}
+
+.tuijie-content2-table2 {
+	width: 520px;
+	margin-left: 15px;
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333;
+	text-align: center;
+	line-height: 43px;
+	font-family: 'Arial Normal', 'Arial';
+}
+
+.tuijie-content2-table2 td {
+	border: 1px solid #000;
+}
+
+.success-content {
+	width: 1202px;
+	height: 180px;
+	background-color: #E0E0E0;
+	border-left: 1px solid #000;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	margin: 0 auto;
+}
+
+.success-table {
+	width: 1100px;
+	height: 170px;
+	margin-left: 50px;
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	color: #333;
+	text-align: center;
+	line-height: normal;
+}
+

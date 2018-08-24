@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>用户中心-电子签章申请编辑</title>
+    <link rel="shortcut  icon" type="image/x-icon" href="/${res}/resources/images/favicon.ico" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/releasePower.css"/>
+
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <script type="text/javascript" src="/thirdparty/jquery-placeholder/placeholder-ie9.js"></script>
+    <![endif]-->
+
+    <link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="${base}/res/common/js/jquery.ext.js" type="text/javascript"></script>
+    <script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/swfupload.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/swfupload.queue.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/fileprogress.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/swfupload/handlers.js" type="text/javascript"></script>
+    <link href="${base}/thirdparty/swfupload/process.css" rel="stylesheet" type="text/css"/>
+
+
+    <!--添加表单校验-->
+    <script src="${base}/res/common/js/jquery.validate.js" type="text/javascript"></script>
+    <script src="${base}/res/common/js/messages_zh.js" type="text/javascript"></script>
+    <!--自己写校验方法-->
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/validateCheck.js"></script>
+    <!--日期插件-->
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/releasePower.css"/>
+    <!--级联菜单相关js-->
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/commonDict.js"></script>
+    <iframe name="hiddenIframe" frameborder="0" border="0" style="display:none;width:0px;height:0px;"></iframe>
+
+    <script type="text/javascript">
+        $.validator.methods.leafChannel = function (value, element, param) {
+            var i = element.selectedIndex;
+            return $(element.options[i]).attr("class") != "sel-disabled";
+        };
+    </script>
+</head>
+<body>
+<div class="content wrapper">
+    <form id="release_form" action="/member/cfca_seal_edit.jspx" method="post">
+        <div class="servicePower" style="margin-bottom: 20px">
+            <div class="column wrapper">
+                <span class="head">电子签章申请信息</span> <span class="tips"><i>*</i>&nbsp;为必填项</span></div>
+            <!--<div class="service-content wrapper">
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;所属企业：</label>
+                    <input class="power" type="text" id="companyName" name="companyName" value=${sCfcaEntity.companyName?default('')}>
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;组织机构代码：</label>
+                    <input class="power" type="text" id="orgNo" name="orgNo" value=${sCfcaEntity.orgNo?default('')}>
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;工商注册号：</label>
+                    <input class="power" type="text" id="icrNo" name="icrNo" value=${sCfcaEntity.icrNo?default('')}>
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;税务登记号：</label>
+                    <input class="power" type="text" id="taxId" name="taxId" value=${sCfcaEntity.taxId?default('')}>
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;对公账号：</label>
+                    <input class="power" type="text" id="broughtNo" name="broughtNo" value=${sCfcaEntity.broughtNo?default('')}>
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;印章内容：</label>
+                    <input class="power" type="text" id="sealCon" name="sealCon" value=${sCfcaEntity.sealCon?default('')}>
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;统一社会信用代码：</label>
+                    <input class="power" type="text" id="creditCode" name="creditCode" value=${sCfcaEntity.creditCode?default('')}>
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;法人姓名：</label>
+                    <input class="power" type="text" id="legalName" name="legalName" value=${sCfcaEntity.legalName?default('')}>
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;法人代表身份证号：</label>
+                    <input class="power" type="text" id="legalId" name="legalId" value=${sCfcaEntity.legalId?default('')}>
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;开户银行：</label>
+                    <input class="power" type="text" id="bank" name="bank" value=${sCfcaEntity.bank?default('')}>
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;申请日期：</label>
+                      <span>
+                      <input type="text" id="applyDt" name="applyDt" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate"  value="${sCfcaEntity.applyDt?default('')}">
+                      </span>
+                </div>
+                <div class="inputs commentDiv" id="distpicker1" data-toggle="distpicker">
+                    <label><i>*</i>&nbsp;所在地：</label>
+                    <select class="resourceAddInput" id="addrProvince" name="addrProvince" style="width: auto;" data-province="${sCfcaEntity.addrProvince?default('')}"></select>
+                    <select class="codeInput" id="addrCity" name="addrCity" style="width: auto;" data-city="${sCfcaEntity.addrCity?default('')}"></select>
+                    <select class="codeInput" id="addrCounty" name="addrCounty" style="width: auto;" data-district="${sCfcaEntity.addrCounty?default('')}"></select>
+                    <input type="text" placeholder="街道信息" name="addrStreet" value="${sCfcaEntity.addrStreet?default('')}">
+                </div>
+            </div>-->
+            <div class="service-content wrapper">
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;公司名称：</label>
+                    <input class="power" type="text" id="companyName" name="companyName"
+                           value=${sCfcaEntity.companyName?default('')}>
+                    <input class="power space" type="text" id="companyId" name="companyId"
+                           value="${(sCfcaEntity.companyId)?default('')}" hidden="true">
+                </div>
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;法人姓名：</label>
+                    <input class="power" type="text" id="legalName" name="legalName"
+                           value=${sCfcaEntity.legalName?default('')}>
+                </div>
+
+
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;法人身份证号：</label>
+                    <input class="power" type="text" id="legalId" name="legalId"
+                           value=${sCfcaEntity.legalId?default('')}>
+                </div>
+
+                <div class="inputs">
+                    <label><i>*</i>&nbsp;印章内容：</label>
+                    <input class="power" type="text" id="sealContent" name="sealContent"
+                           value=${(sCfcaEntity.sealCon?default)('')}>
+                </div>
+            </div>
+
+            <!--联系信息-->
+            <div class="servicePower" style="margin-bottom: 20px">
+                <div class="column wrapper"><span class="head">联系信息</span> <span class="tips"><i>*</i>&nbsp;为必填项</span>
+                </div>
+                <div class="contact-content wrapper">
+                    <div class="inputs">
+                        <label><i>*</i>&nbsp;联系人：</label>
+                        <input class="codeInput" id="contact" name="contact" type="text"
+                               value=${sCfcaEntity.contact?default('')} required>
+                    </div>
+                    <div class="inputs">
+                        <label><i>*</i>&nbsp;联系电话：</label>
+                        <input class="codeInput phone" id="mobile" name="mobile" type="text" placeholder="手机号码"
+                               value=${sCfcaEntity.mobile?default('')} required data-rule-phone="true">
+                    </div>
+                    <div class="inputs commentDiv" id="distpicker1" data-toggle="distpicker">
+                        <label><i>*</i>&nbsp;所在地区：</label>
+                        <select class="resourceAddInput" id="addrProvince" name="addrProvince" style="width: auto;" data-province="${sCfcaEntity.addrProvince?default('')}"></select>
+                        <select class="codeInput" id="addrCity" name="addrCity" style="width: auto;" data-city="${sCfcaEntity.addrCity?default('')}"></select>
+                        <select class="codeInput" id="addrCounty" name="addrCounty" style="width: auto;" data-district="${sCfcaEntity.addrCounty?default('')}"></select>
+                        <input type="text" placeholder="街道信息" name="addrStreet" value="${sCfcaEntity.addrStreet?default('')}">
+                    </div>
+                    <div class="inputs">
+                        <label><i></i>&nbsp;emali：</label>
+                        <input class="codeInput email" id="email" name="email" type="text" maxlength="59"
+                               value=${sCfcaEntity.email?default('')}>
+                    </div>
+                </div>
+
+            </div>
+            <!--<div class="message">
+                <p>优质的信息更能得到卖家的青睐，以下方面建议您发布前可以再检查一下：</p>
+                <p>1、选择准确的类目；</p>
+                <p>2、销售产品种类中包含主题关键词；</p>
+                <p>3、尽可能地完善公司信息及发货信息；</p>
+                <p>4、上传清晰的合同复印件。</p>
+            </div>-->
+            <div class="release-button">
+                <button class="btn submit" type="button" onclick="grandSubCheck()">提交</button>
+                <button type="button" class="btn cancel" onclick="saveConfirm()">保存到草稿</button>
+            </div>
+            <input type="hidden" id="status" name="status" value="2">
+            <input type="hidden" id="id" name="applyId" value="${id!}">
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="${base}/thirdparty/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="${base}/thirdparty/ueditor/ueditor.all.js"></script>
+<script charset="utf-8" src="/r/cms/www/default/resources/js/mapDistPicker/distpicker.data.js"
+        type="text/javascript"></script>
+<script charset="utf-8" src="/r/cms/www/default/resources/js/mapDistPicker/distpicker.js"
+        type="text/javascript"></script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8" src="${base}/thirdparty/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/breakingNews.js"></script>
+
+<!--Gao JN添加的js-->
+<script>
+    function validform(){
+        /*关键在此增加了一个return，返回的是一个validate对象，这个对象有一个form方法，返回的是是否通过验证*/
+        return $("#release_form").validate();
+    }
+
+    // 设置文本框不可编辑
+    function setReadonly() {
+        $("input").attr("readonly", "readonly"); // 将所有文字输入框设置为只读
+        //   $("input").css("border","0");
+        $("select").attr("disabled", "true"); // 禁用所有的下拉菜单
+        $("input[type=radio]").attr("disabled", "true"); // 禁用所有的单选按钮
+        $("#applyDt").removeAttr("onclick");
+    }
+
+    $(document).ready(function (e) {
+    });
+
+    // 返回
+    function back() {
+        history.go(-1);
+    }
+    function grandSubCheck(){
+        if(validform().form()) {
+            $("#status").val("2");
+            if (confirm("确认发布？")) {
+                $("#release_form").submit();
+            }
+        }
+    }
+    function saveConfirm(){
+//        var result1 = checkEdit();
+        if(validform().form()){
+            $("#status").val("1");
+            if(confirm("是否保存到草稿？")){
+                $("#release_form").submit();
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

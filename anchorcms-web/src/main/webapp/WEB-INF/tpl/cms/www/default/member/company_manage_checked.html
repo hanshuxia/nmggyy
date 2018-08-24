@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>企业信息审核</title>
+    <link rel="shortcut  icon" type="image/x-icon" href="/${res}/resources/images/favicon.ico" media="screen"  />
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/list.css"/>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script><!--添加表单校验-->
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/list.js"></script>
+    <script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!--<script src="${base}/res/common/js/jquery.validate.js" type="text/javascript"></script>-->
+    <!--<script src="${base}/res/common/js/messages_zh.js" type="text/javascript"></script>-->
+    <!--&lt;!&ndash;自己写校验方法&ndash;&gt;-->
+    <!--<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/validateCheck.js"></script>-->
+
+    <!--日期插件-->
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            _onload();
+
+            //点击状态标签刷新列表
+            $(document).ready(function () {
+                //全选框中的全选框
+                $("#checkAll").click(function () {
+                    $(":checkbox[name='checkone']").prop("checked", this.checked);
+                });
+                $("input[name='checkone']").click(function () {
+                    $("#checkAll").prop("checked", $("input[name='checkone']").length == $("input[name='checkone']:checked").length);
+                });
+                下面有tab页的代码
+            });
+        });
+        function passAll(){
+                var demandIdsStr="";
+                $("input[name='checkone']:checked").each(function(){
+                    demandIdsStr+="'";
+                    demandIdsStr+=($(this).val());
+                    demandIdsStr+="',";
+                });
+
+                if(demandIdsStr == ""){
+                    ui.alertFail("至少选择一条信息，请选择");
+                    return false;
+                }
+                if (confirm("请确定是否全部通过？")){
+                    $('.submit.oppose').attr("disabled",true);
+                    $('.submit.pass').attr("disabled",true);
+                    location.href="/member/company_revokeALL.jspx?ids="+demandIdsStr+"&nextUrl=/member/companies_checked.jspx?status="+$('#status').val()+"&relstatus=3";
+                }
+        }
+        function rejectAll(){
+                var demandIdsStr="";
+                $("input[name='checkone']:checked").each(function(){
+                    demandIdsStr+="'";
+                    demandIdsStr+=($(this).val());
+                    demandIdsStr+="',";
+                });
+
+                if(demandIdsStr == ""){
+                    ui.alertFail("至少选择一条信息，请选择");
+                    return false;
+                }
+                if(confirm("请确定是否全部驳回？")){
+                    $('.submit.oppose').attr("disabled",true);
+                    $('.submit.pass').attr("disabled",true);
+                    var backReason=encodeURI(encodeURI($("#backreason").val()));//获取退回原因
+                    location.href="/member/company_revokeALL.jspx?ids="+demandIdsStr+"&nextUrl=/member/companies_checked.jspx?status="+$('#status').val()+"&relstatus=0&backReason="+backReason;
+                }
+        }
+    </script>
+    <script>
+        //表单验证
+        //        $().ready(function() {
+        //            $("#tableForm").validate()
+        //        });
+        $(document).ready(function(){
+            $('#release_form input:lt(5)').each(function(){
+                var pickId = "#"+$(this).attr("name")+"Input";
+                $(pickId).val($(this).val());
+            })
+            $('#currentPageNo').text($('#pageNo').val());
+            $('#pageSelector').change(function(){
+                toPageSubmit($(this).val());
+            })
+        })
+        function searchSubmit(){
+            $('#pageNo').val("");
+            $('#release_form input:lt(5)').each(function(){
+                var pickId = "#"+$(this).attr("name")+"Input";
+                $(this).val($(pickId).val());
+            });
+            $('#release_form').submit();
+        }
+        function toPageSubmit(toPageNum){
+            $('#pageNo').val(toPageNum);
+            $('#release_form').submit();
+        }
+    </script>
+    <!--董学成添加-->
+    <script type="text/javascript">
+        //点击状态标签刷新列表
+        $(document).ready(function() {
+            $(".switchBtn li").click(function(){
+                if($(this).attr("id") == "all"){
+                    $("#status").val("");
+                }
+                if($(this).attr("id") == "nominate"){
+                    $("#status").val("3")
+                }
+                if($(this).attr("id") == "unnominate"){
+                    $("#status").val("2")
+                }
+                if($(this).attr("id") == "backNow"){
+                    $("#status").val("0")
+                }
+                $("#tableForm").submit();
+            });
+            _onload();
+        });
+
+        //加载页面标签状态
+        function _onload(){
+            if($("#status").val() == "") {//全部
+                $("#all").addClass("current");
+                $("[name=back]").hide();
+                $("[name=go]").hide();
+            }
+            if($("#status").val() == "3"){//已通过
+                $("#nominate").addClass("current");
+                $("[name=go]").hide();
+            }
+            if($("#status").val() == "2"){//待审核
+                $("#unnominate").addClass("current");
+            }
+            if($("#status").val() == "0"){//已驳回
+                $("#backNow").addClass("current");
+                $(".backReason").show();
+                $("[name=back]").hide();
+            }
+        };
+
+
+    </script>
+</head>
+<body>
+<div class="content wrapper clearfix">
+    <!--遮罩-->
+    <div id="goodcover1"></div>
+    <div class="head wrapper">
+        <a href="#" class="current">企业列表</a>
+        <!--<a href="/member/company_edit_admin.jspx" class="btn" target="mainFrame">添加企业</a>-->
+    </div>
+    <div class="main">
+        <form id="tableForm" action="/member/companies_checked.jspx" method="post">
+            <div class="searchBox">
+                <!--<label>企业编号：</label><input type="text" id="companyCode" name="companyCode" value="${companyCode?default('')}" >-->
+                <label>企业名称：</label><input type="text" id="companyName" name="companyName" value="${companyName?default('')}">
+                <button class="submit">查询</button>
+                <br>
+                [#if status??]
+                [#switch status]
+                [#case '1']
+                <input class="submit  oppose" type="button" style="float:none; width: 100px;" id="zwbhbutton" value="置为驳回" onclick="showXss()"/>
+                [#break]
+                [#case '0']
+                <input class="submit pass" type="button" style="float: none; width: 100px;" id="zwtgbutton" value="置为通过" onclick="passAll()"/>
+                <input class="submit  oppose" type="button" style="float:none; width: 100px; margin-left:15px;" id="zwbhbutton" value="置为驳回" onclick="showXss()"/>
+                [#break]
+                [#default]
+                <input class="submit pass" type="button" style="float: none; width: 100px;" id="zwtgbutton" value="置为通过" onclick="passAll()"/>
+                <input class="submit  oppose" type="button" style="float:none; width: 100px; margin-left:15px;" id="zwbhbutton" value="置为驳回" onclick="showXss()"/>
+                [/#switch]
+                [#else]
+                <input class="submit pass" type="button" style="float: none; width: 100px;" id="zwtgbutton" value="置为通过" onclick="passAll()"/>
+                <input class="submit  oppose" type="button" style="float:none; width: 100px; margin-left:15px;" id="zwbhbutton" value="置为驳回" onclick="showXss()"/>
+                [/#if]
+            </div>
+            <div class="switchBtn">
+                <ul>
+                    <li id="unnominate"><span>待审核</span></li>
+                    <li id="nominate"><span>已通过</span></li>
+                    <li id="backNow"><span>已驳回</span></li>
+                    <li id="all"><span>全部</span></li>
+                    <input type="text" id="status" name="status" hidden="hidden" value="${status?default('')}">
+                </ul>
+            </div>
+            <div class="tableDiv wrapper">
+                <table cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" id="checkAll"/></th>
+                        <!--<th>企业编号</th>-->
+                        <th>企业名称</th>
+                        <th>企业性质</th>
+                        <th>企业领域</th>
+                        <th>注册时间</th>
+                        <th>审核时间</th>
+                        <th class="backReason" style="display: none">退回原因</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    [#if coPagination.list?size gt 0]
+                    [#list coPagination.list as c]
+                    <tr>
+                        <td><input type="checkbox" name="checkone" value="${c.companyId!}"/></td>
+                        <!--<td style="width: 250px;padding-left:20px"><a class="show-title" title="${c.companyId!}">[@text_cut s=c.companyId! len='10' append='...' /]</a></td>-->
+                        <td style="width: 250px;padding-left:20px"><a class="show-title" title="${c.companyName!}">[@text_cut s=c.companyName! len='15' append='...' /]</a></td>
+                        <td style="width: 170px;padding-left:10px"><a class="show-title" title="${c.companyType!}">[@text_cut s=c.companyType! len='10' append='...' /]</a></td>
+                        <td style="width: 170px;padding-left:10px"><a class="show-title" title="${c.mainProduct!}">[@text_cut s=c.mainProduct! len='10' append='...' /]</a></td>
+                        <td style="width: 170px;padding-left:10px"><a class="show-title" title="${c.createDt!}">${c.createDt?default("")}</a></td>
+                        <td style="width: 170px;padding-left:10px"><a class="show-title" title="${c.createDt!}">${c.releaseDt?default("无")}</a></td>
+                        <td title="${c.backReason!}" class="backReason" style="display: none">[@text_cut s=c.backReason!'' len='10' append='...' /]</td>
+                        <td>
+                            <a class="link" href="/xtzzNlczs/xtzz_synergy_company_preview.jspx?id=${c.companyId}" target="_blank">预览</a>
+                            <a class="link" href="/xtzzNlczs/xtzz_synergy_company_detail.jspx?id=${c.companyId}">明细</a>
+                            <a class="link" name="go" onclick="go('${c.companyId}')" >通过</a>
+                            <a class="link" name="back" onclick="showXS('${c.companyId}')" >驳回</a>
+                            <!--<a class="link" name="editor" href="/member/company_edit_admin.jspx?companyId=${c.companyId}" target="mainFrame" >编辑</a>-->
+                            <input hidden="hidden"  value="${c.companyId}">
+                        </td>
+                    </tr>
+                    [/#list]
+                    [#else]
+                    <tr>
+                        <td colspan="6"><h4>暂无数据</h4></td>
+                    </tr>
+                    [/#if]
+                    </tbody>
+                </table>
+            </div>
+            <input type="hidden" name="pageNo"/>
+            <div  class="page clearfix">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="left" class="pn-sp">
+                            每页 ${coPagination.pageSize} 条&nbsp;
+                            <input class="first" type="button" onclick="_gotoPage('1');"[#if coPagination.firstPage] disabled="disabled"[/#if]/>
+                            <input class="prev" type="button" onclick="_gotoPage('${coPagination.prePage}');"[#if coPagination.firstPage] disabled="disabled"[/#if]/>
+                            <input type="text" value=${coPagination.pageNo} id="_goPs" onfocus="this.select();" onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>/${coPagination.totalPage}
+                            <input class="next" type="button" onclick="_gotoPage('${coPagination.nextPage}');"[#if coPagination.lastPage] disabled="disabled"[/#if]/>
+                            <input class="last" type="button" onclick="_gotoPage('${coPagination.totalPage}');"[#if coPagination.lastPage] disabled="disabled"[/#if]/>&nbsp;
+                            <button id="_goPage" class="ok" type="button" onclick="_gotoPage($('#_goPs').val());"[#if coPagination.totalPage==1] disabled="disabled"[/#if]>GO</button>
+                            共 ${coPagination.totalCount} 条&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <script type="text/javascript">
+                function _gotoPage(pageNo) {
+                    if(!/^[0-9]*[1-9][0-9]*$/.test(pageNo)){ui.alertFail("页码必须为正整数！");return false;}
+                    try{
+                        var tableForm = document.getElementById("tableForm");
+                        $("input[name=pageNo]").val(pageNo);
+                        tableForm.action="/member/companies_checked.jspx";
+                        tableForm.onsubmit=null;
+                        tableForm.submit();
+                    } catch(e) {
+                        ui.alertFail('_gotoPage(pageNo)方法出错');
+                    }
+                }
+            </script>
+            <input hidden="hidden" name="id" id="companyId" >
+            <input hidden="hidden" name="nextUrl" value="/member/companies_checked.jspx">
+            <input hidden="hidden" id="relstatus" name="relstatus">
+            <input hidden="hidden" id="submitReason" name="backReason">
+        </form>
+    </div>
+</div>
+
+<!--//驳回输入框-->
+<div class="window" id="xdWindows" style="width: 400px;height: 200px;left: 60%;top:30%;">
+    <div class="noteTop">
+        退回原因
+        <img id="xdTableCloseWindows" src="/${res}/resources/images/abilityPreview/close.png" onclick="hideXS()">
+    </div>
+    <textarea id="backreason" style="width: 100%;height: 130px"></textarea>
+    <input type="hidden" id="abilityId">
+    <div class="release-button" style="text-align: center;margin-top: 5px">
+        <button id="OK" class="btn" type="button"  style="background-color: #3077B9;color: #ffffff">确认</button>
+        <button class="btn" type="button" onclick="hideXS()" style="background-color: #3077B9;color: #ffffff">取消</button>
+    </div>
+</div>
+<script type="text/javascript">
+    //批量驳回使用
+    function showXss() {
+        var demandIdsStr="";
+        $("input[name='checkone']:checked").each(function(){
+            demandIdsStr+="'";
+            demandIdsStr+=($(this).val());
+            demandIdsStr+="',";
+        });
+
+        if(demandIdsStr == ""){
+            ui.alertFail("至少选择一条信息，请选择");
+            return false;
+        }else{
+            $("#xdWindows").show();
+            $("#goodcover1").show();
+            $("#abilityId").val(abilityId);
+            $("#OK").click(function () {
+                if( $("#backreason").val().length<450){
+                    rejectAll();
+                }else{
+                    ui.alertFail("退回原因超过字数限制，请重新填写");
+                }
+            });
+        }
+    }
+
+    //单个驳回使用
+    function showXS(companyId){
+        $("#xdWindows").show();
+        $("#goodcover1").show();
+        $("#abilityId").val(companyId);
+        $("#OK").click(function(){
+            if( $("#backreason").val().length<450){
+                $("#companyId").val(companyId);
+                if(confirm("请确定是否驳回？")) {
+                    $("#relstatus").val("0")
+                    $("#submitReason").val($("#backreason").val());
+                    $("#tableForm").attr("action", "/member/company_back.jspx");
+                    $("#tableForm").submit();
+                }
+            }else{
+                ui.alertFail("退回原因超过字数限制，请重新填写");
+            }
+        });
+    }
+
+    function hideXS(){
+        $("#xdWindows").hide();
+        $("#goodcover1").hide();
+        $("#abilityId").val("");//清空对应的能力记录的id的值
+        $("#backreason").val("");//清空原因输入框中的值
+        $('#OK').unbind("click")
+    }
+
+    //推荐
+    function go(companyId){
+        if(confirm("请确定是否通过？")) {
+            $("#companyId").val(companyId);
+                $("#relstatus").val("3")
+                $("#submitReason").val(null);
+                $("#tableForm").attr("action", "/member/company_back.jspx");
+                $("#tableForm").submit();
+        }
+    }
+</script>
+<script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta  http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>头脑风暴详情</title>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/abilityPreview.css"/>
+    <style>
+    .wrapper {width: 1150px;margin: 0 auto;}
+    .readonly{background: #EBEBE4;color: #91918e;display: none;}
+</style>
+
+    <!--[if lt IE 9]>
+    <script src="/${res}/js/html5shiv.min.js"></script>
+    <script src="/${res}/js/respond.min.js"></script>
+    <![endif]-->
+    <script>
+        function ajax1() {
+            if ($("#comments-text").val().length < 10) {
+                alert("输入内容不得少于10个字符");
+            }
+            else {
+                $.ajax({
+                    cache: true,
+                    type: "POST",
+                    url: "/comment.jspx",
+                    data: $('#commentForm').serialize(),// 你的formid
+                    async: false,
+                    error: function (request) {
+                        alert("Connection error");
+                    },
+                    success: function (data) {
+                        var data = eval(data);
+                        if (data.status == 3) {
+                            alert("对不起，您没有权限，请先登录");
+                            window.location.href = "/login.jspx"
+                        } else if (data.status == 1){
+                            alert("对不起，您的验证码错误，请重新输入!");
+                            window.location.href = window.location.href;
+                        } else if (data.success == true) {
+                            alert("提交成功");
+                            window.location.href = window.location.href;
+                        }
+                        else {
+                            alert("提交失败，请稍候再试！")
+                        }
+                    }
+                });
+            }
+        }
+        function ajax2(e) {
+            var $a = $(e).parent().parent();
+            if ($a.children("textarea").css("display") == "none") {
+                $(".reply-text").css("display","none");
+                $a.children("textarea").show();
+            }
+            else {
+                if ($a.find("textarea").val().length < 10) {
+                    alert("内容不能少于10个字符");
+                }
+                else {
+
+                    $.ajax({
+                        cache: true,
+                        type: "POST",
+                        url: "/comment.jspx",
+                        data: $(e).parent().serialize(),// 你的formid
+                        async: false,
+                        error: function (request) {
+                            alert("Connection error");
+                        },
+                        success: function (data) {
+                            var data = eval(data);
+                            if (data.status == 3) {
+                                alert("对不起，您没有权限，请先登录");
+                                window.location.href = "/login.jspx"
+                            } else if (data.status == 1){
+                                alert("对不起，您的验证码错误，请重新输入!");
+                                window.location.href = window.location.href;
+                            } else if (data.success == true) {
+                                alert("提交成功");
+                                window.location.href = window.location.href;
+                            } else {
+                                alert("提交失败，请稍候再试！")
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+[#include "../include/header_icloud.html" /]
+<!--content start-->
+<div class="content wrapper clearfix">
+    <div class="searchIndex1">
+        <div class="search-top">
+            <span><a href="/" target="_blank">${channel.parent.name}</a>&nbsp;&gt;&nbsp;<a href="/tnfb/index.jhtml" target="_blank">头脑风暴</a>&nbsp;&gt;&nbsp;<a href="/hdzq/brain_storm_preview.jspx?id=${content.contentId!}">头脑风暴详情</a></span>
+        </div>
+    </div>
+    <div class="notice">
+        <div class="noticeTitle">
+            <p class="titleName">${content.contentExt.title!}</p>
+            <div class="noticeSource">
+                <p class="sourceTitle title">发布者：<span style="color: black">${content.user.username!}</span></p>
+                <p class="sourceTitle">发布时间：<span style="color: black">${content.releaseDate?string("yyyy-MM-dd")}</span></p>
+            </div>
+        </div>
+        <div class="noticeInfo">
+            <p class="noticeDesc">
+                ${content.contentTxt.txt!}
+            </p>
+        </div>
+    </div>
+</div>
+[#include "../include/footer_icloud.html" /]
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+</body>
+</html>

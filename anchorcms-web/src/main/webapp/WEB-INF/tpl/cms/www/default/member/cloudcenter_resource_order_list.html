@@ -1,0 +1,373 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${site.siteName}</title>
+    <link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/list.css"/>
+    <link href="/${res}/css/logistics/layer.css" type="text/css" rel="stylesheet">
+    <!--添加表单校验-->
+    <script src="${base}/res/common/js/jquery.validate.js" type="text/javascript"></script>
+    <script src="${base}/res/common/js/messages_zh.js" type="text/javascript"></script>
+    <!--自己写校验方法-->
+    <script type="text/javascript" charset="utf-8" src="/${res}/resources/js/validateCheck.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".backReason").hide();
+            _onload();
+        });
+        //点击状态标签刷新列表
+        $(document).ready(function () {
+
+            //全选框中的全选框
+            $("#checkAll").click(function () {
+                $(":checkbox[name='checkone']").prop("checked", this.checked);
+            });
+            $("input[name='checkone']").click(function () {
+                $("#checkAll").prop("checked", $("input[name='checkone']").length == $("input[name='checkone']:checked").length);
+            });
+
+
+            $(".switchBtn li").click(function () {
+                if ($(this).attr("id") == "all") {
+                    $("#selectedStatus").val("");
+                    $("#statusType").val("");
+                } else if ($(this).attr("id") == "statusType0") {
+                    $("#statusType").val("0");
+                } else if ($(this).attr("id") == "statusType1") {
+                    $("#statusType").val("1");
+                } else if ($(this).attr("id") == "statusType2") {
+                    $("#statusType").val("2");
+                } else if ($(this).attr("id") == "statusType3") {
+                    $("#statusType").val("3");
+                } else if ($(this).attr("id") == "statusType5") {
+                    $("#statusType").val("5");
+                } else if ($(this).attr("id") == "statusType6") {
+                    $("#statusType").val("6");
+                } else if ($(this).attr("id") == "statusType7") {
+                    $("#statusType").val("7");
+                }
+                $("#tableForm").submit();
+            });
+        });
+        //加载页面标签状态
+        function _onload() {
+            if ($("#statusType").val() == "") {
+                $("#all").addClass("current");
+                $(".hetong").hide();
+                $("#status").hide();
+            } else if ($("#statusType").val() == "0") {
+                $("#statusType0").addClass("current");
+                $(".hetong").hide();
+                $("#status").hide();
+            } else if ($("#statusType").val() == "1") {
+                $("#statusType1").addClass("current");
+            } else if ($("#statusType").val() == "2") {
+                $("#statusType2").addClass("current");
+            } else if ($("#statusType").val() == "3") {
+                $("#statusType3").addClass("current");
+                $(".backReason").show();
+            } else if ($("#statusType").val() == "5") {
+                $("#statusType5").addClass("current");
+            }else if ($("#statusType").val() == "6") {
+                $("#statusType6").addClass("current");
+            }else if ($("#statusType").val() == "7") {
+                $("#statusType7").addClass("current");
+            }
+        };
+
+    </script>
+    <script type="text/javascript">
+        //表单验证
+        $().ready(function () {
+            $("#tableForm").validate()
+        });
+    </script>
+    <!--[if lt IE 9]>
+    <script src="/${res}/js/html5shiv.min.js"></script>
+    <script src="/${res}/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div id="goodcover1"></div>
+<div id="waitTextr" style="display:none;position: absolute;left: 400px;z-index: 2000;color: #ffffff;"><span style="font-size: 30px;color:#ffffff">正在签章，请等待......</span></div>
+<div class="content wrapper clearfix">
+    <div class="head wrapper">
+        <a href="${base}/member/cloud_resource_order_list.jspx" class="current">云资源订单列表</a>
+    </div>
+    <div class="main">
+        <form id="tableForm" action="cloud_resource_order_list.jspx" method="post">
+            <div class="searchBox">
+                <label>订单号：</label>
+                <input name="orderNo" id="orderNo" value="${orderNo!}">
+                <button class="submit">查询</button>
+            </div>
+
+            <div class="switchBtn">
+                <ul>
+                    <li id="all"><span>全部</span></li>
+                    <li id="statusType0"><span>已下单</span></li>
+                    <li id="statusType1"><span>合同待确认</span></li>
+                    <li id="statusType6"><span>待需求方签章</span></li>
+                    <li id="statusType7"><span>待服务方签章</span></li>
+                    <li id="statusType2"><span>待付款</span></li>
+                    <li id="statusType3"><span>已付款</span></li>
+                    <li id="statusType5"><span>退款</span></li>
+                </ul>
+            </div>
+            <div class="tableDiv wrapper">
+                <table cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>订单号</th>
+                        <th>支付金额(元)</th>
+                        <th>购买人</th>
+                        <th>下单日期</th>
+                        <th>状态</th>
+                        <th class="" id="status">合同信息</th>
+                        <th class="backReason" style="width: 200px;">拒绝退款原因</th>
+                        <th>管理</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    [#if pagination.list?size gt 0]
+                    [#list pagination.list as c]
+                    <tr>
+                        <td>${c.orderNo!}</td>
+                        <td>${c.amount!}</td>
+                        <td>${(c.payUser.username)!}</td>
+                        <td>${(c.createDT)!}</td>
+                        [#if !c.state??]
+                        <td></td>
+                        [#else]
+                        [#switch c.state]
+                        [#case 0]
+                        <td>待确认</td>
+                        [#break]
+                        [#case 1]
+                        <td class="">合同待确认</td>
+                        [#break]
+                        [#case 2]
+                        <td class="">待付款</td>
+                        [#break]
+                        [#case 3]
+                        <td>[#if c.isOnline??]线下付款[#else]已付款
+                            [/#if]</td>
+                        [#break]
+                        [#case 30]
+                        <td class="">退款中</td>
+                        [#break]
+                        [#case 31]
+                        <td class="">已退款</td>
+                        [#break]
+                        [#case 32]
+                        <td class="">退款失败</td>
+                        [#break]
+                        [#case 4]
+                        <td class="">已收货</td>
+                        [#break]
+                        [#case 40]
+                        <td class="">已结算</td>
+                        [#break]
+                        [#case 6]
+                        <td class="">待需求方签章</td>
+                        [#break]
+                        [#case 7]
+                        <td class="">待服务方签章</td>
+                        [#break]
+                        [#default]
+                        <td></td>
+                        [/#switch]
+                        [/#if]
+                        <input type="hidden" id="orderNo1" name="orderNo1" hidden="hidden" value="${c.orderNo!}">
+                        <td class="hetong">
+                            <a style="color:#0A80AA" href = "/member/orderManage.jspx?orderNo=${c.orderNo!}">采购合同</a>
+                        </td>
+                        <td class="backReason" title="${c.backReason!}">[@text_cut s=c.backReason! len='10' append='...' /]</td>
+                        [#if statusType??]
+                        [#switch statusType]
+                        [#case "0"]
+                        <td>
+                            <a class="link" href="/member/managerPay_view.jspx?paymentNo=${c.orderNo!}">明细</a>&nbsp;&nbsp;
+                            <a class="link" onclick="removeConfirm('${c.orderNo}','${(c.manage.managerId)!}')">撤单</a>
+                        </td>
+                        [#break]
+                        [#case "1"]
+                        <td>
+                            <a class="link" href="/member/managerPay_view.jspx?paymentNo=${c.orderNo!}">明细</a>
+                            <a class="link" onclick="protocalConfirm('${c.orderNo}',6)">使用签章</a>
+                            <a class="link" onclick="protocalConfirm('${c.orderNo}',2)">不使用签章</a>
+                         <a class="link" onclick="removeConfirm('${c.orderNo}','${(c.manage.managerId)!}')">撤单</a>
+                        </td>
+                        [#break]
+                        [#case "2"]
+                        <td>
+                            <a class="link" href="/member/managerPay_view.jspx?paymentNo=${c.orderNo!}">明细</a>
+                            <a class="link" onclick="removeConfirm('${c.orderNo}','${(c.manage.managerId)!}')">撤单</a>
+                            <a class="link" href="/member/managerPay_creat.jspx?paymentNo=${c.orderNo!}" target="_blank">付款</a>
+                            <a class="link" href="/member/update_order_status.jspx?orderNo=${c.orderNo!}&status=3" onClick="return confirm('是否确认线下支付?');">线下支付</a>
+                            [#if c.content?? && (c.content.attachments)[0].attachmentPath??]
+                            <a class="link" href="${(c.content.attachments)[0].attachmentPath!}" download="${(c.content.attachments)[0].attachmentName!}" target="_blank"> 下载签章合同</a>
+                            [/#if]
+                        </td>
+                        [#break]
+                        [#case "3"]
+                        <td>
+                            <a class="link" href="/member/managerPay_view.jspx?paymentNo=${c.orderNo!}">明细</a>
+                            [#if c.state==4||c.state==40][#else]
+                            <a class="link"
+                               onclick="if(confirm('是否确认收货？')){location.href='/member/update_order_status.jspx?orderNo=${c.orderNo!}&status=4'}">确认收货</a>
+                            [#if !c.isOnline??]
+                            <a class="link" href="/member/cloud_settlement.jspx?orderNo=${c.orderNo!}&flag=0">退款</a>
+                            [/#if]
+                            [/#if]
+                            [#if c.content?? && (c.content.attachments)[0].attachmentPath??]
+                            <a class="link" href="${(c.content.attachments)[0].attachmentPath!}" download="${(c.content.attachments)[0].attachmentName!}" target="_blank"> 下载签章合同</a>
+                            [/#if]
+                        </td>
+                        [#break]
+                        [#case "5"]
+                        <td>
+                            <a class="link" href="/member/managerPay_view.jspx?paymentNo=${c.orderNo!}">明细</a>
+                        </td>
+                        [#break]
+                        [#case "6"]
+                        <td>
+                            <a class="link" href="/member/managerPay_view.jspx?paymentNo=${c.orderNo!}">明细</a>
+                            <a class="link" onclick="protocalSeal('${c.orderNo}')">签章</a>
+                        </td>
+                        [#break]
+                        [#case "7"]
+                        <td>
+                            <a class="link" href="/member/managerPay_view.jspx?paymentNo=${c.orderNo!}">明细</a>
+                            [#if c.content?? && (c.content.attachments)[0].attachmentPath??]
+                            <a class="link" href="${(c.content.attachments)[0].attachmentPath!}" download="${(c.content.attachments)[0].attachmentName!}" target="_blank"> 下载签章合同</a>
+                            [/#if]
+                        </td>
+                        [#break]
+                        [#default]
+                        <td>
+                            <a class="link" href="/member/managerPay_view.jspx?paymentNo=${c.orderNo!}">明细</a>
+                        </td>
+                        [/#switch]
+                        [#else]
+                        <td>
+                            <a class="link" href="/member/managerPay_view.jspx?paymentNo=${c.orderNo!}">明细</a>
+                        </td>
+                        [/#if]
+                    </tr>
+                    [/#list]
+                    [#else]
+                    <tr>
+                        <td colspan="9"><h4>暂无数据</h4></td>
+                    </tr>
+                    [/#if]
+                    </tbody>
+                </table>
+            </div>
+            <input type="hidden" name="pageNo"/>
+            <div class="page clearfix">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="left" class="pn-sp">
+                            每页 ${pagination.pageSize} 条&nbsp;
+                            <input class="first" type="button" onclick="_gotoPage('1');" [#if pagination.firstPage]
+                                   disabled="disabled" [/#if]/>
+                            <input class="prev" type="button" onclick="_gotoPage('${pagination.prePage}');" [#if
+                                   pagination.firstPage] disabled="disabled" [/#if]/>
+                            <input type="text" value=${pagination.pageNo} id="_goPs" onfocus="this.select();"
+                                   onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>/${pagination.totalPage}
+                            <input class="next" type="button" onclick="_gotoPage('${pagination.nextPage}');" [#if
+                                   pagination.lastPage] disabled="disabled" [/#if]/>
+                            <input class="last" type="button" onclick="_gotoPage('${pagination.totalPage}');" [#if
+                                   pagination.lastPage] disabled="disabled" [/#if]/>&nbsp;
+                            <button id="_goPage" class="ok" type="button" onclick="_gotoPage($('#_goPs').val());" [#if
+                                    pagination.totalPage==1] disabled="disabled" [/#if]>GO</button>
+                            共 ${pagination.totalCount} 条&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <input type="text" id="statusType" name="statusType" hidden="hidden" value="${statusType!}">
+            <script type="text/javascript">
+                function _gotoPage(pageNo) {
+                    if (!/^[0-9]*[1-9][0-9]*$/.test(pageNo)) {
+                        ui.alertFail("页码必须为正整数！");
+                        return false;
+                    }
+                    try {
+                        var tableForm = document.getElementById("tableForm");
+                        $("input[name=pageNo]").val(pageNo);
+                        tableForm.action = "cloud_resource_order_list.jspx";
+                        tableForm.onsubmit = null;
+                        tableForm.submit();
+                    } catch (e) {
+                        alert('_gotoPage(pageNo)方法出错');
+                    }
+                }
+            </script>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="/${res}/js/logistics/ui.js"></script>
+<script type="text/javascript" src="/${res}/js/logistics/layer.js"></script>
+<script type="text/javascript">
+    function removeConfirm(Id1, Id2) {
+        if (confirm("是否撤单？")) {
+            location.href = "/member/managerPay_reback.jspx?orderNo=" + Id1 + "&managerId=" + Id2 + "";
+        }
+    }
+    function protocalConfirm(orderNo,status) {
+        if (status==6) {
+            if(confirm("是否确认使用签章？")) {
+                location.href = "/member/update_order_status.jspx?orderNo=" + orderNo + "&status=" + status;
+            }
+        }
+        if (status==2){
+        if(confirm("未进行签章的合同不具备法律效力保护，确定放弃签章？")){
+            location.href = "/member/update_order_status.jspx?orderNo=" + orderNo+ "&status=" + status;
+        }
+    }
+    }
+    function protocalSeal(orderNo){
+        if(confirm('是否确认签章？')){
+            parent.showWindow();
+            $("#goodcover1").show();
+            $("#waitTextr").show();
+            $.ajax({
+                url:'/member/orderManage.jspx?orderNo='+orderNo,
+                type:'GET',
+                success: function(data){
+                    $.ajax({
+                        url:'/member/seal_order_protocal.jspx?status=7',
+                        type:'POST',
+                        data: {"orderNo":orderNo,"htmls":data},
+                        success: function(data){
+                            parent.hideWindow();
+                            $("#goodcover1").hide();
+                            $("#waitTextr").hide();
+                            alert("电子签章成功！");
+                            console.log(data);
+                            $("#statusType").val("7");
+                            $("#tableForm").submit();
+                        },
+                        error:function(XMLHttpRequest,data) {
+                            alert("电子签章失败！原因："+data);
+                        }
+                    });
+                }
+            });
+        }
+    }
+</script>
+</body>
+</html>

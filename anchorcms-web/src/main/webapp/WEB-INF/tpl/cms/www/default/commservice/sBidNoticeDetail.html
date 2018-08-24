@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<!--中标公告预览页   hansx-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>${obj.projectName!"中标公告"}</title>
+    <meta http-equiv="keywords" content="${obj.projectName!}"/>
+    <meta http-equiv="description" content="内蒙古工业云+${obj.projectName!}"/>
+    <link rel="shortcut icon" href="/${res}/resources/images/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/releasePower.css"/>
+    <link rel="stylesheet" type="text/css" href="/${res}/resources/css/abilityPreview.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+[#include "../include/header_icloud.html"]
+<!--content start-->
+<div class="bid-content">
+    <div class="bid-type">
+        <div class="wrapper">
+            <span class="head"> 中标公告</span>
+        </div>
+    </div>
+    <div class="bid-info wrapper">
+        <div class="bid-title">
+            <p class="titleName">${obj.projectName!}</p>
+            <div class="bid-tip">
+                <p class="sourceTitle">发布时间：<span>${(obj.releaseDt)?default("")}</span></p>
+            </div>
+        </div>
+        <div class="bid-detail wrapper">
+
+            <table >
+                <tr>
+                    <td>
+                        <span class="special" >招标编号：</span><span>${(obj.tenderCode)?default("")}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="special">采购业主：</span><span>${(obj.purchaseOwner)?default("")}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="special">招标公司：</span><span>${(obj.bidCompany)?default("")}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="special">联系人：</span><span>${(obj.contact)?default("")}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="special">联系电话：</span><span>${(obj.mobile)?default("")}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="special">通讯地址：</span><span>${(obj.addrProvince)?default("")}&nbsp;&nbsp;${(obj.addrCity)?default("")}&nbsp;&nbsp;${(obj.addrCounty)?default("")}&nbsp;&nbsp;${(obj.addrStreet)?default("")}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="special">截止日期：</span><span>${(obj.deadlineDt)?default("")}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="special">中标方信息：</span><span>${(obj.bidInfo)?default("")}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="special">中标方名称：</span> <span>${(obj.bidName)?default("")}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="special">中标金额：</span><span>${(obj.bidSum)?default("")}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="special">合同履行日期：</span> <span>${(obj.pactDt)?default("")}</span>
+                    </td>
+                </tr>
+                [#if obj.bidContact!=""]
+                <tr>
+                    <td>
+                        <span class="special">中标方联系人：</span> <span>${(obj.bidContact)?default("")}</span>
+                    </td>
+                </tr>
+                [/#if]
+                [#if obj.bidTel!=""]
+                <tr>
+                    <td>
+                        <span class="special">中标方电话：</span> <span>${(obj.bidTel)?default("")}</span>
+                    </td>
+                </tr>
+                [/#if]
+                [#if obj.bidEml!=""]
+                <tr>
+                    <td>
+                        <span class="special">中标方邮箱：</span> <span>${(obj.bidEml)?default("")}</span>
+                    </td>
+                </tr>
+                [/#if]
+                [#if obj.bidFax!=""]
+                <tr>
+                    <td>
+                        <span class="special">中标方传真：</span> <span>${(obj.bidFax)?default("")}</span>
+                    </td>
+                </tr>
+                [/#if]
+                [#if obj.bidAdd!=""]
+                <tr>
+                    <td>
+                        <span class="special">中标方地址：</span> <span>${(obj.bidaddrProvince)?default("")}&nbsp;&nbsp;${(obj.bidaddrCity)?default("")}&nbsp;&nbsp;${(obj.bidaddrCounty)?default("")}&nbsp;&nbsp;${(obj.bidAdd)?default("")}</span>
+                    </td>
+                </tr>
+                [/#if]
+            </table>
+            <table id="attachTable" border="0" style="margin-left: 0;">
+                [#if (obj.content.attachments)??]
+                [#if obj.content.attachments ?size gt 0]
+                <tr style="color: #318CB8;font-size:14px;">
+                    <td>政策附件：</td>
+                </tr>
+                [#list obj.content.attachments as file]
+                <tr>
+                    <td style="height: 40px;font-size:12px;" align="center">
+                        ${file.attachmentName}&nbsp;&nbsp;&nbsp;</td>
+                    <td>
+                        <button style="width: 80px;height: 30px;font-size: 15px;outline: none;border: none;
+                    border-radius: 20px;" onmouseover="this.style.backgroundColor=' #318CB8';"
+                                onmouseout="this.style.backgroundColor='';">
+                            <a href="${file.attachmentPath}" download="${file.attachmentName}" target="_blank"> 下载 </a>
+                        </button>
+                    </td>
+                </tr>
+                [/#list]
+                [/#if]
+                [/#if]
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<!--content end-->
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/resources/js/head.js"></script>
+
+[#include "../include/footer_icloud.html"]
+</body>
+</html>

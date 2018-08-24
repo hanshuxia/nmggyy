@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:noNamespaceSchemaLocation="classpath:/ehcache.xsd"  updateCheck="false">
+	<defaultCache maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="120" timeToLiveSeconds="120"
+				  overflowToDisk="true" diskSpoolBufferSizeMB="3000" maxElementsOnDisk="100000000"
+				  diskPersistent="false" diskExpiryThreadIntervalSeconds="120"/>
+
+	<cache name="com.anchorcms.common.web.session.Session" maxElementsInMemory="500" eternal="false" timeToIdleSeconds="1200" overflowToDisk="true" diskPersistent="true"/>
+
+	<cache name="org.hibernate.cache.StandardQueryCache" maxElementsInMemory="500" eternal="false" timeToIdleSeconds="3600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="org.hibernate.cache.UpdateTimestampsCache" maxElementsInMemory="5000" eternal="true"  overflowToDisk="true"/>
+
+	<cache name="com.anchorcms.core.model.Ftp" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+
+	<cache name="com.anchorcms.cms.model.main.ContentExt" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.Content" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.ContentType" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.core.model.CmsUserSite" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.core.model.CmsUserExt" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.ChannelTxt" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.ContentTag" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.core.model.CmsUser" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.ContentTxt" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.Channel" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.core.model.CmsRole" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.CmsModel" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.core.model.CmsGroup" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.ContentCount" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.core.model.CmsSite" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.core.model.CmsSiteCompany" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.ChannelExt" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.ContentCheck" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.core.model.CmsConfig" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.Channel.viewGroups" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.core.model.CmsSite.attr" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.Content.attr" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.core.model.CmsGroup.contriChannels" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.core.model.CmsRole.perms" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.core.model.CmsUser.channels" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.Content.pictures" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.core.model.CmsSite.txt" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.Channel.child" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.core.model.CmsSite.cfg" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.Content.contentCheckSet" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.Channel.users" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.core.model.CmsUser.userExtSet" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.Channel.attr" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.Content.attachments" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.core.model.CmsGroup.viewChannels" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.Channel.contriGroups" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.Content.viewGroups" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.Content.tags" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.core.model.CmsConfig.attr" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.Content.contentTxtSet" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.main.Channel.channelTxtSet" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+
+	<cache name="com.anchorcms.cms.model.assist.CmsKeyword" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.assist.CmsCommentExt" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.assist.CmsGuestbookExt" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.assist.CmsSensitivity" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.assist.CmsGuestbookCtg" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.assist.CmsGuestbook" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.cms.model.assist.CmsComment" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SIcloudApply" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SIcloudCenter" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SIcloudDemand" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SIcloudDemandObj" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SIcloudDemandQuote" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SIcloudManage" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SIcloudPolicy" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SIcloudQuoteManage" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SIcloudResourceQuote" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.PubCode" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SOrderPayment" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.PictureFistpage" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SAmplePolicy" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SAmplePolicyApply" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SBidNotice" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SSoldNote" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SStiteManager" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.STask" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.STask_attr" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.STaskFill" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.STaskFillModel" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.STaskModel" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.STenderNotice" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.STenderTrailer" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SSoftware" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SSoftwareBuy" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SRepairAbility" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SRepairDemand" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SRepairDemandObj" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SRepairInquiry" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SRepairQuote" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SRepairRes" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SSpare" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SSpareDemand" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SSpareDemandObj" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SAbility" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SAbilityInquiry" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SCompany" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SCompanyDevice" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SCompanyDiploma" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SDemand" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SDemandObj" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SDemandQuote" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+	<cache name="com.anchorcms.icloud.model.cloudcenter.SDemandQuoteObj" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="7200" overflowToDisk="true"/>
+
+	<cache name="com.anchorcms.cms.shiro.shiroCache" maxElementsInMemory="500" eternal="false" timeToIdleSeconds="1200" overflowToDisk="true" diskPersistent="true"/>
+
+	<cache name="com.anchorcms.cms.front.ContentOrderTemp" maxElementsInMemory="50000" eternal="false" timeToIdleSeconds="7200" overflowToDisk="true" diskPersistent="true"/>
+
+</ehcache>

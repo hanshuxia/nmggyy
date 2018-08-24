@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <bean id="messageSource" name="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="cacheSeconds" value="-1"/>
+        <property name="basenames" value="#{propertyUtils.getList('messages.front.')}"/>
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="webBindingInitializer">
+            <bean class="com.anchorcms.common.web.mvc.BindingInitializer"/>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+        <property name="interceptors">
+            <list>
+                <ref bean="frontContextInterceptor"/>
+                <ref bean="frontLocaleInterceptor"/>
+                <ref bean="frontCompanyInterceptor"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="frontContextInterceptor" class="com.anchorcms.cms.web.FrontContextInterceptor"/>
+    <bean id="frontLocaleInterceptor" class="com.anchorcms.cms.web.FrontLocaleInterceptor"/>
+    <bean id="frontCompanyInterceptor" class="com.anchorcms.icloud.interceptor.FrontCompanyInterceptor"/>
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="cookieName" value="clientlanguage"/>
+        <property name="cookieMaxAge" value="-1"/>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.springframework.web.bind.MissingServletRequestParameterException">/WEB-INF/error/requiredParameter.html</prop>
+                <prop key="org.springframework.beans.TypeMismatchException">/WEB-INF/error/mismatchParameter.html</prop>
+                <prop key="org.springframework.web.bind.ServletRequestBindingException">/WEB-INF/error/bindException.html</prop>
+                <prop key="com.anchorcms.cms.web.SiteNotFoundException">/WEB-INF/error/siteNotFoundException.html</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="freemarkerViewResolver" class="com.anchorcms.common.web.mvc.SimpleFreeMarkerViewResolver">
+        <property name="contentType" value="text/html; charset=UTF-8"/>
+        <property name="exposeRequestAttributes" value="false"/>
+        <property name="exposeSessionAttributes" value="false"/>
+        <property name="exposeSpringMacroHelpers" value="true"/>
+    </bean>
+    <!--配置了shiro，更改了路径 原:<bean id="freemarkerConfig" name="frontfreemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">-->
+    <bean id="freemarkerConfig" name="frontfreemarkerConfig" class="com.anchorcms.common.shiro4freemarker.ShiroTagFreeMarkerConfigurer">
+        <!--获取标签配置-->
+        <property name="freemarkerVariables" value="#{propertyUtils.getBeanMap('directive.')}"/>
+        <property name="templateLoaderPath" value=""/>
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="tag_syntax">auto_detect</prop>
+                <prop key="template_update_delay">5</prop>
+                <prop key="defaultEncoding">UTF-8</prop>
+                <prop key="url_escaping_charset">UTF-8</prop>
+                <prop key="locale">zh_CN</prop>
+                <prop key="boolean_format">true,false</prop>
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+                <prop key="date_format">yyyy-MM-dd</prop>
+                <prop key="time_format">HH:mm:ss</prop>
+                <prop key="number_format">0.######</prop>
+                <prop key="whitespace_stripping">true</prop>
+                <!--空值处理<prop key="classic_compatible">true</prop>-->
+                <prop key="auto_import">/WEB-INF/ftl/anchorcms/index.ftl as p,/WEB-INF/ftl/spring.ftl as s</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- 开启自动扫描包 -->
+    <context:component-scan base-package="com.anchorcms.*.controller.front,com.anchorcms.cms.controller.member,com.anchorcms.icloud.controller.*" />
+</beans>
